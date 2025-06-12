@@ -34,7 +34,6 @@ Automatisation du site conserto
     Action Scroll   ${footer}
     Capture Et Sauvegarde     capture_footer
     Nettoyer Dossier Logs
-    Sleep  2s
    
 
 
