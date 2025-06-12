@@ -1,5 +1,20 @@
 # <!--
 
+
+# Commande git : 
+# La commande pour pusher la branche main locale vers une branche master distante est :
+
+# git push origin main:master
+# ou soit : 
+# git checkout main
+# git push origin main:master
+
+
+
+
+
+
+
 # Logs/
 # .pabotsuitenames
 # chromedriver.exe

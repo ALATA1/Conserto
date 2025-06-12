@@ -1,0 +1,8 @@
+chromedriver.exe
+geckodriver.exe
+msedgedriver.exe
+Documentation/~*.docx
+Documentation/*.tmp
+JDD/sample.json
+.venv
+results/
