@@ -1,0 +1,114 @@
+*** Settings ***
+Documentation       keywords tests site conserto
+Library    SeleniumLibrary 
+Library    OperatingSystem
+Library    String
+
+
+# Remarques : 
+# Si vous devez absolument utiliser Sleep, gardez-le court : exemple : Sleep    0.5s
+
+# Autres recommandations pratiques : Préférez des sélecteurs robustes et explicites, c'est à dire : 
+# L’élément a un ID unique	id=...
+# Pas d'ID, mais des classes stables	css=...
+# L’élément n’a ni ID ni classes	xpath=...
+# Besoin de cibler un texte visible	xpath=//button[text()='Connexion']
+
+# Le fichier resources.robot doit contenir	*** Keywords *** et/ou *** Variables ***, mais pas *** Test Cases ***
+
+*** Variables ***
+
+${URL_CONSERTO}         https://conserto.pro/
+${Title_1}              Conserto - La Transformation Numérique Agile et Harmonieuse
+@{mots_attendus}        Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
+${footer}               id=footer   # xpath=//footer //*[@id="footer"]
+
+
+
+*** Keywords ***
+
+############################################
+#########  OUVERTURE DU NAVIGATEUR #########
+
+Ouverture Navigateur
+    [Arguments]     ${URL}
+    Open Browser    ${URL}    browser=chrome
+    AWait Browser Ready And Complete
+    Maximize Browser Window
+    Sleep   0.5s
+    Capture Et Sauvegarde       capture_home 
+
+
+Vérifier Tous Les Mots Avec Une Boucle
+    ${html}=    Get Source
+    FOR    ${mot}    IN    @{mots_attendus}
+        Should Contain    ${html}    ${mot}
+        ${log}=    Set Variable    ${mot}
+        Log    ${log}
+        # Log to console      ${log}  
+    END
+
+AWait Browser Ready And Complete
+    Wait Until Page Is Loaded
+
+
+Wait Until Page Is Loaded
+    Wait Until Keyword Succeeds    10s    1s
+    ...    Execute JavaScript    return document.readyState == "complete"
+
+
+Action Scroll   
+    [Arguments]     ${element} 
+    Wait Until Keyword Succeeds    2 x    2 s        Wait Until Element Is Visible   ${element}        60
+    Scroll Element Into View    ${element}
+
+Capture Et Sauvegarde
+    [Arguments]     ${image_name}
+    Wait Until Keyword Succeeds    10s    1s    
+    ...  Capture Page Screenshot    Screenshot/${image_name}.png 
+    # ${dir}=    Catenate    Screenshot
+    # Create Directory    ${dir}
+    # # Move File    Screenshot    ${destination}/Logs
+    # Déplacer un dossier
+ 
+
+Déplacer un dossier
+    [Arguments]    ${source_dossier}=Screenshot   ${destination}=Logs 
+    Move Directory    ${source_dossier}    ${destination}
+
+Nettoyer Dossier Logs
+    # # Remove Directory    Logs    recursive=True
+    # Create Directory    Logs
+    [Arguments]    ${destination}=Logs
+    Create Directory    ${destination}
+    # Move File    output.xml    ${destination}/output.xml
+    # Move File    log.html      ${destination}/log.html
+    # Move File    report.html   ${destination}/report.html
+
+
+
+ 
+########################################################
+##########  ENVOIE DU RAPPORT DE TEST PAR MAIL #########
+
+
+Envoyer un mail
+    email_content = """ibrahima.alata@externe.maif.fr""" % (total_suite, passed_suite, failed_suite, suitepp, total, passed, failed, testpp, total_keywords, passed_keywords, failed_keywords, kwpp, elapsedtime, generator)
+    
+    msg.set_payload(email_content)
+    
+    # Start server
+    server.starttls()
+    
+    # Login Credentials for sending the mail
+    server.login(msg['From'], password)
+    
+    server.sendmail(sender, recipients, msg.as_string())
+
+
+
+
+
+
+
+

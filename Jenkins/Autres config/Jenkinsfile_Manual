@@ -1,0 +1,81 @@
+pipeline {
+    
+    agent { 
+         label 'robot-framework' 
+    }
+    stages {
+        stage('Updated variables') {    
+            steps {
+                script {
+                    currentBuild.displayName = ""+params.Environnement+"__"+params.Type_de_test+"__N°"+currentBuild.number+""
+                    currentBuild.description = "Reporter : "+params.Reporter+""
+                }
+                sh """
+                /usr/bin/python ./Helpers/install_helper.py -ul 
+                /usr/bin/python ./Helpers/install_helper.py -ul 
+                """ 
+                sh """
+                    echo '  ' >> Environment/launch_variables.ini
+                    echo '[UpdatedVariables]' >> Environment/launch_variables.ini
+                    echo 'RP_RUN_NAME=${params.Type_de_test}' >> Environment/launch_variables.ini
+                    echo 'RP_DESCRIPTION=TNR_quotidienne_sur_${params.Environnement}' >> Environment/launch_variables.ini
+                    echo 'RP_ATTRIBUTES=BUILD:N°${currentBuild.number}' >> Environment/launch_variables.ini
+                    echo 'MR_DASHBOARD_URL=${params.URL_Dashboard}' >> Environment/launch_variables.ini
+                    echo 'MR_BUILD_URL=${BUILD_URL}' >> Environment/launch_variables.ini 
+                """
+            }
+            
+        }
+        
+
+    
+        stage('Tests') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    withEnv([]) {
+                        sh "/usr/bin/python ./Helpers/install_helper.py -ul --version 3.0rc12"
+                        sh "/usr/bin/python ./Helpers/install_helper.py -E MaifTstFacLibraryPluginJDD==1.3.1"
+                        sh """
+                           /usr/bin/python -m MaifTstFacLibrary -i ${params.RFW_Tag} --launchvariables ${params.Environnement} --target Darwin --parallel 1 --browsername firefox --reporter ${params.Reporter} --seleniumspeed 0.2
+                        """ 
+                    }
+                }
+            }
+        }
+
+
+        stage('Publisher') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    step([
+                        $class : 'RobotPublisher',
+                        outputPath : 'Logs',
+                        outputFileName : "output.xml",
+                        disableArchiveOutput : false,
+                        passThreshold : 100,
+                        unstableThreshold: 90.0,
+                        otherFiles : "*.*"
+                    ])
+                }
+            }
+        }
+        stage('Mailing') {
+            steps {
+                 script {
+                        emailext (
+                            attachLog: false,
+                            mimeType: 'text/html',
+                            body: '${FILE, path="Logs/bodyReportMailFull.html"}',
+                            subject: '$BUILD_DISPLAY_NAME [$BUILD_STATUS]',
+                            to: '${ENV,var="Email"}'
+                        )
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs() 
+        }
+    }
+}

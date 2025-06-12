@@ -1,0 +1,78 @@
+pipeline {
+    environment {
+            EMAIL_TO = 'ibrahima.alata@conserto.pro'
+    }
+    
+    agent { 
+        label 'robot-framework' 
+    }
+    stages {
+        stage('Updated variables') {    
+            steps {
+                script {
+                    currentBuild.displayName = ""+params.Environnement+"__"+params.Type_de_test+"__N°"+currentBuild.number+""
+                }
+                sh """
+                python ./Helpers/install_helper.py -ul
+                """ 
+                sh """
+                    echo '  ' >> Environment/launch_variables.ini
+                    echo '[UpdatedVariables]' >> Environment/launch_variables.ini
+                    echo 'RP_RUN_NAME=${params.Type_de_test}' >> Environment/launch_variables.ini
+                    echo 'RP_DESCRIPTION=TNR_quotidienne_sur_${params.Environnement}' >> Environment/launch_variables.ini
+                    echo 'RP_ATTRIBUTES=BUILD:N°${currentBuild.number}' >> Environment/launch_variables.ini
+                    echo 'MR_DASHBOARD_URL=${params.URL_Dashboard}' >> Environment/launch_variables.ini
+                    echo 'MR_BUILD_URL=${BUILD_URL}' >> Environment/launch_variables.ini  
+                """
+            }
+            
+        }
+        
+stage('Tests') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    withEnv([]) {
+                        sh """
+                    python -m MaifTstFacLibrary -i ${RFW_Tag} --launchvariables ${params.Environnement} -E ${params.Environnement} --target Selenoid --parallel 4 --reporter Report_portal --reportmode rt --rerun
+                        """ 
+                    }
+                }
+            }
+        }
+
+
+        stage('Publisher') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    step([
+                        $class : 'RobotPublisher',
+                        outputPath : 'Logs',
+                        outputFileName : "output.xml",
+                        disableArchiveOutput : false,
+                        passThreshold : 100,
+                        unstableThreshold: 90.0,
+                        otherFiles : "*.*"
+                    ])
+                }
+            }
+        }
+        stage('Mailing') {
+            steps {
+                 script {
+                        emailext (
+                            attachLog: false,
+                            mimeType: 'text/html',
+                            body: '${FILE, path="Logs/bodyReportMailFull.html"}',
+                            subject: '$BUILD_DISPLAY_NAME [$BUILD_STATUS]',
+                            to: '${ENV,var="Email"}'
+                        )
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs() 
+        }
+    }
+}
