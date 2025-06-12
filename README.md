@@ -11,7 +11,9 @@ JDD/sample.json
 .venv
 results/
 
-
+Jenkins : 
+Id = Test_Cons
+Pass = Kolima2431121980@
 ===============================================================
 Process pour merger ta branche develop vers la branche master : 
 ===============================================================
