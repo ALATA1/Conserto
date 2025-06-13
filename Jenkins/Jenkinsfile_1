@@ -3,16 +3,16 @@ pipeline {
 
     environment {
         // Remplace ce chemin par celui de ton installation Python si nécessaire
-        // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
         // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
-        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
+        // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
     }
 
     stages {
         stage('Installation des dépendances') {
             steps {
                 echo 'Installation des librairies nécessaires'
-                // bat "${env.PYTHON} -m pip install --upgrade pip"
+                bat "${env.PYTHON} -m pip install --upgrade pip"
                 // bat "${env.PYTHON} -m pip install -r requirements.txt"
             }
         }
