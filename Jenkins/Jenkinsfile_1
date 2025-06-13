@@ -32,6 +32,7 @@ pipeline {
         stage('Rapport Robot (si plugin installé)') {
             steps {
                 // robot outputPath: 'results'
+                echo 'Archivage des résultats Robot Framework'
             }
         }
     }
