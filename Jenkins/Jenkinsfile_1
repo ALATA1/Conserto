@@ -39,7 +39,8 @@ pipeline {
         stage('Rapport Robot Framework (si plugin installé)') {
             steps {
                 // Nécessite le plugin Robot Framework dans Jenkins
-                robot outputPath: 'Resultats'
+                // robot outputPath: 'Resultats'
+                echo 'robot outputPath '
                 
             }
         }
