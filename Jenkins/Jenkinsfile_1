@@ -2,45 +2,45 @@ pipeline {
     agent any
 
     environment {
-        // Facultatif : chemin vers Python et Scripts si non global
-        // PATH = "C:\\Python311\\;C:\\Python311\\Scripts\\;%PATH%"
-        EMAIL_TO = 'ibrahima.alata@conserto.pro'
+        // Remplace ce chemin par celui de ton installation Python si nécessaire
+        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
     }
 
     stages {
-        stage('Préparation') {
+        stage('Installation des dépendances') {
             steps {
-                echo 'Installation des dépendances Python'
-                // bat 'pip install -r requirements.txt'
-                sh 'pip install -r requirements.txt'
+                echo 'Installation des librairies nécessaires'
+                // bat "${env.PYTHON} -m pip install --upgrade pip"
+                // bat "${env.PYTHON} -m pip install -r requirements.txt"
             }
         }
 
         stage('Exécution des tests Robot Framework') {
             steps {
-                echo 'Lancement des tests Robot'
-                // bat 'robot --outputdir results tests'
+                echo 'Lancement des tests'
+                // bat "${env.PYTHON} -m robot --outputdir results tests"
             }
         }
 
         stage('Archivage des résultats') {
             steps {
-                echo 'Archivage des résultats Robot Framework'
+                echo 'Archivage des fichiers de test'
                 // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
             }
         }
 
-        stage('Rapport Robot (si plugin installé)') {
+        stage('Rapport Robot Framework (si plugin installé)') {
             steps {
+                // Nécessite le plugin Robot Framework dans Jenkins
                 // robot outputPath: 'results'
-                echo 'Archivage des résultats Robot Framework'
+                echo 'robot outputPath'
             }
         }
     }
 
     post {
         always {
-            echo 'Pipeline terminé'
+            echo 'Pipeline terminé.'
         }
     }
 }
