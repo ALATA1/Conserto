@@ -33,9 +33,9 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            echo 'Nettoyage terminé. Pipeline terminé.'
-        }
-    }
+    // post {
+    //     always {
+    //         echo 'Nettoyage terminé. Pipeline terminé.'
+    //     }
+    // }
 }
