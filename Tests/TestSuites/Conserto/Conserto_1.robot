@@ -7,7 +7,8 @@ Library    String
 
 # Suite Setup     Nettoyer Dossier Logs
 Resource         ../../../resources/Commun_conserto.robot
-
+Resource         ../../../resources/Keywords.robot
+Resource         ../../../Variables/Global_variables.robot
 
 
 Test Setup       NONE  # Open Browser
@@ -30,9 +31,8 @@ Automatisation du site conserto
     [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
-    Ouverture Navigateur    ${URL_CONSERTO}
-    Title Should Be    ${Title_1} 
-    Vérifier Tous Les Mots Avec Une Boucle
+    Ouverture Navigateur    ${URL_CONSERTO}   browser=${BROWSER}
+    Vérifier la page d'accueil de Conserto   ${Title_1} 
     Action Scroll   ${footer}
     Capture Et Sauvegarde     capture_footer
     Nettoyer Dossier Logs

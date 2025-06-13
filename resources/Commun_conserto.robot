@@ -5,6 +5,8 @@ Library    OperatingSystem
 Library    String
 
 
+Resource         ../../../resources/Keywords.robot
+Resource         ../../../Variables/Global_variables.robot
 # Remarques : 
 # Si vous devez absolument utiliser Sleep, gardez-le court : exemple : Sleep    0.5s
 
@@ -20,9 +22,9 @@ Library    String
 
 ${URL_CONSERTO}         https://conserto.pro/
 ${Title_1}              Conserto - La Transformation Numérique Agile et Harmonieuse
-@{mots_attendus}        Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
+@{mots_attendus}        ${Title_1}   Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
 ${footer}               id=footer   # xpath=//footer //*[@id="footer"]
-
+${BROWSER}              chrome
 
 
 *** Keywords ***
@@ -31,21 +33,31 @@ ${footer}               id=footer   # xpath=//footer //*[@id="footer"]
 #########  OUVERTURE DU NAVIGATEUR #########
 
 Ouverture Navigateur
-    [Arguments]     ${URL}
-    Open Browser    ${URL}    browser=chrome
+    [Arguments]     ${URL}    ${browser} 
+    Open Browser    ${URL}    ${browser} 
     AWait Browser Ready And Complete
     Maximize Browser Window
     Sleep   0.5s
     Capture Et Sauvegarde       capture_home 
 
 
-Vérifier Tous Les Mots Avec Une Boucle
+Vérifier la page d'accueil de Conserto  
+    [Arguments]     ${Title}
+    Title Should Be   ${Title} 
+    # Page Should Contain Element   xpath=//a[contains(text(), 'Nous contacter')]
+    
+    Page Should Contain Element     xpath=//*[contains(text(), 'Positive') and contains(text(), 'Technologie')]
+    # Click Element  xpath=//a[contains(text(), 'Nous contacter')]
+    Sleep  0.5s
+    Vérifier quelques mots avec une boucle
+
+Vérifier quelques mots avec une boucle
     ${html}=    Get Source
     FOR    ${mot}    IN    @{mots_attendus}
         Should Contain    ${html}    ${mot}
         ${log}=    Set Variable    ${mot}
         Log    ${log}
-        # Log to console      ${log}  
+        Log to console      ${log}  
     END
 
 AWait Browser Ready And Complete
