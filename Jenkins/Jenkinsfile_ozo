@@ -4,31 +4,30 @@ pipeline {
     stages {
         stage('Préparation') {
             steps {
-                echo 'Préparation de l’environnement...'
-                // sh 'pip install -r requirements.txt'
+                echo 'Préparation de l’environnement de test...'
+                sh 'pip install -r requirements.txt'
             }
         }
 
-        stage('Build') {
+        stage('Exécution des tests') {
             steps {
-                echo 'Compilation du projet...'
-                // Exemple : sh 'npm install' ou 'mvn clean install'
-                //sh 'robot --outputdir results/ tests/'
-                // sh 'robot -d Resultats/ Tests/' 
+                echo 'Exécution des tests Robot Framework...'
+                sh 'robot --outputdir Resultats/ tests/'
             }
         }
 
-        stage('Tests') {
+        stage('Publication des résultats') {
             steps {
-                echo 'Exécution des tests...'
-                // Exemple : sh 'npm test' ou 'pytest'
+                echo 'Archivage des résultats'
+                archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
+                robot outputPath: 'Resultats'
             }
         }
+    }
 
-        stage('Déploiement') {
-            steps {
-                echo 'Déploiement en cours...'
-            }
+    post {
+        always {
+            echo 'Nettoyage terminé. Pipeline terminé.'
         }
     }
 }
