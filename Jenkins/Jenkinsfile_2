@@ -1,0 +1,99 @@
+pipeline {
+    agent any
+
+    environment {
+        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+    }
+
+    triggers {
+        cron('H 8 * * 1-5')  // Tous les jours ouvrés à 8h
+    }
+
+    parameters {
+        string(name: 'EMAIL', defaultValue: 'ibrahima.alata@conserto.pro', description: 'Destinataire du rapport')
+    }
+
+    stages {
+        stage('Installation des dépendances') {
+            steps {
+                echo 'Installation des librairies nécessaires'
+                bat "${env.PYTHON} -m pip install --upgrade pip"
+                bat "${env.PYTHON} -m pip install -r requirements.txt"
+            }
+        }
+
+        stage('Exécution des tests') {
+            steps {
+                echo 'echo "📁 Lancement des tests'
+                bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
+                // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
+            }
+        }
+
+        stage('Archivage des résultats') {
+            steps {
+                echo 'Archivage des fichiers de test'
+                archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
+            }
+        }
+
+        stage('Créer archive ZIP du rapport') {
+            steps {
+                echo "📦 Création du ZIP"
+                bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip'
+            }
+        }
+
+        stage('Rapport-Publisher') {
+            steps {
+                // // Nécessite le plugin Robot Framework dans Jenkins
+                // // robot outputPath: 'Resultats'
+                // echo 'robot outputPath '
+                // // robot outputPath: 'Resultats'
+                echo 'Pipeline terminé.'
+                robot outputPath: 'Resultats'
+                archiveArtifacts artifacts: 'Resultats/*.html'
+            }
+        }
+    }
+
+    post {
+        success {
+            emailext (
+                subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Bonjour,
+
+                    Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a été exécuté avec **succès**.
+
+                    📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
+                    📁 Rapport ZIP en pièce jointe.
+
+                    Cordialement,  
+                    Jenkins
+                """,
+                to: "${params.EMAIL}",
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
+            )
+        }
+
+        failure {
+            emailext (
+                subject: "❌ ÉCHEC - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Bonjour,
+
+                    Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a échoué.
+
+                    📎 Voir logs ici : ${env.BUILD_URL}console  
+                    📎 Rapport HTML (s'il existe) : ${env.BUILD_URL}artifact/Resultats/log.html
+
+                    Cordialement,  
+                    Jenkins
+                """,
+                to: "${params.EMAIL}",
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
+            )
+        }
+    }
+}
