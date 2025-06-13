@@ -1,27 +1,36 @@
 pipeline {
     agent any
 
+    environment {
+        // Facultatif : chemin vers Python et Scripts si non global
+        // PATH = "C:\\Python311\\;C:\\Python311\\Scripts\\;%PATH%"
+        EMAIL_TO = 'ibrahima.alata@conserto.pro'
+    }
+
     stages {
         stage('Préparation') {
             steps {
-                echo 'Préparation de l’environnement de test...'
-                // sh 'pip install -r requirements.txt'
+                echo 'Installation des dépendances Python'
+                // bat 'pip install -r requirements.txt'
             }
         }
 
-        stage('Exécution des tests') {
+        stage('Exécution des tests Robot Framework') {
             steps {
-                echo 'Exécution des tests Robot Framework...'
-                // sh 'robot --outputdir results/ tests/'
-                sh 'robot Tests/TestSuites/Conserto/conserto_1.robot'
-                  
+                echo 'Lancement des tests Robot'
+                // bat 'robot --outputdir results tests'
             }
         }
 
-        stage('Publication des résultats') {
+        stage('Archivage des résultats') {
             steps {
-                echo 'Archivage des résultats'
+                echo 'Archivage des résultats Robot Framework'
                 // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
+            }
+        }
+
+        stage('Rapport Robot (si plugin installé)') {
+            steps {
                 // robot outputPath: 'results'
             }
         }
@@ -29,9 +38,7 @@ pipeline {
 
     post {
         always {
-            echo 'Nettoyage terminé. Pipeline terminé.'
+            echo 'Pipeline terminé'
         }
     }
 }
-
-
