@@ -5,30 +5,22 @@ pipeline {
         stage('Préparation') {
             steps {
                 echo 'Préparation de l’environnement de test...'
-                sh 'pip install -r requirements.txt'
+                // sh 'pip install -r requirements.txt'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Compilation du projet...'
-                // Exemple : sh 'npm install' ou 'mvn clean install'
-                //sh 'robot --outputdir results/ tests/'
-                // sh 'robot -d Resultats/ Tests/' 
-            }
-        }
+
         stage('Exécution des tests') {
             steps {
                 echo 'Exécution des tests Robot Framework...'
-                //sh 'robot --outputdir Resultats/ tests/'
-                // sh 'robot -d Resultats/ Tests/'
+                // sh 'robot --outputdir results/ tests/'
             }
         }
 
         stage('Publication des résultats') {
             steps {
                 echo 'Archivage des résultats'
-                // archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
-                // robot outputPath: 'Resultats'
+                // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
+                // robot outputPath: 'results'
             }
         }
     }
