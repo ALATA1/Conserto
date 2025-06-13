@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Installation des librairies nécessaires'
                 bat "${env.PYTHON} -m pip install --upgrade pip"
-                // bat "${env.PYTHON} -m pip install -r requirements.txt"
+                bat "${env.PYTHON} -m pip install -r requirements.txt"
             }
         }
 
