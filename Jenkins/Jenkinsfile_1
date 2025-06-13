@@ -1,49 +1,37 @@
-// pipeline {
-//     agent any
-
-//     stages {
-//         stage('Préparation') {
-//             steps {
-//                 echo 'Préparation de l’environnement de test...'
-//                 // sh 'pip install -r requirements.txt'
-//             }
-//         }
-
-//         stage('Exécution des tests') {
-//             steps {
-//                 echo 'Exécution des tests Robot Framework...'
-//                 // sh 'robot --outputdir results/ tests/'
-//                 sh 'robot Tests/TestSuites/Conserto/conserto_1.robot'
-                  
-//             }
-//         }
-
-//         stage('Publication des résultats') {
-//             steps {
-//                 echo 'Archivage des résultats'
-//                 // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
-//                 // robot outputPath: 'results'
-//             }
-//         }
-//     }
-
-//     post {
-//         always {
-//             echo 'Nettoyage terminé. Pipeline terminé.'
-//         }
-//     }
-// }
-
-
 pipeline {
     agent any
 
     stages {
-        stage('Tests') {
+        stage('Préparation') {
             steps {
-                bat 'pip install -r requirements.txt'
-                bat 'robot   --output Logs/output.xml   --log Logs/log.html   --report Logs/report.html   Tests/TestSuites/Conserto/conserto_1.robot'
+                echo 'Préparation de l’environnement de test...'
+                // sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Exécution des tests') {
+            steps {
+                echo 'Exécution des tests Robot Framework...'
+                // sh 'robot --outputdir results/ tests/'
+                sh 'robot Tests/TestSuites/Conserto/conserto_1.robot'
+                  
+            }
+        }
+
+        stage('Publication des résultats') {
+            steps {
+                echo 'Archivage des résultats'
+                // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
+                // robot outputPath: 'results'
             }
         }
     }
+
+    post {
+        always {
+            echo 'Nettoyage terminé. Pipeline terminé.'
+        }
+    }
 }
+
+
