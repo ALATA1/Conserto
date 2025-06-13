@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Exécution des tests Robot Framework...'
                 // sh 'robot --outputdir results/ tests/'
-                sh 'robot --outputdir Resultats/ Tests/'
+                sh 'robot Tests/TestSuites/Conserto/conserto_1.robot'
                   
             }
         }
