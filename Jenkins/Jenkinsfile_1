@@ -25,7 +25,7 @@ pipeline {
         stage('Exécution des tests Robot Framework') {
             steps {
                 echo 'Lancement des tests'
-                bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
+                bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
             }
         }
 
