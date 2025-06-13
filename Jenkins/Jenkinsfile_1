@@ -2,7 +2,12 @@ pipeline {
     agent any
 
     environment {
-        // Remplace ce chemin par celui de ton installation Python si nécessaire
+        // Remplace ce chemin par celui de ton installation Python si nécessaire en 
+        // enxécutant ces lignes de commandes : 
+        // python --version  
+        // pip --version
+        // where python
+        // where pip
         PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
         // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
         // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
@@ -20,7 +25,7 @@ pipeline {
         stage('Exécution des tests Robot Framework') {
             steps {
                 echo 'Lancement des tests'
-                // bat "${env.PYTHON} -m robot --outputdir results tests"
+                bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
             }
         }
 
