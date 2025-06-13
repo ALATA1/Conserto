@@ -13,6 +13,10 @@ pipeline {
         // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
     }
 
+    triggers {
+        cron('H 8 * * 1-5')  // Tous les jours ouvrés à 8h
+    }
+
     stages {
         stage('Installation des dépendances') {
             steps {
@@ -22,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Exécution des tests Robot Framework') {
+        stage('Exécution des tests') {
             steps {
                 echo 'Lancement des tests'
                 bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
@@ -37,19 +41,46 @@ pipeline {
             }
         }
 
-        stage('Rapport Robot Framework (si plugin installé)') {
+        stage('Rapport-Publisher') {
             steps {
-                // Nécessite le plugin Robot Framework dans Jenkins
-                // robot outputPath: 'Resultats'
-                echo 'robot outputPath '
-                
+                // // Nécessite le plugin Robot Framework dans Jenkins
+                // // robot outputPath: 'Resultats'
+                // echo 'robot outputPath '
+                // // robot outputPath: 'Resultats'
+                echo 'Pipeline terminé.'
+                robot outputPath: 'Resultats'
+                archiveArtifacts artifacts: 'Resultats/*.html'
             }
         }
     }
 
+    // post {
+    //     always {
+    //         echo 'Pipeline terminé.'
+    //         robot outputPath: 'Resultats'
+    //         archiveArtifacts artifacts: 'Resultats/*.html'
+    //     }
+    // }
+
     post {
         always {
-            echo 'Pipeline terminé.'
+            emailext (
+                subject: "📢 Rapport de Test - ${currentBuild.fullDisplayName}",
+                body: """
+                    Bonjour,
+
+                    Le test Jenkins ${env.JOB_NAME} #${env.BUILD_NUMBER} est terminé.
+
+                    - Statut : ${currentBuild.currentResult}
+                    - Rapport : ${env.BUILD_URL}artifact/Resultats/log.html
+
+                    Cordialement,
+                    Jenkins
+                """,
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                to: 'ibrahima.alata@conserto.pro',
+                attachmentsPattern: 'Resultats/*.html'
+            )
         }
     }
 }
