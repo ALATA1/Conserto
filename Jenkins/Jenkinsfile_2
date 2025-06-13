@@ -30,21 +30,14 @@ pipeline {
             }
         }
 
-        stage('Rapport : Archivage + création ZIP ') {
+        stage('Archivage + création ZIP ') {
             steps {
-                echo 'Archivage des fichiers de test et 📦 Création du ZIP '
+                echo 'Archivage des fichiers de test et 📦 Création du ZIP avec écrasement du précedent '
                 // à voir dans  : C:\ProgramData\Jenkins\.jenkins\workspace\Conserto\Resultats
                 archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
                 bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip -Force'
             }
         }
-
-        // stage('Créer archive ZIP du rapport') {
-        //     steps {
-        //         echo "📦 Création du ZIP à voir dans  : C:\ProgramData\Jenkins\.jenkins\workspace\Conserto\Resultats"
-        //         bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip'
-        //     }
-        // }
 
         stage('Rapport-Publisher') {
             steps {
