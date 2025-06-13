@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3 (Python 3.13.3 on win32)" generated="2025-06-13T11:15:44.699082" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3 (Python 3.13.3 on win32)" generated="2025-06-13T23:12:01.594113" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests">
 <suite id="s1-s1" name="TestSuites" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites">
 <suite id="s1-s1-s1" name="Conserto" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto">
@@ -7,101 +7,101 @@
 <test id="s1-s1-s1-s1-t1" name="Automatisation du site conserto" line="31">
 <kw name="Ouverture Navigateur" owner="Commun_conserto">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:45.058360" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<msg time="2025-06-13T23:12:01.999492" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
 <arg>${URL}</arg>
 <arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-06-13T11:15:45.058085" elapsed="1.669891"/>
+<status status="PASS" start="2025-06-13T23:12:01.999237" elapsed="1.989138"/>
 </kw>
 <kw name="AWait Browser Ready And Complete" owner="Commun_conserto">
 <kw name="Wait Until Page Is Loaded" owner="Commun_conserto">
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:46.730696" level="INFO">Executing JavaScript:
+<msg time="2025-06-13T23:12:03.992070" level="INFO">Executing JavaScript:
 return document.readyState == "complete"
 Without any arguments.</msg>
 <arg>return document.readyState == "complete"</arg>
 <doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2025-06-13T11:15:46.729836" elapsed="0.009069"/>
+<status status="PASS" start="2025-06-13T23:12:03.991231" elapsed="0.224030"/>
 </kw>
 <arg>10s</arg>
 <arg>1s</arg>
 <arg>Execute JavaScript</arg>
 <arg>return document.readyState == "complete"</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-13T11:15:46.729405" elapsed="0.009624"/>
+<status status="PASS" start="2025-06-13T23:12:03.990571" elapsed="0.224915"/>
 </kw>
-<status status="PASS" start="2025-06-13T11:15:46.728988" elapsed="0.010137"/>
+<status status="PASS" start="2025-06-13T23:12:03.989964" elapsed="0.225710"/>
 </kw>
-<status status="PASS" start="2025-06-13T11:15:46.728439" elapsed="0.010771"/>
+<status status="PASS" start="2025-06-13T23:12:03.989184" elapsed="0.226625"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-06-13T11:15:46.739385" elapsed="0.093203"/>
+<status status="PASS" start="2025-06-13T23:12:04.216035" elapsed="0.041311"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-13T11:15:47.333267" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2025-06-13T23:12:04.758896" level="INFO">Slept 500 milliseconds.</msg>
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-13T11:15:46.832847" elapsed="0.500558"/>
+<status status="PASS" start="2025-06-13T23:12:04.257800" elapsed="0.501242"/>
 </kw>
 <kw name="Capture Et Sauvegarde" owner="Commun_conserto">
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:47.672474" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-13T23:12:05.082928" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-13T11:15:47.334284" elapsed="0.338477"/>
+<status status="PASS" start="2025-06-13T23:12:04.759972" elapsed="0.323122"/>
 </kw>
 <arg>10s</arg>
 <arg>1s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-13T11:15:47.334014" elapsed="0.338983"/>
+<status status="PASS" start="2025-06-13T23:12:04.759680" elapsed="0.323551"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.174226" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2025-06-13T23:12:05.583845" level="INFO">Slept 500 milliseconds.</msg>
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-13T11:15:47.673360" elapsed="0.500981"/>
+<status status="PASS" start="2025-06-13T23:12:05.083426" elapsed="0.500835"/>
 </kw>
 <arg>capture_home</arg>
-<status status="PASS" start="2025-06-13T11:15:47.333654" elapsed="0.840817"/>
+<status status="PASS" start="2025-06-13T23:12:04.759318" elapsed="0.825404"/>
 </kw>
 <arg>${URL_CONSERTO}</arg>
 <arg>browser=${BROWSER}</arg>
-<status status="PASS" start="2025-06-13T11:15:45.057096" elapsed="3.117447"/>
+<status status="PASS" start="2025-06-13T23:12:01.998290" elapsed="3.586797"/>
 </kw>
 <kw name="Vérifier la page d'accueil de Conserto" owner="Keywords">
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:48.182528" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<msg time="2025-06-13T23:12:05.611783" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
 <arg>${Title}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.175325" elapsed="0.007316"/>
+<status status="PASS" start="2025-06-13T23:12:05.587881" elapsed="0.024249"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:48.195963" level="INFO">Current page contains element 'xpath=//*[contains(text(), 'Positive') and contains(text(), 'Technologie')]'.</msg>
+<msg time="2025-06-13T23:12:05.645422" level="INFO">Current page contains element 'xpath=//*[contains(text(), 'Positive') and contains(text(), 'Technologie')]'.</msg>
 <arg>xpath=${Positive_Techo}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.182824" elapsed="0.013250"/>
+<status status="PASS" start="2025-06-13T23:12:05.612753" elapsed="0.032806"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.697046" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2025-06-13T23:12:06.146476" level="INFO">Slept 500 milliseconds.</msg>
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.196236" elapsed="0.501223"/>
+<status status="PASS" start="2025-06-13T23:12:05.645783" elapsed="0.501105"/>
 </kw>
 <kw name="Vérifier quelques mots avec une boucle" owner="Keywords">
 <kw name="Get Source" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:48.730960" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+<msg time="2025-06-13T23:12:06.171315" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="description" content="Positive Technologie"&gt;
     &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
     &lt;meta http-equiv="X-UA-...</msg>
 <var>${html}</var>
 <doc>Returns the entire HTML source of the current page or frame.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.699672" elapsed="0.031450"/>
+<status status="PASS" start="2025-06-13T23:12:06.149106" elapsed="0.022309"/>
 </kw>
 <for flavor="IN">
 <iter>
@@ -109,233 +109,233 @@ Without any arguments.</msg>
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.732237" elapsed="0.000486"/>
+<status status="PASS" start="2025-06-13T23:12:06.172200" elapsed="0.000353"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.733403" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-06-13T23:12:06.173062" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.733017" elapsed="0.000477"/>
+<status status="PASS" start="2025-06-13T23:12:06.172773" elapsed="0.000349"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.734123" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-06-13T23:12:06.173545" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.733831" elapsed="0.000402"/>
+<status status="PASS" start="2025-06-13T23:12:06.173321" elapsed="0.000318"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.734483" elapsed="0.000715"/>
+<status status="PASS" start="2025-06-13T23:12:06.173796" elapsed="0.000434"/>
 </kw>
 <var name="${mot}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
-<status status="PASS" start="2025-06-13T11:15:48.731921" elapsed="0.003479"/>
+<status status="PASS" start="2025-06-13T23:12:06.171976" elapsed="0.002346"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.736076" elapsed="0.001451"/>
+<status status="PASS" start="2025-06-13T23:12:06.174675" elapsed="0.000928"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.738081" level="INFO">${log} = Dev</msg>
+<msg time="2025-06-13T23:12:06.176020" level="INFO">${log} = Dev</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.737775" elapsed="0.000363"/>
+<status status="PASS" start="2025-06-13T23:12:06.175789" elapsed="0.000278"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.738553" level="INFO">Dev</msg>
+<msg time="2025-06-13T23:12:06.176412" level="INFO">Dev</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.738340" elapsed="0.000296"/>
+<status status="PASS" start="2025-06-13T23:12:06.176236" elapsed="0.000246"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.738824" elapsed="0.000546"/>
+<status status="PASS" start="2025-06-13T23:12:06.176638" elapsed="0.000415"/>
 </kw>
 <var name="${mot}">Dev</var>
-<status status="PASS" start="2025-06-13T11:15:48.735799" elapsed="0.003905"/>
+<status status="PASS" start="2025-06-13T23:12:06.174529" elapsed="0.002805"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.740143" elapsed="0.000306"/>
+<status status="PASS" start="2025-06-13T23:12:06.177670" elapsed="0.000248"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.740927" level="INFO">${log} = DevOps</msg>
+<msg time="2025-06-13T23:12:06.178312" level="INFO">${log} = DevOps</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.740661" elapsed="0.000321"/>
+<status status="PASS" start="2025-06-13T23:12:06.178090" elapsed="0.000268"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.741400" level="INFO">DevOps</msg>
+<msg time="2025-06-13T23:12:06.178703" level="INFO">DevOps</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.741188" elapsed="0.000294"/>
+<status status="PASS" start="2025-06-13T23:12:06.178530" elapsed="0.000242"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.741676" elapsed="0.000481"/>
+<status status="PASS" start="2025-06-13T23:12:06.178930" elapsed="0.000400"/>
 </kw>
 <var name="${mot}">DevOps</var>
-<status status="PASS" start="2025-06-13T11:15:48.739965" elapsed="0.002303"/>
+<status status="PASS" start="2025-06-13T23:12:06.177529" elapsed="0.001894"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.742661" elapsed="0.000297"/>
+<status status="PASS" start="2025-06-13T23:12:06.179745" elapsed="0.000326"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.743456" level="INFO">${log} = Infra/Cloud</msg>
+<msg time="2025-06-13T23:12:06.180612" level="INFO">${log} = Infra/Cloud</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.743170" elapsed="0.000340"/>
+<status status="PASS" start="2025-06-13T23:12:06.180259" elapsed="0.000412"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.744075" level="INFO">Infra/Cloud</msg>
+<msg time="2025-06-13T23:12:06.181089" level="INFO">Infra/Cloud</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.743822" elapsed="0.000343"/>
+<status status="PASS" start="2025-06-13T23:12:06.180876" elapsed="0.000290"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.744365" elapsed="0.000516"/>
+<status status="PASS" start="2025-06-13T23:12:06.181355" elapsed="0.000512"/>
 </kw>
 <var name="${mot}">Infra/Cloud</var>
-<status status="PASS" start="2025-06-13T11:15:48.742489" elapsed="0.002536"/>
+<status status="PASS" start="2025-06-13T23:12:06.179604" elapsed="0.002380"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.745616" elapsed="0.000402"/>
+<status status="PASS" start="2025-06-13T23:12:06.182597" elapsed="0.000300"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.746541" level="INFO">${log} = Agilité</msg>
+<msg time="2025-06-13T23:12:06.183312" level="INFO">${log} = Agilité</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.746244" elapsed="0.000350"/>
+<status status="PASS" start="2025-06-13T23:12:06.183080" elapsed="0.000280"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.746947" level="INFO">Agilité</msg>
+<msg time="2025-06-13T23:12:06.183686" level="INFO">Agilité</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.746762" elapsed="0.000255"/>
+<status status="PASS" start="2025-06-13T23:12:06.183527" elapsed="0.000222"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.747182" elapsed="0.000382"/>
+<status status="PASS" start="2025-06-13T23:12:06.183890" elapsed="0.000410"/>
 </kw>
 <var name="${mot}">Agilité</var>
-<status status="PASS" start="2025-06-13T11:15:48.745375" elapsed="0.002271"/>
+<status status="PASS" start="2025-06-13T23:12:06.182296" elapsed="0.002084"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.748022" elapsed="0.000240"/>
+<status status="PASS" start="2025-06-13T23:12:06.184758" elapsed="0.000312"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.748668" level="INFO">${log} = Agence Web</msg>
+<msg time="2025-06-13T23:12:06.185435" level="INFO">${log} = Agence Web</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.748434" elapsed="0.000304"/>
+<status status="PASS" start="2025-06-13T23:12:06.185233" elapsed="0.000241"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.749266" level="INFO">Agence Web</msg>
+<msg time="2025-06-13T23:12:06.185786" level="INFO">Agence Web</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.748984" elapsed="0.000402"/>
+<status status="PASS" start="2025-06-13T23:12:06.185630" elapsed="0.000216"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.749622" elapsed="0.000474"/>
+<status status="PASS" start="2025-06-13T23:12:06.185986" elapsed="0.000356"/>
 </kw>
 <var name="${mot}">Agence Web</var>
-<status status="PASS" start="2025-06-13T11:15:48.747875" elapsed="0.002317"/>
+<status status="PASS" start="2025-06-13T23:12:06.184617" elapsed="0.001838"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.750789" elapsed="0.000523"/>
+<status status="PASS" start="2025-06-13T23:12:06.186883" elapsed="0.000324"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.752012" level="INFO">${log} = Culture Agile</msg>
+<msg time="2025-06-13T23:12:06.187784" level="INFO">${log} = Culture Agile</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.751731" elapsed="0.000326"/>
+<status status="PASS" start="2025-06-13T23:12:06.187428" elapsed="0.000418"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.752503" level="INFO">Culture Agile</msg>
+<msg time="2025-06-13T23:12:06.188186" level="INFO">Culture Agile</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.752263" elapsed="0.000322"/>
+<status status="PASS" start="2025-06-13T23:12:06.187999" elapsed="0.000243"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.752772" elapsed="0.000486"/>
+<status status="PASS" start="2025-06-13T23:12:06.188376" elapsed="0.000433"/>
 </kw>
 <var name="${mot}">Culture Agile</var>
-<status status="PASS" start="2025-06-13T11:15:48.750507" elapsed="0.002891"/>
+<status status="PASS" start="2025-06-13T23:12:06.186717" elapsed="0.002172"/>
 </iter>
 <iter>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${html}</arg>
 <arg>${mot}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.753879" elapsed="0.000334"/>
+<status status="PASS" start="2025-06-13T23:12:06.189312" elapsed="0.000256"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.754733" level="INFO">${log} = Positive Technologie</msg>
+<msg time="2025-06-13T23:12:06.189933" level="INFO">${log} = Positive Technologie</msg>
 <var>${log}</var>
 <arg>${mot}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.754432" elapsed="0.000452"/>
+<status status="PASS" start="2025-06-13T23:12:06.189723" elapsed="0.000247"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-13T11:15:48.755582" level="INFO">Positive Technologie</msg>
+<msg time="2025-06-13T23:12:06.190294" level="INFO">Positive Technologie</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.755201" elapsed="0.000498"/>
+<status status="PASS" start="2025-06-13T23:12:06.190126" elapsed="0.000242"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.755960" elapsed="0.000504"/>
+<status status="PASS" start="2025-06-13T23:12:06.190498" elapsed="0.000410"/>
 </kw>
 <var name="${mot}">Positive Technologie</var>
-<status status="PASS" start="2025-06-13T11:15:48.753676" elapsed="0.002884"/>
+<status status="PASS" start="2025-06-13T23:12:06.189130" elapsed="0.001848"/>
 </iter>
 <var>${mot}</var>
 <value>@{mots_attendus}</value>
-<status status="PASS" start="2025-06-13T11:15:48.731426" elapsed="0.025220"/>
+<status status="PASS" start="2025-06-13T23:12:06.171593" elapsed="0.019460"/>
 </for>
-<status status="PASS" start="2025-06-13T11:15:48.698513" elapsed="0.058307"/>
+<status status="PASS" start="2025-06-13T23:12:06.147944" elapsed="0.043232"/>
 </kw>
 <arg>${Title_1}</arg>
-<status status="PASS" start="2025-06-13T11:15:48.174970" elapsed="0.581939"/>
+<status status="PASS" start="2025-06-13T23:12:05.586563" elapsed="0.604699"/>
 </kw>
 <kw name="Action Scroll" owner="Keywords">
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
@@ -343,7 +343,7 @@ Without any arguments.</msg>
 <arg>${element}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.757993" elapsed="0.021496"/>
+<status status="PASS" start="2025-06-13T23:12:06.192450" elapsed="0.025624"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
@@ -351,52 +351,52 @@ Without any arguments.</msg>
 <arg>${element}</arg>
 <arg>60</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.757734" elapsed="0.021859"/>
+<status status="PASS" start="2025-06-13T23:12:06.192080" elapsed="0.026113"/>
 </kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>${element}</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-13T11:15:48.779851" elapsed="0.293049"/>
+<status status="PASS" start="2025-06-13T23:12:06.218552" elapsed="0.279715"/>
 </kw>
 <arg>${footer}</arg>
-<status status="PASS" start="2025-06-13T11:15:48.757307" elapsed="0.315887"/>
+<status status="PASS" start="2025-06-13T23:12:06.191617" elapsed="0.307110"/>
 </kw>
 <kw name="Capture Et Sauvegarde" owner="Commun_conserto">
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-13T11:15:49.276025" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_footer.png"&gt;&lt;img src="Screenshot/capture_footer.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-13T23:12:06.686340" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_footer.png"&gt;&lt;img src="Screenshot/capture_footer.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-13T11:15:49.075414" elapsed="0.200771"/>
+<status status="PASS" start="2025-06-13T23:12:06.502406" elapsed="0.184077"/>
 </kw>
 <arg>10s</arg>
 <arg>1s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-13T11:15:49.074810" elapsed="0.201476"/>
+<status status="PASS" start="2025-06-13T23:12:06.501268" elapsed="0.185360"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-13T11:15:49.777228" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2025-06-13T23:12:07.187478" level="INFO">Slept 500 milliseconds.</msg>
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-13T11:15:49.276456" elapsed="0.500897"/>
+<status status="PASS" start="2025-06-13T23:12:06.686786" elapsed="0.500817"/>
 </kw>
 <arg>capture_footer</arg>
-<status status="PASS" start="2025-06-13T11:15:49.074057" elapsed="0.703405"/>
+<status status="PASS" start="2025-06-13T23:12:06.500058" elapsed="0.687649"/>
 </kw>
 <kw name="Nettoyer Dossier Logs" owner="Keywords">
 <kw name="Create Directory" owner="OperatingSystem">
-<msg time="2025-06-13T11:15:49.778559" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
+<msg time="2025-06-13T23:12:07.188584" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
 <arg>${destination}</arg>
 <doc>Creates the specified directory.</doc>
-<status status="PASS" start="2025-06-13T11:15:49.778271" elapsed="0.000378"/>
+<status status="PASS" start="2025-06-13T23:12:07.188322" elapsed="0.000326"/>
 </kw>
-<status status="PASS" start="2025-06-13T11:15:49.777867" elapsed="0.000893"/>
+<status status="PASS" start="2025-06-13T23:12:07.188054" elapsed="0.000658"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-06-13T11:15:49.779084" elapsed="2.435369"/>
+<status status="PASS" start="2025-06-13T23:12:07.189016" elapsed="2.323913"/>
 </kw>
 <doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
 JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
@@ -404,16 +404,16 @@ JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.<
 <tag>ETAT:Stable</tag>
 <tag>PRIORITE:P1</tag>
 <tag>TYPE:CONSERTO</tag>
-<status status="PASS" start="2025-06-13T11:15:45.055930" elapsed="7.159879"/>
+<status status="PASS" start="2025-06-13T23:12:01.997273" elapsed="7.516762"/>
 </test>
 <doc>CONSERTO</doc>
-<status status="PASS" start="2025-06-13T11:15:44.740271" elapsed="7.480927"/>
+<status status="PASS" start="2025-06-13T23:12:01.633531" elapsed="7.885030"/>
 </suite>
-<status status="PASS" start="2025-06-13T11:15:44.738819" elapsed="7.489563"/>
+<status status="PASS" start="2025-06-13T23:12:01.632051" elapsed="7.892524"/>
 </suite>
-<status status="PASS" start="2025-06-13T11:15:44.736998" elapsed="7.497476"/>
+<status status="PASS" start="2025-06-13T23:12:01.630481" elapsed="7.899569"/>
 </suite>
-<status status="PASS" start="2025-06-13T11:15:44.701184" elapsed="7.536167"/>
+<status status="PASS" start="2025-06-13T23:12:01.596186" elapsed="7.938498"/>
 </suite>
 <statistics>
 <total>
