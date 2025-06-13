@@ -974,4 +974,37 @@ Select Drop valeur
 
 Select Options By    id=damageinsurance    text    No Coverage
       
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Préparation') {
+            steps {
+                echo 'Préparation de l’environnement...'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Compilation du projet...'
+                // Exemple : sh 'npm install' ou 'mvn clean install'
+            }
+        }
+
+        stage('Tests') {
+            steps {
+                echo 'Exécution des tests...'
+                // Exemple : sh 'npm test' ou 'pytest'
+            }
+        }
+
+        stage('Déploiement') {
+            steps {
+                echo 'Déploiement en cours...'
+            }
+        }
+    }
+}
+
     -->
