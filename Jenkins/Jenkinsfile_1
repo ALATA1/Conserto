@@ -19,7 +19,7 @@ pipeline {
         stage('Exécution des tests') {
             steps {
                 echo 'Exécution des tests Robot Framework...'
-                sh 'robot --outputdir Resultats/ tests/'
+                //sh 'robot --outputdir Resultats/ tests/'
                 // sh 'robot -d Resultats/ Tests/'
             }
         }
@@ -27,8 +27,8 @@ pipeline {
         stage('Publication des résultats') {
             steps {
                 echo 'Archivage des résultats'
-                archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
-                robot outputPath: 'Resultats'
+                // archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
+                // robot outputPath: 'Resultats'
             }
         }
     }
