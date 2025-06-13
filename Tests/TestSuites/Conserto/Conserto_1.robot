@@ -6,8 +6,8 @@ Library    String
 
 
 # Suite Setup     Nettoyer Dossier Logs
-Resource         ../../../resources/Commun_conserto.robot
-Resource         ../../../resources/Keywords.robot
+Resource         ../../../Resources/Commun_conserto.robot
+Resource         ../../../Resources/Keywords.robot
 Resource         ../../../Variables/Global_variables.robot
 
 
@@ -22,6 +22,7 @@ Test Teardown    Close Browser
 # robot Tests/TestSuites/Conserto/conserto_1.robot                                                                                  #
 # robot -d Screenshot/ Tests/TestSuites/Conserto/conserto_1.robot                                                                   #
 # robot -d Screenshot/ Tests/                                                                                                       #
+# robot -d Resultats/ Tests/                                                                                                        #
 # robot   --output Logs/output.xml   --log Logs/log.html   --report Logs/report.html   Tests/TestSuites/Conserto/conserto_1.robot   #
 #####################################################################################################################################
 

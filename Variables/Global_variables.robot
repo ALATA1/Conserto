@@ -9,9 +9,9 @@ Library    String
 # Library    DateTime
 
 
-# Suite Setup     Nettoyer Dossier Logs
-Resource         ../../../resources/Commun_conserto.robot
-Resource         ../../../resources/Keywords.robot
+
+# Resource         ../../../Resources/Commun_conserto.robot
+# Resource         ../../../Resources/Keywords.robot
 
 
 
