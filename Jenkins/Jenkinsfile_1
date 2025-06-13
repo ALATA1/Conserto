@@ -32,15 +32,15 @@ pipeline {
         stage('Archivage des résultats') {
             steps {
                 echo 'Archivage des fichiers de test'
-                // archiveArtifacts artifacts: 'results/**/*.*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
             }
         }
 
         stage('Rapport Robot Framework (si plugin installé)') {
             steps {
                 // Nécessite le plugin Robot Framework dans Jenkins
-                // robot outputPath: 'results'
-                echo 'robot outputPath'
+                robot outputPath: 'Resultats'
+                
             }
         }
     }
