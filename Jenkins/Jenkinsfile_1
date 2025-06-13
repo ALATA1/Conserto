@@ -4,7 +4,8 @@ pipeline {
     environment {
         // Remplace ce chemin par celui de ton installation Python si nécessaire
         // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
-        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
+        // PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
+        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe'
     }
 
     stages {
