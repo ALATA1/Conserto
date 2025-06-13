@@ -19,8 +19,8 @@ pipeline {
         stage('Exécution des tests') {
             steps {
                 echo 'Exécution des tests Robot Framework...'
-                // sh 'robot --outputdir Resultats/ tests/'
-                sh 'robot -d Resultats/ Tests/'
+                sh 'robot --outputdir Resultats/ tests/'
+                // sh 'robot -d Resultats/ Tests/'
             }
         }
 
