@@ -30,26 +30,23 @@ pipeline {
             }
         }
 
-        stage('Archivage des résultats') {
+        stage('Rapport : Archivage + création ZIP ') {
             steps {
-                echo 'Archivage des fichiers de test'
+                echo 'Archivage des fichiers de test et 📦 Création du ZIP à voir dans  : C:\ProgramData\Jenkins\.jenkins\workspace\Conserto\Resultats'
                 archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
-            }
-        }
-
-        stage('Créer archive ZIP du rapport') {
-            steps {
-                echo "📦 Création du ZIP"
                 bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip'
             }
         }
 
+        // stage('Créer archive ZIP du rapport') {
+        //     steps {
+        //         echo "📦 Création du ZIP à voir dans  : C:\ProgramData\Jenkins\.jenkins\workspace\Conserto\Resultats"
+        //         bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip'
+        //     }
+        // }
+
         stage('Rapport-Publisher') {
             steps {
-                // // Nécessite le plugin Robot Framework dans Jenkins
-                // // robot outputPath: 'Resultats'
-                // echo 'robot outputPath '
-                // // robot outputPath: 'Resultats'
                 echo 'Pipeline terminé.'
                 robot outputPath: 'Resultats'
                 archiveArtifacts artifacts: 'Resultats/*.html'
