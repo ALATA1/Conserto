@@ -12,13 +12,15 @@ Resource         ../../../resources/Commun_conserto.robot
 
 Test Setup       NONE  # Open Browser
 Test Teardown    Close Browser  
-
+# git push origin main:test
 
 
 ##############################################################                                                                   
 #./Helpers/run-test.py -i CONSERTO --keepbrowseropened       #
 #####################################################################################################################################
 # robot Tests/TestSuites/Conserto/conserto_1.robot                                                                                  #
+# robot -d Screenshot/ Tests/TestSuites/Conserto/conserto_1.robot                                                                   #
+# robot -d Screenshot/ Tests/                                                                                                       #
 # robot   --output Logs/output.xml   --log Logs/log.html   --report Logs/report.html   Tests/TestSuites/Conserto/conserto_1.robot   #
 #####################################################################################################################################
 
