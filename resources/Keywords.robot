@@ -23,7 +23,7 @@ Vérifier la page d'accueil de Conserto
     Title Should Be   ${Title} 
     # Page Should Contain Element   xpath=//a[contains(text(), 'Nous contacter')]
     
-    Page Should Contain Element     xpath=//*[contains(text(), 'Positive') and contains(text(), 'Technologie')]
+    Page Should Contain Element     xpath=${Positive_Techo}
     # Click Element  xpath=//a[contains(text(), 'Nous contacter')]
     Sleep  0.5s
     Vérifier quelques mots avec une boucle 

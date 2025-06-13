@@ -19,4 +19,4 @@ Library    String
 
 *** Variables ***
 
-     
+${Positive_Techo}         //*[contains(text(), 'Positive') and contains(text(), 'Technologie')]    
