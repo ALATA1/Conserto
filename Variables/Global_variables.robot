@@ -19,6 +19,7 @@ Library    String
 
 *** Variables ***
 
+${Conserto}                    //a[@class="hdr-logo-link" and @rel="home"]
 ${Positive_Techo}              //*[contains(text(), 'Positive') and contains(text(), 'Technologie')]    
 ${Barre_de_nav}                //nav[@id="nav-main" and @class="nav-main"]    #id=submit-button     # //*[@id="nav-main"]
 # xpath=//nav[@id="nav-main" and .//h2[text()="Offre spéciale"]]
