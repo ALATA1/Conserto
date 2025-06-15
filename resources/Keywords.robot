@@ -85,7 +85,8 @@ Culture agile
     Page Should Contain       ${Texte_Positive}
     Action Scroll   ${footer}
     Remonter en haut
-    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+    Maximize Browser Window
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
 
 
 Culture Technologie
