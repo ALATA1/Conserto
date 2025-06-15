@@ -352,3 +352,309 @@ Without any arguments.</msg>
 <arg>60</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
 <status status="PASS" start="2025-06-16T01:01:53.362619" elapsed="0.126905"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${element}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-06-16T01:01:53.489867" elapsed="0.294872"/>
+</kw>
+<arg>${footer}</arg>
+<status status="PASS" start="2025-06-16T01:01:53.362321" elapsed="0.422601"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:54.016678" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_footer.png"&gt;&lt;img src="Screenshot/capture_footer.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-06-16T01:01:53.786476" elapsed="0.230484"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Capture Page Screenshot</arg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:53.786100" elapsed="0.231057"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-16T01:01:54.518179" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.017532" elapsed="0.500805"/>
+</kw>
+<arg>capture_footer</arg>
+<status status="PASS" start="2025-06-16T01:01:53.785599" elapsed="0.732860"/>
+</kw>
+<kw name="Nettoyer Dossier Logs" owner="Keywords">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-06-16T01:01:54.520844" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
+<arg>${destination}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.519484" elapsed="0.001664"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:54.518935" elapsed="0.002450"/>
+</kw>
+<kw name="Navigation fonctionne" owner="Keywords">
+<kw name="Barre de Navigation" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Barre_de_nav}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.523293" elapsed="0.016056"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:54.539966" level="INFO">Clicking element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
+<arg>${Barre_de_nav}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.539774" elapsed="0.225117"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Barre_de_nav}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.539521" elapsed="0.225530"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:54.522998" elapsed="0.242188"/>
+</kw>
+<kw name="Culture agile" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Positive}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.766023" elapsed="0.042238"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:54.809150" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<arg>${Positive}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.808860" elapsed="0.344358"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Positive}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:54.808520" elapsed="0.345375"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:55.286303" level="INFO">Element '//p' contains text 'Nous pensons que la technologie doit avoir un impact positif sur l’avenir de tous.'.</msg>
+<arg>//p</arg>
+<arg>${Texte_Positive}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.155085" elapsed="0.131458"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:55.307781" level="INFO">Current page contains text 'Nous pensons que la technologie doit avoir un impact positif sur l’avenir de tous.'.</msg>
+<arg>${Texte_Positive}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.286929" elapsed="0.021070"/>
+</kw>
+<kw name="Action Scroll" owner="Keywords">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${element}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.309828" elapsed="0.023692"/>
+</kw>
+<arg>2 x</arg>
+<arg>2 s</arg>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${element}</arg>
+<arg>60</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.309309" elapsed="0.024390"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${element}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.333979" elapsed="0.328132"/>
+</kw>
+<arg>${footer}</arg>
+<status status="PASS" start="2025-06-16T01:01:55.308397" elapsed="0.353950"/>
+</kw>
+<kw name="Remonter en haut" owner="Keywords">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:55.663814" level="INFO">Executing JavaScript:
+window.scrollTo(0, 0)
+Without any arguments.</msg>
+<arg>window.scrollTo(0, 0)</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.663165" elapsed="0.018771"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-16T01:01:57.683112" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-16T01:01:55.682268" elapsed="2.001157"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:58.195983" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-20.png"&gt;&lt;img src="selenium-screenshot-20.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-06-16T01:01:57.683983" elapsed="0.512214"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:55.662676" elapsed="2.533698"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:54.765526" elapsed="3.430916"/>
+</kw>
+<kw name="Culture Technologie" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Technologie}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.197102" elapsed="0.017204"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:58.215017" level="INFO">Clicking element '//a[contains(text(),"Technologie")]'.</msg>
+<arg>${Technologie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.214812" elapsed="0.220584"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Technologie}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.214513" elapsed="0.221166"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:58.196647" elapsed="0.239525"/>
+</kw>
+<kw name="Culture Clients" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Clients}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.437393" elapsed="0.061745"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:58.500349" level="INFO">Clicking element '//a[contains(text(),"Nos clients")]'.</msg>
+<arg>${Clients}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.499970" elapsed="0.216355"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Clients}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.499504" elapsed="0.217023"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:58.436572" elapsed="0.280130"/>
+</kw>
+<kw name="Culture Academy" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Academy}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.717461" elapsed="0.037532"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:58.760502" level="INFO">Clicking element '//a[contains(text(),"Academy")]'.</msg>
+<arg>${Academy}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.759587" elapsed="0.408370"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Academy}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:58.757113" elapsed="0.411031"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:58.716992" elapsed="0.451280"/>
+</kw>
+<kw name="Culture Blog" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Blog}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.169003" elapsed="0.074393"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:59.244720" level="INFO">Clicking element '//a[contains(text(),"Blog")]'.</msg>
+<arg>${Blog}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.244312" elapsed="0.203316"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Blog}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.243790" elapsed="0.203974"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:59.168530" elapsed="0.279336"/>
+</kw>
+<kw name="Culture Contact" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Contact}</arg>
+<arg>60</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.448471" elapsed="0.069719"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-06-16T01:01:59.519854" level="INFO">Clicking element '//a[contains(text(),"Contact")]'.</msg>
+<arg>${Contact}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.519354" elapsed="0.718375"/>
+</kw>
+<arg>5s</arg>
+<arg>3s</arg>
+<arg>Click Element</arg>
+<arg>${Contact}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-16T01:01:59.518619" elapsed="0.719356"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:59.448101" elapsed="0.790057"/>
+</kw>
+<status status="PASS" start="2025-06-16T01:01:54.522290" elapsed="5.715998"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-16T01:02:00.239448" elapsed="2.248807"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="PASS" start="2025-06-16T01:01:48.246757" elapsed="14.242125"/>
+</test>
+<doc>CONSERTO</doc>
+<status status="PASS" start="2025-06-16T01:01:47.769258" elapsed="14.721967"/>
+</suite>
+<status status="PASS" start="2025-06-16T01:01:47.767926" elapsed="14.726333"/>
+</suite>
+<status status="PASS" start="2025-06-16T01:01:47.766411" elapsed="14.730096"/>
+</suite>
+<status status="PASS" start="2025-06-16T01:01:47.727124" elapsed="14.771409"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">CON0001</stat>
+<stat pass="1" fail="0" skip="0">ETAT:Stable</stat>
+<stat pass="1" fail="0" skip="0">PRIORITE:P1</stat>
+<stat pass="1" fail="0" skip="0">TYPE:CONSERTO</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="TestSuites" id="s1-s1" pass="1" fail="0" skip="0">Tests.TestSuites</stat>
+<stat name="Conserto" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.TestSuites.Conserto</stat>
+<stat name="Conserto 1" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Tests.TestSuites.Conserto.Conserto 1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
