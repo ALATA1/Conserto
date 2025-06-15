@@ -86,6 +86,11 @@ Culture agile
     Action Scroll   ${footer}
     Remonter en haut
     Maximize Browser Window
+    
+    Set Window Size    1920    1080
+    # # Reload Page 
+    # AWait Browser Ready And Complete
+    Capture Page Screenshot
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
 
 
