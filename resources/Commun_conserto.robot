@@ -28,7 +28,8 @@ ${Title_1}              Conserto - La Transformation Numérique Agile et Harmoni
 @{mots_attendus}        ${Title_1}   Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
 ${footer}               id=footer   # xpath=//footer //*[@id="footer"]
 ${BROWSER}              chrome
-
+${BROWSER_2}            firefox 
+${BROWSER_3}            edge
 
 *** Keywords ***
 
@@ -36,8 +37,10 @@ ${BROWSER}              chrome
 #########  OUVERTURE DU NAVIGATEUR #########
 
 Ouverture Navigateur
+    # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser} 
-    Open Browser    ${URL}    ${browser} 
+    Open Browser    ${URL}    ${browser}
+    # Reload Page 
     AWait Browser Ready And Complete
     Maximize Browser Window
     Sleep   0.5s
