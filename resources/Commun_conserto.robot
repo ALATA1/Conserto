@@ -27,6 +27,7 @@ ${URL_CONSERTO}         https://conserto.pro/
 ${Title_1}              Conserto - La Transformation Numérique Agile et Harmonieuse
 @{mots_attendus}        ${Title_1}   Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
 ${footer}               id=footer   # xpath=//footer //*[@id="footer"]
+${CHROME_OPTIONS}       add_argument(--headless)    add_argument(--window-size=1920,1080)
 ${BROWSER}              chrome
 ${BROWSER_2}            firefox 
 ${BROWSER_3}            edge
@@ -39,7 +40,7 @@ ${BROWSER_3}            edge
 Ouverture Navigateur
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser} 
-    Open Browser    ${URL}    ${browser}
+    Open Browser    ${URL}    ${browser}   chrome_options=${CHROME_OPTIONS}
     # Reload Page 
     AWait Browser Ready And Complete
     Maximize Browser Window
