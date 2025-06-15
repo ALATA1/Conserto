@@ -76,7 +76,7 @@ Navigation fonctionne
 Barre de Navigation
     Wait Until Element Is Visible    ${Barre_de_nav}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
-    Capture Element Screenshot    ${Barre_de_nav}   
+    # Capture Element Screenshot    ${Barre_de_nav}   
 
 Culture agile
     Wait Until Element Is Visible    ${Positive}      60
