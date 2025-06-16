@@ -26,6 +26,7 @@ Library    String
 ${URL_CONSERTO}         https://conserto.pro/
 ${Title_1}              Conserto - La Transformation Numérique Agile et Harmonieuse
 @{mots_attendus}        ${Title_1}   Dev    DevOps    Infra/Cloud    Agilité    Agence Web    Culture Agile    Positive Technologie
+@{textes_attendus}      POSITIVE     TECHNOLOGIE     NOS CLIENTS     ACADEMY     BLOG     CONTACT
 ${footer}               id=footer   # xpath=//footer //*[@id="footer"]
 ${CHROME_OPTIONS}       add_argument(--headless)    add_argument(--window-size=1920,1080)
 ${BROWSER}              chrome

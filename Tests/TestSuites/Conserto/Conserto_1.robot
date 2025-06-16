@@ -33,11 +33,9 @@ Automatisation du site conserto
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
     Ouverture Navigateur    ${URL_CONSERTO}   browser=${BROWSER}   
-    Vérifier la page d'accueil de Conserto   ${Title_1} 
-    Action Scroll   ${footer}
-    Capture Et Sauvegarde     capture_footer
+    Page d'accueil de Conserto   ${Title_1}   
     Nettoyer Dossier Logs
-    Navigation fonctionne
+    Test navigation fonctionne
     
    
 

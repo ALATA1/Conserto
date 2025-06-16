@@ -25,9 +25,31 @@ ${Barre_de_nav}                //nav[@id="nav-main" and @class="nav-main"]    #i
 # xpath=//nav[@id="nav-main" and .//h2[text()="Offre spéciale"]]
 # //button[@id="darwin-zra-menubar" and @class="darwin-zra-menubar"]
 ${Positive}                    //a[contains(text(),"Positive")]
-${Texte_Positive}              Nous pensons que la technologie doit avoir un impact positif sur l’avenir de tous.
+${historique}                  //div[@class='control-block']
+${histo}                       //div[@class='control-items']
+${annees_2013}                 //div[@class="item active" and @data-index="0"]
+${Textes_complets_Positive}    //div[@class='text-wysiwyg']     #//*[contains(text(), '${Texte_Positive}') and contains(text(), '${Texte_Positive_2}')]
+${Texte_Positive}              ${Texte_Positive_1}\n${Texte_Positive_2}
+${Texte_Positive_1}            Nous pensons que la technologie doit avoir un impact positif sur l’avenir de tous.
+${Texte_Positive_2}            La mission de Conserto est de cultiver le sens et les savoirs par la différence.
 ${Technologie}                 //a[contains(text(),"Technologie")]
 ${Clients}                     //a[contains(text(),"Nos clients")]
 ${Academy}                     //a[contains(text(),"Academy")]
 ${Blog}                        //a[contains(text(),"Blog")]
 ${Contact}                     //a[contains(text(),"Contact")]
+${Positif_Techo_info}          Positive\nTechnologie
+${Texte_Posit_Techo}           Positive
+${postech}                     //div[@class='words-container']
+
+${Info_2013}                   //div[@class="slider-item" and @data-index="0"]/div/div[2]/div[@class='timeline-item__content']  
+
+
+
+${Positive_texte}              POSITIVE
+${Techo_texte}                 TECHNOLOGIE
+${Clients_texte}               NOS CLIENTS
+${Academy_texte}               ACADEMY
+${Blog_texte}                  BLOG
+${Contact_texte}               CONTACT
+
+${Nav_texte}                   ${Positive_texte}\n${Techo_texte}\n${Clients_texte}\n${Academy_texte}\n${Blog_texte}\n${Contact_texte}
