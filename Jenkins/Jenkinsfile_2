@@ -28,13 +28,6 @@ pipeline {
             }
         }
 
-        stage('Vérifier allure') {
-            steps {
-                bat 'where allure'
-                bat 'allure --version'
-            }
-        }
-
         stage('Exécution des tests') {
             steps {
                 echo 'echo "📁 Lancement des tests'
