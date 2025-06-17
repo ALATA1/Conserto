@@ -28,26 +28,14 @@ Test Teardown    Close Browser
 
 *** Test Cases ***
 
-# Automatisation du site conserto
-#     [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
-#     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
-#     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
-#     Ouverture Navigateur    ${URL_CONSERTO}   browser=${BROWSER}  
-#     Page d'accueil de Conserto   ${Title_1}   
-#     Nettoyer Dossier Logs
-#     Test navigation fonctionne
-
-# Test Affichage Site Conserto
-#     Create WebDriver    Chrome    chrome_options=${OPTIONS}
-#     Go To    https://conserto.pro/
-#     Wait Until Page Contains    Conserto    timeout=10s
-#     Capture Page Screenshot
-#     Close Browser
-    
-   
-Test Affichage Site Conserto
-    Ouverture Navigateur cas 2     ${URL_CONSERTO}   chrome  
-    # Page d'accueil de Conserto   ${Title_1}   
+Automatisation du site conserto
+    [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+    ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
+    [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
+    Ouverture Navigateur    ${URL_CONSERTO}    ${BROWSER}  
+    Page d'accueil de Conserto   ${Title_1}   
     # Nettoyer Dossier Logs
     # Test navigation fonctionne
+
+
     

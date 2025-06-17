@@ -19,7 +19,10 @@ Library    String
 *** Keywords ***
 
 Page d'accueil de Conserto 
-    [Arguments]     ${Title}    
+    [Arguments]     ${Title}  
+    Set Window Size    1920    1080
+    Maximize Browser Window
+
     Log  Page Accueil - vérif titre et éléments du menu nav : 
     Verif title   ${Title}
     Verif Elements bloc nav 
