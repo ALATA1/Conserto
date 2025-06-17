@@ -4,8 +4,6 @@ pipeline {
     environment {
         PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
         RESULTS_DIR = 'Resultats'
-        ALLURE_RESULTS_DIR = 'allure-results'
-        ALLURE_REPORT_DIR = 'allure-report'
     }
 
     triggers {
@@ -22,25 +20,17 @@ pipeline {
                 echo 'Installation des librairies nécessaires'
                 bat "${env.PYTHON} -m pip install --upgrade pip"
                 bat "${env.PYTHON} -m pip install -r requirements.txt"
-                bat "rmdir /s /q %RESULTS_DIR% || echo dossier vide"
-                bat "rmdir /s /q %ALLURE_RESULTS_DIR% || echo dossier vide"
-                bat "mkdir %RESULTS_DIR%"
             }
         }
 
         stage('Exécution des tests') {
             steps {
                 echo 'echo "📁 Lancement des tests'
-                // bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
-                // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
-                // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
-                bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
+                bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
+                
+            }  
 
 
-            }   
-                
-               
-                
 
         }
 
