@@ -40,8 +40,8 @@ ${BROWSER_3}            edge
 
 Ouverture Navigateur
     # Chargement de la page d'accueil conserto : 
-    [Arguments]     ${URL}    ${browser} 
-    Open Browser    ${URL}    ${browser}   #chrome_options=${CHROME_OPTIONS}
+    [Arguments]     ${URL}    ${browser}  
+    Open Browser    ${URL}    ${browser}    
     Set Window Size    1920    1080
     # Reload Page 
     AWait Browser Ready And Complete

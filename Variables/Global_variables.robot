@@ -18,7 +18,7 @@ Library    String
 
 
 *** Variables ***
-
+${CHROME OPTIONS}    add_experimental_option("excludeSwitches", ["enable-automation"])    add_experimental_option("useAutomationExtension", False)
 ${Conserto}                    //a[@class="hdr-logo-link" and @rel="home"]
 ${Positive_Techo}              //*[contains(text(), 'Positive') and contains(text(), 'Technologie')]    
 ${Barre_de_nav}                //nav[@id="nav-main" and @class="nav-main"]    #id=submit-button     # //*[@id="nav-main"]
