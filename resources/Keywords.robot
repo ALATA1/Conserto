@@ -20,9 +20,7 @@ Library    String
 
 Page d'accueil de Conserto 
     [Arguments]     ${Title}  
-    Set Window Size    1920    1080
-    Maximize Browser Window
-
+    Maximize Brows
     Log  Page Accueil - vérif titre et éléments du menu nav : 
     Verif title   ${Title}
     Verif Elements bloc nav 
@@ -122,7 +120,7 @@ Nettoyer Dossier Logs
 
 
 Test navigation fonctionne
-    Barre de Navigation
+    Conditions menu nav     Positive
     Culture agile
     Culture Technologie
     Culture Clients 
@@ -131,39 +129,51 @@ Test navigation fonctionne
     Culture Contact
 
 
-Conditions  
-    ${Action_1}=      Run Keyword And Return Status    Wait Until Page Contains    Positive    10  
-    ${Action_2}=      Run Keyword And Return Status    Page Not Should Contain        Positive
-    Run Keyword If    ${Action_1}   Navigation fonctionne
-    ...    ELSE IF    ${Action_2}    Capture Page Screenshot
+Conditions menu nav 
+    [Arguments]    ${texte}
+    ${Action_1}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
+    ${Action_2}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
+    ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
+    Run Keyword If    ${Action_1}   Verif Elements bloc nav 
+    ...    ELSE IF    ${Action_2}    Barre de Navigation
+    ...    ELSE IF    ${Action_2}    Barre mobile nav
 
+    IF  '${texte}'=='***'      
+        Log    Aucune requête exécutée. 
+    END
 
 
 Barre de Navigation
-    Wait Until Element Is Visible    ${Barre_de_nav}      60
+    Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
     
+
+Barre mobile nav
+    [Arguments]    ${texte}
+    Wait Until Element Is Visible    ${Mobile_menu}      timeout=15s
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Mobile_menu}
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
 
 
 Culture agile
     Maximize Brows
     Barre de Navigation
-    Wait Until Element Is Visible    ${Positive}      60
+    Wait Until Element Is Visible    ${Positive}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Positive} 
     Element Should Contain     //div    ${Texte_Positive}
     Element Text Should Be    ${Textes_complets_Positive}    ${Texte_Positive}
     Page Should Contain       ${Texte_Positive}
     Action Scroll   ${footer}
-    # Controle historique conserto
+    Controle historique conserto
     Remonter en haut
     Maximize Brows
 
 
 
 Controle historique conserto
-    Wait Until Element Is Visible    ${historique}      60
-    Wait Until Element Is Visible    ${histo}      60
-    Wait Until Element Is Visible    ${annees_2013}      60
+    Wait Until Element Is Visible    ${historique}      timeout=15s
+    Wait Until Element Is Visible    ${histo}      timeout=15s
+    Wait Until Element Is Visible    ${annees_2013}      timeout=15s
     Page Should Contain       2013
     Wait Until Keyword Succeeds	    5s	3s      Cliquer sur le numero annee    2013    0 
  
@@ -206,24 +216,20 @@ Culture Technologie
 
 
 Culture Clients
-    Barre de Navigation
     Wait Until Element Is Visible    ${Clients}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Clients}
 
 
 Culture Academy
-    Barre de Navigation
     Wait Until Element Is Visible    ${Academy}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Academy}
 
 
 Culture Blog
-    Barre de Navigation
     Wait Until Element Is Visible    ${Blog}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Blog}
 
 
 Culture Contact
-    Barre de Navigation
     Wait Until Element Is Visible    ${Contact}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Contact}
