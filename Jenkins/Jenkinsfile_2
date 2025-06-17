@@ -45,17 +45,9 @@ pipeline {
                 echo 'Génération du rapport Allure...'
                 // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
                 // bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
-                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
+                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate Results -o Results --clean'
             }
         }
-
-        stage('Publier le rapport Allure') {
-            steps {
-                echo 'Publication du rapport dans Jenkins...'
-                allure includeProperties: false, jdk: '', results: [[path: "${env.ALLURE_RESULTS_DIR}"]]
-            }
-        }
-
 
         stage('Archivage + création ZIP ') {
             steps {
