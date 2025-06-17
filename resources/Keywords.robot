@@ -70,8 +70,8 @@ Vérifier logo
     [Arguments]    ${xpath_logo}
     Wait Until Element Is Visible    ${xpath_logo}    10
     Page Should Contain Element    ${xpath_logo}
-    Sleep  0.5s
-    Capture Element Screenshot    ${xpath_logo}     
+    Sleep  3s
+    Wait Until Keyword Succeeds    2 x    2 s    Capture Element Screenshot    ${xpath_logo}     
 
 Verifier Titre Visible  
     [Arguments]    ${xpath}    ${texte_attendu}

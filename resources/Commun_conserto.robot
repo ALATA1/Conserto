@@ -66,9 +66,10 @@ Wait Until Page Is Loaded
 
 Capture Et Sauvegarde
     [Arguments]     ${image_name}
+    Sleep   3s
     Wait Until Keyword Succeeds    10s    1s    
     ...  Capture Page Screenshot    Screenshot/${image_name}.png
-    Sleep   0.5s
+
     # Wait Until Keyword Succeeds    10s    1s    
     # ...  Capture Page Screenshot    Resultats/${image_name}.png
      
