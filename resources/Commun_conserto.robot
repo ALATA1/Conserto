@@ -38,7 +38,7 @@ ${BROWSER_3}            edge
 ############################################
 #########  OUVERTURE DU NAVIGATEUR #########
 
-Ouverture Navigateur
+Ouverture Navigateur 
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser}  
     Open Browser    ${URL}    ${browser}    
@@ -50,6 +50,18 @@ Ouverture Navigateur
     Capture Et Sauvegarde       capture_home 
 
 
+
+Ouverture Navigateur cas 2 
+    # Chargement de la page d'accueil conserto : 
+    [Arguments]     ${URL}    ${browser}  
+    Open Browser    ${URL}    ${browser}     #options=${OPTIONS}
+    # Open Browser    https://conserto.pro/    chrome    options=add_argument(--headless); add_argument(--disable-gpu); add_argument(--no-sandbox)   
+    Set Window Size    1920    1080
+    # Reload Page 
+    AWait Browser Ready And Complete
+    Maximize Browser Window
+    Sleep   0.5s
+    Capture Et Sauvegarde       capture_home 
 
 
 
