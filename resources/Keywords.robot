@@ -50,6 +50,7 @@ Verif Elements bloc nav
     Log   1ère méthode de vérif élements du bloc nav :
     Wait Until Element Is Visible    ${Barre_de_nav}      10 
     ${nav_value}=    Get text    ${Barre_de_nav} 
+    ${nav_values}=   Get Value    ${Barre_de_nav}
     # Element Should Contain     ${Barre_de_nav}    ${Nav_texte}
 
     Log   2ème méthode de vérif élements du bloc nav : 
