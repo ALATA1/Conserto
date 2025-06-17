@@ -4,8 +4,8 @@ pipeline {
     environment {
         PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
         RESULTS_DIR = 'Resultats'
-        ALLURE_RESULTS_DIR = 'allure-results'
-        ALLURE_REPORT_DIR = 'allure-report'
+        ALLURE_RESULTS_DIR = 'Resultats'
+        ALLURE_REPORT_DIR = 'Resultats'
     }
 
     triggers {
@@ -37,13 +37,24 @@ pipeline {
                 bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
 
 
-            }   
-                
-               
-                
-
+            }          
         }
 
+        stage('Générer rapport Allure') {
+            steps {
+                echo 'Génération du rapport Allure...'
+                bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
+            }
+        }
+
+        stage('Publier le rapport Allure') {
+            steps {
+                echo 'Publication du rapport dans Jenkins...'
+                allure includeProperties: false, jdk: '', results: [[path: "${env.ALLURE_RESULTS_DIR}"]]
+            }
+        }
+
+        
         stage('Archivage + création ZIP ') {
             steps {
                 echo 'Archivage des fichiers de test et 📦 Création du ZIP avec écrasement du précedent '
