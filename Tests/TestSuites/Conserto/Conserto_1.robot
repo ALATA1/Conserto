@@ -34,7 +34,7 @@ Automatisation du site conserto
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
     Ouverture Navigateur    ${URL_CONSERTO}    ${BROWSER}  
     Page d'accueil de Conserto   ${Title_1}   
-    # Nettoyer Dossier Logs
+    Nettoyer Dossier Logs
     # Test navigation fonctionne
 
 
