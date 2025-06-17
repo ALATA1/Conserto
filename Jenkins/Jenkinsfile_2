@@ -25,9 +25,13 @@ pipeline {
         stage('Exécution des tests') {
             steps {
                 echo 'echo "📁 Lancement des tests'
-                bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
+                // bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
-            }
+            }   // robot --outputdir results --listener allure_robotframework;results tests/
+                // allure generate results -o allure-report --clean
+                // allure open allure-report
+                bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework;Resultats Tests/"
+
         }
 
         stage('Archivage + création ZIP ') {
