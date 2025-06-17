@@ -28,6 +28,13 @@ pipeline {
             }
         }
 
+        stage('Vérifier allure') {
+            steps {
+                bat 'where allure'
+                bat 'allure --version'
+            }
+        }
+
         stage('Exécution des tests') {
             steps {
                 echo 'echo "📁 Lancement des tests'
@@ -43,7 +50,8 @@ pipeline {
         stage('Générer rapport Allure') {
             steps {
                 echo 'Génération du rapport Allure...'
-                bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
+                // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
+                bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
             }
         }
 
