@@ -142,11 +142,12 @@ Conditions
 Barre de Navigation
     Wait Until Element Is Visible    ${Barre_de_nav}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
- 
+    
 
 
 Culture agile
     Maximize Brows
+    Barre de Navigation
     Wait Until Element Is Visible    ${Positive}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Positive} 
     Element Should Contain     //div    ${Texte_Positive}
@@ -199,25 +200,30 @@ Info annee 2013
 
 
 Culture Technologie
+    Barre de Navigation
     Wait Until Element Is Visible    ${Technologie}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Technologie}
 
 
 Culture Clients
+    Barre de Navigation
     Wait Until Element Is Visible    ${Clients}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Clients}
 
 
 Culture Academy
+    Barre de Navigation
     Wait Until Element Is Visible    ${Academy}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Academy}
 
 
 Culture Blog
+    Barre de Navigation
     Wait Until Element Is Visible    ${Blog}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Blog}
 
 
 Culture Contact
+    Barre de Navigation
     Wait Until Element Is Visible    ${Contact}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Contact}
