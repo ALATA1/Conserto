@@ -62,9 +62,9 @@ pipeline {
 
     post {
 
-        always {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        }
+        // always {
+        //         allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        // }
         
 
         success {
