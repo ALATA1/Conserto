@@ -49,14 +49,7 @@ pipeline {
             }
         }
 
-        stage('Archivage + création ZIP ') {
-            steps {
-                echo 'Archivage des fichiers de test et 📦 Création du ZIP avec écrasement du précedent '
-                // à voir dans  : C:\ProgramData\Jenkins\.jenkins\workspace\Conserto\Resultats
-                archiveArtifacts artifacts: 'Resultats/**/*.*', allowEmptyArchive: true
-                bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip -Force'
-            }
-        }
+    
 
         stage('Rapport-Publisher') {
             steps {
