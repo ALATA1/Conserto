@@ -62,11 +62,10 @@ pipeline {
 
     post {
 
-        post {
-            always {
+        always {
                 allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-            }
         }
+        
 
         success {
             emailext (
