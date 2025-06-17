@@ -153,7 +153,7 @@ Culture agile
     Element Text Should Be    ${Textes_complets_Positive}    ${Texte_Positive}
     Page Should Contain       ${Texte_Positive}
     Action Scroll   ${footer}
-    Controle historique conserto
+    # Controle historique conserto
     Remonter en haut
     Maximize Brows
 

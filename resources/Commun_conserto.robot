@@ -69,14 +69,6 @@ Capture Et Sauvegarde
     Sleep   3s
     Wait Until Keyword Succeeds    10s    1s    
     ...  Capture Page Screenshot    Screenshot/${image_name}.png
-
-    # Wait Until Keyword Succeeds    10s    1s    
-    # ...  Capture Page Screenshot    Resultats/${image_name}.png
-     
-    # ${dir}=    Catenate    Screenshot
-    # Create Directory    ${dir}
-    # # Move File    Screenshot    ${destination}/Logs
-    # Déplacer un dossier
  
 
 Déplacer un dossier
