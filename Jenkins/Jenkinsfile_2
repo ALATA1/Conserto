@@ -61,6 +61,13 @@ pipeline {
     }
 
     post {
+
+        post {
+            always {
+                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            }
+        }
+
         success {
             emailext (
                 subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
