@@ -22,9 +22,9 @@ pipeline {
                 echo 'Installation des librairies nécessaires'
                 bat "${env.PYTHON} -m pip install --upgrade pip"
                 bat "${env.PYTHON} -m pip install -r requirements.txt"
-                bat "rmdir /s /q %RESULTS_DIR% || echo dossier vide"
-                bat "rmdir /s /q %ALLURE_RESULTS_DIR% || echo dossier vide"
-                bat "mkdir %RESULTS_DIR%"
+                // bat "rmdir /s /q %RESULTS_DIR% || echo dossier vide"
+                // bat "rmdir /s /q %ALLURE_RESULTS_DIR% || echo dossier vide"
+                // bat "mkdir %RESULTS_DIR%"
             }
         }
 
@@ -54,7 +54,7 @@ pipeline {
             }
         }
 
-        
+
         stage('Archivage + création ZIP ') {
             steps {
                 echo 'Archivage des fichiers de test et 📦 Création du ZIP avec écrasement du précedent '
