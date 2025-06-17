@@ -35,7 +35,7 @@ Automatisation du site conserto
     Ouverture Navigateur    ${URL_CONSERTO}    ${BROWSER}  
     Page d'accueil de Conserto   ${Title_1}   
     Nettoyer Dossier Logs
-    # Test navigation fonctionne
+    Test navigation fonctionne
 
 
     

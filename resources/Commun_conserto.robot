@@ -46,7 +46,7 @@ Ouverture Navigateur
     # Reload Page 
     AWait Browser Ready And Complete
     Maximize Browser Window
-    Sleep   0.5s
+    Sleep    3s
     Capture Et Sauvegarde       capture_home 
 
 
