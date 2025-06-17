@@ -181,6 +181,7 @@ Cliquer sur le numero annee
     Log    Infos elements pointé : 
     Wait Until Element Is Visible    xpath=${xpath_infos}      10
     ${2013_value}=    Get text    ${xpath_infos}
+    Sleep    3s
     Wait Until Keyword Succeeds	    5s	3s    Capture Element Screenshot    ${xpath_infos}
 
 Info annee 2013
