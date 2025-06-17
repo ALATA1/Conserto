@@ -30,7 +30,7 @@ pipeline {
             }   // robot --outputdir results --listener allure_robotframework;results tests/
                 // allure generate results -o allure-report --clean
                 // allure open allure-report
-                bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework;Resultats Tests/"
+                bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
 
         }
 
