@@ -23,7 +23,8 @@ Page d'accueil de Conserto
     Maximize Brows
     Log  Page Accueil - vérif titre et éléments du menu nav : 
     Verif title   ${Title}
-    Verif Elements bloc nav 
+    # Verif Elements bloc nav 
+    Conditions menu nav     Positive
     
     Log  Page Accueil - vérif logo et quelques éléments de la page : 
     Vérifier logo   ${Conserto}
