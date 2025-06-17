@@ -42,15 +42,16 @@ Ouverture Navigateur
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser}  
     Open Browser    ${URL}    ${browser}    
+    Maximize Brows
+    Capture Et Sauvegarde       capture_home 
+
+
+Maximize Brows
     Set Window Size    1920    1080
     # Reload Page 
     AWait Browser Ready And Complete
     Maximize Browser Window
     Sleep    3s
-    Capture Et Sauvegarde       capture_home 
-
-
-
 
 AWait Browser Ready And Complete
     Wait Until Page Is Loaded

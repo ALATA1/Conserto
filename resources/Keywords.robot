@@ -146,6 +146,7 @@ Barre de Navigation
 
 
 Culture agile
+    Maximize Brows
     Wait Until Element Is Visible    ${Positive}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Positive} 
     Element Should Contain     //div    ${Texte_Positive}
@@ -154,8 +155,7 @@ Culture agile
     Action Scroll   ${footer}
     Controle historique conserto
     Remonter en haut
-    Maximize Browser Window
-    Set Window Size    1920    1080
+    Maximize Brows
 
 
 
