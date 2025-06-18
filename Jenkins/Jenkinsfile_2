@@ -19,16 +19,13 @@ pipeline {
     tools {
         allure 'Allure' // nom que tu as mis dans l'étape précédente
     }
-    
+
     stages {
         stage('Installation des dépendances') {
             steps {
                 echo 'Installation des librairies'
                 bat "${env.PYTHON} -m pip install --upgrade pip"
                 bat "${env.PYTHON} -m pip install -r requirements.txt"
-                // bat "rmdir /s /q %RESULTS_DIR% || echo dossier vide"
-                // bat "rmdir /s /q %ALLURE_RESULTS_DIR% || echo dossier vide"
-                // bat "mkdir %RESULTS_DIR%"
             }
         }
 
@@ -50,7 +47,7 @@ pipeline {
                 // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
                 // bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
                 bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
-                // bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
+                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
             }
         }
 
