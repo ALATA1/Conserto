@@ -264,7 +264,9 @@ Page d'accueil Idnow
 
 Barre de Nav Idnow
     [Arguments]     ${xpath}
-    Wait Until Element Is Visible    ${xpath}      timeout=15s
+    Scroll Element Into View    ${xpath}
+    Sleep    3s 
+    Run Keyword And Continue On Failure    Wait Until Element Is Visible    ${xpath}      timeout=30s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
     Wait Until Keyword Succeeds	    5s	3s      Capture Element Screenshot    ${xpath}
 
