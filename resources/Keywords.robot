@@ -136,6 +136,12 @@ Nettoyer Dossier Logs
     # Move File    log.html      ${destination}/log.html
     # Move File    report.html   ${destination}/report.html
 
+Supprimer Captures Selenium
+    ${captures}=    List Files In Directory    ${OUTPUTDIR}    selenium-screenshot-*.png
+    FOR    ${f}    IN    @{captures}
+        Remove File    ${OUTPUTDIR}/${f}
+    END
+
 
 Test navigation fonctionne
     Conditions menu nav     Positive

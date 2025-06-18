@@ -1,103 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-18T15:43:40.157055" rpa="false" schemaversion="5">
-<suite id="s1" name="Idnow" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Idnow\Idnow.robot">
-<test id="s1-t1" name="Automatisation du site idnow" line="34">
-<kw name="Détecter OS Avec Python" owner="Commun_conserto">
-<kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-06-18T15:43:40.709088" level="INFO">${os} = Windows</msg>
-<var>${os}</var>
-<arg>platform.system()</arg>
-<arg>platform</arg>
-<doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-06-18T15:43:40.708826" elapsed="0.000301"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-06-18T15:43:40.709426" level="INFO">OS détecté (via Python) : Windows</msg>
-<arg>OS détecté (via Python) : ${os}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-18T15:43:40.709280" elapsed="0.000201"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<kw name="Ouvrir Chrome Normal" owner="Commun_conserto">
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-18T16:58:21.775147" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto 1" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_1.robot">
+<test id="s1-t1" name="Automatisation du site conserto" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:40.710201" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
-<arg>about:blank</arg>
-<arg>chrome</arg>
+<msg time="2025-06-18T16:58:22.094540" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<arg>${URL}</arg>
+<arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-06-18T15:43:40.710053" elapsed="1.783645"/>
+<status status="PASS" start="2025-06-18T16:58:22.094314" elapsed="1.710796"/>
+</kw>
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-18T16:58:23.806064" elapsed="0.370635"/>
+</kw>
+<kw name="AWait Browser Ready And Complete" owner="Commun_conserto">
+<kw name="Wait Until Page Is Loaded" owner="Commun_conserto">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-06-18T16:58:24.181060" level="INFO">Executing JavaScript:
+return document.readyState == "complete"
+Without any arguments.</msg>
+<arg>return document.readyState == "complete"</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-06-18T16:58:24.179827" elapsed="0.008466"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Execute JavaScript</arg>
+<arg>return document.readyState == "complete"</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-18T16:58:24.178859" elapsed="0.009566"/>
+</kw>
+<status status="PASS" start="2025-06-18T16:58:24.178392" elapsed="0.010162"/>
+</kw>
+<status status="PASS" start="2025-06-18T16:58:24.177943" elapsed="0.010689"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-06-18T15:43:42.494145" elapsed="0.055249"/>
+<status status="PASS" start="2025-06-18T16:58:24.188891" elapsed="0.030799"/>
 </kw>
-<status status="PASS" start="2025-06-18T15:43:40.709833" elapsed="1.839998"/>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-18T16:58:27.220889" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-18T16:58:24.219897" elapsed="3.001461"/>
 </kw>
-<arg>'${os}' == 'Windows'</arg>
-<arg>Ouvrir Chrome Normal</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-18T15:43:40.709597" elapsed="1.840394"/>
+<status status="PASS" start="2025-06-18T16:58:23.805523" elapsed="3.416349"/>
 </kw>
-<kw name="Run Keyword Unless" owner="BuiltIn">
-<msg time="2025-06-18T15:43:42.550536" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
-<arg>'${os}' == 'Windows'</arg>
-<arg>Ouvrir Chrome Headless</arg>
-<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
-<status status="PASS" start="2025-06-18T15:43:42.550429" elapsed="0.001729"/>
-</kw>
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:42.554336" level="INFO">Opening url 'https://www.idnow.io/'</msg>
-<arg>${URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-06-18T15:43:42.553238" elapsed="2.690374"/>
-</kw>
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>//body</arg>
-<arg>timeout=15s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.243941" elapsed="0.021199"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:45.550190" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-140.png"&gt;&lt;img src="selenium-screenshot-140.png" width="800px"&gt;&lt;/a&gt;</msg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.265359" elapsed="0.285078"/>
-</kw>
-<arg>${URL_IDNOW}</arg>
-<status status="PASS" start="2025-06-18T15:43:40.707979" elapsed="4.842632"/>
-</kw>
-<kw name="Accepter les cookies" owner="Commun_conserto">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//button[contains(., '${texte}')]</arg>
-<arg>timeout=10</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.551598" elapsed="0.026028"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:45.578277" level="INFO">Clicking button 'xpath=//button[contains(., 'Autoriser tous les cookies')]'.</msg>
-<arg>xpath=//button[contains(., '${texte}')]</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.577897" elapsed="0.196209"/>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-18T16:58:30.224968" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-18T16:58:27.223830" elapsed="3.001656"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.022874" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-141.png"&gt;&lt;img src="selenium-screenshot-141.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-18T16:58:30.526288" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Screenshot/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.775356" elapsed="0.247707"/>
+<status status="PASS" start="2025-06-18T16:58:30.227568" elapsed="0.298875"/>
 </kw>
 <arg>10s</arg>
 <arg>1s</arg>
 <arg>Capture Page Screenshot</arg>
+<arg>Screenshot/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:45.774707" elapsed="0.248497"/>
+<status status="PASS" start="2025-06-18T16:58:30.226322" elapsed="0.300236"/>
 </kw>
-<arg>Autoriser tous les cookies</arg>
-<status status="PASS" start="2025-06-18T15:43:45.551172" elapsed="0.472150"/>
+<arg>capture_home</arg>
+<status status="PASS" start="2025-06-18T16:58:27.222629" elapsed="3.304058"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<arg>${BROWSER}</arg>
+<status status="PASS" start="2025-06-18T16:58:22.093509" elapsed="8.433262"/>
+</kw>
+<kw name="Page d'accueil de Conserto" owner="Keywords">
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-18T16:58:30.527769" elapsed="0.061388"/>
+</kw>
+<kw name="AWait Browser Ready And Complete" owner="Commun_conserto">
+<kw name="Wait Until Page Is Loaded" owner="Commun_conserto">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-06-18T16:58:30.591803" level="INFO">Executing JavaScript:
+return document.readyState == "complete"
+Without any arguments.</msg>
+<arg>return document.readyState == "complete"</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-06-18T16:58:30.590956" elapsed="0.028406"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Execute JavaScript</arg>
+<arg>return document.readyState == "complete"</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-18T16:58:30.590471" elapsed="0.029028"/>
+</kw>
+<status status="PASS" start="2025-06-18T16:58:30.590036" elapsed="0.029833"/>
+</kw>
+<status status="PASS" start="2025-06-18T16:58:30.589552" elapsed="0.030477"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-18T16:58:30.620572" elapsed="0.052147"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-18T16:58:33.673825" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-18T16:58:30.673275" elapsed="3.000710"/>
+</kw>
+<status status="PASS" start="2025-06-18T16:58:30.527561" elapsed="3.146566"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-18T16:58:33.674594" level="INFO">Page Accueil - vérif titre et éléments du menu nav :</msg>
+<arg>Page Accueil - vérif titre et éléments du menu nav :</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-18T16:58:33.674376" elapsed="0.000315"/>
 </kw>
 <kw name="Verif title" owner="Keywords">
 <kw name="Get Source" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.075878" level="INFO">${html} = &lt;html lang="fr-FR" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" prefix="og: https://ogp.me/ns#" style=""&gt;&lt;head&gt;&lt;meta http-equiv="origin-trial" content="...</msg>
+<msg time="2025-06-18T16:58:33.688927" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="Positive Technologie"&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-...</msg>
 <var>${html}</var>
 <doc>Returns the entire HTML source of the current page or frame.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.024526" elapsed="0.051422"/>
+<status status="PASS" start="2025-06-18T16:58:33.675762" elapsed="0.013260"/>
 </kw>
 <for flavor="IN">
 <iter>
@@ -105,328 +144,111 @@
 <arg>${html}</arg>
 <arg>${titre}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.076388" elapsed="0.000180"/>
+<status status="PASS" start="2025-06-18T16:58:33.689828" elapsed="0.000350"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-18T15:43:46.076813" level="INFO">${log} = IDnow - La confiance au cœur de l'identité.</msg>
+<msg time="2025-06-18T16:58:33.690715" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <var>${log}</var>
 <arg>${titre}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.076676" elapsed="0.000166"/>
+<status status="PASS" start="2025-06-18T16:58:33.690413" elapsed="0.000353"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-18T15:43:46.077108" level="INFO">IDnow - La confiance au cœur de l'identité.</msg>
+<msg time="2025-06-18T16:58:33.691173" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.076983" elapsed="0.000169"/>
+<status status="PASS" start="2025-06-18T16:58:33.690968" elapsed="0.000286"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.077249" elapsed="0.000273"/>
+<status status="PASS" start="2025-06-18T16:58:33.691463" elapsed="0.000405"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.083151" level="INFO">Page title is 'IDnow - La confiance au cœur de l'identité.'.</msg>
+<msg time="2025-06-18T16:58:33.703243" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
 <arg>${Title}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.077657" elapsed="0.005671"/>
+<status status="PASS" start="2025-06-18T16:58:33.692082" elapsed="0.011346"/>
 </kw>
-<var name="${titre}">IDnow - La confiance au cœur de l'identité.</var>
-<status status="PASS" start="2025-06-18T15:43:46.076264" elapsed="0.007189"/>
+<var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
+<status status="PASS" start="2025-06-18T16:58:33.689594" elapsed="0.013962"/>
 </iter>
 <var>${titre}</var>
 <value>${Title}</value>
-<status status="PASS" start="2025-06-18T15:43:46.076046" elapsed="0.007551"/>
+<status status="PASS" start="2025-06-18T16:58:33.689191" elapsed="0.014483"/>
 </for>
-<arg>${Title_Idnow}</arg>
-<status status="PASS" start="2025-06-18T15:43:46.023887" elapsed="0.059889"/>
+<arg>${Title}</arg>
+<status status="PASS" start="2025-06-18T16:58:33.675066" elapsed="0.028862"/>
 </kw>
-<kw name="Verif textes page acceuil" owner="Keywords">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//div//p//span[text()='${texte}']</arg>
-<arg>10</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.084933" elapsed="0.075688"/>
+<arg>${Title_1}</arg>
+<status status="PASS" start="2025-06-18T16:58:30.527180" elapsed="3.176866"/>
 </kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.178906" level="INFO">${texte_value} = Nous transformons la confiance en avantage stratégique.</msg>
-<var>${texte_value}</var>
-<arg>xpath=//div//p//span[text()='${texte}']</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.160820" elapsed="0.018307"/>
+<kw name="Nettoyer Dossier Logs" owner="Keywords">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-06-18T16:58:33.705520" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
+<arg>${destination}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-06-18T16:58:33.704989" elapsed="0.000657"/>
 </kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//div//p//span[text()='${texte2}']</arg>
-<arg>10</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.179326" elapsed="0.016532"/>
+<status status="PASS" start="2025-06-18T16:58:33.704558" elapsed="0.001270"/>
 </kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.208358" level="INFO">${text_values} = Grâce à nos solutions d’identité SaaS pilotées par l’IA, vous bénéficiez d’une sécurité extensible, d’une conformité évolutive et d’une prévention de la fraude en temps réel. De quoi naviguer sereinem...</msg>
-<var>${text_values}</var>
-<arg>xpath=//div//p//span[text()='${Texte2}']</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.196082" elapsed="0.012322"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:46.427702" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-142.png"&gt;&lt;img src="selenium-screenshot-142.png" width="800px"&gt;&lt;/a&gt;</msg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.208846" elapsed="0.219028"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Capture Page Screenshot</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.208626" elapsed="0.219410"/>
-</kw>
-<arg>${Texte1_activite}</arg>
-<arg>${Texte2_activite}</arg>
-<status status="PASS" start="2025-06-18T15:43:46.084289" elapsed="0.343931"/>
-</kw>
-<kw name="Barre de Nav Idnow" owner="Keywords">
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.429393" elapsed="0.290602"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-18T15:43:49.722092" level="INFO">Slept 3 seconds.</msg>
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-18T15:43:46.720938" elapsed="3.001514"/>
-</kw>
-<kw name="AWait Browser Ready And Complete" owner="Commun_conserto">
-<kw name="Wait Until Page Is Loaded" owner="Commun_conserto">
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:49.726108" level="INFO">Executing JavaScript:
-return document.readyState == "complete"
-Without any arguments.</msg>
-<arg>return document.readyState == "complete"</arg>
-<doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.725095" elapsed="0.014293"/>
-</kw>
-<arg>10s</arg>
-<arg>1s</arg>
-<arg>Execute JavaScript</arg>
-<arg>return document.readyState == "complete"</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.724513" elapsed="0.015084"/>
-</kw>
-<status status="PASS" start="2025-06-18T15:43:49.723909" elapsed="0.015892"/>
-</kw>
-<status status="PASS" start="2025-06-18T15:43:49.723166" elapsed="0.016757"/>
-</kw>
-<kw name="Affichage et actualisation" owner="Keywords">
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>//body</arg>
-<arg>timeout=10s</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.740827" elapsed="0.010373"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<arg>timeout=60s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.751614" elapsed="0.016337"/>
-</kw>
-<arg>Wait Until Element Is Visible</arg>
-<arg>${xpath}</arg>
-<arg>timeout=60s</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.751416" elapsed="0.016654"/>
-</kw>
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:49.782299" level="INFO">Element '//*[@id="menu-navigation-fr"]' is displayed.</msg>
-<arg>${xpath}</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.768405" elapsed="0.013977"/>
-</kw>
-<msg time="2025-06-18T15:43:49.782528" level="INFO">${visible} = True</msg>
-<var>${visible}</var>
-<arg>Element Should Be Visible</arg>
-<arg>${xpath}</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.768220" elapsed="0.014336"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>not ${visible}</arg>
-<arg>Reload Page</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.782696" elapsed="0.000202"/>
-</kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<arg>timeout=60s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.783078" elapsed="0.011173"/>
-</kw>
-<arg>${xpath}</arg>
-<status status="PASS" start="2025-06-18T15:43:49.740258" elapsed="0.054106"/>
-</kw>
-<kw name="Run Keyword And Continue On Failure" owner="BuiltIn">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<arg>timeout=30s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.794689" elapsed="0.011147"/>
-</kw>
-<arg>Wait Until Element Is Visible</arg>
-<arg>${xpath}</arg>
-<arg>timeout=30s</arg>
-<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.794514" elapsed="0.011418"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:49.806489" level="INFO">Clicking element '//*[@id="menu-navigation-fr"]'.</msg>
-<arg>${xpath}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.806297" elapsed="0.060513"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Click Element</arg>
-<arg>${xpath}</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.806071" elapsed="0.060834"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Capture Element Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:50.008614" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-97.png"&gt;&lt;img src="selenium-element-screenshot-97.png" width="400px"&gt;&lt;/a&gt;</msg>
-<arg>${xpath}</arg>
-<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.867318" elapsed="0.141447"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Capture Element Screenshot</arg>
-<arg>${xpath}</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:49.867077" elapsed="0.141797"/>
-</kw>
-<arg>${Barre_de_nav_Idnow2}</arg>
-<status status="PASS" start="2025-06-18T15:43:46.428799" elapsed="3.580159"/>
-</kw>
-<kw name="Action nav Idnow" owner="Keywords">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//nav//span[text()='${texte}']</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:50.009687" elapsed="0.033524"/>
-</kw>
-<kw name="Mouse Over" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:50.043929" level="INFO">Simulating Mouse Over on element 'xpath=//nav//span[text()='Secteurs']'.</msg>
-<arg>xpath=//nav//span[text()='${texte}']</arg>
-<doc>Simulates hovering the mouse over the element ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:50.043596" elapsed="0.284830"/>
-</kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//a//span[text()='${element}']</arg>
-<arg>timeout=5</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-18T15:43:50.328907" elapsed="0.042631"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:50.372528" level="INFO">Clicking element 'xpath=//a//span[text()='Assurances']'.</msg>
-<arg>xpath=//a//span[text()='${element}']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-18T15:43:50.372186" elapsed="1.129804"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Click Element</arg>
-<arg>xpath=//a//span[text()='${element}']</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:50.371826" elapsed="1.131086"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:51.812362" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-143.png"&gt;&lt;img src="selenium-screenshot-143.png" width="800px"&gt;&lt;/a&gt;</msg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.504822" elapsed="0.307886"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Capture Page Screenshot</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.504074" elapsed="0.309108"/>
-</kw>
-<arg>Secteurs</arg>
-<arg>Assurances</arg>
-<status status="PASS" start="2025-06-18T15:43:50.009343" elapsed="1.804187"/>
-</kw>
-<kw name="Afficher Tous Les cas" owner="Keywords">
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-18T15:43:51.815694" level="INFO">${premier} = Vérification d’identité automatisée</msg>
-<var>${premier}</var>
-<arg>${element}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.815271" elapsed="0.000509"/>
+<kw name="Supprimer Captures Selenium" owner="Keywords">
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2025-06-18T16:58:33.707601" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats&lt;/a&gt;'.</msg>
+<msg time="2025-06-18T16:58:33.709325" level="INFO">0 files:
+</msg>
+<msg time="2025-06-18T16:58:33.709536" level="INFO">${captures} = []</msg>
+<var>${captures}</var>
+<arg>${OUTPUTDIR}</arg>
+<arg>selenium-screenshot-*.png</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="PASS" start="2025-06-18T16:58:33.707225" elapsed="0.002364"/>
 </kw>
 <for flavor="IN">
 <iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-06-18T15:43:51.816905" level="INFO">élément : Vérification d’identité automatisée</msg>
-<arg>élément : ${service}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.816576" elapsed="0.000470"/>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-06-18T16:58:33.710227" elapsed="0.000063"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-06-18T15:43:51.817625" level="INFO">Le premier élément est : Vérification d’identité automatisée</msg>
-<arg>Le premier élément est : ${premier}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.817323" elapsed="0.000417"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-18T15:43:52.106669" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-144.png"&gt;&lt;img src="selenium-screenshot-144.png" width="800px"&gt;&lt;/a&gt;</msg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-18T15:43:51.818022" elapsed="0.288960"/>
-</kw>
-<var name="${service}">Vérification d’identité automatisée</var>
-<status status="PASS" start="2025-06-18T15:43:51.816335" elapsed="0.290768"/>
+<var name="${f}"/>
+<status status="NOT RUN" start="2025-06-18T16:58:33.710039" elapsed="0.000327"/>
 </iter>
-<var>${service}</var>
-<value>@{element}</value>
-<status status="PASS" start="2025-06-18T15:43:51.815953" elapsed="0.291242"/>
+<var>${f}</var>
+<value>@{captures}</value>
+<status status="NOT RUN" start="2025-06-18T16:58:33.709769" elapsed="0.000680"/>
 </for>
-<arg>Solutions</arg>
-<arg>${Solutions}[0]</arg>
-<status status="PASS" start="2025-06-18T15:43:51.814453" elapsed="0.292964"/>
+<status status="PASS" start="2025-06-18T16:58:33.706722" elapsed="0.003869"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-06-18T15:43:52.107938" elapsed="2.409964"/>
+<status status="PASS" start="2025-06-18T16:58:33.711055" elapsed="3.989205"/>
 </kw>
-<doc>Scénario IDNOW-CON0001 : Vérifier quelques éléments du site IDNOW.
-JDD : Salarié ou sociétaire chez IDNOW, ayant une adresse mail et un mot de passe actifs.</doc>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
 <tag>ETAT:Stable</tag>
-<tag>IDNOW</tag>
 <tag>PRIORITE:P1</tag>
-<tag>TYPE:TEST</tag>
-<status status="PASS" start="2025-06-18T15:43:40.706922" elapsed="13.812023"/>
+<tag>TYPE:CONSERTO</tag>
+<status status="PASS" start="2025-06-18T16:58:22.092599" elapsed="15.608208"/>
 </test>
 <doc>CONSERTO</doc>
-<status status="PASS" start="2025-06-18T15:43:40.160494" elapsed="14.362926"/>
+<status status="PASS" start="2025-06-18T16:58:21.777374" elapsed="15.925925"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="1" fail="0" skip="0">CON0001</stat>
 <stat pass="1" fail="0" skip="0">ETAT:Stable</stat>
-<stat pass="1" fail="0" skip="0">IDNOW</stat>
 <stat pass="1" fail="0" skip="0">PRIORITE:P1</stat>
-<stat pass="1" fail="0" skip="0">TYPE:TEST</stat>
+<stat pass="1" fail="0" skip="0">TYPE:CONSERTO</stat>
 </tag>
 <suite>
-<stat name="Idnow" id="s1" pass="1" fail="0" skip="0">Idnow</stat>
+<stat name="Conserto 1" id="s1" pass="1" fail="0" skip="0">Conserto 1</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-06-18T15:43:42.550536" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
 </errors>
 </robot>
