@@ -16,6 +16,10 @@ pipeline {
         string(name: 'EMAIL', defaultValue: 'ibrahima.alata@conserto.pro', description: 'Destinataire du rapport')
     }
 
+    tools {
+        allure 'Allure' // nom que tu as mis dans l'étape précédente
+    }
+    
     stages {
         stage('Installation des dépendances') {
             steps {
