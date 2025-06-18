@@ -65,9 +65,9 @@ pipeline {
 
     post {
 
-        // // always {
-        // //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        // // }
+        // always {
+        //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        // }
         // always {
         //     script {
         //         if (fileExists('allure-results')) {
@@ -77,6 +77,18 @@ pipeline {
         //         }
         //     }
         // }
+
+        always {
+            script {
+                def allureDir = new File('allure-results')
+                if (allureDir.exists() && allureDir.list().length > 0) {
+                    echo "Résultats Allure trouvés : ${allureDir.list().length} fichiers"
+                    allure results: [[path: 'allure-results']]
+                } else {
+                    echo '📭 Aucun résultat Allure à publier (dossier vide ou manquant)'
+                }
+            }
+        }
 
         success {
             emailext (
