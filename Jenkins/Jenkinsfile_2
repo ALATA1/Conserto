@@ -65,9 +65,10 @@ pipeline {
 
     post {
 
-        // always {
-        //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        // }
+        always {
+            //  allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            allure includeProperties: false, jdk: '', allure results: [[path: 'allure-results']]
+        }
         // always {
         //     script {
         //         if (fileExists('allure-results')) {
@@ -78,18 +79,7 @@ pipeline {
         //     }
         // }
 
-        always {
-            script {
-                def allureExists = fileExists('allure-results') && !isDirEmpty('allure-results')
-                if (allureExists) {
-                    echo 'Résultats Allure détectés, publication en cours...'
-                    allure results: [[path: 'allure-results']]
-                } else {
-                    echo 'Aucun résultat Allure à publier (dossier manquant ou vide)'
-                }
-            }
-        }
-
+        
         success {
             emailext (
                 subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
