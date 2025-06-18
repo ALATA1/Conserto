@@ -37,7 +37,8 @@ pipeline {
                 // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
                 // bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
                 // bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Idnow/Idnow.robot"
-                bat "\"${env.PYTHON}\" -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Idnow/Idnow.robot"
+                bat "\"${env.PYTHON}\" -m robot --listener allure_robotframework;${ALLURE_RESULTS_DIR} --outputdir ${RESULTS_DIR} Tests/TestSuites/Idnow/Idnow.robot"
+                bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip -Force'
 
             }          
         }
@@ -47,7 +48,8 @@ pipeline {
                 echo 'Génération du rapport Allure...'
                 // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
                 // bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
-                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
+                // bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
+                bat "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate ${ALLURE_RESULTS_DIR} -o allure-report --clean"
                 bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
             }
         }
