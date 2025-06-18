@@ -53,14 +53,14 @@ pipeline {
 
     
 
-        stage('Rapport-Publisher') {
-            steps {
-                echo 'Pipeline terminé.'
-                robot outputPath: 'Resultats'
-                archiveArtifacts artifacts: 'Resultats/*.html'
-                // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
-            }
-        }
+        // stage('Rapport-Publisher') {
+        //     steps {
+        //         echo 'Pipeline terminé.'
+        //         robot outputPath: 'Resultats'
+        //         archiveArtifacts artifacts: 'Resultats/*.html'
+        //         // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
+        //     }
+        // }
     }
 
     post {
