@@ -88,10 +88,13 @@ pipeline {
 
                     📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
                     📁 Rapport ZIP en pièce jointe.
+                    📎 Rapport Robot : <a href="${env.BUILD_URL}artifact/Resultats/log.html">log.html</a><br>
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}artifact/allure-report/index.html">index.html</a><br><br>
 
                     Cordialement,  
                     Jenkins
                 """,
+                mimeType: 'text/html',
                 to: "${params.EMAIL}",
                 attachmentsPattern: 'Resultats/rapport_robot.zip'
             )
