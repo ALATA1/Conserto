@@ -49,9 +49,47 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 Ouverture Navigateur 
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser}  
-    Open Browser    ${URL}    ${browser}    
+    Open Browser    ${URL}    ${browser}        options=--headless --disable-gpu --window-size=1920,1080
     Maximize Brows
     Capture Et Sauvegarde       capture_home 
+
+
+Lancer Chrome Selon Environnement
+    [Arguments]     ${URL}    
+    ${os}=    Get Operating System
+    Run Keyword If    '${os}' == 'Windows'    Ouvrir Chrome Normal
+    Run Keyword Unless    '${os}' == 'Windows'    Ouvrir Chrome Headless
+    Go To    ${URL}
+    Wait Until Page Contains Element    //body    timeout=15s
+    Capture Page Screenshot
+    [Teardown]    Close Browser
+
+Détecter OS Avec Python
+    [Arguments]     ${URL}
+    ${os}=    Evaluate    platform.system()    platform
+    Log    OS détecté (via Python) : ${os}
+
+    Run Keyword If    '${os}' == 'Windows'    Ouvrir Chrome Normal
+    Run Keyword Unless    '${os}' == 'Windows'    Ouvrir Chrome Headless
+
+    Go To    ${URL}
+    Wait Until Page Contains Element    //body    timeout=15s
+    Capture Page Screenshot
+
+
+Ouvrir Chrome Normal
+    Open Browser    about:blank    chrome
+    Maximize Browser Window
+
+Ouvrir Chrome Headless
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --headless
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Create WebDriver    Chrome    chrome_options=${options}
+
 
 
 Maximize Brows
