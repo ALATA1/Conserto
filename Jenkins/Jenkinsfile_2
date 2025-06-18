@@ -53,30 +53,30 @@ pipeline {
 
     
 
-        // stage('Rapport-Publisher') {
-        //     steps {
-        //         echo 'Pipeline terminé.'
-        //         robot outputPath: 'Resultats'
-        //         archiveArtifacts artifacts: 'Resultats/*.html'
-        //         // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
-        //     }
-        // }
+        stage('Rapport-Publisher') {
+            steps {
+                echo 'Pipeline terminé.'
+                robot outputPath: 'Resultats'
+                archiveArtifacts artifacts: 'Resultats/*.html'
+                // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
+            }
+        }
     }
 
     post {
 
+        // // always {
+        // //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        // // }
         // always {
-        //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //     script {
+        //         if (fileExists('allure-results')) {
+        //             allure results: [[path: 'allure-results']]
+        //         } else {
+        //             echo 'Pas de résultats Allure à afficher'
+        //         }
+        //     }
         // }
-        always {
-            script {
-                if (fileExists('allure-results')) {
-                    allure results: [[path: 'allure-results']]
-                } else {
-                    echo 'Pas de résultats Allure à afficher'
-                }
-            }
-        }
 
         success {
             emailext (
