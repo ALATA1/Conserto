@@ -3,6 +3,7 @@ Documentation       keywords tests site conserto
 Library    SeleniumLibrary 
 Library    OperatingSystem
 Library    String
+Library    Collections
 
 
 # Resource         ../../../Resources/Keywords.robot
@@ -32,6 +33,13 @@ ${CHROME_OPTIONS}       add_argument(--headless)    add_argument(--window-size=1
 ${BROWSER}              chrome
 ${BROWSER_2}            firefox 
 ${BROWSER_3}            edge
+
+
+${URL_IDNOW}            https://www.idnow.io/
+${Title_Idnow}          IDnow - La confiance au cœur de l'identité.
+${Title2_Idnow}         La confiance au cœur de l'identité.
+
+
 
 *** Keywords ***
 
@@ -76,7 +84,11 @@ Déplacer un dossier
     Move Directory    ${source_dossier}    ${destination}
 
 
-
+Accepter les cookies
+    [Arguments]     ${texte}
+    Wait Until Element Is Visible    xpath=//button[contains(., '${texte}')]    timeout=10
+    Click Button    xpath=//button[contains(., '${texte}')]
+    Wait Until Keyword Succeeds    10s    1s    Capture Page Screenshot
 
 
  

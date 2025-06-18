@@ -3,6 +3,7 @@ Documentation       Les variables globales déclarées ou à appeler
 Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
+Library    Collections
    
 # Library    Collections
 # Library    BuiltIn
@@ -40,9 +41,18 @@ Verif title
         Should Contain    ${html}    ${titre}
         ${log}=    Set Variable    ${titre}
         Log    ${log}
+        Log To console    ${log}   
         Title Should Be   ${Title}
     END
 
+
+Verif textes page acceuil 
+    [Arguments]     ${texte}      ${Texte2}      
+    Wait Until Element Is Visible    xpath=//div//p//span[text()='${texte}']      10 
+    ${texte_value}=    Get text    xpath=//div//p//span[text()='${texte}'] 
+    Wait Until Element Is Visible    xpath=//div//p//span[text()='${texte2}']      10
+    ${text_values}=   Get text    xpath=//div//p//span[text()='${Texte2}']
+    Wait Until Keyword Succeeds	    5s	3s   Capture Page Screenshot
 
 Verif Elements bloc nav 
     [Arguments]    # ${Posit_texte}   ${Tech_texte}   ${Cli_texte}   ${Aca_texte}   ${Blo_texte}   ${Cont_texte}
@@ -235,3 +245,47 @@ Culture Blog
 Culture Contact
     Wait Until Element Is Visible    ${Contact}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Contact}
+
+
+
+Page d'accueil Idnow 
+    [Arguments]     ${Title}  
+    # Maximize Brows
+    Log  Page Accueil - vérif titre et éléments du menu nav : 
+    Verif title Idnow   ${Title}
+    # # Verif Elements bloc nav 
+    # Conditions menu nav     Positive
+    
+    # Log  Page Accueil - vérif logo et quelques éléments de la page : 
+    # Vérifier logo   ${Conserto}
+    # Verif positive techo   ${postech}   ${Positif_Techo_info} 
+    # Verif ilots
+
+
+Barre de Nav Idnow
+    [Arguments]     ${xpath}
+    Wait Until Element Is Visible    ${xpath}      timeout=15s
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
+    Wait Until Keyword Succeeds	    5s	3s      Capture Element Screenshot    ${xpath}
+
+
+Action nav Idnow
+    [Arguments]     ${texte}   ${element}
+    Wait Until Element Is Visible    xpath=//nav//span[text()='${texte}']
+    Mouse Over    xpath=//nav//span[text()='${texte}']
+    Wait Until Element Is Visible    xpath=//a//span[text()='${element}']    timeout=5
+    Wait Until Keyword Succeeds	    5s	3s   Click Element    xpath=//a//span[text()='${element}']
+    Wait Until Keyword Succeeds	    5s	3s   Capture Page Screenshot  
+
+Afficher Tous Les cas 
+    [Arguments]     ${service}   @{element}
+    ${premier}=    Set Variable    ${element}[0]
+    # ${dernier}=    Set Variable    ${element}[-1]
+    FOR    ${service}    IN    @{element} 
+        Log    élément : ${service}
+        Log    Le premier élément est : ${premier}
+        Capture Page Screenshot
+    END
+
+
+ 

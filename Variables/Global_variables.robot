@@ -3,6 +3,7 @@ Documentation       Les variables globales déclarées ou à appeler
 Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
+Library    Collections
    
 # Library    Collections
 # Library    BuiltIn
@@ -56,3 +57,25 @@ ${Blog_texte}                  BLOG
 ${Contact_texte}               CONTACT
 
 ${Nav_texte}                   ${Positive_texte}\n${Techo_texte}\n${Clients_texte}\n${Academy_texte}\n${Blog_texte}\n${Contact_texte}
+
+
+
+
+##########################################################################################
+############################ VARIABLES IDNOW #############################################
+@{Secteurs}    Banque traditionnelle    Assurances    Jeux    Voyage   
+...    Ressources humaines   Fintech    Mobilité   Crypto   Télécommunication
+@{Solutions}   Vérification d’identité automatisée    Vérification d’identité en personne    
+...    Vérification d’identité guidée par des experts    Services de confiance
+@{Centre de connaissances}    Blog    Cas Clients    Webinaires    
+...    Rapports et guides    Glossaire    Pôle développeurs
+@{Société}    Presse    Carrières    Nos valeurs    Partenaires    Références    À propos
+@{Contact}    Support utilisateurs    Contactez notre équipe de ventes  
+
+
+${Barre_de_nav_Idnow}          //nav[@class='site-nav']
+${Barre_de_nav_Idnow2}         //*[@id="menu-navigation-fr"]
+
+
+${Texte1_activite}         Nous transformons la confiance en avantage stratégique.
+${Texte2_activite}         Grâce à nos solutions d’identité SaaS pilotées par l’IA, vous bénéficiez d’une sécurité extensible, d’une conformité évolutive et d’une prévention de la fraude en temps réel. De quoi naviguer sereinement dans un monde digital complexe.
