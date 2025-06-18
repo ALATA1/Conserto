@@ -47,6 +47,12 @@ Verif title
     END
 
 
+Autres verifs Idnow 
+    Barre de Nav Idnow    ${Barre_de_nav_Idnow}    
+    Barre de Nav Idnow    ${Barre_de_nav_Idnow2}
+    Action nav Idnow      Secteurs   Assurances
+    Afficher Tous Les cas     Solutions    ${Solutions}[0]
+    
 Verif textes page acceuil 
     [Arguments]     ${texte}      ${Texte2}      
     Wait Until Element Is Visible    xpath=//div//p//span[text()='${texte}']      10 
@@ -57,7 +63,6 @@ Verif textes page acceuil
 
 Verif Elements bloc nav 
     [Arguments]    # ${Posit_texte}   ${Tech_texte}   ${Cli_texte}   ${Aca_texte}   ${Blo_texte}   ${Cont_texte}
-    
     Log   1ère méthode de vérif élements du bloc nav :
     Wait Until Element Is Visible    ${Barre_de_nav}      10 
     ${nav_value}=    Get text    ${Barre_de_nav} 
