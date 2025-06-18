@@ -80,12 +80,12 @@ pipeline {
 
         always {
             script {
-                def allureDir = new File('allure-results')
-                if (allureDir.exists() && allureDir.list().length > 0) {
-                    echo "Résultats Allure trouvés : ${allureDir.list().length} fichiers"
+                def allureExists = fileExists('allure-results') && !isDirEmpty('allure-results')
+                if (allureExists) {
+                    echo 'Résultats Allure détectés, publication en cours...'
                     allure results: [[path: 'allure-results']]
                 } else {
-                    echo '📭 Aucun résultat Allure à publier (dossier vide ou manquant)'
+                    echo 'Aucun résultat Allure à publier (dossier manquant ou vide)'
                 }
             }
         }
