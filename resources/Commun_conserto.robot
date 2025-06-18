@@ -49,7 +49,7 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 Ouverture Navigateur 
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    ${browser}  
-    Open Browser    ${URL}    ${browser}        options=--headless --disable-gpu --window-size=1920,1080
+    Open Browser    ${URL}    ${browser}        # options=--headless --disable-gpu --window-size=1920,1080
     Maximize Brows
     Capture Et Sauvegarde       capture_home 
 
