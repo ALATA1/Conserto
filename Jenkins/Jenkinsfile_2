@@ -34,8 +34,8 @@ pipeline {
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
-                bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
-
+                // bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
+                bat "${env.PYTHON} -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
 
             }          
         }
@@ -62,9 +62,13 @@ pipeline {
 
     post {
 
-        // always {
-        //         allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        // }
+        always {
+                // allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                allure([
+                    results: [[path: 'Resultats']],
+                    reportBuildPolicy: 'ALWAYS'
+                ])
+        }
         
 
         success {
