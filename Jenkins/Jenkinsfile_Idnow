@@ -47,7 +47,7 @@ pipeline {
                 // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
                 // bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
                 bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
-                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
+                // bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
             }
         }
 
@@ -58,6 +58,7 @@ pipeline {
                 echo 'Pipeline terminé.'
                 robot outputPath: 'Resultats'
                 archiveArtifacts artifacts: 'Resultats/*.html'
+                // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
             }
         }
     }
@@ -65,18 +66,34 @@ pipeline {
     post {
 
         // always {
-        //      allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //     //  allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //     allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
         // }
+        // always {
+        //     script {
+        //         if (fileExists('allure-results')) {
+        //             allure results: [[path: 'allure-results']]
+        //         } else {
+        //             echo 'Pas de résultats Allure à afficher'
+        //         }
+        //     }
+        // }
+
         always {
             script {
                 if (fileExists('allure-results')) {
-                    allure results: [[path: 'allure-results']]
+                    try {
+                        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                    } catch (err) {
+                        echo " Erreur publication Allure : ${err}"
+                    }
                 } else {
-                    echo 'Pas de résultats Allure à afficher'
+                    echo ' Aucun dossier allure-results'
                 }
             }
         }
 
+        
         success {
             emailext (
                 subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -87,10 +104,13 @@ pipeline {
 
                     📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
                     📁 Rapport ZIP en pièce jointe.
+                    📎 Rapport Robot : <a href="${env.BUILD_URL}artifact/Resultats/log.html">log.html</a><br>
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}artifact/allure-report/index.html">index.html</a><br><br>
 
                     Cordialement,  
                     Jenkins
                 """,
+                mimeType: 'text/html',
                 to: "${params.EMAIL}",
                 attachmentsPattern: 'Resultats/rapport_robot.zip'
             )

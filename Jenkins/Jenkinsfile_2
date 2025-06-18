@@ -85,10 +85,10 @@ pipeline {
                     try {
                         allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
                     } catch (err) {
-                        echo "⚠️ Erreur publication Allure : ${err}"
+                        echo " Erreur publication Allure : ${err}"
                     }
                 } else {
-                    echo '📭 Aucun dossier allure-results'
+                    echo ' Aucun dossier allure-results'
                 }
             }
         }
