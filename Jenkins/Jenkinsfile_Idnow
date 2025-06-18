@@ -36,7 +36,8 @@ pipeline {
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
                 // bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
-                bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Idnow/Idnow.robot"
+                // bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Idnow/Idnow.robot"
+                bat "\"${env.PYTHON}\" -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Idnow/Idnow.robot"
 
             }          
         }
