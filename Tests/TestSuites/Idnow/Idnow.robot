@@ -35,9 +35,9 @@ Automatisation du site idnow
     [Documentation]       Scénario IDNOW-CON0001 : Vérifier quelques éléments du site IDNOW.
     ...                   JDD : Salarié ou sociétaire chez IDNOW, ayant une adresse mail et un mot de passe actifs.
     [Tags]    IDNOW    ETAT:Stable    TYPE:TEST     PRIORITE:P1 
-    # Ouverture Navigateur    ${URL_IDNOW}   ${BROWSER}       # ${BROWSER}  ${BROWSER_2}    ${BROWSER_3}      
-    # Lancer Chrome Selon Environnement     ${URL_IDNOW}
-    Détecter OS Avec Python     ${URL_IDNOW}
+    Ouverture Navigateur    ${URL_IDNOW}   ${BROWSER}       # ${BROWSER}  ${BROWSER_2}    ${BROWSER_3}      
+    # # Lancer Chrome Selon Environnement     ${URL_IDNOW}
+    # Détecter OS Avec Python     ${URL_IDNOW}
     Accepter les cookies    Autoriser tous les cookies      # Autoriser tous les cookies   Paramètres des cookies
     Verif title    ${Title_Idnow}
     Verif textes page acceuil      ${Texte1_activite}     ${Texte2_activite}
