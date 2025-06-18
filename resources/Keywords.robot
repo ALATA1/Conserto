@@ -135,7 +135,9 @@ Nettoyer Dossier Logs
     # Move File    output.xml    ${destination}/output.xml
     # Move File    log.html      ${destination}/log.html
     # Move File    report.html   ${destination}/report.html
+    Supprimer Captures Selenium
 
+    
 Supprimer Captures Selenium
     ${captures}=    List Files In Directory    ${OUTPUTDIR}    selenium-screenshot-*.png
     FOR    ${f}    IN    @{captures}

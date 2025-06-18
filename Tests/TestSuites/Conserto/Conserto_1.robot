@@ -37,7 +37,7 @@ Automatisation du site conserto
     Page d'accueil de Conserto   ${Title_1}   
     Nettoyer Dossier Logs
     # Test navigation fonctionne
-    Supprimer Captures Selenium
+    
 
 
 
