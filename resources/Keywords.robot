@@ -266,9 +266,21 @@ Barre de Nav Idnow
     [Arguments]     ${xpath}
     Scroll Element Into View    ${xpath}
     Sleep    3s 
+    AWait Browser Ready And Complete
+    Affichage et actualisation     ${xpath} 
     Run Keyword And Continue On Failure    Wait Until Element Is Visible    ${xpath}      timeout=30s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
     Wait Until Keyword Succeeds	    5s	3s      Capture Element Screenshot    ${xpath}
+
+Affichage et actualisation 
+    [Arguments]     ${xpath}
+    Wait Until Page Contains Element    //body    timeout=10s
+
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${xpath}    timeout=60s
+    ${visible}=    Run Keyword And Return Status    Element Should Be Visible    ${xpath}
+
+    Run Keyword If    not ${visible}    Reload Page
+    Wait Until Element Is Visible    ${xpath}    timeout=60s
 
 
 Action nav Idnow
