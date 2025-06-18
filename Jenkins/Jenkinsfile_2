@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Installation des dépendances') {
             steps {
-                echo 'Installation des librairies nécessaires'
+                echo 'Installation des librairies'
                 bat "${env.PYTHON} -m pip install --upgrade pip"
                 bat "${env.PYTHON} -m pip install -r requirements.txt"
                 // bat "rmdir /s /q %RESULTS_DIR% || echo dossier vide"
@@ -30,7 +30,7 @@ pipeline {
 
         stage('Exécution des tests') {
             steps {
-                echo 'echo "📁 Lancement des tests'
+                echo 'Lancement des tests'
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
@@ -65,7 +65,7 @@ pipeline {
         always {
                 // allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
                 allure([
-                    results: [[path: 'Resultats']],
+                    results: [[path: 'allure-results']],
                     reportBuildPolicy: 'ALWAYS'
                 ])
         }
