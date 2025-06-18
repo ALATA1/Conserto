@@ -62,13 +62,13 @@ pipeline {
 
     post {
 
-        always {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-                // allure([
-                //     results: [[path: 'allure-results']],
-                //     reportBuildPolicy: 'ALWAYS'
-                // ])
-        }
+        // always {
+        //         allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //         // allure([
+        //         //     results: [[path: 'allure-results']],
+        //         //     reportBuildPolicy: 'ALWAYS'
+        //         // ])
+        // }
         
 
         success {
