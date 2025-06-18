@@ -65,10 +65,10 @@ pipeline {
 
     post {
 
-        always {
-            //  allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        }
+        // always {
+        //     //  allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //     allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        // }
         // always {
         //     script {
         //         if (fileExists('allure-results')) {
@@ -78,6 +78,20 @@ pipeline {
         //         }
         //     }
         // }
+
+        always {
+            script {
+                if (fileExists('allure-results')) {
+                    try {
+                        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                    } catch (err) {
+                        echo "⚠️ Erreur publication Allure : ${err}"
+                    }
+                } else {
+                    echo '📭 Aucun dossier allure-results'
+                }
+            }
+        }
 
         
         success {
