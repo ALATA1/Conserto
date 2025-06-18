@@ -47,7 +47,7 @@ pipeline {
                 // bat "allure generate %ALLURE_RESULTS_DIR% -o %ALLURE_REPORT_DIR% --clean"
                 // bat 'C:\\tools\\allure\\bin\\allure.bat generate Resultats -o Resultats --clean'
                 bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
-                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
+                // bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat open allure-report'
             }
         }
 
@@ -57,7 +57,8 @@ pipeline {
             steps {
                 echo 'Pipeline terminé.'
                 robot outputPath: 'Resultats'
-                archiveArtifacts artifacts: 'Resultats/*.html'
+                //archiveArtifacts artifacts: 'Resultats/*.html'
+                archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
             }
         }
     }
