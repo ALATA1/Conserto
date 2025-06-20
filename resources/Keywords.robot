@@ -80,7 +80,6 @@ Verif Elements bloc nav
     Log   1ère méthode de vérif élements du bloc nav :
     Wait Until Element Is Visible    ${Barre_de_nav}      10 
     ${nav_value}=    Get text    ${Barre_de_nav} 
-    ${nav_values}=   Get Value    ${Barre_de_nav}
     # Element Should Contain     ${Barre_de_nav}    ${Nav_texte}
 
     Log   2ème méthode de vérif élements du bloc nav : 
@@ -176,16 +175,41 @@ Conditions menu nav
     ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
     Run Keyword If    ${Action_1}   Verif Elements bloc nav 
     ...    ELSE IF    ${Action_2}    Barre de Navigation
-    ...    ELSE IF    ${Action_2}    Barre mobile nav
+    ...    ELSE IF    ${Action_3}    Barre mobile nav
 
     IF  '${texte}'=='***'      
         Log    Aucune requête exécutée. 
     END
 
 
+Values nav 
+    [Arguments]    ${texte}
+    ${status}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
+    
+    IF    ${status}
+        Log    On constate bien que "${texte}" est bien visible.
+        Verif Elements bloc nav
+    ELSE
+        Log    "${texte}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
+        Run Keyword    Barre de Navigation
+        # Wait Until Page Contains    ${texte}    10
+        ${status2}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10
+
+            IF    ${status2}
+                Log    "${texte}" affiché après chargement de la barre de navigation.
+                Run Keyword    Barre mobile nav
+            ELSE
+                Log    "${texte}" toujours non visible. Tentative via barre mobile.    WARN
+                Run Keyword    Verif Elements bloc nav
+            END
+    END
+
+
+
 Barre de Navigation
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
+    # Run Keyword And Ignore Error    Click Element    ${Barre_de_nav} 
     
 
 Barre mobile nav

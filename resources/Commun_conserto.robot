@@ -52,7 +52,7 @@ Ouverture Navigateur
     Open Browser    ${URL}    ${browser}        # options=--headless --disable-gpu --window-size=1920,1080
     Maximize Brows
     Capture Et Sauvegarde       capture_home 
-
+    
 
 Lancer Chrome Selon Environnement
     [Arguments]     ${URL}    
