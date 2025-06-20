@@ -39,8 +39,9 @@ Automatisation du site conserto cas 2
     Nettoyer Dossier Logs
     # Test navigation fonctionne
 
-    # Conditions menu nav     Positive
-    Values nav    Positive
+    Conditions menu nav     Positive
+    # Values nav    Positive
+    Values nav2   ${Barre_de_nav}   ${Mobile_menu}
     # Culture agile
     # Culture Technologie
     # Culture Clients 

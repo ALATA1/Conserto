@@ -226,6 +226,30 @@ Values nav
 
 
 
+Values nav2  
+    [Arguments]    ${xpath}   ${xpath2}
+    ${status}    Run Keyword And Return Status    Wait Until Element Is Visible    ${xpath}       10 
+    
+    IF    ${status}
+        Log    On constate bien que "${xpath}" est bien visible.
+        Verif Elements bloc nav
+    ELSE
+        Log    "${xpath}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
+        Run Keyword    Barre de Navigation
+        # Wait Until Page Contains    ${texte}    10
+        ${status2}    Run Keyword And Return Status    Wait Until Element Is Visible    ${xpath2}    10
+
+            IF    ${status2}
+                Log    "${xpath2}" affiché après chargement de la barre de navigation.
+                Run Keyword    Barre mobile nav
+            ELSE
+                Log    "${xpath2}" toujours non visible. Tentative via barre mobile.    WARN
+                Run Keyword    Verif Elements bloc nav
+            END
+    END
+
+
+
 Barre de Navigation
     Maximize Brows
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
