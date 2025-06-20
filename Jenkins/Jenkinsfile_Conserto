@@ -79,16 +79,31 @@ pipeline {
         //     }
         // }
 
+        // always {
+        //     script {
+        //         if (fileExists('allure-results')) {
+        //             try {
+        //                 allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        //             } catch (err) {
+        //                 echo " Erreur publication Allure : ${err}"
+        //             }
+        //         } else {
+        //             echo ' Aucun dossier allure-results'
+        //         }
+        //     }
+        // }
+
         always {
             script {
-                if (fileExists('allure-results')) {
+                def allureDir = 'allure-results'
+                if (fileExists(allureDir)) {
                     try {
-                        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                        allure includeProperties: false, jdk: '', results: [[path: allureDir]]
                     } catch (err) {
-                        echo " Erreur publication Allure : ${err}"
+                        echo "Erreur lors de la publication Allure : ${err}"
                     }
                 } else {
-                    echo ' Aucun dossier allure-results'
+                    echo "Aucun dossier '${allureDir}' trouvé pour le rapport Allure."
                 }
             }
         }

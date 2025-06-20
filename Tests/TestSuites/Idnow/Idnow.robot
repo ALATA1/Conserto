@@ -41,11 +41,11 @@ Automatisation du site idnow
     Accepter les cookies    Autoriser tous les cookies      # Autoriser tous les cookies   Paramètres des cookies
     Verif title    ${Title_Idnow}
     Verif textes page acceuil      ${Texte1_activite}     ${Texte2_activite}
-    # # Autres verifs Idnow 
-    # Barre de Nav Idnow    ${Barre_de_nav_Idnow}    
-    # Barre de Nav Idnow    ${Barre_de_nav_Idnow2}
-    # Action nav Idnow      Secteurs   Assurances
-    # Afficher Tous Les cas     Solutions    ${Solutions}[0]
+    # Autres verifs Idnow 
+    Barre de Nav Idnow    ${Barre_de_nav_Idnow}    
+    Barre de Nav Idnow    ${Barre_de_nav_Idnow2}
+    Action nav Idnow      Secteurs   Assurances
+    Afficher Tous Les cas     Solutions    ${Solutions}[0]
 
 
 

@@ -95,7 +95,7 @@ Ouvrir Chrome Headless
 Maximize Brows
     Set Window Size    1920    1080
     # Reload Page 
-    AWait Browser Ready And Complete
+    # AWait Browser Ready And Complete
     Maximize Browser Window
     Sleep    3s
 
