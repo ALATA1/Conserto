@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-20T10:46:01.408666" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\conserto_2.robot">
+<test id="s1-t1" name="Automatisation du site conserto cas 2" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-20T10:46:01.719332" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<arg>${URL}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-06-20T10:46:01.719089" elapsed="1.829764"/>
+</kw>
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-20T10:46:03.549672" elapsed="0.364468"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-20T10:46:03.914671" elapsed="0.033257"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T10:46:06.950023" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T10:46:03.948868" elapsed="3.001645"/>
+</kw>
+<status status="PASS" start="2025-06-20T10:46:03.549250" elapsed="3.401958"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T10:46:09.955715" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T10:46:06.953771" elapsed="3.002460"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-06-20T10:46:10.279574" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-06-20T10:46:09.958736" elapsed="0.320990"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Capture Page Screenshot</arg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-20T10:46:09.957177" elapsed="0.322662"/>
+</kw>
+<arg>capture_home</arg>
+<status status="PASS" start="2025-06-20T10:46:06.952386" elapsed="3.327547"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<arg>${BROWSER}</arg>
+<status status="PASS" start="2025-06-20T10:46:01.718295" elapsed="8.561709"/>
+</kw>
+<kw name="Page d'accueil de Conserto" owner="Keywords">
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-20T10:46:10.280952" elapsed="0.053903"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-20T10:46:10.335893" elapsed="0.060731"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T10:46:13.397824" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T10:46:10.396993" elapsed="3.000933"/>
+</kw>
+<status status="PASS" start="2025-06-20T10:46:10.280723" elapsed="3.117315"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-20T10:46:13.398298" level="INFO">Page Accueil - vérif titre et éléments du menu nav :</msg>
+<arg>Page Accueil - vérif titre et éléments du menu nav :</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.398165" elapsed="0.000179"/>
+</kw>
+<kw name="Verif title" owner="Keywords">
+<kw name="Get Source" owner="SeleniumLibrary">
+<msg time="2025-06-20T10:46:13.407503" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="Positive Technologie"&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-...</msg>
+<var>${html}</var>
+<doc>Returns the entire HTML source of the current page or frame.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.398791" elapsed="0.008771"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${html}</arg>
+<arg>${titre}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.408041" elapsed="0.000199"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-20T10:46:13.408528" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<var>${log}</var>
+<arg>${titre}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.408365" elapsed="0.000193"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-20T10:46:13.408788" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<arg>${log}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.408669" elapsed="0.000165"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${log}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.408937" elapsed="0.000294"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-06-20T10:46:13.414614" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<arg>${Title}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.409379" elapsed="0.005344"/>
+</kw>
+<var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
+<status status="PASS" start="2025-06-20T10:46:13.407908" elapsed="0.006880"/>
+</iter>
+<var>${titre}</var>
+<value>${Title}</value>
+<status status="PASS" start="2025-06-20T10:46:13.407682" elapsed="0.007170"/>
+</for>
+<arg>${Title}</arg>
+<status status="PASS" start="2025-06-20T10:46:13.398537" elapsed="0.016435"/>
+</kw>
+<arg>${Title_1}</arg>
+<status status="PASS" start="2025-06-20T10:46:10.280390" elapsed="3.134664"/>
+</kw>
+<kw name="Nettoyer Dossier Logs" owner="Keywords">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-06-20T10:46:13.415950" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
+<arg>${destination}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.415629" elapsed="0.000390"/>
+</kw>
+<kw name="Supprimer Captures Selenium" owner="Keywords">
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2025-06-20T10:46:13.416626" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1&lt;/a&gt;'.</msg>
+<msg time="2025-06-20T10:46:13.417024" level="INFO">0 files:
+</msg>
+<msg time="2025-06-20T10:46:13.417139" level="INFO">${captures} = []</msg>
+<var>${captures}</var>
+<arg>${OUTPUTDIR}</arg>
+<arg>selenium-screenshot-*.png</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.416436" elapsed="0.000732"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-06-20T10:46:13.418097" elapsed="0.000052"/>
+</kw>
+<var name="${f}"/>
+<status status="NOT RUN" start="2025-06-20T10:46:13.417868" elapsed="0.000368"/>
+</iter>
+<var>${f}</var>
+<value>@{captures}</value>
+<status status="NOT RUN" start="2025-06-20T10:46:13.417562" elapsed="0.000746"/>
+</for>
+<status status="PASS" start="2025-06-20T10:46:13.416210" elapsed="0.002217"/>
+</kw>
+<status status="PASS" start="2025-06-20T10:46:13.415341" elapsed="0.003171"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-20T10:46:13.418918" elapsed="2.347728"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="PASS" start="2025-06-20T10:46:01.717418" elapsed="14.050405"/>
+</test>
+<doc>CONSERTO</doc>
+<status status="PASS" start="2025-06-20T10:46:01.410425" elapsed="14.360519"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">CON0001</stat>
+<stat pass="1" fail="0" skip="0">ETAT:Stable</stat>
+<stat pass="1" fail="0" skip="0">PRIORITE:P1</stat>
+<stat pass="1" fail="0" skip="0">TYPE:CONSERTO</stat>
+</tag>
+<suite>
+<stat name="Conserto 2" id="s1" pass="1" fail="0" skip="0">Conserto 2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
