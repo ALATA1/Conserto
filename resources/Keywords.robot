@@ -235,7 +235,8 @@ Values nav2
         Verif Elements bloc nav
     ELSE
         Log    "${xpath}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
-        Run Keyword    Barre de Navigation
+        # Run Keyword    Barre de Navigation
+        Run Keyword    Barre mobile nav
         # Wait Until Page Contains    ${texte}    10
         ${status2}    Run Keyword And Return Status    Wait Until Element Is Visible    ${xpath2}    10
 
@@ -244,7 +245,7 @@ Values nav2
                 Run Keyword    Barre mobile nav
             ELSE
                 Log    "${xpath2}" toujours non visible. Tentative via barre mobile.    WARN
-                Run Keyword    Verif Elements bloc nav
+                Run Keyword    Barre de Navigation
             END
     END
 
