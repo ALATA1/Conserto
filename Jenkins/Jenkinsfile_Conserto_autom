@@ -64,35 +64,6 @@ pipeline {
     }
 
     post {
-
-        // always {
-        //     //  allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        //     allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        // }
-        // always {
-        //     script {
-        //         if (fileExists('allure-results')) {
-        //             allure results: [[path: 'allure-results']]
-        //         } else {
-        //             echo 'Pas de résultats Allure à afficher'
-        //         }
-        //     }
-        // }
-
-        // always {
-        //     script {
-        //         if (fileExists('allure-results')) {
-        //             try {
-        //                 allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-        //             } catch (err) {
-        //                 echo " Erreur publication Allure : ${err}"
-        //             }
-        //         } else {
-        //             echo ' Aucun dossier allure-results'
-        //         }
-        //     }
-        // }
-
         always {
             script {
                 def allureDir = 'allure-results'
