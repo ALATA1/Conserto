@@ -33,7 +33,8 @@ Automatisation du site conserto cas 2
     [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
-    Ouverture Navigateur    ${URL_CONSERTO}    ${BROWSER}       # ${BROWSER}  ${BROWSER_2}    ${BROWSER_3}      
+    Ouverture Navigateur    ${URL_CONSERTO}    # ${BROWSER}       # ${BROWSER}  ${BROWSER_2}    ${BROWSER_3}      
+    # Lancer Chrome En Headless    ${URL_CONSERTO}
     Page d'accueil de Conserto cas 2   ${Title_1}   
     Nettoyer Dossier Logs
     # Test navigation fonctionne

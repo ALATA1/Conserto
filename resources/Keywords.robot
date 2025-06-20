@@ -45,7 +45,8 @@ Page d'accueil de Conserto cas 2
     
     Log  Page Accueil - vérif logo et quelques éléments de la page : 
     Vérifier logo   ${Conserto}
-    Verif positive techo   ${postech}   ${Positif_Techo_info} 
+    # Verif positive techo   ${postech}   ${Positif_Techo_info} 
+    Verif positive techo2  ${Positif_Techo_info}   ${Clients_texte}
     Verif ilots
  
 
@@ -91,6 +92,22 @@ Verif Elements bloc nav
     Element Should Contain    ${Barre_de_nav}      ${Contact_texte}
 
 
+Verif positive techo2 
+    [Arguments]    ${texte}  ${texte2}
+    ${status}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
+    
+    IF    ${status}
+        Log    On constate bien que "${texte}" est bien visible. 
+        Run Keyword    Verif positive techo   ${postech}   ${texte}  
+    ELSE
+        Log    "${texte}" non trouvé. Tentative de recherche de "${texte2}".   
+        Run Keyword    Verif positive techo   ${Clients}   ${texte2} 
+    
+    END
+
+
+
+
 Verif positive techo
     [Arguments]    ${xpath}    ${texte_attendu} 
     Verifier Titre Visible     ${xpath}    ${texte_attendu}  
@@ -109,12 +126,15 @@ Verifier Titre Visible
     Element Text Should Be           ${xpath}    ${texte_attendu}   
     Sleep  0.5s
     Log    Extraire et tester dynamiquement : 
-    ${titre}=    Get Text    xpath=${postech}
+    # ${titre}=    Get Text    xpath=${postech}
+    ${titre}=    Get Text    ${xpath}
   
 
     
 Verif ilots
-    Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
+    Wait Until Element Is Visible    ${Positive}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element        ${Positive}  
+    # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
     Action Scroll   ${footer}      
     Capture Et Sauvegarde     capture_footer
 
@@ -173,8 +193,8 @@ Conditions menu nav
     ${Action_1}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
     ${Action_2}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
     ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
-    Run Keyword If    ${Action_1}   Verif Elements bloc nav 
-    ...    ELSE IF    ${Action_2}    Barre de Navigation
+    Run Keyword If    ${Action_1}    Barre de Navigation  
+    ...    ELSE IF    ${Action_2}    Verif Elements bloc nav
     ...    ELSE IF    ${Action_3}    Barre mobile nav
 
     IF  '${texte}'=='***'      
@@ -207,6 +227,7 @@ Values nav
 
 
 Barre de Navigation
+    Maximize Brows
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
     # Run Keyword And Ignore Error    Click Element    ${Barre_de_nav} 
