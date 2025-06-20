@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-20T15:03:37.497582" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\conserto_2.robot">
+<test id="s1-t1" name="Automatisation du site conserto cas 2" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-20T15:03:37.942682" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-06-20T15:03:37.942418" elapsed="2.072129"/>
+</kw>
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-20T15:03:40.015670" elapsed="0.375195"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-20T15:03:40.391100" elapsed="0.037034"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T15:03:43.431367" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T15:03:40.429453" elapsed="3.002164"/>
+</kw>
+<status status="PASS" start="2025-06-20T15:03:40.015082" elapsed="3.416801"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T15:03:46.434039" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T15:03:43.432961" elapsed="3.001424"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-06-20T15:03:46.755758" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-06-20T15:03:46.435835" elapsed="0.320143"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Capture Page Screenshot</arg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-20T15:03:46.435006" elapsed="0.321088"/>
+</kw>
+<arg>capture_home</arg>
+<status status="PASS" start="2025-06-20T15:03:43.432317" elapsed="3.323873"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<status status="PASS" start="2025-06-20T15:03:37.941435" elapsed="8.814844"/>
+</kw>
+<kw name="Page d'accueil de Conserto cas 2" owner="Keywords">
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-20T15:03:46.757681" elapsed="0.068307"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-20T15:03:46.826227" elapsed="0.061611"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-20T15:03:49.889252" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-20T15:03:46.888190" elapsed="3.001303"/>
+</kw>
+<status status="PASS" start="2025-06-20T15:03:46.757291" elapsed="3.132419"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-20T15:03:49.890233" level="INFO">Page Accueil - vérif titre et éléments du menu nav :</msg>
+<arg>Page Accueil - vérif titre et éléments du menu nav :</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.889985" elapsed="0.000343"/>
+</kw>
+<kw name="Verif title" owner="Keywords">
+<kw name="Get Source" owner="SeleniumLibrary">
+<msg time="2025-06-20T15:03:49.926234" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="Positive Technologie"&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-...</msg>
+<var>${html}</var>
+<doc>Returns the entire HTML source of the current page or frame.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.891261" elapsed="0.035127"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${html}</arg>
+<arg>${titre}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.927611" elapsed="0.000533"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-20T15:03:49.928943" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<var>${log}</var>
+<arg>${titre}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.928515" elapsed="0.000510"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-20T15:03:49.929585" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<arg>${log}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.929245" elapsed="0.000438"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${log}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.929958" elapsed="0.001292"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-06-20T15:03:49.967075" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<arg>${Title}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.931662" elapsed="0.035577"/>
+</kw>
+<var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
+<status status="PASS" start="2025-06-20T15:03:49.927116" elapsed="0.040234"/>
+</iter>
+<var>${titre}</var>
+<value>${Title}</value>
+<status status="PASS" start="2025-06-20T15:03:49.926596" elapsed="0.040904"/>
+</for>
+<arg>${Title}</arg>
+<status status="PASS" start="2025-06-20T15:03:49.890730" elapsed="0.076934"/>
+</kw>
+<kw name="Conditions menu nav" owner="Keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${texte}</arg>
+<arg>10</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.969018" elapsed="0.032849"/>
+</kw>
+<msg time="2025-06-20T15:03:50.002178" level="INFO">${Action_1} = True</msg>
+<var>${Action_1}</var>
+<arg>Wait Until Page Contains</arg>
+<arg>${texte}</arg>
+<arg>10</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-06-20T15:03:49.968672" elapsed="0.033588"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Barre_de_nav}</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-06-20T15:03:50.002934" elapsed="0.034598"/>
+</kw>
+<msg time="2025-06-20T15:03:50.037816" level="INFO">${Action_2} = True</msg>
+<var>${Action_2}</var>
+<arg>Wait Until Element Is Visible</arg>
+<arg>${Barre_de_nav}</arg>
+<arg>10</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-06-20T15:03:50.002576" elapsed="0.035307"/>
