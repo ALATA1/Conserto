@@ -47,7 +47,7 @@ ${Texte_Posit_Techo}           Positive
 ${postech}                     //div[@class='words-container']
 ${Mobile_menu}                 //button[@class='mobile-menu-button']
 ${Info_2013}                   //div[@class="slider-item" and @data-index="0"]/div/div[2]/div[@class='timeline-item__content']  
-
+${Mobile_menu_affiche}         //nav[@id="nav-main" @class="nav-main open" and @role="navigation"]
 
 
 ${Positive_texte}              POSITIVE

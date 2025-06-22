@@ -331,6 +331,27 @@ Barre mobile nav
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
     Run Keyword And Ignore Error    Capture Page Screenshot
 
+    Wait Until Element Is Visible    ${Mobile_menu_affiche}      timeout=15s
+    Run Keyword And Ignore Error    Capture Page Screenshot
+    
+    Log    verif 1
+    ${texte_nav} =    Get Text    xpath=//nav[@id="nav-main"]//a
+    Log    Liens de navigation : ${texte_nav}
+
+    Log    verif 2
+    ${accueil} =    Get Text    xpath=//nav[@id="nav-main"]//a[text()="Accueil"]
+    Log    Texte Accueil : ${accueil}
+
+    Log    verif 3
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]    timeout=10s
+    Page Should Contain Element      xpath=//nav[@id="nav-main"]
+    ${contenu} =    Get Text         xpath=//nav[@id="nav-main"]
+    Log    Contenu nav-main : ${contenu}
+
+    Log    verif 4
+    ${html} =    Get Element Attribute    xpath=//nav[@id="nav-main"]    innerHTML
+    Log    Contenu HTML de nav-main : ${html}
+
 
 Culture agile
     Maximize Brows
