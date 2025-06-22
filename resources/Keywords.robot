@@ -359,13 +359,19 @@ Barre mobile nav
     ${link1} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[1]
     ${link2} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[2]
     ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[3]
+    ${link1} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[4]
+    ${link2} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[5]
+    ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[6]
+    ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[7]
 
-    Log    verif 5 : Récupérer tous les liens comme une liste (avec Get WebElements) 
-    @{links} =    Get WebElements    xpath=//nav[@id="nav-main"]//a
-    :FOR    ${el}    IN    @{links}
-    \    ${txt}=    Get Text    ${el}
-    \    Log    Lien : ${txt}
+    # Log    verif 5 : Récupérer tous les liens comme une liste (avec Get WebElements) 
+    # @{links} =    Get WebElements    xpath=//nav[@id="nav-main"]//a
+    # :FOR    ${el}    IN    @{links}
+    # \    ${txt}=    Get Text    ${el}
+    # \    Log    Lien : ${txt}
 
+    Log    verif 6 : Recommandation 
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a[contains(text(), "Accueil")]
 
 
 Culture agile
