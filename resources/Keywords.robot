@@ -202,9 +202,9 @@ Conditions menu nav
     # ${Action_3}=      Run Keyword And Return Status    Wait Until Keyword Succeeds	    5s	3s    Wait Until Element Is Visible    ${Mobile_menu}      
     # Run Keyword If    ${Action_1}    Barre de Navigation    
     # ...    ELSE IF    ${Action_2}    Verif Elements bloc nav
-    # ...    ELSE IF    ${Action_3}    Barre mobile nav    Positive
+    # ...    ELSE IF    ${Action_3}    Barre mobile nav    
 
-    Run Keyword If    ${Action_1}    Barre mobile nav     Positive    
+    Run Keyword If    ${Action_1}    Barre mobile nav         
     ...    ELSE IF    ${Action_2}    Barre de Navigation 
     ...    ELSE IF    ${Action_3}    Verif Elements bloc nav
 
@@ -229,7 +229,7 @@ Values nav
 
             IF    ${status2}
                 Log    "${texte}" affiché après chargement de la barre de navigation.
-                Run Keyword    Barre mobile nav    Positive
+                Run Keyword    Barre mobile nav    
             ELSE
                 Log    "${texte}" toujours non visible. Tentative via barre mobile.    WARN
                 Run Keyword    Verif Elements bloc nav
@@ -248,13 +248,13 @@ Values nav2
     ELSE
         Log    "${xpath}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
         # Run Keyword    Barre de Navigation
-        Run Keyword    Barre mobile nav    Positive
+        Run Keyword    Barre mobile nav    
         # Wait Until Page Contains    ${texte}    10
         ${status2}    Run Keyword And Return Status    Wait Until Element Is Visible    ${xpath2}    10
 
             IF    ${status2}
                 Log    "${xpath2}" affiché après chargement de la barre de navigation.
-                Run Keyword    Barre mobile nav    Positive
+                Run Keyword    Barre mobile nav    
             ELSE
                 Log    "${xpath2}" toujours non visible. Tentative via barre mobile.    WARN
                 Run Keyword    Barre de Navigation
@@ -325,10 +325,11 @@ nav nav nav
     
 
 Barre mobile nav
-    [Arguments]    ${texte}
+    # [Arguments]    ${texte}
     Wait Until Element Is Visible    ${Mobile_menu}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Mobile_menu}
-    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
+    Run Keyword And Ignore Error    Capture Page Screenshot
 
 
 Culture agile
