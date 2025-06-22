@@ -263,6 +263,16 @@ Barre de Navigation
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
     Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
+    Log   methode 1
+    Wait Until Element Is Visible    xpath=//div[@class='site-wrapper']    timeout=20s
+    Page Should Contain Element      xpath=//div[@class='site-wrapper']
+    Wait For Condition    return document.readyState === 'complete'    timeout=15s
+    Log   methode 2
+    Wait For Condition    return document.readyState === 'complete'    timeout=20s
+    Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
+    Page Should Contain    Positive
+
+            
     ${nav_value}=    Get text    ${Barre_de_nav}
     Run Keyword And Ignore Error    Capture Page Screenshot
     # Wait Until Keyword Succeeds	    5s	3s      Scroll Element Into View    ${Barre_de_nav}
