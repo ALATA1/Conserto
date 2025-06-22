@@ -33,20 +33,25 @@ Page d'accueil de Conserto
     # Verif positive techo   ${postech}   ${Positif_Techo_info} 
     # Verif ilots
     
+Page Accueil conserto 
+    [Arguments]     ${Title}  
+    Log  Page Accueil - vérif du titre attendu :  
+    Verif title   ${Title}
 
 
 Page d'accueil de Conserto cas 2 
     [Arguments]     ${Title}  
-    Maximize Brows
+    # Maximize Brows
+    
     Log  Page Accueil - vérif titre et éléments du menu nav : 
     Verif title   ${Title}
     # Verif Elements bloc nav 
     Conditions menu nav     Positive
-    
+    Verif positive techo2  ${Positif_Techo_info}   ${Clients_texte}
+
     Log  Page Accueil - vérif logo et quelques éléments de la page : 
     Vérifier logo   ${Conserto}
     # Verif positive techo   ${postech}   ${Positif_Techo_info} 
-    Verif positive techo2  ${Positif_Techo_info}   ${Clients_texte}
     Verif ilots
  
 
@@ -81,6 +86,7 @@ Verif Elements bloc nav
     Log   1ère méthode de vérif élements du bloc nav :
     Wait Until Element Is Visible    ${Barre_de_nav}      10 
     ${nav_value}=    Get text    ${Barre_de_nav} 
+    Capture element screenshot    ${Barre_de_nav}
     # Element Should Contain     ${Barre_de_nav}    ${Nav_texte}
 
     Log   2ème méthode de vérif élements du bloc nav : 
@@ -116,7 +122,7 @@ Vérifier logo
     [Arguments]    ${xpath_logo}
     Wait Until Element Is Visible    ${xpath_logo}    10
     Page Should Contain Element    ${xpath_logo}
-    Sleep  3s
+    # Sleep  3s
     Wait Until Keyword Succeeds    2 x    2 s    Capture Element Screenshot    ${xpath_logo}     
 
 Verifier Titre Visible  
@@ -192,8 +198,9 @@ Conditions menu nav
     [Arguments]    ${texte}
     ${Action_1}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
     ${Action_2}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
-    ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
-    Run Keyword If    ${Action_1}    Barre de Navigation  
+    # ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
+    ${Action_3}=      Run Keyword And Return Status    Wait Until Keyword Succeeds	    5s	3s    Wait Until Element Is Visible    ${Mobile_menu}      
+    Run Keyword If    ${Action_1}    Barre de Navigation    
     ...    ELSE IF    ${Action_2}    Verif Elements bloc nav
     ...    ELSE IF    ${Action_3}    Barre mobile nav
 
@@ -252,10 +259,18 @@ Values nav2
 
 
 Barre de Navigation
-    Maximize Brows
+    # Maximize Brows
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
-    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
+    Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
+    Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
+    ${nav_value}=    Get text    ${Barre_de_nav}
+    Run Keyword And Ignore Error    Capture Page Screenshot
+    # Wait Until Keyword Succeeds	    5s	3s      Scroll Element Into View    ${Barre_de_nav}
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
     # Run Keyword And Ignore Error    Click Element    ${Barre_de_nav} 
+  
+     
+    
     
 
 Barre mobile nav

@@ -26,7 +26,7 @@ ${OPTIONS}=    add_argument(--headless)    add_argument(--disable-gpu)
 
 ${Conserto}                    //a[@class="hdr-logo-link" and @rel="home"]
 ${Positive_Techo}              //*[contains(text(), 'Positive') and contains(text(), 'Technologie')]    
-${Barre_de_nav}                //nav[@id="nav-main" and @class="nav-main"]    #id=submit-button     # //*[@id="nav-main"]
+${Barre_de_nav}                //nav[@id="nav-main" and @class="nav-main"]   # //*[@id="nav-main"]   #//nav[@id="nav-main" and @class="nav-main"]    #id=submit-button     # //*[@id="nav-main"]
 # xpath=//nav[@id="nav-main" and .//h2[text()="Offre spéciale"]]
 # //button[@id="darwin-zra-menubar" and @class="darwin-zra-menubar"]
 ${Positive}                    //a[contains(text(),"Positive")]
