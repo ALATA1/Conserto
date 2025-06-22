@@ -50,7 +50,7 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 Ouverture Navigateur 
     # Chargement de la page d'accueil conserto : 
     [Arguments]     ${URL}    # ${browser}  
-    Open Browser    ${URL}    edge   # chrome  # options=${CHROME OPTIONS}      
+    Open Browser    ${URL}    chrome   # edge   chrome  # options=${CHROME OPTIONS}      
     # Maximize Brows
     # Set Window Size    1920    1080
     Maximize Browser Window
