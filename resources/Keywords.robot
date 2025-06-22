@@ -331,14 +331,16 @@ Barre mobile nav
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
     Run Keyword And Ignore Error    Capture Page Screenshot
 
-    Wait Until Element Is Visible    ${Mobile_menu_affiche}      timeout=15s
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]      timeout=15s
     Run Keyword And Ignore Error    Capture Page Screenshot
     
     Log    verif 1
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a      timeout=15s
     ${texte_nav} =    Get Text    xpath=//nav[@id="nav-main"]//a
     Log    Liens de navigation : ${texte_nav}
 
     Log    verif 2
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a[text()="Accueil"]      timeout=15s
     ${accueil} =    Get Text    xpath=//nav[@id="nav-main"]//a[text()="Accueil"]
     Log    Texte Accueil : ${accueil}
 
@@ -351,6 +353,19 @@ Barre mobile nav
     Log    verif 4
     ${html} =    Get Element Attribute    xpath=//nav[@id="nav-main"]    innerHTML
     Log    Contenu HTML de nav-main : ${html}
+
+    Log    verif 5 : Récupérer chaque lien un par un
+    Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a      timeout=15s
+    ${link1} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[1]
+    ${link2} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[2]
+    ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[3]
+
+    Log    verif 5 : Récupérer tous les liens comme une liste (avec Get WebElements) 
+    @{links} =    Get WebElements    xpath=//nav[@id="nav-main"]//a
+    :FOR    ${el}    IN    @{links}
+    \    ${txt}=    Get Text    ${el}
+    \    Log    Lien : ${txt}
+
 
 
 Culture agile
