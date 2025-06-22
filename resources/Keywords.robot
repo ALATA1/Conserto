@@ -196,13 +196,18 @@ Test navigation fonctionne
 
 Conditions menu nav 
     [Arguments]    ${texte}
-    ${Action_1}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
-    ${Action_2}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
-    # ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10
-    ${Action_3}=      Run Keyword And Return Status    Wait Until Keyword Succeeds	    5s	3s    Wait Until Element Is Visible    ${Mobile_menu}      
-    Run Keyword If    ${Action_1}    Barre de Navigation    
-    ...    ELSE IF    ${Action_2}    Verif Elements bloc nav
-    ...    ELSE IF    ${Action_3}    Barre mobile nav
+    ${Action_1}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10  
+    ${Action_2}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
+    ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
+    # ${Action_3}=      Run Keyword And Return Status    Wait Until Keyword Succeeds	    5s	3s    Wait Until Element Is Visible    ${Mobile_menu}      
+    # Run Keyword If    ${Action_1}    Barre de Navigation    
+    # ...    ELSE IF    ${Action_2}    Verif Elements bloc nav
+    # ...    ELSE IF    ${Action_3}    Barre mobile nav    Positive
+
+    Run Keyword If    ${Action_1}    Barre mobile nav     Positive    
+    ...    ELSE IF    ${Action_2}    Barre de Navigation 
+    ...    ELSE IF    ${Action_3}    Verif Elements bloc nav
+
 
     IF  '${texte}'=='***'      
         Log    Aucune requête exécutée. 
@@ -224,7 +229,7 @@ Values nav
 
             IF    ${status2}
                 Log    "${texte}" affiché après chargement de la barre de navigation.
-                Run Keyword    Barre mobile nav
+                Run Keyword    Barre mobile nav    Positive
             ELSE
                 Log    "${texte}" toujours non visible. Tentative via barre mobile.    WARN
                 Run Keyword    Verif Elements bloc nav
@@ -243,13 +248,13 @@ Values nav2
     ELSE
         Log    "${xpath}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
         # Run Keyword    Barre de Navigation
-        Run Keyword    Barre mobile nav
+        Run Keyword    Barre mobile nav    Positive
         # Wait Until Page Contains    ${texte}    10
         ${status2}    Run Keyword And Return Status    Wait Until Element Is Visible    ${xpath2}    10
 
             IF    ${status2}
                 Log    "${xpath2}" affiché après chargement de la barre de navigation.
-                Run Keyword    Barre mobile nav
+                Run Keyword    Barre mobile nav    Positive
             ELSE
                 Log    "${xpath2}" toujours non visible. Tentative via barre mobile.    WARN
                 Run Keyword    Barre de Navigation
@@ -259,28 +264,64 @@ Values nav2
 
 
 Barre de Navigation
+    ${status}    Run Keyword And Return Status    Element Should Be Visible      ${Barre_de_nav} 
+    IF     ${status}
+        Log    On constate bien que "${Barre_de_nav}" est bien visible.
+        Run Keyword    Nav nav
+    ELSE   
+        Log    "${Barre_de_nav}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
+        Run Keyword    nav nav nav
+    END
+
+
+Nav nav 
     # Maximize Brows
-    Wait Until Element Is Visible    ${Barre_de_nav}      timeout=15s
+    Wait Until Element Is Visible    ${Barre_de_nav}      timeout=20s
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
     Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
+
     Log   methode 1
-    Wait Until Element Is Visible    xpath=//div[@class='site-wrapper']    timeout=20s
-    Page Should Contain Element      xpath=//div[@class='site-wrapper']
+    Wait Until Element Is Visible    ${Barre_de_nav}    timeout=20s
+    Page Should Contain Element    ${Barre_de_nav}
     Wait For Condition    return document.readyState === 'complete'    timeout=15s
+    
     Log   methode 2
     Wait For Condition    return document.readyState === 'complete'    timeout=20s
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
-
-            
-    ${nav_value}=    Get text    ${Barre_de_nav}
     Run Keyword And Ignore Error    Capture Page Screenshot
+
+    Log   methode 3
+    Wait Until Element Is Visible    ${Barre_de_nav}    timeout=10s
+    ${nav_value} =   Get Text    ${Barre_de_nav}
+    Log    Valeur récupérée : ${nav_value}
+    Page Should Contain Element    ${Barre_de_nav}
+    Run Keyword And Ignore Error    Capture Page Screenshot
+
+    Run Keyword And Ignore Error    Capture Page Screenshot
+    Log    Screenshot capturée pour analyse
+
     # Wait Until Keyword Succeeds	    5s	3s      Scroll Element Into View    ${Barre_de_nav}
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
     # Run Keyword And Ignore Error    Click Element    ${Barre_de_nav} 
-  
-     
     
+    Log   methode 4
+    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
+    Log    Contenu HTML : ${html}
+
+     
+nav nav nav
+    Log   methode mobile
+    Wait Until Element Is Visible    ${Mobile_menu}    timeout=10s
+    ${nav_value} =   Get Text    ${Mobile_menu}
+    Log    Valeur récupérée : ${nav_value}
+    Page Should Contain Element    ${Mobile_menu}
+    Run Keyword And Ignore Error    Capture Page Screenshot
+    Log    Screenshot capturée pour analyse 
+
+    Log   methode 
+    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
+    Log    Contenu HTML : ${html}   
     
 
 Barre mobile nav
