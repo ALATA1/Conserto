@@ -278,31 +278,46 @@ Nav mode global hors mobile
     # Set Window Size    1280    1024
     # Maximize Browser Window
     # Maximize Brows
+    Log   methode 1 :
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=20s
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
     Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
 
-    Log   methode 1
-    Wait Until Element Is Visible    ${Barre_de_nav}    timeout=20s
     Page Should Contain Element    ${Barre_de_nav}
     Wait For Condition    return document.readyState === 'complete'    timeout=15s
-    
-    Log   methode 2
-    Wait For Condition    return document.readyState === 'complete'    timeout=20s
+    ${nav_value} =   Get Text    ${Barre_de_nav}
+    Log    Valeur récupérée : ${nav_value}
+
+    Log   Screenshot capturée pour analyse
+    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
+    Log    Contenu HTML : ${html}
+
+    Log   methode 2 : 
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
     Run Keyword And Ignore Error    Capture Page Screenshot
 
-    Log   methode 3
-    Wait Until Element Is Visible    ${Barre_de_nav}    timeout=10s
-    ${nav_value} =   Get Text    ${Barre_de_nav}
-    Log    Valeur récupérée : ${nav_value}
-    Page Should Contain Element    ${Barre_de_nav}
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    # Log   methode 1
+    # Wait Until Element Is Visible    ${Barre_de_nav}    timeout=20s
+    # Page Should Contain Element    ${Barre_de_nav}
+    # Wait For Condition    return document.readyState === 'complete'    timeout=15s
+    
+    # Log   methode 2
+    # # Wait For Condition    return document.readyState === 'complete'    timeout=20s
+    # Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
+    # Page Should Contain    Positive
+    # Run Keyword And Ignore Error    Capture Page Screenshot
 
-    Log   methode 4 : Screenshot capturée pour analyse
-    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
-    Log    Contenu HTML : ${html}
+    # Log   methode 3
+    # Wait Until Element Is Visible    ${Barre_de_nav}    timeout=10s
+    # ${nav_value} =   Get Text    ${Barre_de_nav}
+    # Log    Valeur récupérée : ${nav_value}
+    # Page Should Contain Element    ${Barre_de_nav}
+    # Run Keyword And Ignore Error    Capture Page Screenshot
+
+    # Log   methode 4 : Screenshot capturée pour analyse
+    # ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
+    # Log    Contenu HTML : ${html}
 
      
 Nav mode global avec mobile
