@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-23T09:28:38.102502" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto">
+<suite id="s1-s1" name="Conserto 1" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_1.robot">
+<test id="s1-s1-t1" name="Automatisation du site conserto" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-23T09:28:38.599201" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<msg time="2025-06-23T09:28:43.989397" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2025-06-23T09:28:43.989707" level="FAIL">NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="FAIL" start="2025-06-23T09:28:38.598940" elapsed="5.670818">NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" start="2025-06-23T09:28:44.270167" elapsed="0.000062"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<arg>capture_home</arg>
+<status status="NOT RUN" start="2025-06-23T09:28:44.270486" elapsed="0.000073"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<status status="FAIL" start="2025-06-23T09:28:38.597947" elapsed="5.672888">NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</kw>
+<kw name="Page d'accueil de Conserto" owner="Keywords">
+<arg>${Title_1}</arg>
+<status status="NOT RUN" start="2025-06-23T09:28:44.271407" elapsed="0.000095"/>
+</kw>
+<kw name="Nettoyer Dossier Logs" owner="Keywords">
+<status status="NOT RUN" start="2025-06-23T09:28:44.271931" elapsed="0.000068"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-23T09:28:44.272472" elapsed="0.000221"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="FAIL" start="2025-06-23T09:28:38.596766" elapsed="5.676185">NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</test>
+<doc>CONSERTO</doc>
+<status status="FAIL" start="2025-06-23T09:28:38.143792" elapsed="6.130897"/>
+</suite>
+<suite id="s1-s2" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_2.robot">
+<test id="s1-s2-t1" name="Automatisation du site conserto cas 2" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="FAIL" start="2025-06-23T09:28:44.292726" elapsed="0.000501">Execution terminated by signal</status>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" start="2025-06-23T09:28:44.293567" elapsed="0.000064"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<arg>capture_home</arg>
+<status status="NOT RUN" start="2025-06-23T09:28:44.293896" elapsed="0.000076"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<status status="FAIL" start="2025-06-23T09:28:44.292160" elapsed="0.001984">Execution terminated by signal</status>
+</kw>
+<kw name="Page Accueil conserto" owner="Keywords">
+<arg>${Title_1}</arg>
+<status status="NOT RUN" start="2025-06-23T09:28:44.294759" elapsed="0.000047"/>
+</kw>
+<kw name="Conditions menu nav" owner="Keywords">
+<arg>Positive</arg>
+<status status="NOT RUN" start="2025-06-23T09:28:44.295222" elapsed="0.000048"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-23T09:28:44.295772" elapsed="0.000311"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="FAIL" start="2025-06-23T09:28:44.291100" elapsed="0.005289">Execution terminated by signal</status>
+</test>
+<doc>CONSERTO</doc>
+<status status="FAIL" start="2025-06-23T09:28:44.276007" elapsed="0.021669"/>
+</suite>
+<status status="FAIL" start="2025-06-23T09:28:38.105114" elapsed="6.193923"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="2" skip="0">CON0001</stat>
+<stat pass="0" fail="2" skip="0">ETAT:Stable</stat>
+<stat pass="0" fail="2" skip="0">PRIORITE:P1</stat>
+<stat pass="0" fail="2" skip="0">TYPE:CONSERTO</stat>
+</tag>
+<suite>
+<stat name="Conserto" id="s1" pass="0" fail="2" skip="0">Conserto</stat>
+<stat name="Conserto 1" id="s1-s1" pass="0" fail="1" skip="0">Conserto.Conserto 1</stat>
+<stat name="Conserto 2" id="s1-s2" pass="0" fail="1" skip="0">Conserto.Conserto 2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

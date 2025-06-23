@@ -1,63 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-22T21:26:51.300546" rpa="false" schemaversion="5">
-<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\conserto_2.robot">
-<test id="s1-t1" name="Automatisation du site conserto cas 2" line="32">
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-23T09:29:05.248709" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto">
+<suite id="s1-s1" name="Conserto 1" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_1.robot">
+<test id="s1-s1-t1" name="Automatisation du site conserto" line="32">
 <kw name="Ouverture Navigateur" owner="Commun_conserto">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:26:51.609225" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<msg time="2025-06-23T09:29:05.559612" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-06-22T21:26:51.608988" elapsed="1.988525"/>
+<status status="PASS" start="2025-06-23T09:29:05.559402" elapsed="2.487788"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-06-22T21:26:53.597993" elapsed="0.041450"/>
+<status status="PASS" start="2025-06-23T09:29:08.047455" elapsed="0.073788"/>
 </kw>
 <kw name="Capture Et Sauvegarde" owner="Commun_conserto">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-22T21:26:56.641346" level="INFO">Slept 3 seconds.</msg>
+<msg time="2025-06-23T09:29:11.122778" level="INFO">Slept 3 seconds.</msg>
 <arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-22T21:26:53.640421" elapsed="3.001103"/>
+<status status="PASS" start="2025-06-23T09:29:08.122025" elapsed="3.001165"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:26:56.909483" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-23T09:29:11.373199" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.642297" elapsed="0.267394"/>
+<status status="PASS" start="2025-06-23T09:29:11.125117" elapsed="0.248362"/>
 </kw>
 <arg>10s</arg>
 <arg>1s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>Screenshot/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.641844" elapsed="0.268007"/>
+<status status="PASS" start="2025-06-23T09:29:11.123944" elapsed="0.249743"/>
 </kw>
 <arg>capture_home</arg>
-<status status="PASS" start="2025-06-22T21:26:53.639875" elapsed="3.270151"/>
+<status status="PASS" start="2025-06-23T09:29:08.121610" elapsed="3.252239"/>
 </kw>
 <arg>${URL_CONSERTO}</arg>
-<status status="PASS" start="2025-06-22T21:26:51.608222" elapsed="5.301918"/>
+<status status="PASS" start="2025-06-23T09:29:05.558623" elapsed="5.815342"/>
 </kw>
-<kw name="Page Accueil conserto" owner="Keywords">
+<kw name="Page d'accueil de Conserto" owner="Keywords">
+<kw name="Maximize Brows" owner="Commun_conserto">
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-06-23T09:29:11.375304" elapsed="0.395793"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-23T09:29:11.772076" elapsed="0.061967"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-23T09:29:14.834887" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-23T09:29:11.834321" elapsed="3.000693"/>
+</kw>
+<status status="PASS" start="2025-06-23T09:29:11.374963" elapsed="3.460159"/>
+</kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:26:56.911019" level="INFO">Page Accueil - vérif du titre attendu :</msg>
-<arg>Page Accueil - vérif du titre attendu :</arg>
+<msg time="2025-06-23T09:29:14.835491" level="INFO">Page Accueil - vérif titre et éléments du menu nav :</msg>
+<arg>Page Accueil - vérif titre et éléments du menu nav :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.910913" elapsed="0.000170"/>
+<status status="PASS" start="2025-06-23T09:29:14.835284" elapsed="0.000253"/>
 </kw>
 <kw name="Verif title" owner="Keywords">
 <kw name="Get Source" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:26:56.921080" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+<msg time="2025-06-23T09:29:14.846843" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="description" content="Positive Technologie"&gt;
     &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
     &lt;meta http-equiv="X-UA-...</msg>
 <var>${html}</var>
 <doc>Returns the entire HTML source of the current page or frame.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.911507" elapsed="0.009643"/>
+<status status="PASS" start="2025-06-23T09:29:14.836074" elapsed="0.010822"/>
 </kw>
 <for flavor="IN">
 <iter>
@@ -65,116 +85,614 @@
 <arg>${html}</arg>
 <arg>${titre}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.921755" elapsed="0.000287"/>
+<status status="PASS" start="2025-06-23T09:29:14.847338" elapsed="0.000191"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-22T21:26:56.922369" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-06-23T09:29:14.847791" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <var>${log}</var>
 <arg>${titre}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.922187" elapsed="0.000219"/>
+<status status="PASS" start="2025-06-23T09:29:14.847638" elapsed="0.000181"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:26:56.922699" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-06-23T09:29:14.848021" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.922556" elapsed="0.000199"/>
+<status status="PASS" start="2025-06-23T09:29:14.847917" elapsed="0.000146"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.922888" elapsed="0.000316"/>
+<status status="PASS" start="2025-06-23T09:29:14.848156" elapsed="0.000332"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:26:56.928929" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<msg time="2025-06-23T09:29:14.854908" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
 <arg>${Title}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.923346" elapsed="0.005661"/>
+<status status="PASS" start="2025-06-23T09:29:14.848659" elapsed="0.006331"/>
 </kw>
 <var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
-<status status="PASS" start="2025-06-22T21:26:56.921582" elapsed="0.007483"/>
+<status status="PASS" start="2025-06-23T09:29:14.847212" elapsed="0.007851"/>
 </iter>
 <var>${titre}</var>
 <value>${Title}</value>
-<status status="PASS" start="2025-06-22T21:26:56.921322" elapsed="0.007815"/>
+<status status="PASS" start="2025-06-23T09:29:14.847004" elapsed="0.008131"/>
 </for>
 <arg>${Title}</arg>
-<status status="PASS" start="2025-06-22T21:26:56.911270" elapsed="0.017955"/>
+<status status="PASS" start="2025-06-23T09:29:14.835786" elapsed="0.019479"/>
 </kw>
 <arg>${Title_1}</arg>
-<status status="PASS" start="2025-06-22T21:26:56.910612" elapsed="0.018669"/>
+<status status="PASS" start="2025-06-23T09:29:11.374460" elapsed="3.480889"/>
+</kw>
+<kw name="Nettoyer Dossier Logs" owner="Keywords">
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.856523" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Logs&lt;/a&gt;' already exists.</msg>
+<arg>${destination}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.856127" elapsed="0.000493"/>
+</kw>
+<kw name="Supprimer Captures Selenium" owner="Keywords">
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.857240" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats&lt;/a&gt;'.</msg>
+<msg time="2025-06-23T09:29:14.863476" level="INFO">32 files:
+selenium-screenshot-1.png
+selenium-screenshot-10.png
+selenium-screenshot-11.png
+selenium-screenshot-12.png
+selenium-screenshot-13.png
+selenium-screenshot-14.png
+selenium-screenshot-15.png
+selenium-screenshot-16.png
+selenium-screenshot-17.png
+selenium-screenshot-18.png
+selenium-screenshot-19.png
+selenium-screenshot-2.png
+selenium-screenshot-20.png
+selenium-screenshot-21.png
+selenium-screenshot-22.png
+selenium-screenshot-23.png
+selenium-screenshot-24.png
+selenium-screenshot-25.png
+selenium-screenshot-26.png
+selenium-screenshot-27.png
+selenium-screenshot-28.png
+selenium-screenshot-29.png
+selenium-screenshot-3.png
+selenium-screenshot-30.png
+selenium-screenshot-31.png
+selenium-screenshot-32.png
+selenium-screenshot-4.png
+selenium-screenshot-5.png
+selenium-screenshot-6.png
+selenium-screenshot-7.png
+selenium-screenshot-8.png
+selenium-screenshot-9.png</msg>
+<msg time="2025-06-23T09:29:14.863891" level="INFO">${captures} = ['selenium-screenshot-1.png', 'selenium-screenshot-10.png', 'selenium-screenshot-11.png', 'selenium-screenshot-12.png', 'selenium-screenshot-13.png', 'selenium-screenshot-14.png', 'selenium-screenshot...</msg>
+<var>${captures}</var>
+<arg>${OUTPUTDIR}</arg>
+<arg>selenium-screenshot-*.png</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.857061" elapsed="0.006887"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.865650" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.864508" elapsed="0.001276"/>
+</kw>
+<var name="${f}">selenium-screenshot-1.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.864349" elapsed="0.001544"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.867721" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-10.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-10.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.866286" elapsed="0.001593"/>
+</kw>
+<var name="${f}">selenium-screenshot-10.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.866087" elapsed="0.001888"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.870048" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-11.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-11.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.868328" elapsed="0.001899"/>
+</kw>
+<var name="${f}">selenium-screenshot-11.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.868177" elapsed="0.002169"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.871758" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-12.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-12.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.870696" elapsed="0.001224"/>
+</kw>
+<var name="${f}">selenium-screenshot-12.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.870540" elapsed="0.001443"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.873631" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-13.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-13.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.872293" elapsed="0.001581"/>
+</kw>
+<var name="${f}">selenium-screenshot-13.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.872136" elapsed="0.001858"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.876115" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-14.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-14.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.874464" elapsed="0.001886"/>
+</kw>
+<var name="${f}">selenium-screenshot-14.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.874238" elapsed="0.002231"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.878493" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-15.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-15.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.876935" elapsed="0.001709"/>
+</kw>
+<var name="${f}">selenium-screenshot-15.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.876714" elapsed="0.001997"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.880171" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-16.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-16.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.879061" elapsed="0.001257"/>
+</kw>
+<var name="${f}">selenium-screenshot-16.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.878900" elapsed="0.001500"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.881800" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-17.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-17.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.880791" elapsed="0.001154"/>
+</kw>
+<var name="${f}">selenium-screenshot-17.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.880635" elapsed="0.001398"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.883555" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-18.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-18.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.882413" elapsed="0.001287"/>
+</kw>
+<var name="${f}">selenium-screenshot-18.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.882215" elapsed="0.001560"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.885227" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-19.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-19.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.884136" elapsed="0.001225"/>
+</kw>
+<var name="${f}">selenium-screenshot-19.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.884000" elapsed="0.001583"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.886945" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-2.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-2.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.885959" elapsed="0.001130"/>
+</kw>
+<var name="${f}">selenium-screenshot-2.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.885771" elapsed="0.001407"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.888950" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-20.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-20.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.887585" elapsed="0.001585"/>
+</kw>
+<var name="${f}">selenium-screenshot-20.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.887363" elapsed="0.001920"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.891497" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-21.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-21.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.889922" elapsed="0.001719"/>
+</kw>
+<var name="${f}">selenium-screenshot-21.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.889542" elapsed="0.002172"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.893441" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-22.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-22.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.892038" elapsed="0.001594"/>
+</kw>
+<var name="${f}">selenium-screenshot-22.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.891915" elapsed="0.001816"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.896242" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-23.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-23.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.894198" elapsed="0.002588"/>
+</kw>
+<var name="${f}">selenium-screenshot-23.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.893953" elapsed="0.002977"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.902946" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-24.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-24.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.897536" elapsed="0.005537"/>
+</kw>
+<var name="${f}">selenium-screenshot-24.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.897170" elapsed="0.005990"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.904931" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-25.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-25.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.903458" elapsed="0.001627"/>
+</kw>
+<var name="${f}">selenium-screenshot-25.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.903317" elapsed="0.001874"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.906673" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-26.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-26.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.905538" elapsed="0.001267"/>
+</kw>
+<var name="${f}">selenium-screenshot-26.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.905400" elapsed="0.001484"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.908325" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-27.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-27.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.907229" elapsed="0.001252"/>
+</kw>
+<var name="${f}">selenium-screenshot-27.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.907044" elapsed="0.001526"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.910516" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-28.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-28.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.908923" elapsed="0.001813"/>
+</kw>
+<var name="${f}">selenium-screenshot-28.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.908717" elapsed="0.002167"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.913168" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-29.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-29.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.911443" elapsed="0.001928"/>
+</kw>
+<var name="${f}">selenium-screenshot-29.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.911214" elapsed="0.002304"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.916457" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-3.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-3.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.914122" elapsed="0.002508"/>
+</kw>
+<var name="${f}">selenium-screenshot-3.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.913753" elapsed="0.002962"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.918144" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-30.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-30.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.916997" elapsed="0.001269"/>
+</kw>
+<var name="${f}">selenium-screenshot-30.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.916864" elapsed="0.001478"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.919779" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-31.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-31.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.918642" elapsed="0.001317"/>
+</kw>
+<var name="${f}">selenium-screenshot-31.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.918507" elapsed="0.001556"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.921675" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-32.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-32.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.920528" elapsed="0.001266"/>
+</kw>
+<var name="${f}">selenium-screenshot-32.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.920294" elapsed="0.001580"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.923177" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-4.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-4.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.922156" elapsed="0.001137"/>
+</kw>
+<var name="${f}">selenium-screenshot-4.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.922021" elapsed="0.001353"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.924861" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-5.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-5.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.923657" elapsed="0.001346"/>
+</kw>
+<var name="${f}">selenium-screenshot-5.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.923532" elapsed="0.001569"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.927049" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-6.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-6.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.925560" elapsed="0.001824"/>
+</kw>
+<var name="${f}">selenium-screenshot-6.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.925311" elapsed="0.002243"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.929703" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-7.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-7.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.928111" elapsed="0.001787"/>
+</kw>
+<var name="${f}">selenium-screenshot-7.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.927839" elapsed="0.002154"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.931443" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-8.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-8.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.930305" elapsed="0.001268"/>
+</kw>
+<var name="${f}">selenium-screenshot-8.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.930158" elapsed="0.001484"/>
+</iter>
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<msg time="2025-06-23T09:29:14.933101" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-9.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-9.png&lt;/a&gt;'.</msg>
+<arg>${OUTPUTDIR}/${f}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.931962" elapsed="0.001256"/>
+</kw>
+<var name="${f}">selenium-screenshot-9.png</var>
+<status status="PASS" start="2025-06-23T09:29:14.931772" elapsed="0.001524"/>
+</iter>
+<var>${f}</var>
+<value>@{captures}</value>
+<status status="PASS" start="2025-06-23T09:29:14.864098" elapsed="0.069305"/>
+</for>
+<status status="PASS" start="2025-06-23T09:29:14.856850" elapsed="0.076691"/>
+</kw>
+<status status="PASS" start="2025-06-23T09:29:14.855734" elapsed="0.077882"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-06-23T09:29:14.934086" elapsed="2.363935"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="PASS" start="2025-06-23T09:29:05.557660" elapsed="11.740681"/>
+</test>
+<doc>CONSERTO</doc>
+<status status="PASS" start="2025-06-23T09:29:05.279251" elapsed="12.020323"/>
+</suite>
+<suite id="s1-s2" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_2.robot">
+<test id="s1-s2-t1" name="Automatisation du site conserto cas 2" line="32">
+<kw name="Ouverture Navigateur" owner="Commun_conserto">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-23T09:29:17.318135" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-06-23T09:29:17.317894" elapsed="2.046064"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-06-23T09:29:19.364301" elapsed="0.074835"/>
+</kw>
+<kw name="Capture Et Sauvegarde" owner="Commun_conserto">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-06-23T09:29:22.441362" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-06-23T09:29:19.440021" elapsed="3.001808"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-06-23T09:29:22.645293" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_home.png"&gt;&lt;img src="Screenshot/capture_home.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.443943" elapsed="0.201473"/>
+</kw>
+<arg>10s</arg>
+<arg>1s</arg>
+<arg>Capture Page Screenshot</arg>
+<arg>Screenshot/${image_name}.png</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.442686" elapsed="0.202826"/>
+</kw>
+<arg>capture_home</arg>
+<status status="PASS" start="2025-06-23T09:29:19.439534" elapsed="3.206080"/>
+</kw>
+<arg>${URL_CONSERTO}</arg>
+<status status="PASS" start="2025-06-23T09:29:17.317414" elapsed="5.328265"/>
+</kw>
+<kw name="Page Accueil conserto" owner="Keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-23T09:29:22.646544" level="INFO">Page Accueil - vérif du titre attendu :</msg>
+<arg>Page Accueil - vérif du titre attendu :</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.646426" elapsed="0.000177"/>
+</kw>
+<kw name="Verif title" owner="Keywords">
+<kw name="Get Source" owner="SeleniumLibrary">
+<msg time="2025-06-23T09:29:22.656450" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="description" content="Positive Technologie"&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-...</msg>
+<var>${html}</var>
+<doc>Returns the entire HTML source of the current page or frame.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.647115" elapsed="0.009387"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${html}</arg>
+<arg>${titre}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.656892" elapsed="0.000170"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-23T09:29:22.657311" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<var>${log}</var>
+<arg>${titre}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.657169" elapsed="0.000170"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-23T09:29:22.657576" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<arg>${log}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.657439" elapsed="0.000185"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${log}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.657721" elapsed="0.000287"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-06-23T09:29:22.663434" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<arg>${Title}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-06-23T09:29:22.658133" elapsed="0.005377"/>
+</kw>
+<var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
+<status status="PASS" start="2025-06-23T09:29:22.656765" elapsed="0.006800"/>
+</iter>
+<var>${titre}</var>
+<value>${Title}</value>
+<status status="PASS" start="2025-06-23T09:29:22.656590" elapsed="0.007026"/>
+</for>
+<arg>${Title}</arg>
+<status status="PASS" start="2025-06-23T09:29:22.646824" elapsed="0.016879"/>
+</kw>
+<arg>${Title_1}</arg>
+<status status="PASS" start="2025-06-23T09:29:22.646089" elapsed="0.017669"/>
 </kw>
 <kw name="Conditions menu nav" owner="Keywords">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.291571" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-29.png"&gt;&lt;img src="selenium-screenshot-29.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-06-22T21:27:07.291942" level="FAIL">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</msg>
+<msg time="2025-06-23T09:29:32.973859" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-23T09:29:32.974218" level="FAIL">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</msg>
 <arg>${Mobile_menu}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-06-22T21:26:56.930082" elapsed="10.365238">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</status>
+<status status="FAIL" start="2025-06-23T09:29:22.664416" elapsed="10.334716">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</status>
 </kw>
-<msg time="2025-06-22T21:27:07.295542" level="INFO">${Action_1} = False</msg>
+<msg time="2025-06-23T09:29:32.999410" level="INFO">${Action_1} = False</msg>
 <var>${Action_1}</var>
 <arg>Wait Until Element Is Visible</arg>
 <arg>${Mobile_menu}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-22T21:26:56.929942" elapsed="10.365642"/>
+<status status="PASS" start="2025-06-23T09:29:22.664280" elapsed="10.335185"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Page Contains" owner="SeleniumLibrary">
 <arg>${texte}</arg>
 <arg>10</arg>
 <doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.295993" elapsed="0.015238"/>
+<status status="PASS" start="2025-06-23T09:29:33" elapsed="0.014687"/>
 </kw>
-<msg time="2025-06-22T21:27:07.311411" level="INFO">${Action_2} = True</msg>
+<msg time="2025-06-23T09:29:33.014920" level="INFO">${Action_2} = True</msg>
 <var>${Action_2}</var>
 <arg>Wait Until Page Contains</arg>
 <arg>${texte}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.295784" elapsed="0.015665"/>
+<status status="PASS" start="2025-06-23T09:29:32.999707" elapsed="0.015264"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Barre_de_nav}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.311814" elapsed="0.019085"/>
+<status status="PASS" start="2025-06-23T09:29:33.015470" elapsed="0.025949"/>
 </kw>
-<msg time="2025-06-22T21:27:07.331079" level="INFO">${Action_3} = True</msg>
+<msg time="2025-06-23T09:29:33.041677" level="INFO">${Action_3} = True</msg>
 <var>${Action_3}</var>
 <arg>Wait Until Element Is Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.311638" elapsed="0.019477"/>
+<status status="PASS" start="2025-06-23T09:29:33.015211" elapsed="0.026544"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Barre de Navigation" owner="Keywords">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.344565" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
+<msg time="2025-06-23T09:29:33.061850" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.332148" elapsed="0.012736"/>
+<status status="PASS" start="2025-06-23T09:29:33.044711" elapsed="0.017240"/>
 </kw>
-<msg time="2025-06-22T21:27:07.345097" level="INFO">${status} = True</msg>
+<msg time="2025-06-23T09:29:33.062143" level="INFO">${status} = True</msg>
 <var>${status}</var>
 <arg>Element Should Be Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.331988" elapsed="0.013153"/>
+<status status="PASS" start="2025-06-23T09:29:33.044385" elapsed="0.017803"/>
 </kw>
 <if>
 <branch type="IF" condition="${status}">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:07.345766" level="INFO">On constate bien que "//nav[@id="nav-main" and @class="nav-main"]" est bien visible.</msg>
+<msg time="2025-06-23T09:29:33.062802" level="INFO">On constate bien que "//nav[@id="nav-main" and @class="nav-main"]" est bien visible.</msg>
 <arg>On constate bien que "${Barre_de_nav}" est bien visible.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.345567" elapsed="0.000257"/>
+<status status="PASS" start="2025-06-23T09:29:33.062572" elapsed="0.000396"/>
 </kw>
 <kw name="Run Keyword" owner="BuiltIn">
 <kw name="Nav nav" owner="Keywords">
@@ -182,102 +700,102 @@
 <arg>${Barre_de_nav}</arg>
 <arg>timeout=20s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.346611" elapsed="0.013384"/>
+<status status="PASS" start="2025-06-23T09:29:33.064348" elapsed="0.015340"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.374460" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
+<msg time="2025-06-23T09:29:33.094205" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.360451" elapsed="0.014115"/>
+<status status="PASS" start="2025-06-23T09:29:33.080346" elapsed="0.014052"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Element Should Be Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.360199" elapsed="0.014452"/>
+<status status="PASS" start="2025-06-23T09:29:33.079972" elapsed="0.014581"/>
 </kw>
 <kw name="Element Attribute Value Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.387601" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' attribute 'class' contains value 'nav-main'.</msg>
+<msg time="2025-06-23T09:29:33.113323" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' attribute 'class' contains value 'nav-main'.</msg>
 <arg>${Barre_de_nav}</arg>
 <arg>class</arg>
 <arg>nav-main</arg>
 <doc>Verifies element identified by ``locator`` contains expected attribute value.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.374824" elapsed="0.012890"/>
+<status status="PASS" start="2025-06-23T09:29:33.094838" elapsed="0.018626"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:07.388037" level="INFO">methode 1</msg>
+<msg time="2025-06-23T09:29:33.113892" level="INFO">methode 1</msg>
 <arg>methode 1</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.387894" elapsed="0.000207"/>
+<status status="PASS" start="2025-06-23T09:29:33.113706" elapsed="0.000274"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Barre_de_nav}</arg>
 <arg>timeout=20s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.388237" elapsed="0.012695"/>
+<status status="PASS" start="2025-06-23T09:29:33.114166" elapsed="0.016512"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.407499" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
+<msg time="2025-06-23T09:29:33.137962" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.401135" elapsed="0.006466"/>
+<status status="PASS" start="2025-06-23T09:29:33.130902" elapsed="0.007193"/>
 </kw>
 <kw name="Wait For Condition" owner="SeleniumLibrary">
 <arg>return document.readyState === 'complete'</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until ``condition`` is true or ``timeout`` expires.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.407771" elapsed="0.004819"/>
+<status status="PASS" start="2025-06-23T09:29:33.138346" elapsed="0.005464"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:07.412903" level="INFO">methode 2</msg>
+<msg time="2025-06-23T09:29:33.144271" level="INFO">methode 2</msg>
 <arg>methode 2</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.412779" elapsed="0.000174"/>
+<status status="PASS" start="2025-06-23T09:29:33.144088" elapsed="0.000266"/>
 </kw>
 <kw name="Wait For Condition" owner="SeleniumLibrary">
 <arg>return document.readyState === 'complete'</arg>
 <arg>timeout=20s</arg>
 <doc>Waits until ``condition`` is true or ``timeout`` expires.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.413086" elapsed="0.006820"/>
+<status status="PASS" start="2025-06-23T09:29:33.144535" elapsed="0.005384"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="nav-main"]</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.420103" elapsed="0.015618"/>
+<status status="PASS" start="2025-06-23T09:29:33.150230" elapsed="0.017842"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.443584" level="INFO">Current page contains text 'Positive'.</msg>
+<msg time="2025-06-23T09:29:33.180034" level="INFO">Current page contains text 'Positive'.</msg>
 <arg>Positive</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.435910" elapsed="0.007773"/>
+<status status="PASS" start="2025-06-23T09:29:33.168346" elapsed="0.011790"/>
 </kw>
 <kw name="Run Keyword And Ignore Error" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.729335" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-30.png"&gt;&lt;img src="selenium-screenshot-30.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-23T09:29:33.381651" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.444002" elapsed="0.285538"/>
+<status status="PASS" start="2025-06-23T09:29:33.180555" elapsed="0.201210"/>
 </kw>
 <arg>Capture Page Screenshot</arg>
 <doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.443831" elapsed="0.285891"/>
+<status status="PASS" start="2025-06-23T09:29:33.180330" elapsed="0.201527"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:07.730274" level="INFO">methode 3</msg>
+<msg time="2025-06-23T09:29:33.382183" level="INFO">methode 3</msg>
 <arg>methode 3</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.730052" elapsed="0.000331"/>
+<status status="PASS" start="2025-06-23T09:29:33.382022" elapsed="0.000217"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Barre_de_nav}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.730628" elapsed="0.021288"/>
+<status status="PASS" start="2025-06-23T09:29:33.382415" elapsed="0.012533"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.779544" level="INFO">${nav_value} = POSITIVE
+<msg time="2025-06-23T09:29:33.414561" level="INFO">${nav_value} = POSITIVE
 TECHNOLOGIE
 NOS CLIENTS
 ACADEMY
@@ -286,10 +804,10 @@ CONTACT</msg>
 <var>${nav_value}</var>
 <arg>${Barre_de_nav}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.752159" elapsed="0.027429"/>
+<status status="PASS" start="2025-06-23T09:29:33.395113" elapsed="0.019490"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:07.779983" level="INFO">Valeur récupérée : POSITIVE
+<msg time="2025-06-23T09:29:33.414885" level="INFO">Valeur récupérée : POSITIVE
 TECHNOLOGIE
 NOS CLIENTS
 ACADEMY
@@ -297,58 +815,58 @@ BLOG
 CONTACT</msg>
 <arg>Valeur récupérée : ${nav_value}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.779793" elapsed="0.000237"/>
+<status status="PASS" start="2025-06-23T09:29:33.414743" elapsed="0.000185"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:07.787118" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
+<msg time="2025-06-23T09:29:33.420331" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.780145" elapsed="0.007068"/>
+<status status="PASS" start="2025-06-23T09:29:33.415041" elapsed="0.005369"/>
 </kw>
 <kw name="Run Keyword And Ignore Error" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:08.053254" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-31.png"&gt;&lt;img src="selenium-screenshot-31.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-23T09:29:33.584647" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.787507" elapsed="0.265976"/>
+<status status="PASS" start="2025-06-23T09:29:33.420819" elapsed="0.164062"/>
 </kw>
 <arg>Capture Page Screenshot</arg>
 <doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.787356" elapsed="0.266322"/>
+<status status="PASS" start="2025-06-23T09:29:33.420600" elapsed="0.164389"/>
 </kw>
 <kw name="Run Keyword And Ignore Error" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:08.321477" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-32.png"&gt;&lt;img src="selenium-screenshot-32.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-06-23T09:29:33.745557" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.054376" elapsed="0.267505"/>
+<status status="PASS" start="2025-06-23T09:29:33.585398" elapsed="0.160364"/>
 </kw>
 <arg>Capture Page Screenshot</arg>
 <doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.054011" elapsed="0.268051"/>
+<status status="PASS" start="2025-06-23T09:29:33.585158" elapsed="0.160743"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:08.322622" level="INFO">Screenshot capturée pour analyse</msg>
+<msg time="2025-06-23T09:29:33.746372" level="INFO">Screenshot capturée pour analyse</msg>
 <arg>Screenshot capturée pour analyse</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.322360" elapsed="0.000370"/>
+<status status="PASS" start="2025-06-23T09:29:33.746151" elapsed="0.000305"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:08.323058" level="INFO">methode 4</msg>
+<msg time="2025-06-23T09:29:33.746982" level="INFO">methode 4</msg>
 <arg>methode 4</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.322924" elapsed="0.000199"/>
+<status status="PASS" start="2025-06-23T09:29:33.746810" elapsed="0.000256"/>
 </kw>
 <kw name="Get Element Attribute" owner="SeleniumLibrary">
-<msg time="2025-06-22T21:27:08.342557" level="INFO">${html} = 
+<msg time="2025-06-23T09:29:33.761705" level="INFO">${html} = 
               &lt;button class="mobile-menu-button"&gt;
                 &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V...</msg>
 <var>${html}</var>
 <arg>${Barre_de_nav}</arg>
 <arg>innerHTML</arg>
 <doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.323278" elapsed="0.019333"/>
+<status status="PASS" start="2025-06-23T09:29:33.747259" elapsed="0.014512"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-22T21:27:08.342965" level="INFO">Contenu HTML : 
+<msg time="2025-06-23T09:29:33.762188" level="INFO">Contenu HTML : 
               &lt;button class="mobile-menu-button"&gt;
                 &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"&gt;&lt;/path&gt;&lt;/svg&gt;
                 &lt;svg class="active" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"&gt;&lt;/path&gt;&lt;/svg&gt;
@@ -379,37 +897,36 @@ CONTACT</msg>
             </msg>
 <arg>Contenu HTML : ${html}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.342786" elapsed="0.000259"/>
+<status status="PASS" start="2025-06-23T09:29:33.761987" elapsed="0.000304"/>
 </kw>
-<status status="PASS" start="2025-06-22T21:27:07.346337" elapsed="0.996787"/>
+<status status="PASS" start="2025-06-23T09:29:33.063909" elapsed="0.698488"/>
 </kw>
 <arg>Nav nav</arg>
 <doc>Executes the given keyword with the given arguments.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.345989" elapsed="0.997195"/>
+<status status="PASS" start="2025-06-23T09:29:33.063400" elapsed="0.699078"/>
 </kw>
-<status status="PASS" start="2025-06-22T21:27:07.345296" elapsed="0.997933"/>
+<status status="PASS" start="2025-06-23T09:29:33.062356" elapsed="0.700189"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>"${Barre_de_nav}" non trouvé. Tentative de chargement de la barre de navigation.</arg>
 <arg>WARN</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-22T21:27:08.343424" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-06-23T09:29:33.762794" elapsed="0.000042"/>
 </kw>
 <kw name="Run Keyword" owner="BuiltIn">
 <arg>nav nav nav</arg>
 <doc>Executes the given keyword with the given arguments.</doc>
-<status status="NOT RUN" start="2025-06-22T21:27:08.343573" elapsed="0.000030"/>
+<status status="NOT RUN" start="2025-06-23T09:29:33.762987" elapsed="0.000042"/>
 </kw>
-<status status="NOT RUN" start="2025-06-22T21:27:08.343291" elapsed="0.000356"/>
+<status status="NOT RUN" start="2025-06-23T09:29:33.762636" elapsed="0.000453"/>
 </branch>
-<status status="PASS" start="2025-06-22T21:27:07.345257" elapsed="0.998432"/>
+<status status="PASS" start="2025-06-23T09:29:33.062295" elapsed="0.700850"/>
 </if>
-<status status="PASS" start="2025-06-22T21:27:07.331745" elapsed="1.012002"/>
+<status status="PASS" start="2025-06-23T09:29:33.042746" elapsed="0.720477"/>
 </kw>
 <arg>${Action_1}</arg>
 <arg>Barre mobile nav</arg>
-<arg>Positive</arg>
 <arg>ELSE IF</arg>
 <arg>${Action_2}</arg>
 <arg>Barre de Navigation</arg>
@@ -417,25 +934,25 @@ CONTACT</msg>
 <arg>${Action_3}</arg>
 <arg>Verif Elements bloc nav</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-22T21:27:07.331305" elapsed="1.012498"/>
+<status status="PASS" start="2025-06-23T09:29:33.042039" elapsed="0.721259"/>
 </kw>
 <if>
 <branch type="IF" condition="'${texte}'=='***'">
 <kw name="Log" owner="BuiltIn">
 <arg>Aucune requête exécutée.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-22T21:27:08.344155" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-06-23T09:29:33.763720" elapsed="0.000041"/>
 </kw>
-<status status="NOT RUN" start="2025-06-22T21:27:08.343928" elapsed="0.000307"/>
+<status status="NOT RUN" start="2025-06-23T09:29:33.763445" elapsed="0.000381"/>
 </branch>
-<status status="PASS" start="2025-06-22T21:27:08.343906" elapsed="0.000372"/>
+<status status="PASS" start="2025-06-23T09:29:33.763418" elapsed="0.000466"/>
 </if>
 <arg>Positive</arg>
-<status status="PASS" start="2025-06-22T21:26:56.929661" elapsed="11.414673"/>
+<status status="PASS" start="2025-06-23T09:29:22.664043" elapsed="11.099913"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-06-22T21:27:08.344733" elapsed="2.312921"/>
+<status status="PASS" start="2025-06-23T09:29:33.764301" elapsed="2.289116"/>
 </kw>
 <doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
 JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
@@ -443,23 +960,27 @@ JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.<
 <tag>ETAT:Stable</tag>
 <tag>PRIORITE:P1</tag>
 <tag>TYPE:CONSERTO</tag>
-<status status="PASS" start="2025-06-22T21:26:51.607283" elapsed="19.050894"/>
+<status status="PASS" start="2025-06-23T09:29:17.316366" elapsed="18.737352"/>
 </test>
 <doc>CONSERTO</doc>
-<status status="PASS" start="2025-06-22T21:26:51.302062" elapsed="19.358692"/>
+<status status="PASS" start="2025-06-23T09:29:17.300761" elapsed="18.754062"/>
+</suite>
+<status status="PASS" start="2025-06-23T09:29:05.250130" elapsed="30.805976"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">CON0001</stat>
-<stat pass="1" fail="0" skip="0">ETAT:Stable</stat>
-<stat pass="1" fail="0" skip="0">PRIORITE:P1</stat>
-<stat pass="1" fail="0" skip="0">TYPE:CONSERTO</stat>
+<stat pass="2" fail="0" skip="0">CON0001</stat>
+<stat pass="2" fail="0" skip="0">ETAT:Stable</stat>
+<stat pass="2" fail="0" skip="0">PRIORITE:P1</stat>
+<stat pass="2" fail="0" skip="0">TYPE:CONSERTO</stat>
 </tag>
 <suite>
-<stat name="Conserto 2" id="s1" pass="1" fail="0" skip="0">Conserto 2</stat>
+<stat name="Conserto" id="s1" pass="2" fail="0" skip="0">Conserto</stat>
+<stat name="Conserto 1" id="s1-s1" pass="1" fail="0" skip="0">Conserto.Conserto 1</stat>
+<stat name="Conserto 2" id="s1-s2" pass="1" fail="0" skip="0">Conserto.Conserto 2</stat>
 </suite>
 </statistics>
 <errors>
