@@ -59,9 +59,18 @@ Ouverture Navigateur
     
     Log     Ouverture avec Headless modules mode 
     [Arguments]     ${URL}
-    ${HEADLESS} =    Get Environment Variable    HEADLESS    false
-    ${options}=    Create List
-    Run Keyword If    '${HEADLESS}' == 'true'    Append To List    ${options}    add_argument(--headless)    add_argument(--disable-gpu)
+    ${HEADLESS}=    Get Environment Variable    HEADLESS    false
+
+    Log     Crée l'objet ChromeOptions
+    # ${options}=    Create List
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+
+    Log     Si HEADLESS = true, ajoute les bons arguments
+    Run Keyword If    '${HEADLESS}' == 'true'    Call Method    ${options}    add_argument    --headless
+    Run Keyword If    '${HEADLESS}' == 'true'    Call Method    ${options}    add_argument    --disable-gpu
+
+    Log     Ouvre le navigateur avec les options configurées
+    # Run Keyword If    '${HEADLESS}' == 'true'    Append To List    ${options}    add_argument(--headless)    add_argument(--disable-gpu)
     Open Browser    ${URL}    ${BROWSER}    options=${options}
     Set Window Size    1280    1024
     Sleep    1s
