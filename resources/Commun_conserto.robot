@@ -48,14 +48,25 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 #########  OUVERTURE DU NAVIGATEUR #########
 
 Ouverture Navigateur 
-    # Chargement de la page d'accueil conserto : 
-    [Arguments]     ${URL}    # ${browser}  
-    Open Browser    ${URL}    chrome   # edge   chrome  # options=${CHROME OPTIONS}      
-    # Maximize Brows
-    # Set Window Size    1920    1080
-    Maximize Browser Window
-    Capture Et Sauvegarde       capture_home 
+    # # Chargement de la page d'accueil conserto : 
+    # [Arguments]     ${URL}    # ${browser}  
+    # Open Browser    ${URL}    chrome   # edge   chrome  # options=${CHROME OPTIONS}      
+    # # Maximize Brows
+    # # Set Window Size    1920    1080
+    # Maximize Browser Window
+    # Capture Et Sauvegarde       capture_home 
     
+    
+    Log     Ouverture avec Headless modules mode 
+    [Arguments]     ${URL}
+    ${HEADLESS} =    Get Environment Variable    HEADLESS    false
+    ${options}=    Create List
+    Run Keyword If    '${HEADLESS}' == 'true'    Append To List    ${options}    add_argument(--headless)    add_argument(--disable-gpu)
+    Open Browser    ${URL}    ${BROWSER}    options=${options}
+    Set Window Size    1280    1024
+    Sleep    1s
+    Capture Page Screenshot
+
 
 Lancer Chrome Selon Environnement
     [Arguments]     ${URL}    

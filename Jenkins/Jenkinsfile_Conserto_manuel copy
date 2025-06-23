@@ -6,7 +6,6 @@ pipeline {
         RESULTS_DIR = 'Resultats'
         ALLURE_RESULTS_DIR = 'Resultats'
         ALLURE_REPORT_DIR = 'Resultats'
-        HEADLESS = 'true'   // << Ajouter ceci
     }
 
     triggers {
