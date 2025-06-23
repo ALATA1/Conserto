@@ -10,7 +10,7 @@ pipeline {
     }
 
     triggers {
-        cron('H 6 * * 1-5')  // Tous les jours ouvrés à 8h
+        cron('H 7 * * 1-5')  // Tous les jours ouvrés à 8h
     }
 
     parameters {
