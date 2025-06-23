@@ -267,14 +267,16 @@ Barre de Navigation
     ${status}    Run Keyword And Return Status    Element Should Be Visible      ${Barre_de_nav} 
     IF     ${status}
         Log    On constate bien que "${Barre_de_nav}" est bien visible.
-        Run Keyword    Nav nav
+        Run Keyword    Nav mode global hors mobile
     ELSE   
         Log    "${Barre_de_nav}" non trouvé. Tentative de chargement de la barre de navigation.    WARN
-        Run Keyword    nav nav nav
+        Run Keyword    Nav mode global avec mobile
     END
 
 
-Nav nav 
+Nav mode global hors mobile 
+    # Set Window Size    1280    1024
+    # Maximize Browser Window
     # Maximize Brows
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=20s
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
@@ -298,19 +300,12 @@ Nav nav
     Page Should Contain Element    ${Barre_de_nav}
     Run Keyword And Ignore Error    Capture Page Screenshot
 
-    Run Keyword And Ignore Error    Capture Page Screenshot
-    Log    Screenshot capturée pour analyse
-
-    # Wait Until Keyword Succeeds	    5s	3s      Scroll Element Into View    ${Barre_de_nav}
-    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Barre_de_nav} 
-    # Run Keyword And Ignore Error    Click Element    ${Barre_de_nav} 
-    
-    Log   methode 4
+    Log   methode 4 : Screenshot capturée pour analyse
     ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
     Log    Contenu HTML : ${html}
 
      
-nav nav nav
+Nav mode global avec mobile
     Log   methode mobile
     Wait Until Element Is Visible    ${Mobile_menu}    timeout=10s
     ${nav_value} =   Get Text    ${Mobile_menu}

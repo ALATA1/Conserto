@@ -49,7 +49,7 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 
 Ouverture Navigateur 
     Log     Ouverture avec Headless modules mode 
-    [Arguments]     ${URL}
+    [Arguments]     ${URL}    ${Choix}
     ${HEADLESS}=    Get Environment Variable    HEADLESS    false
 
     Log     Crée l'objet ChromeOptions
@@ -61,9 +61,25 @@ Ouverture Navigateur
 
     Log     Ouvre le navigateur avec les options configurées
     Open Browser    ${URL}    ${BROWSER}    options=${options}
-    Set Window Size    1280    1024
-    # Maximize Browser Window    
+    # Set Window Size    1280    1024
+    # # Maximize Browser Window   
+    Choix Maximize Browser Window    ${Choix}  
     Wait Until Keyword Succeeds    3s    2s    Capture Page Screenshot
+
+
+
+   
+
+Choix Maximize Browser Window  
+    [Arguments]     ${Choix}       
+    Run Keyword If      '${Choix}' == 'Hors mobile'      Set Window Size    1280    1024
+    Run Keyword If      '${Choix}' == 'Avec Mobile'      Maximize Browser Window 
+    
+    IF  '${Choix}'=='***'      
+        Log    Aucun choix appliqué. 
+    END
+
+    
 
 
 Lancer Chrome Selon Environnement
