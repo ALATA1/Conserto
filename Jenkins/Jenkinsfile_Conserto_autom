@@ -6,10 +6,11 @@ pipeline {
         RESULTS_DIR = 'Resultats'
         ALLURE_RESULTS_DIR = 'Resultats'
         ALLURE_REPORT_DIR = 'Resultats'
+        HEADLESS = 'true'   // << Ajouter ceci
     }
 
     triggers {
-        cron('H 7 * * 1-5')  // Tous les jours ouvrés à 8h
+        cron('H 6 * * 1-5')  // Tous les jours ouvrés à 8h
     }
 
     parameters {
@@ -36,8 +37,8 @@ pipeline {
                 // bat "${env.PYTHON} -m robot --outputdir Resultats Tests/TestSuites/Conserto/conserto_1.robot"
                 // bat "${env.PYTHON} -m robot --outputdir Resultats --listener allure_robotframework; Tests/"
                 // bat "\"%PYTHON%\" -m robot --listener allure_robotframework;%ALLURE_RESULTS_DIR% --outputdir %RESULTS_DIR% Tests"
-                bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Conserto/Conserto_1.robot"
-
+                // bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Conserto/Conserto_1.robot"
+                bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Conserto"
             }          
         }
 
@@ -59,6 +60,8 @@ pipeline {
                 robot outputPath: 'Resultats'
                 archiveArtifacts artifacts: 'Resultats/*.html'
                 // archiveArtifacts artifacts: 'allure-report/**/*.*, Resultats/*.html', fingerprint: true
+                // archiveArtifacts artifacts: '**/report.html, **/log.html, **/output.xml, **/screenshots/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'Resultats/report.html, Resultats/log.html, Resultats/output.xml, Resultats/Screenshot/**', allowEmptyArchive: true
             }
         }
     }
