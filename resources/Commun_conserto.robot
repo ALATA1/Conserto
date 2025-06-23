@@ -72,9 +72,8 @@ Ouverture Navigateur
     Log     Ouvre le navigateur avec les options configurées
     # Run Keyword If    '${HEADLESS}' == 'true'    Append To List    ${options}    add_argument(--headless)    add_argument(--disable-gpu)
     Open Browser    ${URL}    ${BROWSER}    options=${options}
-    # Set Window Size    1280    1024
-    # Maximize Brows
-    Maximize Browser Window
+    Set Window Size    1280    1024
+    # Maximize Browser Window
     Sleep    1s
     Capture Page Screenshot
 
