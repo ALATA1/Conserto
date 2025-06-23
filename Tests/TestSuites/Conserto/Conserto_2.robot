@@ -34,20 +34,15 @@ Automatisation du site conserto cas 2
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
     Ouverture Navigateur    ${URL_CONSERTO}    Hors mobile      # Hors mobile  Avec Mobile
-    Page Accueil conserto   ${Title_1} 
-    # Barre de nav
-    # # Verif Elements bloc nav 
-    Conditions menu nav     Positive
-    # Verif positive techo2  ${Positif_Techo_info}   ${Clients_texte}
-    
-    
-    
-    
-    
-    
-    
+    Page Accueil verif titre   ${Title_1} 
+    Vérifier logo   ${Conserto} 
+    Barre du menu navigation     
+    Verif positive techologie    ${Positif_Techo_info}   
+
+
     # Lancer Chrome En Headless    ${URL_CONSERTO}
-    # Page d'accueil de Conserto cas 2   ${Title_1}   
+    # Page d'accueil de Conserto cas 2   ${Title_1} 
+      
     # Nettoyer Dossier Logs
     # # Test navigation fonctionne
 
@@ -62,6 +57,15 @@ Automatisation du site conserto cas 2
     # # Culture Contact
     
     
+
+
+
+    
+
+    
+
+    # Verif positive techo   ${postech}   ${Positif_Techo_info} 
+    Verif ilots
 
 
 

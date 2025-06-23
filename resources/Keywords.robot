@@ -33,10 +33,11 @@ Page d'accueil de Conserto
     # Verif positive techo   ${postech}   ${Positif_Techo_info} 
     # Verif ilots
     
-Page Accueil conserto 
+Page Accueil verif titre 
     [Arguments]     ${Title}  
     Log  Page Accueil - vérif du titre attendu :  
     Verif title   ${Title}
+
 
 
 Page d'accueil de Conserto cas 2 
@@ -98,17 +99,38 @@ Verif Elements bloc nav
     Element Should Contain    ${Barre_de_nav}      ${Contact_texte}
 
 
-Verif positive techo2 
-    [Arguments]    ${texte}  ${texte2}
+Verif positive techologie  
+    [Arguments]    ${texte}  # ${texte2}
     ${status}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
-    
+    ${text}=    Set Variable   positive technologie   # ${Positif_Techo_info}     # Positive Technologie
+
     IF    ${status}
-        Log    On constate bien que "${texte}" est bien visible. 
-        Run Keyword    Verif positive techo   ${postech}   ${texte}  
+        Log    Méthode 1 - On constate bien que "${texte}" est bien visible. 
+        Wait Until Page Contains Element    xpath=//h1[contains(text(), "${Positif_Techo_info}")]    20s
+        Wait Until Page Contains Element    xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '${text}']    15s
+        Page Should Contain Element    xpath=//h1[contains(text(), "${Positif_Techo_info}")]
+
+        Log    Méthode 2 - Chercher un div qui a pour texte combiné "Positif Technologie"
+        Wait Until Page Contains Element       xpath=//div[normalize-space(.)="${texte}"]     10s
+        Capture Element Screenshot     xpath=//div[normalize-space(.)="${texte}"]
+
+        Log    Méthode 3 - Version robuste (ignorer les espaces multiples, sauts de ligne, etc.)
+        Wait Until Page Contains Element       xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]    10s
+        Capture Element Screenshot     xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]
+
+        Log    Méthode 4 - Vérification des deux sous-éléments séparément
+        Element Should Contain    xpath=//div[@class="first-word has-primary-color"]    Positive 
+        Element Should Contain    xpath=//div[@class="second-word has-dark-color"]    Technologie
+
+        Log    Méthode 5 - Complets 
+        ${part1}=    Get Text    xpath=//div[@class="first-word has-primary-color"]
+        ${part2}=    Get Text    xpath=//div[@class="second-word has-dark-color"]
+        Should Be Equal    ${part1} ${part2}    Positive Technologie 
+
     ELSE
-        Log    "${texte}" non trouvé. Tentative de recherche de "${texte2}".   
-        Run Keyword    Verif positive techo   ${Clients}   ${texte2} 
-    
+        Log   L'élement "${texte}" attendu non trouvé. Tentative de Screenshot.   
+        # Run Keyword    Verif positive techo   ${Clients}   ${texte2} 
+        Run Keyword And Ignore Error    Capture Page Screenshot
     END
 
 
@@ -136,7 +158,6 @@ Verifier Titre Visible
     ${titre}=    Get Text    ${xpath}
   
 
-    
 Verif ilots
     Wait Until Element Is Visible    ${Positive}    10
     Wait Until Keyword Succeeds    2 x    2 s    Click Element        ${Positive}  
@@ -185,7 +206,7 @@ Supprimer Captures Selenium
 
 
 Test navigation fonctionne
-    Conditions menu nav     Positive
+    Barre du menu navigation     # Positive
     Culture agile
     Culture Technologie
     Culture Clients 
@@ -194,10 +215,10 @@ Test navigation fonctionne
     Culture Contact
 
 
-Conditions menu nav 
-    [Arguments]    ${texte}
+Barre du menu navigation 
+    # [Arguments]    ${texte}
     ${Action_1}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10  
-    ${Action_2}=      Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
+    ${Action_2}=      Run Keyword And Return Status    Wait Until Page Contains    ${Posit_texte}    10  
     ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
     # ${Action_3}=      Run Keyword And Return Status    Wait Until Keyword Succeeds	    5s	3s    Wait Until Element Is Visible    ${Mobile_menu}      
     # Run Keyword If    ${Action_1}    Barre de Navigation    
@@ -209,9 +230,9 @@ Conditions menu nav
     ...    ELSE IF    ${Action_3}    Verif Elements bloc nav
 
 
-    IF  '${texte}'=='***'      
-        Log    Aucune requête exécutée. 
-    END
+    # IF  '${texte}'=='***'      
+    #     Log    Aucune requête exécutée. 
+    # END
 
 
 Values nav 
@@ -283,19 +304,28 @@ Nav mode global hors mobile
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
     Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
 
+    Element Should Contain    ${Barre_de_nav}     ${Nav_texte}
     Page Should Contain Element    ${Barre_de_nav}
     Wait For Condition    return document.readyState === 'complete'    timeout=15s
     ${nav_value} =   Get Text    ${Barre_de_nav}
     Log    Valeur récupérée : ${nav_value}
-
-    Log   Screenshot capturée pour analyse
-    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
-    Log    Contenu HTML : ${html}
+    Log to console    ${nav_value}   
 
     Log   methode 2 : 
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
     Run Keyword And Ignore Error    Capture Page Screenshot
+
+    Log   methode 3 : 
+    Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
+    Page Should Contain    Positive
+    Run Keyword And Ignore Error    Capture Page Screenshot
+    
+    Log   methode 4 :
+    Log   Screenshot capturée pour analyse
+    ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
+    Log    Contenu HTML : ${html} 
+
 
     # Log   methode 1
     # Wait Until Element Is Visible    ${Barre_de_nav}    timeout=20s

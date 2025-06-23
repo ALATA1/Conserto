@@ -42,13 +42,13 @@ ${Clients}                     //a[contains(text(),"Nos clients")]
 ${Academy}                     //a[contains(text(),"Academy")]
 ${Blog}                        //a[contains(text(),"Blog")]
 ${Contact}                     //a[contains(text(),"Contact")]
-${Positif_Techo_info}          Positive\nTechnologie
+${Positif_Techo_info}          Positive Technologie    # Positive\nTechnologie
 ${Texte_Posit_Techo}           Positive
-${postech}                     //div[@class='words-container']
+${postech}                     //h1[contains(text(),"positive technologie")]   #//div[@class='words-container']
 ${Mobile_menu}                 //button[@class='mobile-menu-button']
 ${Info_2013}                   //div[@class="slider-item" and @data-index="0"]/div/div[2]/div[@class='timeline-item__content']  
 
-
+${Posit_texte}                 Positive
 ${Positive_texte}              POSITIVE
 ${Techo_texte}                 TECHNOLOGIE
 ${Clients_texte}               NOS CLIENTS
