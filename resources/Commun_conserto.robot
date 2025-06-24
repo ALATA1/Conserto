@@ -40,9 +40,24 @@ ${URL_IDNOW}            https://www.idnow.io/
 ${Title_Idnow}          IDnow - La confiance au cœur de l'identité.
 ${Title2_Idnow}         La confiance au cœur de l'identité.
 
+# ${SCREENSHOT_PATH}     ${EXECDIR}/Resultats/selenium-screenshot-1.png
+# ${SCREENSHOTT_PATH}    ${EXECDIR}/Resultats/selenium-screenshot-2.png
+# ${SCREENSHOTS_PATH}    ${EXECDIR}/Resultats/selenium-screenshot-*.png
+# ${SCREENSHO_PATH}      ${EXECDIR}/Resultats/selenium-element-screenshot-*.png
 
+${SCREENSH_PATH}       ${EXECDIR}/Resultats/selenium-*
 
 *** Keywords ***
+
+Prérequis test
+    # Remove File    ${SCREENSHOTS_PATH}
+    # Remove File    ${SCREENSHO_PATH}
+    Remove File    ${SCREENSH_PATH}
+
+
+Capture Erreur Unique
+    Close Browser
+
 
 ############################################
 #########  OUVERTURE DU NAVIGATEUR #########
@@ -64,7 +79,8 @@ Ouverture Navigateur
     # Set Window Size    1280    1024
     # # Maximize Browser Window   
     Choix Maximize Browser Window    ${Choix}  
-    Wait Until Keyword Succeeds    3s    2s    Capture Page Screenshot
+    # Wait Until Keyword Succeeds    3s    2s    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_navigateur
 
 
 
@@ -100,7 +116,7 @@ Lancer Chrome En Headless
     Call Method    ${options}    add_argument    --window-size=1920,1080
     Open Browser    ${URL}    chrome    options=${options}
     Maximize Brows
-    Capture Et Sauvegarde       capture_home 
+    Capture Page Et Sauvegarde       Screenshot     capture_home 
 
 
 Détecter OS Avec Python
@@ -149,12 +165,19 @@ Wait Until Page Is Loaded
 
 
 
-Capture Et Sauvegarde
-    [Arguments]     ${image_name}
+Capture Page Et Sauvegarde
+    [Arguments]     ${Repertoire}    ${image_name} 
     Sleep   3s
-    Wait Until Keyword Succeeds    10s    1s    
-    ...  Capture Page Screenshot    Screenshot/${image_name}.png
+    Wait Until Keyword Succeeds    3s    2s        
+    ...  Capture Page Screenshot    ${Repertoire}/${image_name}.png
  
+
+Capture Element Et Sauvegarde
+    [Arguments]    ${xpath}     ${Repertoire}    ${image_name} 
+    Wait Until Keyword Succeeds    2 x    2 s    
+    ...    Capture Element Screenshot    ${xpath}    ${Repertoire}/${image_name}.png
+
+
 
 Déplacer un dossier
     [Arguments]    ${source_dossier}=Screenshot   ${destination}=Logs 

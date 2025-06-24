@@ -11,10 +11,13 @@ Resource         ../../../Resources/Keywords.robot
 Resource         ../../../Variables/Global_variables.robot
 
 
-Test Setup       NONE  # Open Browser
-Test Teardown    Close Browser  
+# Test Setup       NONE  # Open Browser
+# Test Teardown    NONE  # Close Browser  
 # git push origin main:test
 # Jenkins : Id = Test_Cons
+
+Test Setup      Prérequis test   # NONE   Préparer Test
+Test Teardown   Close Browser   # Capture Erreur Unique
 
 ##############################################################                                                                   
 #./Helpers/run-test.py -i CONSERTO --keepbrowseropened       #
@@ -23,7 +26,7 @@ Test Teardown    Close Browser
 # robot -d Screenshot/ Tests/TestSuites/Conserto/conserto_1.robot                                                                   #
 # robot -d Screenshot/ Tests/                                                                                                       #
 # robot -d Resultats/ Tests/                                                                                                        #
-# robot -d Resultats/ Tests/TestSuites/Idnow/Idnow.robot                                                                            #
+# robot -d Resultats/ Tests/TestSuites/Conserto/conserto_2.robot                                                                           #
 # robot   --output Logs/output.xml   --log Logs/log.html   --report Logs/report.html   Tests/TestSuites/Conserto/conserto_1.robot   #
 #####################################################################################################################################
 
@@ -33,7 +36,7 @@ Automatisation du site conserto cas 2
     [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
-    Ouverture Navigateur    ${URL_CONSERTO}    Hors mobile      # Hors mobile  Avec Mobile
+    Ouverture Navigateur    ${URL_CONSERTO}    Avec Mobile      # Hors mobile  Avec Mobile
     Page Accueil verif titre   ${Title_1} 
     Vérifier logo   ${Conserto} 
     Barre du menu navigation     
@@ -44,6 +47,8 @@ Automatisation du site conserto cas 2
     # Page d'accueil de Conserto cas 2   ${Title_1} 
       
     # Nettoyer Dossier Logs
+    # Nettoyer Dossier Resultats
+    # Nettoyer les captures 
     # # Test navigation fonctionne
 
     # Conditions menu nav     Positive

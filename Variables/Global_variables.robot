@@ -49,6 +49,7 @@ ${Mobile_menu}                 //button[@class='mobile-menu-button']
 ${Info_2013}                   //div[@class="slider-item" and @data-index="0"]/div/div[2]/div[@class='timeline-item__content']  
 
 ${Posit_texte}                 Positive
+${Tech_texte}                  Technologie
 ${Positive_texte}              POSITIVE
 ${Techo_texte}                 TECHNOLOGIE
 ${Clients_texte}               NOS CLIENTS

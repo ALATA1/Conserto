@@ -87,7 +87,8 @@ Verif Elements bloc nav
     Log   1ère méthode de vérif élements du bloc nav :
     Wait Until Element Is Visible    ${Barre_de_nav}      10 
     ${nav_value}=    Get text    ${Barre_de_nav} 
-    Capture element screenshot    ${Barre_de_nav}
+    # Capture element screenshot    ${Barre_de_nav}
+    Capture Element Et Sauvegarde      ${Barre_de_nav}    Screenshot   nav
     # Element Should Contain     ${Barre_de_nav}    ${Nav_texte}
 
     Log   2ème méthode de vérif élements du bloc nav : 
@@ -103,34 +104,46 @@ Verif positive techologie
     [Arguments]    ${texte}  # ${texte2}
     ${status}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
     ${text}=    Set Variable   positive technologie   # ${Positif_Techo_info}     # Positive Technologie
+    ${textes}=    Set Variable   Positive\nTechnologie
+    ${xpath1}=   Set Variable    xpath=//h1[contains(text(), "${Positif_Techo_info}")] 
+    ${xpath2}=   Set Variable    xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '${text}'] 
+    ${xpath3}=   Set Variable    xpath=//div[normalize-space(.)="${texte}"] 
+    ${xpath4}=   Set Variable    xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]
+    ${xpath5}=   Set Variable    xpath=//div[@class="first-word has-primary-color"]
+    ${xpath6}=   Set Variable    xpath=//div[@class="second-word has-dark-color"]
+
 
     IF    ${status}
         Log    Méthode 1 - On constate bien que "${texte}" est bien visible. 
-        Wait Until Page Contains Element    xpath=//h1[contains(text(), "${Positif_Techo_info}")]    20s
-        Wait Until Page Contains Element    xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '${text}']    15s
-        Page Should Contain Element    xpath=//h1[contains(text(), "${Positif_Techo_info}")]
-
+        Wait Until Page Contains Element    ${xpath1}    20s
+        Page Should Contain Element    ${xpath1}
+        Wait Until Page Contains Element    ${xpath2}    15s
+        
         Log    Méthode 2 - Chercher un div qui a pour texte combiné "Positif Technologie"
-        Wait Until Page Contains Element       xpath=//div[normalize-space(.)="${texte}"]     10s
-        Capture Element Screenshot     xpath=//div[normalize-space(.)="${texte}"]
+        Wait Until Page Contains Element       ${xpath3}     10s
+        Capture Element Screenshot     ${xpath3}
+        Element Text Should Be    ${xpath3}    ${textes} 
+
 
         Log    Méthode 3 - Version robuste (ignorer les espaces multiples, sauts de ligne, etc.)
-        Wait Until Page Contains Element       xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]    10s
-        Capture Element Screenshot     xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]
-
+        Wait Until Page Contains Element       ${xpath4}    10s
+        Capture Element Screenshot     ${xpath4}
+        Element Text Should Be    ${xpath4}    ${textes} 
+        
         Log    Méthode 4 - Vérification des deux sous-éléments séparément
-        Element Should Contain    xpath=//div[@class="first-word has-primary-color"]    Positive 
-        Element Should Contain    xpath=//div[@class="second-word has-dark-color"]    Technologie
+        Element Should Contain    ${xpath5}    ${Posit_texte}      # Positive 
+        Element Should Contain    ${xpath6}    ${Tech_texte}       # Technologie
 
         Log    Méthode 5 - Complets 
-        ${part1}=    Get Text    xpath=//div[@class="first-word has-primary-color"]
-        ${part2}=    Get Text    xpath=//div[@class="second-word has-dark-color"]
-        Should Be Equal    ${part1} ${part2}    Positive Technologie 
+        ${part1}=    Get Text    ${xpath5}
+        ${part2}=    Get Text    ${xpath6}
+        Should Be Equal    ${part1} ${part2}    ${Positif_Techo_info}
 
     ELSE
         Log   L'élement "${texte}" attendu non trouvé. Tentative de Screenshot.   
         # Run Keyword    Verif positive techo   ${Clients}   ${texte2} 
-        Run Keyword And Ignore Error    Capture Page Screenshot
+        # Run Keyword And Ignore Error    Capture Page Screenshot
+        Run Keyword And Ignore Error    Capture Page Et Sauvegarde     Screenshot   capture_Absence_PositiveTecho
     END
 
 
@@ -144,8 +157,7 @@ Vérifier logo
     [Arguments]    ${xpath_logo}
     Wait Until Element Is Visible    ${xpath_logo}    10
     Page Should Contain Element    ${xpath_logo}
-    # Sleep  3s
-    Wait Until Keyword Succeeds    2 x    2 s    Capture Element Screenshot    ${xpath_logo}     
+    Capture Element Et Sauvegarde      ${xpath_logo}    Screenshot   logo        
 
 Verifier Titre Visible  
     [Arguments]    ${xpath}    ${texte_attendu}
@@ -158,12 +170,13 @@ Verifier Titre Visible
     ${titre}=    Get Text    ${xpath}
   
 
+
 Verif ilots
     Wait Until Element Is Visible    ${Positive}    10
     Wait Until Keyword Succeeds    2 x    2 s    Click Element        ${Positive}  
     # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
     Action Scroll   ${footer}      
-    Capture Et Sauvegarde     capture_footer
+    Capture Page Et Sauvegarde     Screenshot   capture_footer
 
 
 Vérifier quelques mots avec une boucle
@@ -189,6 +202,16 @@ Remonter en haut
     Capture Page Screenshot
 
 
+Nettoyage captures
+    [Arguments]    ${destination}=Logs
+    Create Directory    ${destination}
+    # Move File    output.xml    ${destination}/output.xml
+    # Move File    log.html      ${destination}/log.html
+    # Move File    report.html   ${destination}/report.html
+    Supprimer Captures Selenium
+
+
+
 Nettoyer Dossier Logs
     [Arguments]    ${destination}=Logs
     Create Directory    ${destination}
@@ -200,6 +223,35 @@ Nettoyer Dossier Logs
     
 Supprimer Captures Selenium
     ${captures}=    List Files In Directory    ${OUTPUTDIR}    selenium-screenshot-*.png
+    FOR    ${f}    IN    @{captures}
+        Remove File    ${OUTPUTDIR}/${f}
+    END
+
+Nettoyer Dossier Resultats
+    [Arguments]    ${destination}=Resultats
+    Create Directory    ${destination}
+    # Move File    output.xml    ${destination}/output.xml
+    # Move File    log.html      ${destination}/log.html
+    # Move File    report.html   ${destination}/report.html
+    Supprimer Captures Resultats
+
+Supprimer Captures Resultats
+    ${captures}=    List Files In Directory    ${OUTPUTDIR}    selenium-element-screenshot-*.png
+    FOR    ${f}    IN    @{captures}
+        Remove File    ${OUTPUTDIR}/${f}
+    END
+
+
+Nettoyer les captures
+    [Arguments]    ${destination}=Conserto-1 
+    Create Directory    ${destination}
+    # Move File    output.xml    ${destination}/output.xml
+    # Move File    log.html      ${destination}/log.html
+    # Move File    report.html   ${destination}/report.html
+    Supprimer Captures dossier mere 
+
+Supprimer Captures dossier mere 
+    ${captures}=    List Files In Directory    ${OUTPUTDIR}    selenium-element-screenshot-*.png
     FOR    ${f}    IN    @{captures}
         Remove File    ${OUTPUTDIR}/${f}
     END
@@ -314,12 +366,14 @@ Nav mode global hors mobile
     Log   methode 2 : 
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    # Run Keyword And Ignore Error    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_Positive
 
     Log   methode 3 : 
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    # Run Keyword And Ignore Error    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_Positive2
     
     Log   methode 4 :
     Log   Screenshot capturée pour analyse
@@ -356,7 +410,8 @@ Nav mode global avec mobile
     ${nav_value} =   Get Text    ${Mobile_menu}
     Log    Valeur récupérée : ${nav_value}
     Page Should Contain Element    ${Mobile_menu}
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    # Run Keyword And Ignore Error    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_menu_mobile
     Log    Screenshot capturée pour analyse 
 
     Log   methode 
@@ -368,11 +423,12 @@ Barre mobile nav
     # [Arguments]    ${texte}
     Wait Until Element Is Visible    ${Mobile_menu}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Mobile_menu}
-    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${texte}
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_mobile
+    # Run Keyword And Ignore Error    Capture Page Screenshot
 
     Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]      timeout=15s
-    Run Keyword And Ignore Error    Capture Page Screenshot
+    Capture Page Et Sauvegarde     Screenshot   capture_nav_mobile
+    # Run Keyword And Ignore Error    Capture Page Screenshot
     
     Log    verif 1
     Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a      timeout=15s
@@ -399,10 +455,10 @@ Barre mobile nav
     ${link1} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[1]
     ${link2} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[2]
     ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[3]
-    ${link1} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[4]
-    ${link2} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[5]
-    ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[6]
-    ${link3} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[7]
+    ${link4} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[4]
+    ${link5} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[5]
+    ${link6} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[6]
+    ${link7} =    Get Text    xpath=(//nav[@id="nav-main"]//a)[7]
 
     # Log    verif 5 : Récupérer tous les liens comme une liste (avec Get WebElements) 
     # @{links} =    Get WebElements    xpath=//nav[@id="nav-main"]//a
@@ -413,6 +469,24 @@ Barre mobile nav
     Log    verif 6 : Recommandation 
     Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a[contains(text(), "Accueil")]
 
+    Log    verif 7 : seconde méthode de verif 5
+    verif par lien    1
+    verif par lien    2
+    verif par lien    3
+    verif par lien    4
+    verif par lien    5
+    verif par lien    6
+    verif par lien    7
+
+verif par lien
+    [Arguments]    ${num} 
+    Log   methode mobile : Récupérer chaque lien un par un
+    ${xpath}=    Set Variable    xpath=//nav[@id="nav-main"]//a
+    Wait Until Element Is Visible    ${xpath}    timeout=15s
+    ${link} =    Get Text    xpath=(${xpath})[${num}] 
+    Log   Le lien "${num}" est = "${link}".
+
+    
 
 Culture agile
     Maximize Brows
