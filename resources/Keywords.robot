@@ -469,22 +469,7 @@ Barre mobile nav
     Log    verif 6 : Recommandation 
     Wait Until Element Is Visible    xpath=//nav[@id="nav-main"]//a[contains(text(), "Accueil")]
 
-    Log    verif 7 : seconde méthode de verif 5
-    verif par lien    1
-    verif par lien    2
-    verif par lien    3
-    verif par lien    4
-    verif par lien    5
-    verif par lien    6
-    verif par lien    7
-
-verif par lien
-    [Arguments]    ${num} 
-    Log   methode mobile : Récupérer chaque lien un par un
-    ${xpath}=    Set Variable    xpath=//nav[@id="nav-main"]//a
-    Wait Until Element Is Visible    ${xpath}    timeout=15s
-    ${link} =    Get Text    xpath=(${xpath})[${num}] 
-    Log   Le lien "${num}" est = "${link}".
+    
 
     
 
