@@ -36,7 +36,7 @@ Automatisation du site conserto cas 2
     [Documentation]       Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
     ...                   JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
-    Ouverture Navigateur    ${URL_CONSERTO}    Avec Mobile      # Hors mobile  Avec Mobile
+    Ouverture Navigateur    ${URL_CONSERTO}    Hors mobile      # Hors mobile  Avec Mobile
     Page Accueil verif titre   ${Title_1} 
     Vérifier logo   ${Conserto} 
     Barre du menu navigation     
