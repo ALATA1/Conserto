@@ -5,8 +5,12 @@ pipeline {
         PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
         RESULTS_DIR = 'Resultats'
         ALLURE_RESULTS_DIR = 'Resultats'
-        ALLURE_REPORT_DIR = 'allure-report'
-        TEAMS_WEBHOOK = 'https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz' // <-- Remplace ici
+        ALLURE_REPORT_DIR = 'Resultats'
+        HEADLESS = 'true'
+    }
+
+    triggers {
+        cron('H 6 * * 1-5')  // Tous les jours ouvrés à 8h
     }
 
     parameters {
@@ -33,46 +37,65 @@ pipeline {
             }
         }
 
-        stage('Génération du rapport Allure') {
+        stage('Générer rapport Allure') {
             steps {
                 echo 'Génération du rapport Allure...'
-                bat "C:\\ProgramData\\Jenkins\\.jenkins\\tools\\allure\\bin\\allure.bat generate ${env.ALLURE_RESULTS_DIR} -o ${env.ALLURE_REPORT_DIR} --clean"
+                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
             }
         }
 
-        stage('Archivage des résultats') {
+        stage('Compression du rapport') {
             steps {
-                echo 'Archivage des rapports et screenshots...'
-                archiveArtifacts artifacts: "${env.RESULTS_DIR}/**"
-                archiveArtifacts artifacts: "${env.ALLURE_REPORT_DIR}/**"
+                echo 'Compression du dossier Resultats...'
+                bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip -Force'
+            }
+        }
+
+        stage('Rapport-Publisher') {
+            steps {
+                echo 'Archivage des rapports...'
+                robot outputPath: 'Resultats'
+                archiveArtifacts artifacts: 'Resultats/*.html'
+                archiveArtifacts artifacts: 'Resultats/report.html, Resultats/log.html, Resultats/output.xml, Resultats/Screenshot/**, Resultats/rapport_robot.zip', allowEmptyArchive: true
             }
         }
     }
 
     post {
         always {
-            allure includeProperties: false, jdk: '', results: [[path: env.ALLURE_RESULTS_DIR]]
+            script {
+                def allureDir = 'allure-results'
+                if (fileExists(allureDir)) {
+                    try {
+                        allure includeProperties: false, jdk: '', results: [[path: allureDir]]
+                    } catch (err) {
+                        echo "Erreur lors de la publication Allure : ${err}"
+                    }
+                }
+            }
         }
 
         success {
+            emailext (
+                subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Bonjour,
+
+                    Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a été exécuté avec **succès**.
+
+                    📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}artifact/allure-report/index.html">index.html</a><br><br>
+
+                    Cordialement,  
+                    Jenkins
+                """,
+                mimeType: 'text/html',
+                to: "${params.EMAIL}",
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
+            )
+
             script {
-                def getScreenshotLinks = {
-                    def screenshotsDir = "${env.WORKSPACE}/${env.RESULTS_DIR}/Screenshot"
-                    def links = []
-                    if (fileExists(screenshotsDir)) {
-                        def files = new File(screenshotsDir).listFiles()
-                        if (files != null) {
-                            files.findAll { it.isFile() && (it.name.endsWith('.png') || it.name.endsWith('.jpg')) }.each { file ->
-                                def url = "${env.BUILD_URL}artifact/${env.RESULTS_DIR}/Screenshot/${file.name}"
-                                links << "[${file.name}](${url})"
-                            }
-                        }
-                    }
-                    return links.join("<br>")
-                }
-
-                def screenshotsHtml = getScreenshotLinks()
-
+                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici
                 def message = """
                 {
                   "@type": "MessageCard",
@@ -85,52 +108,20 @@ pipeline {
                     "facts": [
                       {"name": "Projet", "value": "${env.JOB_NAME}"},
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
-                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/${env.RESULTS_DIR}/log.html)"},
-                      {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}artifact/${env.ALLURE_REPORT_DIR}/index.html)"},
-                      {"name": "Screenshots", "value": "${screenshotsHtml}"}
+                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"},
+                      {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}artifact/allure-report/index.html)"}
                     ],
                     "markdown": true
                   }]
                 }
                 """
-
                 writeFile file: 'teams_payload_success.json', text: message
-
-                bat """
-                curl -H "Content-Type: application/json" --data-binary @teams_payload_success.json "${env.TEAMS_WEBHOOK}"
-                """
+                // bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://teams.microsoft.com/l/channel/19A6a989d0b84144441b4cc6679be1d1f740thread.tacv2/GA9nA9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8"'
+                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz"'
             }
         }
 
         failure {
-            script {
-                def message = """
-                {
-                  "@type": "MessageCard",
-                  "@context": "http://schema.org/extensions",
-                  "themeColor": "FF0000",
-                  "summary": "Échec du build",
-                  "sections": [{
-                    "activityTitle": "❌ Échec du build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    "activitySubtitle": "Jenkins CI",
-                    "facts": [
-                      {"name": "Projet", "value": "${env.JOB_NAME}"},
-                      {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
-                      {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
-                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/${env.RESULTS_DIR}/log.html)"}
-                    ],
-                    "markdown": true
-                  }]
-                }
-                """
-
-                writeFile file: 'teams_payload_failure.json', text: message
-
-                bat """
-                curl -H "Content-Type: application/json" --data-binary @teams_payload_failure.json "${env.TEAMS_WEBHOOK}"
-                """
-            }
-
             emailext (
                 subject: "❌ ÉCHEC - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
@@ -139,14 +130,42 @@ pipeline {
                     Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a échoué.
 
                     📎 Voir logs ici : ${env.BUILD_URL}console  
-                    📎 Rapport HTML : ${env.BUILD_URL}artifact/${env.RESULTS_DIR}/log.html
+                    📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html
 
                     Cordialement,  
                     Jenkins
                 """,
                 to: "${params.EMAIL}",
-                attachmentsPattern: "${env.RESULTS_DIR}/rapport_robot.zip"
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
             )
+
+            script {
+                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici aussi
+                def message = """
+                {
+                  "@type": "MessageCard",
+                  "@context": "http://schema.org/extensions",
+                  "themeColor": "FF0000",
+                  "summary": "Echec du build",
+                  "sections": [{
+                    "activityTitle": "❌ Echec du build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    "activitySubtitle": "Jenkins CI",
+                    "facts": [
+                      {"name": "Projet", "value": "${env.JOB_NAME}"},
+                      {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
+                      {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
+                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"}
+                    ],
+                    "markdown": true
+                  }]
+                }
+                """
+                writeFile file: 'teams_payload_failure.json', text: message
+                // bat "curl -H \"Content-Type: application/json\" -d @teams_payload_failure.json ${teamsWebhook}"
+                // bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://teams.microsoft.com/l/channel/19A6a989d0b84144441b4cc6679be1d1f740thread.tacv2/GA9nA9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8"'
+                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz"'
+
+            }
         }
     }
 }
