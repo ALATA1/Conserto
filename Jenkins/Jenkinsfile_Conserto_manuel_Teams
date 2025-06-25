@@ -82,9 +82,9 @@ pipeline {
                     Bonjour,
 
                     Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a été exécuté avec **succès**.
-                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html 
-                    📊 Rapport Allure : <a href="${env.BUILD_URL}/allure-report/index.html">index.html</a><br><br>
-
+                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html/robot/
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}/allure-report/index.html/allure/">index.html</a><br><br>
+                                                                    
                     Cordialement,  
                     Jenkins
                 """,
@@ -130,7 +130,7 @@ pipeline {
                     Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a échoué.
 
                     📎 Voir logs ici : ${env.BUILD_URL}console  
-                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html
+                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html/robot/
 
                     Cordialement,  
                     Jenkins
@@ -154,7 +154,7 @@ pipeline {
                       {"name": "Projet", "value": "${env.JOB_NAME}"},
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
                       {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
-                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html)"}
+                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html/robot/)"}
                     ],
                     "markdown": true
                   }]
