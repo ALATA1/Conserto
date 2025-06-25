@@ -95,7 +95,7 @@ pipeline {
             )
 
             script {
-                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici
+                def teamsWebhook = 'https://conserto365.webhook.office.com/webhookb2/beceef74-aa06-4f9f-ad9a-d390d968918c@dc363e45-8d5b-4214-8003-fd7a4cc5dde8/IncomingWebhook/01f248867e984eca9af978ba01ab78aa/86b10697-56ab-463a-b5b9-229478a575a8/V2bnXOPqtXgG2AFKPmFRvRVE2MrgJeIkXB85rf68t0RMc1' // <-- remplace ici
                 def message = """
                 {
                   "@type": "MessageCard",
@@ -117,7 +117,8 @@ pipeline {
                 """
                 writeFile file: 'teams_payload_success.json', text: message
                 // bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://teams.microsoft.com/l/channel/19A6a989d0b84144441b4cc6679be1d1f740thread.tacv2/GA9nA9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8"'
-                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz"'
+                // bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz"'
+                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://conserto365.webhook.office.com/webhookb2/beceef74-aa06-4f9f-ad9a-d390d968918c@dc363e45-8d5b-4214-8003-fd7a4cc5dde8/IncomingWebhook/01f248867e984eca9af978ba01ab78aa/86b10697-56ab-463a-b5b9-229478a575a8/V2bnXOPqtXgG2AFKPmFRvRVE2MrgJeIkXB85rf68t0RMc1"'
             }
         }
 
@@ -140,7 +141,7 @@ pipeline {
             )
 
             script {
-                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici aussi
+                def teamsWebhook = 'https://conserto365.webhook.office.com/webhookb2/beceef74-aa06-4f9f-ad9a-d390d968918c@dc363e45-8d5b-4214-8003-fd7a4cc5dde8/IncomingWebhook/01f248867e984eca9af978ba01ab78aa/86b10697-56ab-463a-b5b9-229478a575a8/V2bnXOPqtXgG2AFKPmFRvRVE2MrgJeIkXB85rf68t0RMc1' // <-- remplace ici aussi
                 def message = """
                 {
                   "@type": "MessageCard",
@@ -163,7 +164,7 @@ pipeline {
                 writeFile file: 'teams_payload_failure.json', text: message
                 // bat "curl -H \"Content-Type: application/json\" -d @teams_payload_failure.json ${teamsWebhook}"
                 // bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://teams.microsoft.com/l/channel/19A6a989d0b84144441b4cc6679be1d1f740thread.tacv2/GA9nA9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8"'
-                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://outlook.office.com/webhook/xxx/IncomingWebhook/yyy/zzz"'
+                bat 'curl -H "Content-Type: application/json" -d @teams_payload_success.json "https://conserto365.webhook.office.com/webhookb2/beceef74-aa06-4f9f-ad9a-d390d968918c@dc363e45-8d5b-4214-8003-fd7a4cc5dde8/IncomingWebhook/01f248867e984eca9af978ba01ab78aa/86b10697-56ab-463a-b5b9-229478a575a8/V2bnXOPqtXgG2AFKPmFRvRVE2MrgJeIkXB85rf68t0RMc1"'
 
             }
         }
