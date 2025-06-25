@@ -1,0 +1,167 @@
+pipeline {
+    agent any
+
+    environment {
+        PYTHON = 'C:\\Users\\ibrahima.alata\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+        RESULTS_DIR = 'Resultats'
+        ALLURE_RESULTS_DIR = 'Resultats'
+        ALLURE_REPORT_DIR = 'Resultats'
+        HEADLESS = 'true'
+    }
+
+    triggers {
+        cron('H 6 * * 1-5')  // Tous les jours ouvrés à 8h
+    }
+
+    parameters {
+        string(name: 'EMAIL', defaultValue: 'ibrahima.alata@conserto.pro', description: 'Destinataire du rapport')
+    }
+
+    tools {
+        allure 'Allure'
+    }
+
+    stages {
+        stage('Installation des dépendances') {
+            steps {
+                echo 'Installation des librairies'
+                bat "${env.PYTHON} -m pip install --upgrade pip"
+                bat "${env.PYTHON} -m pip install -r requirements.txt"
+            }
+        }
+
+        stage('Exécution des tests') {
+            steps {
+                echo 'Lancement des tests'
+                bat "${env.PYTHON} -m robot --listener allure_robotframework;allure-results Tests/TestSuites/Conserto"
+            }
+        }
+
+        stage('Générer rapport Allure') {
+            steps {
+                echo 'Génération du rapport Allure...'
+                bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\tools\\allure\\bin\\allure.bat generate allure-results -o allure-report --clean'
+            }
+        }
+
+        stage('Compression du rapport') {
+            steps {
+                echo 'Compression du dossier Resultats...'
+                bat 'powershell Compress-Archive -Path Resultats\\* -DestinationPath Resultats\\rapport_robot.zip -Force'
+            }
+        }
+
+        stage('Rapport-Publisher') {
+            steps {
+                echo 'Archivage des rapports...'
+                robot outputPath: 'Resultats'
+                archiveArtifacts artifacts: 'Resultats/*.html'
+                archiveArtifacts artifacts: 'Resultats/report.html, Resultats/log.html, Resultats/output.xml, Resultats/Screenshot/**, Resultats/rapport_robot.zip', allowEmptyArchive: true
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                def allureDir = 'allure-results'
+                if (fileExists(allureDir)) {
+                    try {
+                        allure includeProperties: false, jdk: '', results: [[path: allureDir]]
+                    } catch (err) {
+                        echo "Erreur lors de la publication Allure : ${err}"
+                    }
+                }
+            }
+        }
+
+        success {
+            emailext (
+                subject: "✅ SUCCÈS - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Bonjour,
+
+                    Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a été exécuté avec **succès**.
+
+                    📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}artifact/allure-report/index.html">index.html</a><br><br>
+
+                    Cordialement,  
+                    Jenkins
+                """,
+                mimeType: 'text/html',
+                to: "${params.EMAIL}",
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
+            )
+
+            script {
+                def teamsWebhook = '004a0660.conserto365.onmicrosoft.com@emea.teams.ms' // <-- remplace ici
+                def message = """
+                {
+                  "@type": "MessageCard",
+                  "@context": "http://schema.org/extensions",
+                  "themeColor": "00FF00",
+                  "summary": "Succès du build",
+                  "sections": [{
+                    "activityTitle": "✅ Succès du build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    "activitySubtitle": "Jenkins CI",
+                    "facts": [
+                      {"name": "Projet", "value": "${env.JOB_NAME}"},
+                      {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
+                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"},
+                      {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}artifact/allure-report/index.html)"}
+                    ],
+                    "markdown": true
+                  }]
+                }
+                """
+                writeFile file: 'teams_payload_success.json', text: message
+                bat "curl -H \"Content-Type: application/json\" -d @teams_payload_success.json ${teamsWebhook}"
+            }
+        }
+
+        failure {
+            emailext (
+                subject: "❌ ÉCHEC - Rapport de test ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Bonjour,
+
+                    Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a échoué.
+
+                    📎 Voir logs ici : ${env.BUILD_URL}console  
+                    📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html
+
+                    Cordialement,  
+                    Jenkins
+                """,
+                to: "${params.EMAIL}",
+                attachmentsPattern: 'Resultats/rapport_robot.zip'
+            )
+
+            script {
+                def teamsWebhook = '004a0660.conserto365.onmicrosoft.com@emea.teams.ms' // <-- remplace ici aussi
+                def message = """
+                {
+                  "@type": "MessageCard",
+                  "@context": "http://schema.org/extensions",
+                  "themeColor": "FF0000",
+                  "summary": "Echec du build",
+                  "sections": [{
+                    "activityTitle": "❌ Echec du build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    "activitySubtitle": "Jenkins CI",
+                    "facts": [
+                      {"name": "Projet", "value": "${env.JOB_NAME}"},
+                      {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
+                      {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
+                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"}
+                    ],
+                    "markdown": true
+                  }]
+                }
+                """
+                writeFile file: 'teams_payload_failure.json', text: message
+                bat "curl -H \"Content-Type: application/json\" -d @teams_payload_failure.json ${teamsWebhook}"
+            }
+        }
+    }
+}
