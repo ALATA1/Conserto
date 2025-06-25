@@ -85,8 +85,8 @@ pipeline {
 
                     📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html  
                     📊 Rapport Allure : <a href="${env.BUILD_URL}artifact/allure-report/index.html">index.html</a><br><br>
-                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html 
-                    📊 Rapport Allure : <a href="${env.BUILD_URL}/allure-report/index.html">index.html</a><br><br>
+                    📎 Rapport HTML2 : ${env.BUILD_URL}/Resultats/log.html 
+                    📊 Rapport Allure2 : <a href="${env.BUILD_URL}/allure-report/index.html">index.html</a><br><br>
 
                     Cordialement,  
                     Jenkins
@@ -112,8 +112,8 @@ pipeline {
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
                       {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"},
                       {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}artifact/allure-report/index.html)"}
-                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html)"},
-                      {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}/allure-report/index.html)"}
+                      {"name": "Rapport HTML2", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html)"},
+                      {"name": "Rapport Allure2", "value": "[Allure Report](${env.BUILD_URL}/allure-report/index.html)"}
                     ],
                     "markdown": true
                   }]
@@ -136,7 +136,7 @@ pipeline {
 
                     📎 Voir logs ici : ${env.BUILD_URL}console  
                     📎 Rapport HTML : ${env.BUILD_URL}artifact/Resultats/log.html
-                    📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html
+                    📎 Rapport HTML2 : ${env.BUILD_URL}/Resultats/log.html
 
                     Cordialement,  
                     Jenkins
@@ -161,7 +161,7 @@ pipeline {
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
                       {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
                       {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}artifact/Resultats/log.html)"}
-                      {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html)"}
+                      {"name": "Rapport HTML2", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html)"}
                     ],
                     "markdown": true
                   }]
