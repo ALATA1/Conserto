@@ -95,7 +95,7 @@ pipeline {
             )
 
             script {
-                def teamsWebhook = '004a0660.conserto365.onmicrosoft.com@emea.teams.ms' // <-- remplace ici
+                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici
                 def message = """
                 {
                   "@type": "MessageCard",
@@ -139,7 +139,7 @@ pipeline {
             )
 
             script {
-                def teamsWebhook = '004a0660.conserto365.onmicrosoft.com@emea.teams.ms' // <-- remplace ici aussi
+                def teamsWebhook = 'https://teams.microsoft.com/l/channel/19%3A6a989d0b84144441b4cc6679be1d1f74%40thread.tacv2/G%C3%A9n%C3%A9ral?groupId=beceef74-aa06-4f9f-ad9a-d390d968918c&tenantId=dc363e45-8d5b-4214-8003-fd7a4cc5dde8' // <-- remplace ici aussi
                 def message = """
                 {
                   "@type": "MessageCard",
