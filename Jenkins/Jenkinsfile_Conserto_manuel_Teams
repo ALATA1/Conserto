@@ -84,6 +84,8 @@ pipeline {
                     Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a été exécuté avec **succès**.
                     📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html/robot/
                     📊 Rapport Allure : <a href="${env.BUILD_URL}allure/">Allure Report</a><br><br>
+                    🤖 Rapport Robot : <a href="${env.BUILD_URL}robot/">robot</a><br>
+                    
                                                                     
                     Cordialement,  
                     Jenkins
@@ -109,6 +111,8 @@ pipeline {
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
                       {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html/robot/)"},
                       {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}allure/)"}
+                      {"name": "Rapport Robot", "value": "[Robot Report](${env.BUILD_URL}robot/)"}
+
 
                     ],
                     "markdown": true
@@ -129,9 +133,13 @@ pipeline {
                     Bonjour,
 
                     Le build *${env.JOB_NAME}* #${env.BUILD_NUMBER} a échoué.
-
-                    📎 Voir logs ici : ${env.BUILD_URL}console  
                     📎 Rapport HTML : ${env.BUILD_URL}/Resultats/log.html/robot/
+                    📊 Rapport Allure : <a href="${env.BUILD_URL}allure/">Allure Report</a><br><br>
+                    🤖 Rapport Robot : <a href="${env.BUILD_URL}robot/">robot</a><br>
+
+                    
+
+                    
 
                     Cordialement,  
                     Jenkins
@@ -156,6 +164,9 @@ pipeline {
                       {"name": "Build", "value": "#${env.BUILD_NUMBER}"},
                       {"name": "Logs", "value": "[Console Output](${env.BUILD_URL}console)"},
                       {"name": "Rapport HTML", "value": "[log.html](${env.BUILD_URL}/Resultats/log.html/robot/)"}
+                      {"name": "Rapport Allure", "value": "[Allure Report](${env.BUILD_URL}allure/)"}
+                      {"name": "Rapport Robot", "value": "[Robot Report](${env.BUILD_URL}robot/)"}
+
                     ],
                     "markdown": true
                   }]
