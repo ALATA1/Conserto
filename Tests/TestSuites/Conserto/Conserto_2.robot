@@ -38,39 +38,51 @@ Automatisation du site conserto cas 2
     [Tags]    CON0001    ETAT:Stable    TYPE:CONSERTO     PRIORITE:P1 
     Ouverture Navigateur    ${URL_CONSERTO}    Hors mobile      # Hors mobile  Avec Mobile
     Page Accueil verif titre   ${Title_1} 
-    Vérifier logo   ${Conserto} 
-    Barre du menu navigation     
+    Barre du menu navigation 
+    Test navigation fonctionne 
+    Vérifier logo   ${Conserto}   
     Verif positive techologie    ${Positif_Techo_info}   
+    # Verif elements ilots   # ${Positive}
+    # Cliquer sur un lien ilots    Infra
+    # Wait Until Element Is Visible    ${Ilots_Infra}    10
+    # Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${Ilots_Infra}
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+    Ilots    ${Ilots_Culture_Agile}
+    Ilots    ${Ilots_Infra}
+    Ilots    ${Ilots_Devops}
+    Ilots    ${Ilots_Dev}
+    Ilots    ${Ilots_Agence_Web}
+    
 
 
-    # Lancer Chrome En Headless    ${URL_CONSERTO}
-    # Page d'accueil de Conserto cas 2   ${Title_1} 
+    # # Lancer Chrome En Headless    ${URL_CONSERTO}
+    # # Page d'accueil de Conserto cas 2   ${Title_1} 
       
-    # Nettoyer Dossier Logs
-    # Nettoyer Dossier Resultats
-    # Nettoyer les captures 
+    # # Nettoyer Dossier Logs
+    # # Nettoyer Dossier Resultats
+    # # Nettoyer les captures 
+    # # # Test navigation fonctionne
+
+    # # Conditions menu nav     Positive
+    # # # Values nav    Positive
+    # # Values nav2   ${Barre_de_nav}   ${Mobile_menu}
+    # # # Culture agile
+    # # # Culture Technologie
+    # # # Culture Clients 
+    # # # Culture Academy
+    # # # Culture Blog
+    # # # Culture Contact
+    
+    
     # # Test navigation fonctionne
 
-    # Conditions menu nav     Positive
-    # # Values nav    Positive
-    # Values nav2   ${Barre_de_nav}   ${Mobile_menu}
-    # # Culture agile
-    # # Culture Technologie
-    # # Culture Clients 
-    # # Culture Academy
-    # # Culture Blog
-    # # Culture Contact
-    
-    
-
-
 
     
 
     
 
-    # Verif positive techo   ${postech}   ${Positif_Techo_info} 
-    Verif ilots
+    # # Verif positive techo   ${postech}   ${Positif_Techo_info} 
+    # Verif ilots    ${Positive}
 
 
 

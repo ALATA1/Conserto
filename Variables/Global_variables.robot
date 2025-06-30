@@ -37,6 +37,7 @@ ${Textes_complets_Positive}    //div[@class='text-wysiwyg']     #//*[contains(te
 ${Texte_Positive}              ${Texte_Positive_1}\n${Texte_Positive_2}
 ${Texte_Positive_1}            Nous pensons que la technologie doit avoir un impact positif sur l’avenir de tous.
 ${Texte_Positive_2}            La mission de Conserto est de cultiver le sens et les savoirs par la différence.
+${Culture_Agile}               //a[contains(text(),"Culture Agile")]
 ${Technologie}                 //a[contains(text(),"Technologie")]
 ${Clients}                     //a[contains(text(),"Nos clients")]
 ${Academy}                     //a[contains(text(),"Academy")]
@@ -58,6 +59,13 @@ ${Blog_texte}                  BLOG
 ${Contact_texte}               CONTACT
 
 ${Nav_texte}                   ${Positive_texte}\n${Techo_texte}\n${Clients_texte}\n${Academy_texte}\n${Blog_texte}\n${Contact_texte}
+
+${Ilots_Infra}                 //div[contains(@class, "ilots-container")]//a[contains(., "Infra")]
+${Ilots_Devops}                //div[contains(@class, "ilots-container")]//a[contains(., "Devops")]
+${Ilots_Dev}                   //div[contains(@class, "ilots-container")]//a[contains(., "Dev")]
+${Ilots_Agence_Web}            //div[contains(@class, "ilots-container")]//a[contains(., "Agence Web")]
+${Ilots_Culture_Agile}         //div[contains(@class, "ilots-container")]//a[contains(., "Culture Agile")]
+
 
 
 

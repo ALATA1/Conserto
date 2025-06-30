@@ -138,6 +138,7 @@ Verif positive techologie
         ${part1}=    Get Text    ${xpath5}
         ${part2}=    Get Text    ${xpath6}
         Should Be Equal    ${part1} ${part2}    ${Positif_Techo_info}
+        # Log To console     ${Positif_Techo_info}
 
     ELSE
         Log   L'élement "${texte}" attendu non trouvé. Tentative de Screenshot.   
@@ -153,11 +154,14 @@ Verif positive techo
     [Arguments]    ${xpath}    ${texte_attendu} 
     Verifier Titre Visible     ${xpath}    ${texte_attendu}  
 
+
 Vérifier logo
     [Arguments]    ${xpath_logo}
     Wait Until Element Is Visible    ${xpath_logo}    10
     Page Should Contain Element    ${xpath_logo}
-    Capture Element Et Sauvegarde      ${xpath_logo}    Screenshot   logo        
+    Capture Element Et Sauvegarde      ${xpath_logo}    Screenshot   logo 
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath_logo}       
+
 
 Verifier Titre Visible  
     [Arguments]    ${xpath}    ${texte_attendu}
@@ -171,9 +175,42 @@ Verifier Titre Visible
   
 
 
+
+Verif elements ilots
+    # [Arguments]    ${xpath}
+    # Wait Until Element Is Visible    ${xpath}    10
+    # Wait Until Keyword Succeeds    2 x    2 s    Click Element     ${xpath}  
+    # # # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
+    # # Action Scroll   ${footer}      
+    # # Capture Page Et Sauvegarde     Screenshot   capture_footer
+
+    Wait Until Element Is Visible    //div[contains(@class, "ilots-container")]//a[contains(@href, "/infra-cloud") and contains(normalize-space(.), "Infra")]    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    //div[contains(@class, "ilots-container")]//a[contains(@href, "/infra-cloud") and contains(normalize-space(.), "Infra")]
+    Capture Page Screenshot
+
+ 
+
+Cliquer sur un lien ilots   
+    [Arguments]    ${nom}
+    ${xpath}=    Set Variable    //div[contains(@class, "ilots-container")]//a[contains(., "${nom}")]
+    Wait Until Element Is Visible    ${xpath}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
+
+
+
+Ilots  
+    [Arguments]    ${xpath}
+    Scroll Element Into View     ${xpath}
+    Wait Until Element Is Visible    ${xpath}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+
+
+
 Verif ilots
-    Wait Until Element Is Visible    ${Positive}    10
-    Wait Until Keyword Succeeds    2 x    2 s    Click Element        ${Positive}  
+    [Arguments]    ${xpath}
+    Wait Until Element Is Visible    ${xpath}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element     ${xpath}  
     # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
     Action Scroll   ${footer}      
     Capture Page Et Sauvegarde     Screenshot   capture_footer
@@ -258,13 +295,24 @@ Supprimer Captures dossier mere
 
 
 Test navigation fonctionne
-    Barre du menu navigation     # Positive
-    Culture agile
-    Culture Technologie
-    Culture Clients 
-    Culture Academy
-    Culture Blog
-    Culture Contact
+    Element Barre de nav     ${Positive}   POSITIVE
+    Element Barre de nav     ${Positive}   TECHNOLOGIE
+    Element Barre de nav     ${Positive}   NOS CLIENTS
+    Element Barre de nav     ${Positive}   ACADEMY
+    Element Barre de nav     ${Positive}   BLOG
+    Element Barre de nav     ${Positive}   CONTACT
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+
+
+
+Verif navigation element par element   
+    Barre de nav positive
+    Barre de nav Technologie
+    Barre de nav Clients 
+    Barre de nav Academy
+    Barre de nav Blog
+    Barre de nav Contact
+
 
 
 Barre du menu navigation 
@@ -473,8 +521,8 @@ Barre mobile nav
 
     
 
-Culture agile
-    Maximize Brows
+Culture agile cas 2
+    # Maximize Brows
     Barre de Navigation
     Wait Until Element Is Visible    ${Positive}      timeout=15s
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Positive} 
@@ -484,9 +532,13 @@ Culture agile
     Action Scroll   ${footer}
     Controle historique conserto
     Remonter en haut
-    Maximize Brows
+    # Maximize Brows
 
 
+
+Culture agile
+    Wait Until Element Is Visible    ${Culture_Agile}      60
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Culture_Agile} 
 
 Controle historique conserto
     Wait Until Element Is Visible    ${historique}      timeout=15s
@@ -525,30 +577,40 @@ Info annee 2013
     # Capture Element Screenshot    ${Info_2013}
 
 
+Element Barre de nav
+    [Arguments]    ${xpath}   ${element}
+    Log    Verif élément "${element}" dans le header :
+    Wait Until Element Is Visible    ${xpath}      60
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
 
 
-Culture Technologie
-    Barre de Navigation
+Barre de nav positive
+    Wait Until Element Is Visible    ${Positive}      60
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Positive}
+
+
+Barre de nav Technologie
+    # Barre de Navigation
     Wait Until Element Is Visible    ${Technologie}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Technologie}
 
 
-Culture Clients
+Barre de nav Clients
     Wait Until Element Is Visible    ${Clients}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Clients}
 
 
-Culture Academy
+Barre de nav Academy
     Wait Until Element Is Visible    ${Academy}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Academy}
 
 
-Culture Blog
+Barre de nav Blog
     Wait Until Element Is Visible    ${Blog}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Blog}
 
 
-Culture Contact
+Barre de nav Contact
     Wait Until Element Is Visible    ${Contact}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Contact}
 
