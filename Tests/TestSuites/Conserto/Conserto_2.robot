@@ -3,12 +3,16 @@ Documentation    CONSERTO
 Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
+Library    Collections
+Library    RequestsLibrary
 
 
 # Suite Setup     Nettoyer Dossier Logs
 Resource         ../../../Resources/Commun_conserto.robot
 Resource         ../../../Resources/Keywords.robot
 Resource         ../../../Variables/Global_variables.robot
+
+
 
 
 # Test Setup       NONE  # Open Browser
@@ -47,11 +51,11 @@ Automatisation du site conserto cas 2
     # Wait Until Element Is Visible    ${Ilots_Infra}    10
     # Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${Ilots_Infra}
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
-    Ilots    ${Ilots_Culture_Agile}
-    Ilots    ${Ilots_Infra}
-    Ilots    ${Ilots_Devops}
-    Ilots    ${Ilots_Dev}
-    Ilots    ${Ilots_Agence_Web}
+    # Actions Ilots    ${Ilots_Culture_Agile}
+    Actions Ilots    ${Ilots_Infra}
+    Actions Ilots    ${Ilots_Devops}
+    Actions Ilots    ${Ilots_Dev}
+    Actions Ilots    ${Ilots_Agence_Web}
     
 
 

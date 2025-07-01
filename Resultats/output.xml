@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-30T12:13:53.450473" rpa="false" schemaversion="5">
-<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\conserto_2.robot">
-<test id="s1-t1" name="Automatisation du site conserto cas 2" line="35">
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-07-01T21:50:31.899443" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\Conserto_2.robot">
+<test id="s1-t1" name="Automatisation du site conserto cas 2" line="39">
 <kw name="Prérequis test" owner="Commun_conserto" type="SETUP">
 <kw name="Remove File" owner="OperatingSystem">
-<msg time="2025-06-30T12:13:53.761942" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-1.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-1.png&lt;/a&gt;'.</msg>
-<msg time="2025-06-30T12:13:53.762637" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-2.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-2.png&lt;/a&gt;'.</msg>
-<msg time="2025-06-30T12:13:53.763501" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png&lt;/a&gt;'.</msg>
+<msg time="2025-07-01T21:50:32.913066" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-1.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-1.png&lt;/a&gt;'.</msg>
+<msg time="2025-07-01T21:50:32.913709" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-2.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-element-screenshot-2.png&lt;/a&gt;'.</msg>
+<msg time="2025-07-01T21:50:32.914323" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\selenium-screenshot-1.png&lt;/a&gt;'.</msg>
 <arg>${SCREENSH_PATH}</arg>
 <doc>Removes a file with the given path.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.760972" elapsed="0.002699"/>
+<status status="PASS" start="2025-07-01T21:50:32.911958" elapsed="0.002556"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:13:53.760296" elapsed="0.003618"/>
+<status status="PASS" start="2025-07-01T21:50:32.911026" elapsed="0.003697"/>
 </kw>
 <kw name="Ouverture Navigateur" owner="Commun_conserto">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:53.765032" level="INFO">Ouverture avec Headless modules mode</msg>
+<msg time="2025-07-01T21:50:32.915801" level="INFO">Ouverture avec Headless modules mode</msg>
 <arg>Ouverture avec Headless modules mode</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.764877" elapsed="0.000230"/>
+<status status="PASS" start="2025-07-01T21:50:32.915621" elapsed="0.000247"/>
 </kw>
 <kw name="Get Environment Variable" owner="OperatingSystem">
-<msg time="2025-06-30T12:13:53.765379" level="INFO">${HEADLESS} = false</msg>
+<msg time="2025-07-01T21:50:32.916175" level="INFO">${HEADLESS} = false</msg>
 <var>${HEADLESS}</var>
 <arg>HEADLESS</arg>
 <arg>false</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.765226" elapsed="0.000182"/>
+<status status="PASS" start="2025-07-01T21:50:32.916003" elapsed="0.000206"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:53.765603" level="INFO">Crée l'objet ChromeOptions</msg>
+<msg time="2025-07-01T21:50:32.916434" level="INFO">Crée l'objet ChromeOptions</msg>
 <arg>Crée l'objet ChromeOptions</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.765513" elapsed="0.000142"/>
+<status status="PASS" start="2025-07-01T21:50:32.916334" elapsed="0.000152"/>
 </kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-06-30T12:13:53.766023" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000288BBCAC980&gt;</msg>
+<msg time="2025-07-01T21:50:32.916886" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001737F958AD0&gt;</msg>
 <var>${options}</var>
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.765757" elapsed="0.000321"/>
+<status status="PASS" start="2025-07-01T21:50:32.916619" elapsed="0.000303"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:53.766342" level="INFO">Si HEADLESS = true, ajoute les bons arguments</msg>
+<msg time="2025-07-01T21:50:32.917162" level="INFO">Si HEADLESS = true, ajoute les bons arguments</msg>
 <arg>Si HEADLESS = true, ajoute les bons arguments</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.766202" elapsed="0.000220"/>
+<status status="PASS" start="2025-07-01T21:50:32.917049" elapsed="0.000163"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${HEADLESS}' == 'true'</arg>
@@ -55,7 +55,7 @@
 <arg>add_argument</arg>
 <arg>--headless</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.766547" elapsed="0.000169"/>
+<status status="PASS" start="2025-07-01T21:50:32.917338" elapsed="0.000191"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${HEADLESS}' == 'true'</arg>
@@ -64,21 +64,21 @@
 <arg>add_argument</arg>
 <arg>--disable-gpu</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.766855" elapsed="0.000145"/>
+<status status="PASS" start="2025-07-01T21:50:32.917673" elapsed="0.000167"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:53.767204" level="INFO">Ouvre le navigateur avec les options configurées</msg>
+<msg time="2025-07-01T21:50:32.918070" level="INFO">Ouvre le navigateur avec les options configurées</msg>
 <arg>Ouvre le navigateur avec les options configurées</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.767117" elapsed="0.000131"/>
+<status status="PASS" start="2025-07-01T21:50:32.917970" elapsed="0.000151"/>
 </kw>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:13:53.767635" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
+<msg time="2025-07-01T21:50:32.918547" level="INFO">Opening browser 'chrome' to base url 'https://conserto.pro/'.</msg>
 <arg>${URL}</arg>
 <arg>${BROWSER}</arg>
 <arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-06-30T12:13:53.767372" elapsed="2.145380"/>
+<status status="PASS" start="2025-07-01T21:50:32.918266" elapsed="2.153634"/>
 </kw>
 <kw name="Choix Maximize Browser Window" owner="Commun_conserto">
 <kw name="Run Keyword If" owner="BuiltIn">
@@ -86,81 +86,81 @@
 <arg>1280</arg>
 <arg>1024</arg>
 <doc>Sets current windows size to given ``width`` and ``height``.</doc>
-<status status="PASS" start="2025-06-30T12:13:55.913664" elapsed="0.364729"/>
+<status status="PASS" start="2025-07-01T21:50:35.077721" elapsed="0.376088"/>
 </kw>
 <arg>'${Choix}' == 'Hors mobile'</arg>
 <arg>Set Window Size</arg>
 <arg>1280</arg>
 <arg>1024</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-30T12:13:55.913426" elapsed="0.365100"/>
+<status status="PASS" start="2025-07-01T21:50:35.075353" elapsed="0.378586"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${Choix}' == 'Avec Mobile'</arg>
 <arg>Maximize Browser Window</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-30T12:13:56.278730" elapsed="0.000236"/>
+<status status="PASS" start="2025-07-01T21:50:35.454171" elapsed="0.000242"/>
 </kw>
 <if>
 <branch type="IF" condition="'${Choix}'=='***'">
 <kw name="Log" owner="BuiltIn">
 <arg>Aucun choix appliqué.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-30T12:13:56.279345" elapsed="0.000037"/>
+<status status="NOT RUN" start="2025-07-01T21:50:35.454830" elapsed="0.000042"/>
 </kw>
-<status status="NOT RUN" start="2025-06-30T12:13:56.279099" elapsed="0.000340"/>
+<status status="NOT RUN" start="2025-07-01T21:50:35.454576" elapsed="0.000358"/>
 </branch>
-<status status="PASS" start="2025-06-30T12:13:56.279063" elapsed="0.000433"/>
+<status status="PASS" start="2025-07-01T21:50:35.454534" elapsed="0.000460"/>
 </if>
 <arg>${Choix}</arg>
-<status status="PASS" start="2025-06-30T12:13:55.913064" elapsed="0.366509"/>
+<status status="PASS" start="2025-07-01T21:50:35.073727" elapsed="0.381345"/>
 </kw>
 <kw name="Capture Page Et Sauvegarde" owner="Commun_conserto">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-30T12:13:59.280869" level="INFO">Slept 3 seconds.</msg>
+<msg time="2025-07-01T21:50:38.456430" level="INFO">Slept 3 seconds.</msg>
 <arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-30T12:13:56.280061" elapsed="3.001029"/>
+<status status="PASS" start="2025-07-01T21:50:35.455583" elapsed="3.001164"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:13:59.433696" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_navigateur.png"&gt;&lt;img src="Screenshot/capture_navigateur.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:38.620422" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_navigateur.png"&gt;&lt;img src="Screenshot/capture_navigateur.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.282082" elapsed="0.151792"/>
+<status status="PASS" start="2025-07-01T21:50:38.458344" elapsed="0.162234"/>
 </kw>
 <arg>3s</arg>
 <arg>2s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.281484" elapsed="0.152593"/>
+<status status="PASS" start="2025-07-01T21:50:38.457413" elapsed="0.163284"/>
 </kw>
 <arg>Screenshot</arg>
 <arg>capture_navigateur</arg>
-<status status="PASS" start="2025-06-30T12:13:56.279746" elapsed="3.154491"/>
+<status status="PASS" start="2025-07-01T21:50:35.455254" elapsed="3.165563"/>
 </kw>
 <arg>${URL_CONSERTO}</arg>
 <arg>Hors mobile</arg>
-<status status="PASS" start="2025-06-30T12:13:53.764435" elapsed="5.669933"/>
+<status status="PASS" start="2025-07-01T21:50:32.915171" elapsed="5.705759"/>
 </kw>
 <kw name="Page Accueil verif titre" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:59.435526" level="INFO">Page Accueil - vérif du titre attendu :</msg>
+<msg time="2025-07-01T21:50:38.621802" level="INFO">Page Accueil - vérif du titre attendu :</msg>
 <arg>Page Accueil - vérif du titre attendu :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.435380" elapsed="0.000472"/>
+<status status="PASS" start="2025-07-01T21:50:38.621701" elapsed="0.000374"/>
 </kw>
 <kw name="Verif title" owner="Keywords">
 <kw name="Get Source" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:13:59.447079" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
+<msg time="2025-07-01T21:50:38.631717" level="INFO">${html} = &lt;html&gt;&lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="description" content="Positive Technologie"&gt;
     &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
     &lt;meta http-equiv="X-UA-...</msg>
 <var>${html}</var>
 <doc>Returns the entire HTML source of the current page or frame.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.436463" elapsed="0.010709"/>
+<status status="PASS" start="2025-07-01T21:50:38.622832" elapsed="0.008931"/>
 </kw>
 <for flavor="IN">
 <iter>
@@ -168,155 +168,155 @@
 <arg>${html}</arg>
 <arg>${titre}</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.447733" elapsed="0.000209"/>
+<status status="PASS" start="2025-07-01T21:50:38.632141" elapsed="0.000172"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:13:59.448264" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-07-01T21:50:38.632556" level="INFO">${log} = Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <var>${log}</var>
 <arg>${titre}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.448070" elapsed="0.000243"/>
+<status status="PASS" start="2025-07-01T21:50:38.632420" elapsed="0.000164"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:13:59.448586" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
+<msg time="2025-07-01T21:50:38.632786" level="INFO">Conserto - La Transformation Numérique Agile et Harmonieuse</msg>
 <arg>${log}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.448462" elapsed="0.000191"/>
+<status status="PASS" start="2025-07-01T21:50:38.632683" elapsed="0.000148"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.448803" elapsed="0.000447"/>
+<status status="PASS" start="2025-07-01T21:50:38.632926" elapsed="0.000312"/>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:13:59.455957" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
+<msg time="2025-07-01T21:50:38.639458" level="INFO">Page title is 'Conserto - La Transformation Numérique Agile et Harmonieuse'.</msg>
 <arg>${Title}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.449499" elapsed="0.006547"/>
+<status status="PASS" start="2025-07-01T21:50:38.633412" elapsed="0.006173"/>
 </kw>
 <var name="${titre}">Conserto - La Transformation Numérique Agile et Harmonieuse</var>
-<status status="PASS" start="2025-06-30T12:13:59.447580" elapsed="0.008532"/>
+<status status="PASS" start="2025-07-01T21:50:38.632028" elapsed="0.007658"/>
 </iter>
 <var>${titre}</var>
 <value>${Title}</value>
-<status status="PASS" start="2025-06-30T12:13:59.447316" elapsed="0.008883"/>
+<status status="PASS" start="2025-07-01T21:50:38.631853" elapsed="0.007935"/>
 </for>
 <arg>${Title}</arg>
-<status status="PASS" start="2025-06-30T12:13:59.436082" elapsed="0.020271"/>
+<status status="PASS" start="2025-07-01T21:50:38.622373" elapsed="0.017560"/>
 </kw>
 <arg>${Title_1}</arg>
-<status status="PASS" start="2025-06-30T12:13:59.434866" elapsed="0.021609"/>
+<status status="PASS" start="2025-07-01T21:50:38.621405" elapsed="0.018630"/>
 </kw>
 <kw name="Barre du menu navigation" owner="Keywords">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.675167" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-06-30T12:14:09.675482" level="FAIL">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</msg>
+<msg time="2025-07-01T21:50:49.025978" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:49.026243" level="FAIL">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</msg>
 <arg>${Mobile_menu}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-06-30T12:13:59.457494" elapsed="10.220917">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</status>
+<status status="FAIL" start="2025-07-01T21:50:38.641212" elapsed="10.428895">Element '//button[@class='mobile-menu-button']' not visible after 10 seconds.</status>
 </kw>
-<msg time="2025-06-30T12:14:09.678635" level="INFO">${Action_1} = False</msg>
+<msg time="2025-07-01T21:50:49.070299" level="INFO">${Action_1} = False</msg>
 <var>${Action_1}</var>
 <arg>Wait Until Element Is Visible</arg>
 <arg>${Mobile_menu}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-30T12:13:59.457294" elapsed="10.221387"/>
+<status status="PASS" start="2025-07-01T21:50:38.640966" elapsed="10.429370"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Page Contains" owner="SeleniumLibrary">
 <arg>${Posit_texte}</arg>
 <arg>10</arg>
 <doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.679142" elapsed="0.012314"/>
+<status status="PASS" start="2025-07-01T21:50:49.070712" elapsed="0.014624"/>
 </kw>
-<msg time="2025-06-30T12:14:09.691599" level="INFO">${Action_2} = True</msg>
+<msg time="2025-07-01T21:50:49.085514" level="INFO">${Action_2} = True</msg>
 <var>${Action_2}</var>
 <arg>Wait Until Page Contains</arg>
 <arg>${Posit_texte}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.678898" elapsed="0.012729"/>
+<status status="PASS" start="2025-07-01T21:50:49.070513" elapsed="0.015039"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Barre_de_nav}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.691926" elapsed="0.014455"/>
+<status status="PASS" start="2025-07-01T21:50:49.085964" elapsed="0.018451"/>
 </kw>
-<msg time="2025-06-30T12:14:09.706528" level="INFO">${Action_3} = True</msg>
+<msg time="2025-07-01T21:50:49.104577" level="INFO">${Action_3} = True</msg>
 <var>${Action_3}</var>
 <arg>Wait Until Element Is Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.691774" elapsed="0.014783"/>
+<status status="PASS" start="2025-07-01T21:50:49.085773" elapsed="0.018851"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Barre de Navigation" owner="Keywords">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.722644" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
+<msg time="2025-07-01T21:50:49.117565" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.707367" elapsed="0.015356"/>
+<status status="PASS" start="2025-07-01T21:50:49.105564" elapsed="0.012117"/>
 </kw>
-<msg time="2025-06-30T12:14:09.722855" level="INFO">${status} = True</msg>
+<msg time="2025-07-01T21:50:49.117889" level="INFO">${status} = True</msg>
 <var>${status}</var>
 <arg>Element Should Be Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.707242" elapsed="0.015639"/>
+<status status="PASS" start="2025-07-01T21:50:49.105421" elapsed="0.012506"/>
 </kw>
 <if>
 <branch type="IF" condition="${status}">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:09.723499" level="INFO">On constate bien que "//nav[@id="nav-main" and @class="nav-main"]" est bien visible.</msg>
+<msg time="2025-07-01T21:50:49.118530" level="INFO">On constate bien que "//nav[@id="nav-main" and @class="nav-main"]" est bien visible.</msg>
 <arg>On constate bien que "${Barre_de_nav}" est bien visible.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.723314" elapsed="0.000235"/>
+<status status="PASS" start="2025-07-01T21:50:49.118305" elapsed="0.000297"/>
 </kw>
 <kw name="Run Keyword" owner="BuiltIn">
 <kw name="Nav mode global hors mobile" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:09.724270" level="INFO">methode 1 :</msg>
+<msg time="2025-07-01T21:50:49.119337" level="INFO">methode 1 :</msg>
 <arg>methode 1 :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.724168" elapsed="0.000153"/>
+<status status="PASS" start="2025-07-01T21:50:49.119250" elapsed="0.000133"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${Barre_de_nav}</arg>
 <arg>timeout=20s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.724442" elapsed="0.011303"/>
+<status status="PASS" start="2025-07-01T21:50:49.119487" elapsed="0.010248"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.747900" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
+<msg time="2025-07-01T21:50:49.142401" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' is displayed.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.736139" elapsed="0.011882"/>
+<status status="PASS" start="2025-07-01T21:50:49.130189" elapsed="0.012297"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Element Should Be Visible</arg>
 <arg>${Barre_de_nav}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.735923" elapsed="0.012233"/>
+<status status="PASS" start="2025-07-01T21:50:49.129938" elapsed="0.012634"/>
 </kw>
 <kw name="Element Attribute Value Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.759079" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' attribute 'class' contains value 'nav-main'.</msg>
+<msg time="2025-07-01T21:50:49.152036" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' attribute 'class' contains value 'nav-main'.</msg>
 <arg>${Barre_de_nav}</arg>
 <arg>class</arg>
 <arg>nav-main</arg>
 <doc>Verifies element identified by ``locator`` contains expected attribute value.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.748379" elapsed="0.010858"/>
+<status status="PASS" start="2025-07-01T21:50:49.142709" elapsed="0.009502"/>
 </kw>
 <kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.780040" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' contains text 'POSITIVE
+<msg time="2025-07-01T21:50:49.169142" level="INFO">Element '//nav[@id="nav-main" and @class="nav-main"]' contains text 'POSITIVE
 TECHNOLOGIE
 NOS CLIENTS
 ACADEMY
@@ -325,22 +325,22 @@ CONTACT'.</msg>
 <arg>${Barre_de_nav}</arg>
 <arg>${Nav_texte}</arg>
 <doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.759401" elapsed="0.020748"/>
+<status status="PASS" start="2025-07-01T21:50:49.152377" elapsed="0.016899"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.786125" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
+<msg time="2025-07-01T21:50:49.175384" level="INFO">Current page contains element '//nav[@id="nav-main" and @class="nav-main"]'.</msg>
 <arg>${Barre_de_nav}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.780327" elapsed="0.005881"/>
+<status status="PASS" start="2025-07-01T21:50:49.169526" elapsed="0.005942"/>
 </kw>
 <kw name="Wait For Condition" owner="SeleniumLibrary">
 <arg>return document.readyState === 'complete'</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until ``condition`` is true or ``timeout`` expires.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.786371" elapsed="0.004414"/>
+<status status="PASS" start="2025-07-01T21:50:49.175625" elapsed="0.003603"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.805112" level="INFO">${nav_value} = POSITIVE
+<msg time="2025-07-01T21:50:49.190964" level="INFO">${nav_value} = POSITIVE
 TECHNOLOGIE
 NOS CLIENTS
 ACADEMY
@@ -349,10 +349,10 @@ CONTACT</msg>
 <var>${nav_value}</var>
 <arg>${Barre_de_nav}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.790966" elapsed="0.014193"/>
+<status status="PASS" start="2025-07-01T21:50:49.179385" elapsed="0.011630"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:09.805486" level="INFO">Valeur récupérée : POSITIVE
+<msg time="2025-07-01T21:50:49.191323" level="INFO">Valeur récupérée : POSITIVE
 TECHNOLOGIE
 NOS CLIENTS
 ACADEMY
@@ -360,123 +360,123 @@ BLOG
 CONTACT</msg>
 <arg>Valeur récupérée : ${nav_value}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.805318" elapsed="0.000222"/>
+<status status="PASS" start="2025-07-01T21:50:49.191174" elapsed="0.000196"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${nav_value}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.805663" elapsed="0.000427"/>
+<status status="PASS" start="2025-07-01T21:50:49.191467" elapsed="0.000330"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:09.806403" level="INFO">methode 2 :</msg>
+<msg time="2025-07-01T21:50:49.192050" level="INFO">methode 2 :</msg>
 <arg>methode 2 :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.806274" elapsed="0.000196"/>
+<status status="PASS" start="2025-07-01T21:50:49.191939" elapsed="0.000177"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="nav-main"]</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.806600" elapsed="0.018995"/>
+<status status="PASS" start="2025-07-01T21:50:49.192225" elapsed="0.012242"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:09.839740" level="INFO">Current page contains text 'Positive'.</msg>
+<msg time="2025-07-01T21:50:49.211490" level="INFO">Current page contains text 'Positive'.</msg>
 <arg>Positive</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.825936" elapsed="0.013952"/>
+<status status="PASS" start="2025-07-01T21:50:49.204629" elapsed="0.006950"/>
 </kw>
 <kw name="Capture Page Et Sauvegarde" owner="Commun_conserto">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-30T12:14:12.841410" level="INFO">Slept 3 seconds.</msg>
+<msg time="2025-07-01T21:50:52.212738" level="INFO">Slept 3 seconds.</msg>
 <arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.840663" elapsed="3.000893"/>
+<status status="PASS" start="2025-07-01T21:50:49.212167" elapsed="3.000717"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:12.956849" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_Positive.png"&gt;&lt;img src="Screenshot/capture_Positive.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:52.353313" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_Positive.png"&gt;&lt;img src="Screenshot/capture_Positive.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.842081" elapsed="0.114927"/>
+<status status="PASS" start="2025-07-01T21:50:52.213432" elapsed="0.140020"/>
 </kw>
 <arg>3s</arg>
 <arg>2s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.841777" elapsed="0.115317"/>
+<status status="PASS" start="2025-07-01T21:50:52.213127" elapsed="0.140412"/>
 </kw>
 <arg>Screenshot</arg>
 <arg>capture_Positive</arg>
-<status status="PASS" start="2025-06-30T12:14:09.840195" elapsed="3.116983"/>
+<status status="PASS" start="2025-07-01T21:50:49.211773" elapsed="3.141847"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:12.957452" level="INFO">methode 3 :</msg>
+<msg time="2025-07-01T21:50:52.353873" level="INFO">methode 3 :</msg>
 <arg>methode 3 :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.957328" elapsed="0.000170"/>
+<status status="PASS" start="2025-07-01T21:50:52.353754" elapsed="0.000168"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="nav-main"]</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.957613" elapsed="0.013780"/>
+<status status="PASS" start="2025-07-01T21:50:52.354061" elapsed="0.015014"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:12.978805" level="INFO">Current page contains text 'Positive'.</msg>
+<msg time="2025-07-01T21:50:52.382265" level="INFO">Current page contains text 'Positive'.</msg>
 <arg>Positive</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.971543" elapsed="0.007357"/>
+<status status="PASS" start="2025-07-01T21:50:52.369290" elapsed="0.013106"/>
 </kw>
 <kw name="Capture Page Et Sauvegarde" owner="Commun_conserto">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-06-30T12:14:15.980334" level="INFO">Slept 3 seconds.</msg>
+<msg time="2025-07-01T21:50:55.384057" level="INFO">Slept 3 seconds.</msg>
 <arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-06-30T12:14:12.979333" elapsed="3.001450"/>
+<status status="PASS" start="2025-07-01T21:50:52.383292" elapsed="3.001330"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:16.148386" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_Positive2.png"&gt;&lt;img src="Screenshot/capture_Positive2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:55.515490" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/capture_Positive2.png"&gt;&lt;img src="Screenshot/capture_Positive2.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-06-30T12:14:15.982675" elapsed="0.165840"/>
+<status status="PASS" start="2025-07-01T21:50:55.387253" elapsed="0.128448"/>
 </kw>
 <arg>3s</arg>
 <arg>2s</arg>
 <arg>Capture Page Screenshot</arg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:15.981547" elapsed="0.167156"/>
+<status status="PASS" start="2025-07-01T21:50:55.385665" elapsed="0.130149"/>
 </kw>
 <arg>Screenshot</arg>
 <arg>capture_Positive2</arg>
-<status status="PASS" start="2025-06-30T12:14:12.979074" elapsed="3.169742"/>
+<status status="PASS" start="2025-07-01T21:50:52.382734" elapsed="3.133205"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:16.149254" level="INFO">methode 4 :</msg>
+<msg time="2025-07-01T21:50:55.516288" level="INFO">methode 4 :</msg>
 <arg>methode 4 :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.149082" elapsed="0.000244"/>
+<status status="PASS" start="2025-07-01T21:50:55.516130" elapsed="0.000225"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:16.149671" level="INFO">Screenshot capturée pour analyse</msg>
+<msg time="2025-07-01T21:50:55.516654" level="INFO">Screenshot capturée pour analyse</msg>
 <arg>Screenshot capturée pour analyse</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.149509" elapsed="0.000234"/>
+<status status="PASS" start="2025-07-01T21:50:55.516531" elapsed="0.000192"/>
 </kw>
 <kw name="Get Element Attribute" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:16.164339" level="INFO">${html} = 
+<msg time="2025-07-01T21:50:55.531970" level="INFO">${html} = 
               &lt;button class="mobile-menu-button"&gt;
                 &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V...</msg>
 <var>${html}</var>
 <arg>${Barre_de_nav}</arg>
 <arg>innerHTML</arg>
 <doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.149919" elapsed="0.014464"/>
+<status status="PASS" start="2025-07-01T21:50:55.516909" elapsed="0.015107"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:16.164662" level="INFO">Contenu HTML : 
+<msg time="2025-07-01T21:50:55.532301" level="INFO">Contenu HTML : 
               &lt;button class="mobile-menu-button"&gt;
                 &lt;svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"&gt;&lt;/path&gt;&lt;/svg&gt;
                 &lt;svg class="active" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"&gt;&lt;path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"&gt;&lt;/path&gt;&lt;/svg&gt;
@@ -507,33 +507,33 @@ CONTACT</msg>
             </msg>
 <arg>Contenu HTML : ${html}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.164523" elapsed="0.000247"/>
+<status status="PASS" start="2025-07-01T21:50:55.532164" elapsed="0.000247"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:14:09.723933" elapsed="6.440904"/>
+<status status="PASS" start="2025-07-01T21:50:49.119041" elapsed="6.413474"/>
 </kw>
 <arg>Nav mode global hors mobile</arg>
 <doc>Executes the given keyword with the given arguments.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.723661" elapsed="6.441228"/>
+<status status="PASS" start="2025-07-01T21:50:49.118776" elapsed="6.413837"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:14:09.723050" elapsed="6.441887"/>
+<status status="PASS" start="2025-07-01T21:50:49.118066" elapsed="6.414613"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>"${Barre_de_nav}" non trouvé. Tentative de chargement de la barre de navigation.</arg>
 <arg>WARN</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-30T12:14:16.165092" elapsed="0.000026"/>
+<status status="NOT RUN" start="2025-07-01T21:50:55.532914" elapsed="0.000044"/>
 </kw>
 <kw name="Run Keyword" owner="BuiltIn">
 <arg>Nav mode global avec mobile</arg>
 <doc>Executes the given keyword with the given arguments.</doc>
-<status status="NOT RUN" start="2025-06-30T12:14:16.165209" elapsed="0.000024"/>
+<status status="NOT RUN" start="2025-07-01T21:50:55.533114" elapsed="0.000041"/>
 </kw>
-<status status="NOT RUN" start="2025-06-30T12:14:16.164994" elapsed="0.000274"/>
+<status status="NOT RUN" start="2025-07-01T21:50:55.532757" elapsed="0.000458"/>
 </branch>
-<status status="PASS" start="2025-06-30T12:14:09.723000" elapsed="6.442299"/>
+<status status="PASS" start="2025-07-01T21:50:49.118030" elapsed="6.415240"/>
 </if>
-<status status="PASS" start="2025-06-30T12:14:09.707038" elapsed="6.458308"/>
+<status status="PASS" start="2025-07-01T21:50:49.105174" elapsed="6.428174"/>
 </kw>
 <arg>${Action_1}</arg>
 <arg>Barre mobile nav</arg>
@@ -544,220 +544,220 @@ CONTACT</msg>
 <arg>${Action_3}</arg>
 <arg>Verif Elements bloc nav</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-06-30T12:14:09.706711" elapsed="6.458681"/>
+<status status="PASS" start="2025-07-01T21:50:49.104801" elapsed="6.428624"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:13:59.456867" elapsed="16.708593"/>
+<status status="PASS" start="2025-07-01T21:50:38.640633" elapsed="16.892906"/>
 </kw>
 <kw name="Test navigation fonctionne" owner="Keywords">
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:16.166244" level="INFO">Verif élément "POSITIVE" dans le header :</msg>
+<msg time="2025-07-01T21:50:55.534720" level="INFO">Verif élément "POSITIVE" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.166137" elapsed="0.000150"/>
+<status status="PASS" start="2025-07-01T21:50:55.534550" elapsed="0.000238"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.166384" elapsed="0.014232"/>
+<status status="PASS" start="2025-07-01T21:50:55.534942" elapsed="0.016085"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:16.181170" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:55.551886" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.181000" elapsed="0.965283"/>
+<status status="PASS" start="2025-07-01T21:50:55.551625" elapsed="0.229772"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:16.180786" elapsed="0.965710"/>
+<status status="PASS" start="2025-07-01T21:50:55.551294" elapsed="0.230250"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>POSITIVE</arg>
-<status status="PASS" start="2025-06-30T12:14:16.165919" elapsed="0.980792"/>
+<status status="PASS" start="2025-07-01T21:50:55.534196" elapsed="0.247479"/>
 </kw>
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:17.148175" level="INFO">Verif élément "TECHNOLOGIE" dans le header :</msg>
+<msg time="2025-07-01T21:50:55.782555" level="INFO">Verif élément "TECHNOLOGIE" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.147843" elapsed="0.000503"/>
+<status status="PASS" start="2025-07-01T21:50:55.782399" elapsed="0.000216"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.148777" elapsed="0.021718"/>
+<status status="PASS" start="2025-07-01T21:50:55.782744" elapsed="0.026205"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:17.171144" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:55.809769" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.170928" elapsed="0.128305"/>
+<status status="PASS" start="2025-07-01T21:50:55.809386" elapsed="0.127798"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.170689" elapsed="0.128687"/>
+<status status="PASS" start="2025-07-01T21:50:55.809151" elapsed="0.128130"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>TECHNOLOGIE</arg>
-<status status="PASS" start="2025-06-30T12:14:17.147100" elapsed="0.152359"/>
+<status status="PASS" start="2025-07-01T21:50:55.782011" elapsed="0.155346"/>
 </kw>
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:17.300096" level="INFO">Verif élément "NOS CLIENTS" dans le header :</msg>
+<msg time="2025-07-01T21:50:55.938157" level="INFO">Verif élément "NOS CLIENTS" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.299964" elapsed="0.000182"/>
+<status status="PASS" start="2025-07-01T21:50:55.937931" elapsed="0.000313"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.300270" elapsed="0.013196"/>
+<status status="PASS" start="2025-07-01T21:50:55.938430" elapsed="0.019254"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:17.314196" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:55.958616" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.313973" elapsed="0.178374"/>
+<status status="PASS" start="2025-07-01T21:50:55.958341" elapsed="0.143124"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.313706" elapsed="0.178809"/>
+<status status="PASS" start="2025-07-01T21:50:55.957971" elapsed="0.143590"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>NOS CLIENTS</arg>
-<status status="PASS" start="2025-06-30T12:14:17.299652" elapsed="0.193008"/>
+<status status="PASS" start="2025-07-01T21:50:55.937525" elapsed="0.164117"/>
 </kw>
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:17.493685" level="INFO">Verif élément "ACADEMY" dans le header :</msg>
+<msg time="2025-07-01T21:50:56.102253" level="INFO">Verif élément "ACADEMY" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.493490" elapsed="0.000269"/>
+<status status="PASS" start="2025-07-01T21:50:56.102127" elapsed="0.000172"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.493931" elapsed="0.012756"/>
+<status status="PASS" start="2025-07-01T21:50:56.102404" elapsed="0.013108"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:17.507388" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:56.116460" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.507138" elapsed="0.171616"/>
+<status status="PASS" start="2025-07-01T21:50:56.116191" elapsed="0.151726"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.506896" elapsed="0.171954"/>
+<status status="PASS" start="2025-07-01T21:50:56.115862" elapsed="0.152151"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>ACADEMY</arg>
-<status status="PASS" start="2025-06-30T12:14:17.492963" elapsed="0.185977"/>
+<status status="PASS" start="2025-07-01T21:50:56.101810" elapsed="0.166324"/>
 </kw>
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:17.679658" level="INFO">Verif élément "BLOG" dans le header :</msg>
+<msg time="2025-07-01T21:50:56.269155" level="INFO">Verif élément "BLOG" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.679499" elapsed="0.000218"/>
+<status status="PASS" start="2025-07-01T21:50:56.268950" elapsed="0.000277"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.679899" elapsed="0.014531"/>
+<status status="PASS" start="2025-07-01T21:50:56.269369" elapsed="0.015030"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:17.695050" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:56.285056" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.694835" elapsed="0.181024"/>
+<status status="PASS" start="2025-07-01T21:50:56.284876" elapsed="0.150175"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.694621" elapsed="0.181348"/>
+<status status="PASS" start="2025-07-01T21:50:56.284610" elapsed="0.150528"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>BLOG</arg>
-<status status="PASS" start="2025-06-30T12:14:17.679115" elapsed="0.196937"/>
+<status status="PASS" start="2025-07-01T21:50:56.268305" elapsed="0.166905"/>
 </kw>
 <kw name="Element Barre de nav" owner="Keywords">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:17.876708" level="INFO">Verif élément "CONTACT" dans le header :</msg>
+<msg time="2025-07-01T21:50:56.435823" level="INFO">Verif élément "CONTACT" dans le header :</msg>
 <arg>Verif élément "${element}" dans le header :</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.876565" elapsed="0.000191"/>
+<status status="PASS" start="2025-07-01T21:50:56.435689" elapsed="0.000179"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>60</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.876863" elapsed="0.012078"/>
+<status status="PASS" start="2025-07-01T21:50:56.435974" elapsed="0.012339"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:17.889578" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
+<msg time="2025-07-01T21:50:56.449094" level="INFO">Clicking element '//a[contains(text(),"Positive")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.889356" elapsed="0.175702"/>
+<status status="PASS" start="2025-07-01T21:50:56.448747" elapsed="0.151584"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:17.889139" elapsed="0.176028"/>
+<status status="PASS" start="2025-07-01T21:50:56.448512" elapsed="0.151954"/>
 </kw>
 <arg>${Positive}</arg>
 <arg>CONTACT</arg>
-<status status="PASS" start="2025-06-30T12:14:17.876224" elapsed="0.189022"/>
+<status status="PASS" start="2025-07-01T21:50:56.435383" elapsed="0.165198"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:14:16.165695" elapsed="1.899624"/>
+<status status="PASS" start="2025-07-01T21:50:55.533858" elapsed="1.066818"/>
 </kw>
 <kw name="Vérifier logo" owner="Keywords">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath_logo}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.066097" elapsed="0.016204"/>
+<status status="PASS" start="2025-07-01T21:50:56.601473" elapsed="0.020525"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.095029" level="INFO">Current page contains element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:50:56.635181" level="INFO">Current page contains element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${xpath_logo}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.082516" elapsed="0.012788"/>
+<status status="PASS" start="2025-07-01T21:50:56.622199" elapsed="0.013107"/>
 </kw>
 <kw name="Capture Element Et Sauvegarde" owner="Commun_conserto">
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Capture Element Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.215626" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/logo.png"&gt;&lt;img src="Screenshot/logo.png" width="400px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:56.740101" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshot/logo.png"&gt;&lt;img src="Screenshot/logo.png" width="400px"&gt;&lt;/a&gt;</msg>
 <arg>${xpath}</arg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.097083" elapsed="0.118687"/>
+<status status="PASS" start="2025-07-01T21:50:56.636308" elapsed="0.103925"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
@@ -765,29 +765,29 @@ CONTACT</msg>
 <arg>${xpath}</arg>
 <arg>${Repertoire}/${image_name}.png</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.096498" elapsed="0.119491"/>
+<status status="PASS" start="2025-07-01T21:50:56.636060" elapsed="0.104300"/>
 </kw>
 <arg>${xpath_logo}</arg>
 <arg>Screenshot</arg>
 <arg>logo</arg>
-<status status="PASS" start="2025-06-30T12:14:18.095768" elapsed="0.120386"/>
+<status status="PASS" start="2025-07-01T21:50:56.635568" elapsed="0.104906"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.217366" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:50:56.741280" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${xpath_logo}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.216870" elapsed="0.252079"/>
+<status status="PASS" start="2025-07-01T21:50:56.741001" elapsed="0.261611"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${xpath_logo}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.216461" elapsed="0.252634"/>
+<status status="PASS" start="2025-07-01T21:50:56.740677" elapsed="0.262029"/>
 </kw>
 <arg>${Conserto}</arg>
-<status status="PASS" start="2025-06-30T12:14:18.065690" elapsed="0.403487"/>
+<status status="PASS" start="2025-07-01T21:50:56.601078" elapsed="0.401709"/>
 </kw>
 <kw name="Verif positive techologie" owner="Keywords">
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
@@ -795,437 +795,1209 @@ CONTACT</msg>
 <arg>${texte}</arg>
 <arg>10</arg>
 <doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.470182" elapsed="0.016055"/>
+<status status="PASS" start="2025-07-01T21:50:57.003705" elapsed="0.019913"/>
 </kw>
-<msg time="2025-06-30T12:14:18.486572" level="INFO">${status} = True</msg>
+<msg time="2025-07-01T21:50:57.023983" level="INFO">${status} = True</msg>
 <var>${status}</var>
 <arg>Wait Until Page Contains</arg>
 <arg>${texte}</arg>
 <arg>10</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.470029" elapsed="0.016582"/>
+<status status="PASS" start="2025-07-01T21:50:57.003550" elapsed="0.020482"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.487223" level="INFO">${text} = positive technologie</msg>
+<msg time="2025-07-01T21:50:57.024565" level="INFO">${text} = positive technologie</msg>
 <var>${text}</var>
 <arg>positive technologie</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.486900" elapsed="0.000356"/>
+<status status="PASS" start="2025-07-01T21:50:57.024271" elapsed="0.000356"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.487635" level="INFO">${textes} = Positive
+<msg time="2025-07-01T21:50:57.025177" level="INFO">${textes} = Positive
 Technologie</msg>
 <var>${textes}</var>
 <arg>Positive\nTechnologie</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.487429" elapsed="0.000248"/>
+<status status="PASS" start="2025-07-01T21:50:57.024901" elapsed="0.000331"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.488092" level="INFO">${xpath1} = xpath=//h1[contains(text(), "Positive Technologie")]</msg>
+<msg time="2025-07-01T21:50:57.025796" level="INFO">${xpath1} = xpath=//h1[contains(text(), "Positive Technologie")]</msg>
 <var>${xpath1}</var>
 <arg>xpath=//h1[contains(text(), "${Positif_Techo_info}")]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.487858" elapsed="0.000272"/>
+<status status="PASS" start="2025-07-01T21:50:57.025452" elapsed="0.000396"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.488742" level="INFO">${xpath2} = xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = 'positive technologie']</msg>
+<msg time="2025-07-01T21:50:57.026310" level="INFO">${xpath2} = xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = 'positive technologie']</msg>
 <var>${xpath2}</var>
 <arg>xpath=//h1[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = '${text}']</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.488347" elapsed="0.000444"/>
+<status status="PASS" start="2025-07-01T21:50:57.026037" elapsed="0.000322"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.489356" level="INFO">${xpath3} = xpath=//div[normalize-space(.)="Positive Technologie"]</msg>
+<msg time="2025-07-01T21:50:57.026823" level="INFO">${xpath3} = xpath=//div[normalize-space(.)="Positive Technologie"]</msg>
 <var>${xpath3}</var>
 <arg>xpath=//div[normalize-space(.)="${texte}"]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.489034" elapsed="0.000363"/>
+<status status="PASS" start="2025-07-01T21:50:57.026536" elapsed="0.000334"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.489821" level="INFO">${xpath4} = xpath=//div[@class="words-container" and contains(normalize-space(.), "Positive Technologie")]</msg>
+<msg time="2025-07-01T21:50:57.027405" level="INFO">${xpath4} = xpath=//div[@class="words-container" and contains(normalize-space(.), "Positive Technologie")]</msg>
 <var>${xpath4}</var>
 <arg>xpath=//div[@class="words-container" and contains(normalize-space(.), "${texte}")]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.489627" elapsed="0.000220"/>
+<status status="PASS" start="2025-07-01T21:50:57.027076" elapsed="0.000414"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.490114" level="INFO">${xpath5} = xpath=//div[@class="first-word has-primary-color"]</msg>
+<msg time="2025-07-01T21:50:57.028503" level="INFO">${xpath5} = xpath=//div[@class="first-word has-primary-color"]</msg>
 <var>${xpath5}</var>
 <arg>xpath=//div[@class="first-word has-primary-color"]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.489959" elapsed="0.000187"/>
+<status status="PASS" start="2025-07-01T21:50:57.027991" elapsed="0.000593"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.490625" level="INFO">${xpath6} = xpath=//div[@class="second-word has-dark-color"]</msg>
+<msg time="2025-07-01T21:50:57.029257" level="INFO">${xpath6} = xpath=//div[@class="second-word has-dark-color"]</msg>
 <var>${xpath6}</var>
 <arg>xpath=//div[@class="second-word has-dark-color"]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.490484" elapsed="0.000168"/>
+<status status="PASS" start="2025-07-01T21:50:57.028955" elapsed="0.000338"/>
 </kw>
 <if>
 <branch type="IF" condition="${status}">
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.491077" level="INFO">Méthode 1 - On constate bien que "Positive Technologie" est bien visible.</msg>
+<msg time="2025-07-01T21:50:57.029946" level="INFO">Méthode 1 - On constate bien que "Positive Technologie" est bien visible.</msg>
 <arg>Méthode 1 - On constate bien que "${texte}" est bien visible.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.490936" elapsed="0.000189"/>
+<status status="PASS" start="2025-07-01T21:50:57.029663" elapsed="0.000417"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${xpath1}</arg>
 <arg>20s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.491256" elapsed="0.021003"/>
+<status status="PASS" start="2025-07-01T21:50:57.030329" elapsed="0.015245"/>
 </kw>
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.522996" level="INFO">Current page contains element 'xpath=//h1[contains(text(), "Positive Technologie")]'.</msg>
+<msg time="2025-07-01T21:50:57.057466" level="INFO">Current page contains element 'xpath=//h1[contains(text(), "Positive Technologie")]'.</msg>
 <arg>${xpath1}</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.512539" elapsed="0.010581"/>
+<status status="PASS" start="2025-07-01T21:50:57.045776" elapsed="0.011783"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${xpath2}</arg>
 <arg>15s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.523308" elapsed="0.015556"/>
+<status status="PASS" start="2025-07-01T21:50:57.057762" elapsed="0.013928"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.539215" level="INFO">Méthode 2 - Chercher un div qui a pour texte combiné "Positif Technologie"</msg>
+<msg time="2025-07-01T21:50:57.072173" level="INFO">Méthode 2 - Chercher un div qui a pour texte combiné "Positif Technologie"</msg>
 <arg>Méthode 2 - Chercher un div qui a pour texte combiné "Positif Technologie"</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.539068" elapsed="0.000219"/>
+<status status="PASS" start="2025-07-01T21:50:57.071973" elapsed="0.000287"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${xpath3}</arg>
 <arg>10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.539425" elapsed="0.013826"/>
+<status status="PASS" start="2025-07-01T21:50:57.072469" elapsed="0.013799"/>
 </kw>
 <kw name="Capture Element Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.660951" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-1.png"&gt;&lt;img src="selenium-element-screenshot-1.png" width="400px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:57.179751" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-1.png"&gt;&lt;img src="selenium-element-screenshot-1.png" width="400px"&gt;&lt;/a&gt;</msg>
 <arg>${xpath3}</arg>
 <doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.553464" elapsed="0.107763"/>
+<status status="PASS" start="2025-07-01T21:50:57.086560" elapsed="0.093496"/>
 </kw>
 <kw name="Element Text Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.661993" level="INFO">Verifying element 'xpath=//div[normalize-space(.)="Positive Technologie"]' contains exact text 'Positive
+<msg time="2025-07-01T21:50:57.180993" level="INFO">Verifying element 'xpath=//div[normalize-space(.)="Positive Technologie"]' contains exact text 'Positive
 Technologie'.</msg>
 <arg>${xpath3}</arg>
 <arg>${textes}</arg>
 <doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.661577" elapsed="0.020729"/>
+<status status="PASS" start="2025-07-01T21:50:57.180491" elapsed="0.026845"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.682608" level="INFO">Méthode 3 - Version robuste (ignorer les espaces multiples, sauts de ligne, etc.)</msg>
+<msg time="2025-07-01T21:50:57.207658" level="INFO">Méthode 3 - Version robuste (ignorer les espaces multiples, sauts de ligne, etc.)</msg>
 <arg>Méthode 3 - Version robuste (ignorer les espaces multiples, sauts de ligne, etc.)</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.682492" elapsed="0.000162"/>
+<status status="PASS" start="2025-07-01T21:50:57.207516" elapsed="0.000196"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${xpath4}</arg>
 <arg>10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.682774" elapsed="0.010012"/>
+<status status="PASS" start="2025-07-01T21:50:57.207840" elapsed="0.011679"/>
 </kw>
 <kw name="Capture Element Screenshot" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.790255" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-2.png"&gt;&lt;img src="selenium-element-screenshot-2.png" width="400px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-01T21:50:57.325023" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-2.png"&gt;&lt;img src="selenium-element-screenshot-2.png" width="400px"&gt;&lt;/a&gt;</msg>
 <arg>${xpath4}</arg>
 <doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.693064" elapsed="0.097399"/>
+<status status="PASS" start="2025-07-01T21:50:57.219711" elapsed="0.105684"/>
 </kw>
 <kw name="Element Text Should Be" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.791187" level="INFO">Verifying element 'xpath=//div[@class="words-container" and contains(normalize-space(.), "Positive Technologie")]' contains exact text 'Positive
+<msg time="2025-07-01T21:50:57.326221" level="INFO">Verifying element 'xpath=//div[@class="words-container" and contains(normalize-space(.), "Positive Technologie")]' contains exact text 'Positive
 Technologie'.</msg>
 <arg>${xpath4}</arg>
 <arg>${textes}</arg>
 <doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.790772" elapsed="0.027985"/>
+<status status="PASS" start="2025-07-01T21:50:57.325769" elapsed="0.020104"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.819239" level="INFO">Méthode 4 - Vérification des deux sous-éléments séparément</msg>
+<msg time="2025-07-01T21:50:57.346153" level="INFO">Méthode 4 - Vérification des deux sous-éléments séparément</msg>
 <arg>Méthode 4 - Vérification des deux sous-éléments séparément</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.819033" elapsed="0.000279"/>
+<status status="PASS" start="2025-07-01T21:50:57.346041" elapsed="0.000156"/>
 </kw>
 <kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.843077" level="INFO">Element 'xpath=//div[@class="first-word has-primary-color"]' contains text 'Positive'.</msg>
+<msg time="2025-07-01T21:50:57.363938" level="INFO">Element 'xpath=//div[@class="first-word has-primary-color"]' contains text 'Positive'.</msg>
 <arg>${xpath5}</arg>
 <arg>${Posit_texte}</arg>
 <doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.819528" elapsed="0.023697"/>
+<status status="PASS" start="2025-07-01T21:50:57.346303" elapsed="0.017767"/>
 </kw>
 <kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.862640" level="INFO">Element 'xpath=//div[@class="second-word has-dark-color"]' contains text 'Technologie'.</msg>
+<msg time="2025-07-01T21:50:57.378441" level="INFO">Element 'xpath=//div[@class="second-word has-dark-color"]' contains text 'Technologie'.</msg>
 <arg>${xpath6}</arg>
 <arg>${Tech_texte}</arg>
 <doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.843479" elapsed="0.019259"/>
+<status status="PASS" start="2025-07-01T21:50:57.364302" elapsed="0.014220"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-06-30T12:14:18.863002" level="INFO">Méthode 5 - Complets</msg>
+<msg time="2025-07-01T21:50:57.378796" level="INFO">Méthode 5 - Complets</msg>
 <arg>Méthode 5 - Complets</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.862891" elapsed="0.000153"/>
+<status status="PASS" start="2025-07-01T21:50:57.378687" elapsed="0.000151"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.877688" level="INFO">${part1} = Positive</msg>
+<msg time="2025-07-01T21:50:57.389418" level="INFO">${part1} = Positive</msg>
 <var>${part1}</var>
 <arg>${xpath5}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.863150" elapsed="0.014583"/>
+<status status="PASS" start="2025-07-01T21:50:57.378940" elapsed="0.010518"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:18.889278" level="INFO">${part2} = Technologie</msg>
+<msg time="2025-07-01T21:50:57.400355" level="INFO">${part2} = Technologie</msg>
 <var>${part2}</var>
 <arg>${xpath6}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.877894" elapsed="0.011426"/>
+<status status="PASS" start="2025-07-01T21:50:57.389607" elapsed="0.010796"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
 <arg>${part1} ${part2}</arg>
 <arg>${Positif_Techo_info}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.889494" elapsed="0.000231"/>
+<status status="PASS" start="2025-07-01T21:50:57.400579" elapsed="0.000266"/>
 </kw>
-<status status="PASS" start="2025-06-30T12:14:18.490771" elapsed="0.399001"/>
+<status status="PASS" start="2025-07-01T21:50:57.029465" elapsed="0.371456"/>
 </branch>
 <branch type="ELSE">
 <kw name="Log" owner="BuiltIn">
 <arg>L'élement "${texte}" attendu non trouvé. Tentative de Screenshot.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-06-30T12:14:18.889927" elapsed="0.000026"/>
+<status status="NOT RUN" start="2025-07-01T21:50:57.401099" elapsed="0.000032"/>
 </kw>
 <kw name="Run Keyword And Ignore Error" owner="BuiltIn">
 <arg>Capture Page Et Sauvegarde</arg>
 <arg>Screenshot</arg>
 <arg>capture_Absence_PositiveTecho</arg>
 <doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="NOT RUN" start="2025-06-30T12:14:18.890046" elapsed="0.000025"/>
+<status status="NOT RUN" start="2025-07-01T21:50:57.401247" elapsed="0.000044"/>
 </kw>
-<status status="NOT RUN" start="2025-06-30T12:14:18.889818" elapsed="0.000412"/>
+<status status="NOT RUN" start="2025-07-01T21:50:57.400978" elapsed="0.000446"/>
 </branch>
-<status status="PASS" start="2025-06-30T12:14:18.490738" elapsed="0.399527"/>
+<status status="PASS" start="2025-07-01T21:50:57.029421" elapsed="0.372039"/>
 </if>
 <arg>${Positif_Techo_info}</arg>
-<status status="PASS" start="2025-06-30T12:14:18.469721" elapsed="0.420595"/>
+<status status="PASS" start="2025-07-01T21:50:57.003215" elapsed="0.398298"/>
 </kw>
-<kw name="Ilots" owner="Keywords">
+<kw name="Actions Ilots" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.402008" elapsed="0.014405"/>
+</kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-30T12:14:18.890842" elapsed="0.285325"/>
+<status status="PASS" start="2025-07-01T21:50:57.416600" elapsed="0.284351"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.176707" elapsed="0.016230"/>
+<status status="PASS" start="2025-07-01T21:50:57.701770" elapsed="0.045070"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:19.193638" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Culture Agile")]'.</msg>
+<msg time="2025-07-01T21:50:57.747795" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Infra")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.193426" elapsed="0.334248"/>
+<status status="PASS" start="2025-07-01T21:50:57.747484" elapsed="0.181747"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.193188" elapsed="0.334740"/>
+<status status="PASS" start="2025-07-01T21:50:57.747158" elapsed="0.182213"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.929924" level="INFO">Vérifier que l’image est bien présente dans le DOM (même si invisible)</msg>
+<arg>Vérifier que l’image est bien présente dans le DOM (même si invisible)</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.929603" elapsed="0.000471"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:57.953224" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${Xpath_IMG}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.930416" elapsed="0.022982"/>
+</kw>
+<kw name="Suite verif" owner="Keywords">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:57.962251" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${xpath}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.953975" elapsed="0.008370"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:57.976054" level="INFO">${src} = https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png</msg>
+<var>${src}</var>
+<arg>xpath=${xpath}</arg>
+<arg>src</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.962523" elapsed="0.013580"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${src}' == '' or '${src}' == None</arg>
+<arg>${src}=</arg>
+<arg>Get Element Attribute</arg>
+<arg>xpath=${xpath}</arg>
+<arg>data-src</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.976298" elapsed="0.000227"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.976800" level="INFO">Length is 73.</msg>
+<arg>${src}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.976660" elapsed="0.000192"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.977083" level="INFO">Image src: https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png</msg>
+<arg>Image src: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.976960" elapsed="0.000186"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.977458" level="INFO">${is_absolute} = 'https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png'.startswith('http')</msg>
+<var>${is_absolute}</var>
+<arg>"'${src}'.startswith('http')"</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.977260" elapsed="0.000232"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${is_absolute}</arg>
+<arg>Set Variable</arg>
+<arg>${src}</arg>
+<arg>${URL_CONSERTO}${src}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.977618" elapsed="0.000163"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.978031" level="INFO">Image URL final: https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png</msg>
+<arg>Image URL final: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.977904" elapsed="0.000177"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.978497" level="INFO">${parsed} = ParseResult(scheme='https', netloc='conserto.pro', path='/wp-content/uploads/2022/03/infra-0x360-c-default.png', params='', query='', fragment='')</msg>
+<var>${parsed}</var>
+<arg>__import__('urllib.parse', fromlist=['urlparse']).urlparse('${src}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.978210" elapsed="0.000323"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.980244" level="INFO">${base_url} = https://conserto.pro</msg>
+<var>${base_url}</var>
+<arg>${parsed.scheme}://${parsed.netloc}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.978659" elapsed="0.001626"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.983371" level="INFO">${path} = /wp-content/uploads/2022/03/infra-0x360-c-default.png</msg>
+<var>${path}</var>
+<arg>${parsed.path}${parsed.params}${parsed.query}${parsed.fragment}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.980446" elapsed="0.002968"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.983719" level="INFO">Base URL: https://conserto.pro</msg>
+<arg>Base URL: ${base_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.983568" elapsed="0.000205"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:57.984043" level="INFO">Path: /wp-content/uploads/2022/03/infra-0x360-c-default.png</msg>
+<arg>Path: ${path}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.983892" elapsed="0.000207"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:50:57.984439" level="INFO">Creating Session using : alias=img_dl, url=https://conserto.pro, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>img_dl</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-01T21:50:57.984271" elapsed="0.000510"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:50:58.174269" level="INFO">GET Request : url=https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png 
+ path_url=/wp-content/uploads/2022/03/infra-0x360-c-default.png 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-07-01T21:50:58.284259" level="INFO">GET Response : url=https://conserto.pro/wp-content/uploads/2022/03/infra-0x360-c-default.png 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 01 Jul 2025 19:51:03 GMT', 'Content-Type': 'image/png', 'Content-Length': '101162', 'Connection': 'keep-alive', 'Accept-Ranges': 'bytes', 'Etag': '"6266936b-18b2a"', 'Last-Modified': 'Mon, 25 Apr 2022 12:26:19 GMT', 'Vary': 'Accept', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-XSS-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff'} 
+ body=�PNG
+
+IHDR�h!&gt;��IDATx���w�%�}��oUu�4a�"G�`E�9�Y���lJ�$K�,=�~�����m��V�-�� Y�eI�D��H�H�s�"���"A�H`������]U��GUuW��;�w���;7ͽu����/Юv��]'`�ڵ�v����hW���q���3��]'�":��.V�c�4!X�.�ݾy��e�����'�]�:ɫ=}��]'��O9���{7O�ݾ@�&lt;QO&lt;�e��,���t���eB����r�{h���k:�'���S�n;��[]��g�\sM�Ķ�]-е�]�Ϻ�+_���y�{�xt���&lt;e��'���-�Sֳ�|�v��S(���ꛎA� � �H��B�yD
+�m�i��+�7}�$��[vL^���O|���]��ur֭���'��U�8t`Ӑ���ڗ&gt;0����yv�S�� 3@�l�1ޅL�e�%�$E�M��B��\��Z	qKW��_�e둗m٪�{ݳ�H��\ۮ��u:oRt�������K_�&gt;�g�]�=%^��d�*m�eļF"	P `���ܘ�`l�ct�� H@�9@$��M&amp;�%��Jݿ�ӽI&gt;sAҹ�M�_�白��LoTi��aᔯ֌ҮG��z����7�ݣ���hx�o~�˯_���k:1$@]! �@�J�k��c�ci�����H%�JH!@����� �"B
+�%��m�,�v���!�+r���{�_T�]o��w�)���O���2ZwҔi�[�},3�N��Bڝ�V2� �k���q{���wEN�}�`F�_��m��:����R�&gt;�oۘ����?2��m�E�H&amp;D�D囅ف��`/Mjk`��1�Xk�Y�5��|`z�� ��R$J��$D��"+�3&lt;�+}͌@�B؄�(�%�1vd��(��+@����g�������*���=b�������z����e|
+���BЮ�*���I�}S��d�ߺ�&amp;��C���d�潓�g�&lt;��ABDJH/-2��'=`k���1�1ȵ���ְւ���c�"'U
+! �t�M)t�ԁ�gzD$%H�p�NM��Z�p'f�o������L�������A���N��$�ig����a��i{�lיtX�H!�3�A�@׮���ӟ�?�g�~{�����5k�L���QJ���`㘛֎��F#�N�[���!��ʛ�3:�@'M�I�Bʔ�^!@BDR��&lt;&amp;��[����� ,#a�ݯP+$"_+��,���!H���\����v^p��/xA��iWt�jי�f��{�v:p�j����&lt;{un�	PG$�&lt;�����ٌ���`�s�Z#7�Z���E5��5��H�r�:)�IS�R"�L���ϙ�+JBRB0���������c`�2�z��=��,���@ʵ~�ܼ���oO]X������Ԯ3u�@׮�~�������|��W�j���l�2ü�Q"DpJz�k�&lt;��Hm��q���� /�.k�%|�N	���H��R�^�T�}��yf��M)��,�\���5l$[�Z�-{(�&gt;k$!@R��B.�Y�#I�v{�姗����/E�����v��tY��c��&lt;��p��d�x���u�B�:��d��G�5��Ȍ���7Z������,.0�xy�4H�I� ��}(�X^��A��B���5A*&amp;��Q���Pq�Z���3�X����NQkCvIV
+�I������/=�׻������}u���v��q\��OᎣ�7�qx�{�������``AQ���`8פ5ȴ.�ɉwRr���`��xՁ���w������!D��:J9W�RH�A��K�L(�:����RC�-�����ܵ?hS���{ �n�0��B8�'��$�6����*��oݲ�?�W�`׮��ծS����[�/�������d��Bc� !B�[D�I��̰la��T�ȌA杔�����3�&amp;6������3T�J��N�$ur���Q�boL!)�RBJi�(��I��Av��\|o��pL��{~���R@�bB����^��߰�壿����2f�Z�kW�Nɋ�?���/߹�+��~���-s?%�T8p����`�{yr��s0�5�&amp;���	��@G4��usJ��$L/_&amp;�d�@J�� �gf;,��Ҧe&amp;�$�`�a��قX���!ȵ/P�n" M%1��������O�ҳ���}����{��Cg�����v�{�~d�%��V��Wc��\h�.��13�7edZcj���'S6�F�hM�v����`�%�%	����B�X!�HgbQ�V��EDĤT!�Z_�c�A�%�H�p����
+'�"��K��$�Rb̽N���~�Ͽ���&lt;��!m�J���΅��R^iS`��s�n�������o~���?3��5�5�@ϻ(��2��RI��)s/O��}��mb%��rB̗8�\���Ϝ��H��ɒA������(R[�co`��Zg.X�[��881�a@~Ă�:�S�1��x3����K�a���.5�����G~�W^�jݾ*��2�v���m&gt;��G74����&lt;e�t���ˍ�&amp;J���|V&gt;�ˀ�����M`�����h@����&lt; l2�ԥ�y��9%�2f*��$	� �r򤔐�dо_��k@�36���c��ӿC�n��		P�c��L�@��X�v���~��\tE+a���v��]�������������?�ñ֗�YH�`�`x�~���օ*O���
+��N�:���1�ٟ��z�A۫];"r-��NL!$�R )�H�E	H��"f*�u�@D�I̮6	��B��@�.AJAt:���I����x�`�����zԾJ��8�c�f����x֭~�M���o׃������&amp;Z_�֦)	$�;����dp��m�y�i���GA:��cW�2c��nTib{![��� �dLv��0C	��d�� ��������LA���������� �����X�t.��Ұ�Cy��{&amp;��پZ��8��z#�m5����,Y�޶�Ѓ�7?������o�h�f�)!��Q9l��$�0~�@�52t�����e�:`q��W.[gt���p���ht,�a��m���2�H�c�B�%\k��yw�"�� P��۲%�gv5A������B@2#7f�Qk~�]���+��7��v��u��F�k�]�5#�!��yh������;��H����@"|�c�-�̰ր=S˽�dZˣ�k
+i��`V��{usI��c`�3�y���&gt;{3���P�43:�J��\������i�`�� ���9,\�&amp;���t�������Z߰+�l��}%?��v&lt;7]���E�������:�g?��eo��n���r�kvfka�p���zጩ����V,'�3��j��F��&amp;�����r7=���013���7�t�!�8�F���=T(���˓Ej	B\�.Lwyx��O�+�&lt;��v�@׮v�Y���s�7��{4���&lt;{�e��!��R���"�Xc��&amp;���}3�G�4��F`V�ܼ�����n"@�կ1�����,�K��좺$��9)M1^���ñ��.jn��㝖��հh�,J9vb��&gt;6W���|κ�_-�k��]����׿����W��摇޴2����U��"�[aS�m|�d����vCOps�����3�P�d�����X�k�ʤML/&lt;���3PLW�*8&amp;[����P��{�HS��� H���N��2&amp;@�	Hh�+n��6�������Z�h��]�:9�wo���ů}�{��F��f�넠ŁL����֘h�&lt;ϑ�k�6�9�r(��y��&amp;�W�����d�s��^z�����s�d��w�Z��	鮢&gt;U!�4����=�
+��f�F�7�P��.h:ML�0�C�v���Z�kW�N�z�G&gt;�yϾ���l�/r�'�ӄ$	/MXn�,�4ː{�f�[�{}�3�: ��:u0��i�&gt;;��z-�!OnT�[&lt;k��k�F�(m�5�*�Y|=S���@��.",Ȃ�֜�:p��+�/�5-��@�\�{�qxC��l��]��n7���]��ʁ_:���!7/$�o�9��&lt;�(ː�co�9������5��&amp;6��5�d�r�ٜ�1�ظܚ�s��x�P�.���&amp;�mĀW�9�a_�}!\DXq�T��(��H��&gt;M�^��h-9C^����Z�k��]���֭��¯��s�=:��#�?��i������M��}dr��d*�QoƎ����5����ʆ��|���
+����&amp;��邳�;l�ҌA04�G���7�6�B�ޅ�u�T����&lt;c���pc��8^��D�]��uR@�_&lt;��+�����0�u�����������&lt;C�,�EC��:�}\��M(u&amp;T������y�9�(��	�	t��s�搊�Y&lt;~�.���t�bc1m����s�X�� �.'B"�M��a�]-е��[�v�¿���y���Do^�tDGx�#04#��5!7D��:v"ˍ`����eXΫ���ck�;3�7��5�g:��2�k�)�M.`��n���]L#p`��=vs�5� ���������,A;rz^o`�W|�Z�k�9�����6ߗO��u%`)M� I`���sd�X�#c���˂�q]Zs�R]��`oԱI��3�|�ڜgiD�s#����ۈI�0j�r ��:Q����[�D��Ș��������sMÌ&lt;d�`�1l
+8�̴;i_��j��]����~�����W��4U�N�������h*-� *z�HJ�R���➯��|f�K_s6�j�� 8�똽m���&lt; ţ���?�r\+A��o`x��7�h�P��p��i�-���,�}��}�{�����]-е�Y��������a�?�B��I�X7C����b5�mˡg,86�; �&lt;��f� M#w���fH�9���b�9���	�@���&lt;��0��9�e��,`��ܬ�~t���A{���
+��k�J��j��D�6���]_޽��C�=�a��#;��b��$I���Tk����Zh���E7)��̍�q�FJ��x�14"N����ű[sY�0�������]�AE�n��� �$���`ra�8�t�0� N��Z0�\2U��-\+��3qD�.DDV	�p�^|���v/l]�N���?t��l��4QW,w�H��Sk1��Ȃ�2J�g"�1���X��`��Y�A�¬�LV��50��Uy&lt;)(u�����;D�\�[&lt;�4�����
+Q2��+T}�܀��j4WY�5m\�#_K)h���`���V��~�]{z9=ן|��⿯����/�	�;!1�sL��������K�!v*(p�*���x����n��,�`��Y tlv6��iE�ƙ�l��1f!A�B8���������?�O(9X`���52^�EI��wq�{o��?�������Sk�D��-�k�	[w�q~��#W�W�YɅN��DHfL�j&lt;�������fc
+�F�����mb\�������u��jNoݼ�tMF�y.�y=}M�'���˦r.�X���z'����1p��5��Q@Q���2e�j���4��z�����p�(��̸��k3����i$���&gt;+��d�
+ڵ��߇$+����|R�$�'	�&amp;Fð3+���QiA"��-eL߸MZ{P�2�#6u����-�����VD1Hc+EM�u�
+���qeu�3=��L�����H(!
+V'�	����f��kl.n6�L�g�[���y��� �e�������ڷ��ڬO��I ��MJ]���u��7����'�R��v �r�W�I��k��`���ƛ�)��5����D�8E)��~�U�w�&lt;�Ğ��/0w�MiᏤCnJj��\\��$����t59	��\B;F���(�������/�X\?����:	��j�A*�_��]��6%�k������q{g�����m�♰��Go��-Y�^$�B� $2��f)�������i��X���M�&amp;�0��b���=���u!Ε�1�WA�T9�n۪��i�:�2lS�s�,�(����7�W����H�!@Bz��,W�L��at?,��c�Q~��	�sMu ��Qk����Z��]-е�,_�u��+?�J%B)�D�!3&gt;?J�R�͔.ؒ��i��%'c� ���Y�K���j��ui��/��	�X��Q�:R�	�cs������e�"�"`DH� ���	)]}η�ح"j�G����,؅x/�p���yR,Ao��Xi�Ƿ��	�-е�_��F�6�kFR&gt;��@�(��Q@p1�ZJT�1 "*AJ0`��I44�\��Ȯ6�d˞�h�Z`x3��1�k��kM�e(r-�N�wd�i�I��t�^��	x�2���ǵXf��L���&lt;:� GT��,3,Q�(����)�ڂ�����]-е�&gt;q~��nz#+%��PRh?.��[�CJ�����	(�Xkaa`ӳ�$M����{���N@7և���kL������&amp;�LP1��$�ʯEcz�I��sn��8	��&lt;�Iru��*]1[_�rh���F���� �*��#�xGڙ���[����u���~#�z�.����V�xA	!4�1o� r���tF7�@""p �km�q�����h'�9@�G��y@�M*5�7�L��i�u�4����޷Ⱥ���51�D쑈 P��"�3�xSr��L=�#�ch�3�mvM�AՌS}�A��zA�ֈҮ���6�WO�ǽ�=\M��#�"	��o��|HP1�ZH	rI�Es�$B�����Z%�Mt�5dQ�I�!0�Di^qҦgq�lga{^�V}�[S+@�Y��3��m���n9c���ʁ ��ɕ!�Rz	��J�������6��&lt;Q]��v蒰]斡�����޵/I.	{� ���p���I�����.�H�=^��1�52)1�s���)�?.4�eX�݄({����Y߾�h��&amp;M!�u�/!J@��P"�Ա�����Dx���U�D�1�p�j�W��bv�(fq(�V �C�'�ǵK��@Vj���j��b0w�q]s�5�	�8֝w݅r��k�T��8�3���Tش��=�R�+�3U�FY^&amp;px@�6ao� �u�0���#����\&amp;5ֳ�bܔu���Wo�����s�(3�/� �sW
+?�@	��ʈ�3͝zI�,��Y��X�0� &lt;w��Jq[��xk�6dV����S��ʜGz��-Н)�]ǿ&gt;r�PWjAi�&gt;�/f1({�$3���+�R!�	\�b�ٔ$�� ���ن9Ȁ1���
+�*�'"�����l��DC�36�s���CLc7%J#K��	����Ɉ�&amp;'jwqV�/(���l��r�l����)ck�}Ӊz��g롴�yځ����/�o�(�ղ��[�޶�9&lt;�tM���B4U`a�,ճ	��DOJt�D��B���qac��[�\()`X���/9d@FAơy�"ɐ����άR�aF�\������6�]����5D�	"�z]V�cl1ȩb��l�	
+&amp;[:A���H�4�346�\�~ǿ�5�I8P����_w�w�I9��c��O1�똬��v=��7��d��I�I����s	�?E�R�%	zR��7t��ba�B�4�$��J)�`�l�f�,�ˍE;@0��5-�EF2���"��&amp;���1��FM��	�&amp;�8�&amp;���O�Tf�)"gܩM �&amp;@�ș%�d�9��tOt��Lk���*��A�;d�i��ǆ~��e�ۮq�@�%�+^_�梽�x#�($��~��^�Sҹ�))32!�T��D)rRBZ��-�dX�jt������@�bq*�� �NP%�9�&gt;V�'�M�-j3�h&gt;,0���dHATH�2��!�?'4ܗXN��N���r˰l˚\��Pw�F�o��"�_F0���B��8���T�$��Ѯ?�����6cF�R"�A��~�B��6hA@�{�\�9�%M�P.�، B���@I	���X낌-�IրC�X0��^��͕�WaC�q12b0@e(�3�؈��i����k�r;	(�Ud�Q�T���,��^q�`h#p�M[N�;6h+-���1[������]q�T0���u��ArU�œ|���v���i6�?"�X�4]� �pn�z�Tl��(���&lt;4!&amp;H�R�LG���3C�%#,�q��ZX"�pl��]��&gt;Hںx0ϚX"��x�O�XB�&amp;������@#z�dG�Y�ED '���`r��3�z�IX1���V̘s]M�sz�(r�������ex�F��Tb�:�]g���/|N������4!��B����o��]!�~S��0&amp;B7-����jn����RF��ad��;��ֺ80��L��eX�.��׳*M�1�av�C�yլRBF�\���}
+�S��&lt;�#o6Q!��٩��W�dM��](�Y[�U5�S�3W��P�����Y����D���C����N��ɏ7����I&gt;+�W�d��u�m���k+OX!�IH)�I��T��o`�In�%!�)(Ş���Ƙ�H`#�//���� -V���`C��gv�/���,�:Ӌ�dM�UbX\����ͨ�W��gM�gSÃ��`T2�B���8��W,�S����
+F���B3à:X��'��)u�3�zý;А����ߎk���}��R�i�!���̕N�z�p���o�$�I}�`I)0��Xؐ�,�Ѥo�EY)Pe��`�ր�M:�Z��ڲo.��`�(�9�,��ӆ�6bn���x�����ڕ�~�!߾߮���g�3D������@��8���$�$)�S��-+e,��dq1'F�6���\���&amp;��Ŭ7:bV��i��i�Į]��=��$�;�ݙ훴y}�S��o�W$��T)��$ &amp;Z�MUP��7w�D׷�����,S�0l�Y���H����E�
+�co�fX���$�P��i»�拾�&lt;���I"j��x����������Y`v�K���dQ��Cސ!��6*5)�F�%aԎaF�e��L�H�l(�x�������&lt;�ns�O�=l׮]�y��t'��j����q���������*پ)M�!�92?�,m$����D� ���C]었����J3C��Zhc��:	3�a�j4���r�qm��Ϭ�0�:Í���r����߬�dY���1
+CG��
+(Yv�q�P�MA�&gt;�$4�6���` �ˉ3}r������T��X��Ԙc���T3B.�C$Rf��=�\��I�k�ٷ���#�����M=o��AJck1���J����t!�@W
+t}��ϱ%����Ƚ�h���kn��;KS�� W�"\��G�g�	��l�A��B�	3��0V��Bz���/�O.���E_���	/U��\��$o.!��"��Y:���-WOdihg�����M3m�~gQNB��4��Ԍ)F��R�̈́���]-е�����O��=�r��NW�U��8ϡ��C`��ZtU�� [��9&lt;L�F�Akka&lt;{ʬ�05��*[�7F��46'�AԻ�T ˞B�:�q���˳�]]���̎�ᯗ��h�.�SxjEQ3u�9�B�\�^@0��"�A�0٠�H��_�]�������{&lt;�F�lf&gt; �q�5��
+��|�-�;�/�3������=��&lt;��[�:),3�F#7@n-2"��JV $R�r��J)�1� ���MW�(�#2�V6�or$aV�9ϔ���- �1�K�m��oVL�i,ۂ��y��&lt;�_2�'%��9�=��Ub𪰩���临p�0���������޼����7�~���ܚ{�ww�ZF׮�qf������g�O�J]��Ӂ ��5ȌAn����A�@b�K{�|����6jf6�%�[����f����\ͭ�
+2�!���,�	��ޅ�X�`,�&gt;&gt;r&lt;�!��r��BWo�r��3�p�n�%P�M8��M����\�c/����mM�4o�^��#_0^����m}���̓'Sy;�����,������!z?�J�zݎ�k01�ZL��Ț����h!��l7E&lt;�p�	��f��H��`s�l4.&amp;��͕c�Ƙ�1�K�u�L�:v��5�D
+�љҥ�Vem�siI4�M�H$)|���S� F*@RwG�m6��sWF�47�7J����4��a:C... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-07-01T21:50:58.284889" level="INFO">C:\Users\ibrahima.alata\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'conserto.pro'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-07-01T21:50:58.285263" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>img_dl</arg>
+<arg>${path}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-07-01T21:50:57.984914" elapsed="0.300394"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-07-01T21:50:58.286097" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-07-01T21:50:58.285489" elapsed="0.000668"/>
+</kw>
+<kw name="Create Binary File" owner="OperatingSystem">
+<msg time="2025-07-01T21:50:58.287846" level="INFO" html="true">Created binary file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;'.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<arg>${response.content}</arg>
+<doc>Creates a binary file with the given content.</doc>
+<status status="PASS" start="2025-07-01T21:50:58.286263" elapsed="0.001685"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2025-07-01T21:50:58.288546" level="INFO" html="true">File '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;' exists.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2025-07-01T21:50:58.288136" elapsed="0.000584"/>
+</kw>
+<arg>${Xpath_IMG}</arg>
+<status status="PASS" start="2025-07-01T21:50:57.953672" elapsed="0.335235"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:19.529253" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:50:58.289772" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${Conserto}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.528703" elapsed="0.223577"/>
+<status status="PASS" start="2025-07-01T21:50:58.289536" elapsed="0.167587"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${Conserto}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.528326" elapsed="0.224331"/>
-</kw>
-<arg>${Ilots_Culture_Agile}</arg>
-<status status="PASS" start="2025-06-30T12:14:18.890588" elapsed="0.862288"/>
-</kw>
-<kw name="Ilots" owner="Keywords">
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-30T12:14:19.754456" elapsed="0.367527"/>
-</kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${xpath}</arg>
-<arg>10</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:20.122154" elapsed="0.014822"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:20.137800" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Infra")]'.</msg>
-<arg>${xpath}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:20.137544" elapsed="0.784102"/>
-</kw>
-<arg>2 x</arg>
-<arg>2 s</arg>
-<arg>Click Element</arg>
-<arg>${xpath}</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:20.137228" elapsed="0.784663"/>
-</kw>
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:20.923768" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
-<arg>${Conserto}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:20.923114" elapsed="0.177834"/>
-</kw>
-<arg>5s</arg>
-<arg>3s</arg>
-<arg>Click Element</arg>
-<arg>${Conserto}</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:20.922343" elapsed="0.178830"/>
+<status status="PASS" start="2025-07-01T21:50:58.289118" elapsed="0.168156"/>
 </kw>
 <arg>${Ilots_Infra}</arg>
-<status status="PASS" start="2025-06-30T12:14:19.753832" elapsed="1.347513"/>
+<status status="PASS" start="2025-07-01T21:50:57.401764" elapsed="1.055681"/>
 </kw>
-<kw name="Ilots" owner="Keywords">
+<kw name="Actions Ilots" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-01T21:50:58.458255" elapsed="0.081518"/>
+</kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-30T12:14:21.102757" elapsed="0.355854"/>
+<status status="PASS" start="2025-07-01T21:50:58.540439" elapsed="0.304158"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:21.459212" elapsed="0.027440"/>
+<status status="PASS" start="2025-07-01T21:50:58.844817" elapsed="0.014636"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:21.487285" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Devops")]'.</msg>
+<msg time="2025-07-01T21:50:58.859983" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Devops")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:21.487074" elapsed="0.802318"/>
+<status status="PASS" start="2025-07-01T21:50:58.859817" elapsed="0.230972"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:21.486841" elapsed="0.802768"/>
+<status status="PASS" start="2025-07-01T21:50:58.859620" elapsed="0.231279"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.091332" level="INFO">Vérifier que l’image est bien présente dans le DOM (même si invisible)</msg>
+<arg>Vérifier que l’image est bien présente dans le DOM (même si invisible)</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.091081" elapsed="0.000363"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:59.104958" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${Xpath_IMG}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.091767" elapsed="0.013299"/>
+</kw>
+<kw name="Suite verif" owner="Keywords">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:59.113404" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${xpath}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.105698" elapsed="0.007952"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:50:59.127523" level="INFO">${src} = https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png</msg>
+<var>${src}</var>
+<arg>xpath=${xpath}</arg>
+<arg>src</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.114066" elapsed="0.013519"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${src}' == '' or '${src}' == None</arg>
+<arg>${src}=</arg>
+<arg>Get Element Attribute</arg>
+<arg>xpath=${xpath}</arg>
+<arg>data-src</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.127836" elapsed="0.000270"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.128383" level="INFO">Length is 74.</msg>
+<arg>${src}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.128245" elapsed="0.000189"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.128694" level="INFO">Image src: https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png</msg>
+<arg>Image src: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.128566" elapsed="0.000176"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.129940" level="INFO">${is_absolute} = 'https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png'.startswith('http')</msg>
+<var>${is_absolute}</var>
+<arg>"'${src}'.startswith('http')"</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.129055" elapsed="0.000999"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${is_absolute}</arg>
+<arg>Set Variable</arg>
+<arg>${src}</arg>
+<arg>${URL_CONSERTO}${src}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.130583" elapsed="0.000848"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.131931" level="INFO">Image URL final: https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png</msg>
+<arg>Image URL final: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.131695" elapsed="0.000360"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.132698" level="INFO">${parsed} = ParseResult(scheme='https', netloc='conserto.pro', path='/wp-content/uploads/2022/03/devops-0x360-c-default.png', params='', query='', fragment='')</msg>
+<var>${parsed}</var>
+<arg>__import__('urllib.parse', fromlist=['urlparse']).urlparse('${src}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.132240" elapsed="0.000501"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.134421" level="INFO">${base_url} = https://conserto.pro</msg>
+<var>${base_url}</var>
+<arg>${parsed.scheme}://${parsed.netloc}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.132896" elapsed="0.001573"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.137188" level="INFO">${path} = /wp-content/uploads/2022/03/devops-0x360-c-default.png</msg>
+<var>${path}</var>
+<arg>${parsed.path}${parsed.params}${parsed.query}${parsed.fragment}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.134622" elapsed="0.002602"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.137518" level="INFO">Base URL: https://conserto.pro</msg>
+<arg>Base URL: ${base_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.137357" elapsed="0.000215"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.137829" level="INFO">Path: /wp-content/uploads/2022/03/devops-0x360-c-default.png</msg>
+<arg>Path: ${path}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.137695" elapsed="0.000186"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:50:59.138143" level="INFO">Creating Session using : alias=img_dl, url=https://conserto.pro, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>img_dl</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-01T21:50:59.138000" elapsed="0.000316"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:50:59.357899" level="INFO">GET Request : url=https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png 
+ path_url=/wp-content/uploads/2022/03/devops-0x360-c-default.png 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-07-01T21:50:59.418496" level="INFO">GET Response : url=https://conserto.pro/wp-content/uploads/2022/03/devops-0x360-c-default.png 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 01 Jul 2025 19:51:04 GMT', 'Content-Type': 'image/png', 'Content-Length': '138110', 'Connection': 'keep-alive', 'Accept-Ranges': 'bytes', 'Etag': '"62669389-21b7e"', 'Last-Modified': 'Mon, 25 Apr 2022 12:26:49 GMT', 'Vary': 'Accept', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-XSS-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff'} 
+ body=�PNG
+
+IHDRh����IDATx��}w�Օ���UU�ɣ�Q 
+�s6��qcp�a�v6�޵�k�[�:`l����䜄@(gir�XU�~T����HHB�����LO���w��I$�Dub���X0&gt;�۔�����u�`�|ڙ������ۨ%�gI��4�9s��.����3�\�&lt;���̝�������_~77hI$A�H��*�mĻ�Ļ�����A��-��w��5��w.�D{d���d&lt;�@�7��,����6Ǚ��@@�Q.L`��D��T�S��HoR�R�(�&amp;����Z��&gt;�/��f&amp;������H�ݻ]����6���=Y*�t�U��p&gt;xᳩ��E1Կ?���v���ٕvf6"H	"&amp;9w3	P���C�u,��v��Ua�ߴ�ͯg�����L�xI$�'���X$�b����{/oػ���Hθ��G띫&gt;&amp;�C'�e��e� "���
+`!@D���I$��,�![e`�(B� Q���(���4nX�̣���`�e̓������|.9�I$�İ1���1mkw4�E2���q�M7R��Z�[~|�l��O�Yi&amp;1B��(@��N4�	$�C%R*�&lt;fy�,���m�~�����D�Z&amp;��_�;4Ű�s��K��&lt;h�J���#�$�/C�y��&amp;��?g��W�R��V���I��Tx���r��nf����aq*���&gt;�&lt;nڽ�2��*���5��$�6��Ͱ;��}��bOh�Af獇��u�����d�گ�|�i���� �,�	�&gt;'Ap���N�Ff��&lt;��:���a�o8���2̿�V*�X)��&amp;KKg�s����W!�5^s�r[q���{𝼳�(Il9�HJ�v�x��!ԋϔ=&gt;#�6}����g+��R�tn*��:�nf:�:7�eۨ��LL��J�:�	k��v9?���o�kN���P�`�� =ݯR�w`d�Qm�^*u��&gt;�a;��H"��!��A���Oӝ$n������hz���?G������+�
+AI�o��b�%)ǟp�
+��J�6a��5�:�	뀣���oo�+�:]t���0KG���SD� ���\k�,ͭZtϣ�~���&gt;�_����I$��2���x����s[;o�TaB�=}o.�е����_���T��� P8,IWC�uKw���k�Q�T�?0�B��Ts�˹){�!���GڛV~E�&gt;KؕFJe@��Ê0;�*%�r1Öu �n:@t��`C�ƛ��G����ȺS�:�w�{`w[X��#��=�,���2 �+���d�{���&lt;���빗&lt;Xn\�%9�s,�	.H�4�Uxx:�����A
+�{;23*����A
++hRڍ���Nf���պ�W��M���x]JҲ@:�_���6��RlU�J�ݯD�Tڢֱ��c����4�3��b�Bz�W��K$1�J��$��b{���v�=�]��G�B=�`�����]'�4��.� �I��=\]���*�&amp;�i&amp;�A��Qt��3���-H�M�KiR3�[��I��}u"�g 29����eC��\�K`e��� �[T��a��c�P�u�wӟ�܅?�9��%�\�]B,����GｧMH9IK��8��Sx쏿�K��%�~�c�D��Խh�_��������J��F8�SB����pٌ���;�3��"q^�J�;_º�AX�
+h�
+r��&amp;Yg%�T
+2��)��`��J	\.�m����\+v�[�f(j�X����ʴo=�ǿ�ߓW���MzF��A7RsRM��&lt;�}��;#�$`�Ļ��H*v�?]�N�x�d�s͗�0p"����H"0�$\-��A�Á����
+V��'_B�i�
+���rH	���в���-U��P�e(��ë��{D&amp;W����`���tԼE��Ӽ�]����=v�}T.�β��?�r9K���-K�%4y;h���l܎����#i����=���?�-��zz�|����P�Eª��w¬�f�,�$�{�@��P2-��Ī�"�$`�Sj�@��H��L"��0�6+@�U�n��c(���~��;��
+CYڰ�"Q.�7�0�����g}�*��y��v.���U��7(5�MD�K�R�#�ʓ��L�mkcH����0I�q�u��֗�\x��２��D�&gt;���V{���B����*8�J˶�i ���yVLd� 	@J�:�!�t2�h�Ü(0M�\����&amp;8"26w#
+)A��]3������ԟ�س'\�ϟ�h����b�rb�FCR�0p�ɧ�&gt;��1Il�~�ڄ���W�X$�s\�w�	��[Z���s�����(J`�}@�얎������G����r������w�
+lf����f�a)2��J� s� �p��0+P�"P)���h T��?�݀B�t�"��O�84�o�&gt;��7��F"�а��7�Q���GȲ&gt;Ė%IJ����$Ĭ�翜�Cv�Ifwh��	ND�#;^Z�"H�$�ģߺ2ŷ��X�c��b��tR*��&gt;���R�6�AE5=Gq���&lt;�7�����ځ"ʶS|!	�	B��j@V)]��m�3N
+F1XY@��T{��*PqS*��u�N���
+��E����*�Y�{�P������;�;?�v�����;a�JG�Rߴ+��r���GA��*�&gt;&amp;;{��+�h*�ݦ�v������\I�zq�_��|r��Ǯ��ê�q��W��2����H�:(09S�Y�7�{*IT�+��uy��Y�Ah��	�SN�#%%�����ԜT�eVT.BU�P��%�&amp;X�e.�����Z�R3�A��$���&amp;�w���?�������������L��Q)OU�r�V�e+)�L)��%wҮ1)'�Q�����$F�]�;j}����e�R�O�JaV���Myx,�-v����*&gt;���R
+��,�Doل
+��Q�R�vHK#�vt��~�-T)�KE����G�DX�:7Z\*$���anX���7�����?Uf��}?��N�9�Z����nK3��D_���,��CO��jh���vW���r���9��On�$�؉"�X�����w�	��]�{~u����eQ&lt;�F0	���_2JT�B�j����y^p-��+���{��2LUM��0� �3��$�=��i��Y�-�|�"�e�E� �0��*Ye5&lt;���w�E���ȶG�����ଟ�q�NvڷT����
+۶.�5�r�\֔m�"[�0���b�&amp;�8��g��C�Hb��Zv�$;�n�|ݠ[~|(�l���=�Ռ �@N��*KQe(���?�J
+g2�:Ʉ�_
+�
+V�a�`%��DT0FwX�F	�=�����
+�5S��5�.X������#T���c)��pS�/K��lJ����o�Ϻ|�ΰ�^w#e/HOϖB|�l��,��.� !����LD�,�Е��I$�0I������G~�����o/zn�g�ލ!�&lt;D��IRۙ�[F*���\-Et�88Ew6�X6ֻ:����W�����"�����BdrU�m���crU)Aٖ#��x�1�E�Y�6m�D����(�c���,��{����\����o���QR��D�Z��'����i,X)([�4�!��^p�ç�s�ւ�$u�Ğ��Y$�"���=���k���#����|P�n�U����+m�5��&lt;*�cr�5&gt;�@p�,=_lB�W�BW���݃�.U`tY	�7c�|4�� �i��}=l˯��ABDC�CAu�F�PK�0P*H�l&lt;I�~�����?v�}�v�.���n��:���\�0�f�ʲ�l�T��qR!J)��!�5�g�����V�$k{zl�,�AV���W�e�~��c�բ8x����� $XV�F)��@���R]�Ggf��X�3�uCU�W{8:
+-��Ҿ��L�Y�%(�(寔�U�c(��a��{�%%Â��[��s
+�����~A����v���utt��N����c�bv�RB@J	���Z*#���J�b~��:���/ؘ�}I$�� �$��&amp;q����{�oˎU_�=�Ui�N�N�vۙ��σ(TA�|�"
+�K��U��X�_DѪ� $m���h��6�p�-�lP��43��2Ҫ����E���y?Ql�鈁����0�Ox�޾��/����믛�i���T��X�U.êT�OB@��B�R02h�4X����������/����&amp;Lb�X|a7w�LR!I��x�g�NƛOMţ7}B�\F��d��v��	����S��o��s{��Ɓ&lt;����_���
+�0�ptiM�H�:
+Mw��
+0+@��Q(���GA��w����8Àڪ�G&lt;�p���D��������-�^�����y��7ѷөԡl��-�i:���4ˮx�;�~77� ���~fY���֧C�H���4&gt;	�Hb����}���♻ϗ�k���A6]���(&lt;Q�'�$�r��[-���׺PJ��P��!tʰ:��Ƨct ��(�\��9���fVJP��������G������e�u��Cr��)�`\V�\ �l8L~3��{�\pם/�L��[o���L�T��B�4+(�t4�6�­�z�(�`+R)���DB��6�+����1�a�\��$v�n�?]����?)չ�j*�e�BWn_�X?���"&amp;"�A��
+a�R+{�n����Q0� �7�"�в9P*�p���%p�X�$�p�QA�.�������P.ꕛl.|5)�J�CW.�n&lt;X�&lt;w�5Wxgg��m�&lt;R״��t-k�˰M�e�lE��s���XA0Cjr��J~�׭���/O�]?�Amd�*J#��X$7��=��m�^���+Vv_,l����,@�(�5�"�_XWAD�=�E��(WL��cE�w�LLZ4 �iN��k��Pv����c�(�\��X	����ߊ8�I��F E�?��c_.z7GD?}���|��_ܺ����u���&lt;m��M(�� ����p�&gt;BhYM�ϵt}����Mw�N�=v݉6�w��f_�G��!��^o�m��=7���_&gt;J�ݟ"��I����4h��2��e����{=z��L���9-�6�݃�Ewق�J\hќ�G���(RȬ��p�\?
+T�P���z.�4�t&gt;\��`���1K�1�Wۛ1�ȝ�k@)/��󬔱�G�~��/��sS)b�h�FT�l;�lʲ��4��R�
+Tx���!Cj�I
+4	��dzNbW�I޻�w�yk$۳�0�蛬b�|e�̣77ӽ�&lt;G���9�*�jj5�c�Ez�4��N�ljl��NW����T�*��=0{6�Ա��(���R��f�k)�=@KT�|�PĪ�!l�;���(?�ц��&lt;�JA�6F
+~;s�j�ͮwLPࢠ�集Qւ6*&lt;�b�$SC�
+��ITP�va�CRv��Xu�cַO��MC���4o��?^g���))Of"���q$��g���lH�fH)�M?�44���4�q�x����:-�؁ڋm�0nOj�����ڦ��~��n��ѹ|����g4tncn�C��&lt;Z�(P:Ҵ�lY�"�Y�*���@y�
+�����w�@~�j�������P��X�?����-�W{���k8fW��;~^�(���(���e(�j؇zE��r��|��c1��&lt;"���W���b�j{�{�F��믔$z���?&gt;�G�ߋ����8�H���uDC��T*�M�eA)P�4�s+��w޴!��&amp;"�0��
+j��%�M��5#��^ǉ�Ů��wh���~[6�xe�V.}�y��K��=&gt;��A$[�ARs1�W����0����"H)p*��@� ��3 MM��T1s�j�~}�&lt;��w�Ě�^�ϗ�_�a�_p�Q��(�I�&amp;�e��t.��0+��W&amp;�wˌ�փ��w	*0"Pw{r��V�R��Q���@S��9v�o��9ל�o��w�u}����k�-MGj���e']�'�-�a2���xYM��됺�t�����Q�2���rKΚ;/8�H"�9#��W��~�S�fᒖq������Iﵯt�)�Y-��:�B�~j�[�M������P):��#��S@:�5��G��N��4b��Q@���Ͱ�&amp;z�-wߌ��C�Lf�ҩ�h�]
+h����0�~����`����9dƁoz�vL�����%Ê:C�0Bafp`��7��E%U�ji� ��2f�9~��]�Ў������g��O��+M�v�e���p�;�a3�X��VE� S)�T
+�h����y�6߼�+x���NӠoWg6��^�Sf��T�T�{t�����;�ҽj���Ư����驳��H9�Q��v)�ן���K��+� 3Y���Y)���P�~��,!A���/����+F����	��+�6m@ɲ���I��hׁ�$��m�wPGQ)9��|�r�n"lsU�-�&amp;���31��;q����"����E�sl왨�Əǽp��,��٭7�$�J�#��}X
+�fɱ�f�z�p�6���$4�CH	�I�n@K���S����e����QX�%Gx7����`8��H�g,���٣/�����ƤR�i����ƽf!s�y؋_���=PK^�\��e1��kbF�{ih�e�9'@;�D0Ck���_�?�ʦ	���Ʀ$&amp;�4�]���Eҩ��\�L��fn��Ua'C�'FJ�mQ���.O
+6	|~�΋=-����Z�K�0�D�����ҥ�&gt;���ܱ�W�=Gh��-C�mӄU�8}A,����䮤 (%��a3Cj� As���@BA�4M?�Lbss���NUc���d����o��Er�� ^�?̍j�|�}�C�!;~�x�`V`-~�#�B��2P.�ǰí܃!&amp;͂~�ǀT��n�|�a��ô�hRs���	��̴��54�Y��Ӆ⊷0��KZ�šAض��&gt;)���5~��x���"�^	#��F�*=�Zp� �vE�&gt;1θ8D���ܬ��7���=s;�9�6n+u�_S���`�Y.�r����"�J�`33�I�-h��-H
+h�~21�ʭĖ��gI$�m؛D�����cvLK�W��L�����DT�z��	�������$�j
+��炠�
+cu�
+�S&gt;۴������7����
+�{����Uh&gt;�D����kV
+�0�Ҋ������z�!�v�]L��SlvzA|wR����&amp;,E�Si���ܮ���9$xĄ���1Ӿ�f�]Ĝ7]�����T�ٔ�ە
+*����wt���G��4B����JA7hF
+Z���i٥���ˤ�n=n�YI$���H"����t[C��--�_7��&amp;(֛������u�� ��?b�1z"����W/��n�iV"�}��8������}�-˄�����D�XPc+dC3r��&gt;����c�=7��'P,�as&lt;X�e'j�+���!�������HD��u���s	
+��V���B��Eթ���5Jm�?��.\pםOl˞"�]���vUJ�tVNՇ����f�,�
+U1�R
+�	$�����A���2-5��B��]���D	�Hb�s�=�������2���%XO���߃�kW��R��ĉ��uX� ����+�|�גb`���8�s�Bnƾ�R��/���;a��"0�H	jj��&gt;� �9�kDv�ј2s6Z�{�_���Q1-_�ǴP,�AժM�&lt;G�0,�8�,b\5��~ʣ
+]|��n��z���"0nX�@�d�s���#�|��mu��e�R���t�M�*�`[�ﴩl;�x,x�ɭQJB��rʙ��+WgA��8Hm
+�%�f{=�cRi�D["9{V&lt;��۵�i�ã�r��2�v.`����?pW��xP�;:��GR��q 5���X���m�H�/C���a��(ʿ��'�w���� �ƕ����k���o��'��2d�-'����L��h=������9��&lt;�s��mf��թ�}i�/HPK^/������C�"�R��q�����&gt;������㔦��deY&gt;�PJ����Eĺ��Y�{?+��p��4m�������o�//�?��j�$���b�����ׯ؆/��o�O�����Ӧ�u蘱��6}W�0�	��7��UA�!:RKJ!�R�s��ׯ����Sgb�g���ڴ��ׂ�7�߉r��Ϣ��|��^��c�D�������b¡�!m5Sv0a��쭈C�@Aq�VD��B���6#c*b(A�_B�^��p�v��.�8���f�k���J}��y7����~&amp;=e1�߳R�|[�P��M`{C��
+�U�()�!5�l�M@�9s�+Hx���$���5�2�����%��ј4����!��Tژ�a=��C��!�P��GpĽ���l��#�f��A!0���=�mX���q��.�b���A-~	���8�mr��Sf"��flX�'�{:};pOK�t�b���%v��1Nk2��gXS�*[�N�pD��|L�p�3|�g��l�i���wǽ��Bo��뮯�G`_hNk���-ʶaG�P̀�X�Λ�
+*���m(i��pvOh�~$��6lF��"�d,Lb�{�p���9s�n��FlÍOT�[ȶ;�X��+�薦����YDD�[/ü�w�R�Ou0m��`�()��p&amp;X�RY���Bq�ؖ=���9G�������߰�f��s��Q��?�z��`˄�6c/�
+3�����AФ�����hz B��#�!���V�%A��=�8eԈ0���U�g���P��i�C)o��ٴ�ذ��~���w�JR�u� �v:�j�SiMG*�BC.��\�t��Cx�蔪9D"����_n\e1��i�����I$�3@����,��y���)��lJ��"��7���[poGhž-h'����j�iN/����V4N���%k��;�mݗ�6��7P�ÿ�r�/�z: �G�����ߘt���dҡ6�}DU��#e �X�F�|A���}PdAl��;��uv���T
+��:�����C����'�6n+��הa�D0+e�cv��:��4��42dSt]�F�k_B�cR8O��²,X��b!_.�w[��ddIbO����"齭��;.�
+�b�I-�t�kR�tX&amp;�Go���D�����A_w�����r�-H56:�Hk��+�w�]�X��j�[0��$侇!5y:&amp;}���L��u��}��4m�4x]�8��c�9�����]!�"Ɵb@�̡v�0`�e(������ږ����u���Ky�&amp;%Y�
+T��4�T����9�ݺr���^wSʴ�nU���i���J`�Aj�S�e����&amp;w�N=I������b�#4��Ȉ�#�y&lt;v�}hɤOH��4""k�+�������W�0jp2��X�[1��&amp;%Ri����F�LeC-y���+��?��y���}�H����7��k��TM�0�(��ݱ����f-�s����g0*�j|J|@$1�
+��s/�i���߾곧��WC#=�\{�L�J)��5M�RN��i�U!!�C�$r�	)2@BTA���jHj��=���JCK��/�'��e.�Хɍ�M�Il9X؊s,���Y#��$����S�4R|�͜���-���z�ݶa'6�H�h�n�I	��۶�V_'�;��M?��X�4{���u��B�iu�̾�6e5ꕗr��T�5F@JԀ�@�f�J��J0�IX6�X �n:_�Z4��k��(�໺��k��i¬T+o�B�R�i�Σb�\1aZ*�Ӳa+�RBJ�)�L�lM�hhhD&amp;��a�4M�JR���M��`�	jKK#wd��t&gt;������8�u'2���@��OA��b�������ZD�3Yh"��H���Ӭ�~�~����_H�s�^���9�u}X���K���\���E������:늚_j�D��#��1�}���R�zs�k�7F�p��[��f�������ߑ���	e�0�eDx���&lt;L�D��~v������e��|0\s-唛�4)��V�I$l�
+2���OR!�q��&gt;���]*�s~֓���b]z}K)�-
+�r��IBkj�NU.�-Hg@�m�i�RP��@���
+mާ�y��1��߅�:���baX��/W/��
+�܃�... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-07-01T21:50:59.420225" level="INFO">C:\Users\ibrahima.alata\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'conserto.pro'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-07-01T21:50:59.420700" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>img_dl</arg>
+<arg>${path}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.138459" elapsed="0.282304"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-07-01T21:50:59.421898" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.420995" elapsed="0.000992"/>
+</kw>
+<kw name="Create Binary File" owner="OperatingSystem">
+<msg time="2025-07-01T21:50:59.424219" level="INFO" html="true">Created binary file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;'.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<arg>${response.content}</arg>
+<doc>Creates a binary file with the given content.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.422155" elapsed="0.002226"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2025-07-01T21:50:59.425173" level="INFO" html="true">File '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;' exists.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.424680" elapsed="0.000643"/>
+</kw>
+<arg>${Xpath_IMG}</arg>
+<status status="PASS" start="2025-07-01T21:50:59.105327" elapsed="0.320186"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:22.290891" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:50:59.426679" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${Conserto}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.290525" elapsed="0.160884"/>
+<status status="PASS" start="2025-07-01T21:50:59.426299" elapsed="0.148879"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${Conserto}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.290028" elapsed="0.161558"/>
+<status status="PASS" start="2025-07-01T21:50:59.425814" elapsed="0.149526"/>
 </kw>
 <arg>${Ilots_Devops}</arg>
-<status status="PASS" start="2025-06-30T12:14:21.102096" elapsed="1.349743"/>
+<status status="PASS" start="2025-07-01T21:50:58.457850" elapsed="1.117596"/>
 </kw>
-<kw name="Ilots" owner="Keywords">
+<kw name="Actions Ilots" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-01T21:50:59.576688" elapsed="0.093256"/>
+</kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.452791" elapsed="0.328994"/>
+<status status="PASS" start="2025-07-01T21:50:59.670692" elapsed="0.318303"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.782681" elapsed="0.064753"/>
+<status status="PASS" start="2025-07-01T21:50:59.989921" elapsed="0.035943"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:22.848732" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Dev")]'.</msg>
+<msg time="2025-07-01T21:51:00.026667" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Dev")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.848307" elapsed="1.083002"/>
+<status status="PASS" start="2025-07-01T21:51:00.026401" elapsed="0.227341"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:22.847825" elapsed="1.083764"/>
+<status status="PASS" start="2025-07-01T21:51:00.026112" elapsed="0.227924"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.254653" level="INFO">Vérifier que l’image est bien présente dans le DOM (même si invisible)</msg>
+<arg>Vérifier que l’image est bien présente dans le DOM (même si invisible)</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.254376" elapsed="0.000409"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:00.269181" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${Xpath_IMG}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.255016" elapsed="0.014340"/>
+</kw>
+<kw name="Suite verif" owner="Keywords">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:00.282602" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${xpath}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.271239" elapsed="0.011518"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:00.302496" level="INFO">${src} = https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png</msg>
+<var>${src}</var>
+<arg>xpath=${xpath}</arg>
+<arg>src</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.283073" elapsed="0.019476"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${src}' == '' or '${src}' == None</arg>
+<arg>${src}=</arg>
+<arg>Get Element Attribute</arg>
+<arg>xpath=${xpath}</arg>
+<arg>data-src</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.302755" elapsed="0.000222"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.303348" level="INFO">Length is 71.</msg>
+<arg>${src}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.303180" elapsed="0.000223"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.303707" level="INFO">Image src: https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png</msg>
+<arg>Image src: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.303567" elapsed="0.000191"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.304127" level="INFO">${is_absolute} = 'https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png'.startswith('http')</msg>
+<var>${is_absolute}</var>
+<arg>"'${src}'.startswith('http')"</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.303919" elapsed="0.000240"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${is_absolute}</arg>
+<arg>Set Variable</arg>
+<arg>${src}</arg>
+<arg>${URL_CONSERTO}${src}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.304280" elapsed="0.000156"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.304677" level="INFO">Image URL final: https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png</msg>
+<arg>Image URL final: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.304554" elapsed="0.000227"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.305210" level="INFO">${parsed} = ParseResult(scheme='https', netloc='conserto.pro', path='/wp-content/uploads/2022/03/dev-0x360-c-default.png', params='', query='', fragment='')</msg>
+<var>${parsed}</var>
+<arg>__import__('urllib.parse', fromlist=['urlparse']).urlparse('${src}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.304895" elapsed="0.000349"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.306674" level="INFO">${base_url} = https://conserto.pro</msg>
+<var>${base_url}</var>
+<arg>${parsed.scheme}://${parsed.netloc}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.305365" elapsed="0.001345"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.309356" level="INFO">${path} = /wp-content/uploads/2022/03/dev-0x360-c-default.png</msg>
+<var>${path}</var>
+<arg>${parsed.path}${parsed.params}${parsed.query}${parsed.fragment}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.306834" elapsed="0.002560"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.309675" level="INFO">Base URL: https://conserto.pro</msg>
+<arg>Base URL: ${base_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.309529" elapsed="0.000201"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.309996" level="INFO">Path: /wp-content/uploads/2022/03/dev-0x360-c-default.png</msg>
+<arg>Path: ${path}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.309858" elapsed="0.000192"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:51:00.310351" level="INFO">Creating Session using : alias=img_dl, url=https://conserto.pro, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>img_dl</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-01T21:51:00.310199" elapsed="0.000325"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:51:00.517501" level="INFO">GET Request : url=https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png 
+ path_url=/wp-content/uploads/2022/03/dev-0x360-c-default.png 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-07-01T21:51:00.566525" level="INFO">GET Response : url=https://conserto.pro/wp-content/uploads/2022/03/dev-0x360-c-default.png 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 01 Jul 2025 19:51:05 GMT', 'Content-Type': 'image/png', 'Content-Length': '145915', 'Connection': 'keep-alive', 'Accept-Ranges': 'bytes', 'Etag': '"6266938b-239fb"', 'Last-Modified': 'Mon, 25 Apr 2022 12:26:51 GMT', 'Vary': 'Accept', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-XSS-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff'} 
+ body=�PNG
+
+IHDR�hd�#�IDATx��w�mUy&amp;��k�r����^������� ł�5��:3i3�oR&amp;�d&amp;�L4�NzL�$"�"�z�( v��n����]�z���^�|�g��W�i{�}���}��z��z��z�y��o�N۷o������[�[��vn��6ꝉ��� a������g�u\,�w9��sa��q�v�؁��V��VI�xͥi���3��������K��7�9��'��z����o�?�jW;:��cK�wU&lt;y����zA]���w�Y��Po����^D���`�mĥ�^�ۨz�Y{=o߾_�QޗvO��sI�gj�uu+Q゠�C����?;{��'����]}e�d�Vo=Gֳ�L��Q�Ʀ{_o=����5�ɛ&gt;%��;���.D�\j��R��� ͐3��̥�����#�l���_��_��~c�;��h�Dv������/[��A��[�u&lt;^Ͽ��ω�̮��oN�����&gt;As��dX&lt;�J�&amp;��[q���F��o�����ٛ�����^޻Ώ���94n߾��
+ O��l$z�����̭_�G�}`�}�����Q|v���eV"�[\���	���{6������7�kKи���z'����ڱc��/~RP{��v���q[�x���cS�Vo����3�������5a�_+])��D˲�r��H5{SK�/��&gt;�Ծr�T���������/{�iY.�Z��'��,=�+�ˌ{��~����&gt;�]��)��?��3s��kb���|�2��g�����Dе�?�n�����V����\w�ͯzIo\���Όν��K~zW�{��~��&gt;�#�����-�~�H3����1vy\�R�L��L��T�Η'E2R���:R��ӆ�/|�=W�{g��z��φh�y˖�g~�����}~Z��k)y�t3����D���O�ؖ��)Yg4k���23�����|�ġ�_�;&gt;�'o�	���3��
+!p��������������M&gt;�m���?q����Ly�fH[^�V��&gt;q����@�ގ8���b�ھ����?�p���[��]��t�B��0/��g�1X�qo��sa��Gn��Z���M������T���&lt;�%���k���9Ȳ�ˀ���D���}�R�I����}��j"�����V�ꭧ{Yv6=�2���������i#��v|b�Z��T��M����%���$�˝`���0�X�����F�O\�-�&lt;f� �s�%�@�ꉹ�
+�����ϫ�w���.Vl���Uo=���,�v�m .�䒞Bo=��7�����5�&gt;�?7���a.e�劗g��m��3d��[�y1,kB�"o9���Ž�x�%ާ��[.^�m���|{�l�w\1�s�d2�^$�[��&amp;�/G�8�N���z�d,��R��34d(��0���w��E`@k0�b4��8Kk�G\d��߉ �j#)�*�����-E9�����?;s�r��tAr���?����۷�s�|&amp;J׽2uo������M_�Sj�(x�T�w5Rl� ��%`ue�Y�9'ii��9���uW!G+,ar��$������f�D�	ˉ� �'�k�][wb��ek+G�{������h�{�����[&gt;G{$\�;��&lt;��w,�t��,����_g܈��r~ξR�=ː��\&lt;�K��=�c!���t��j�1�(+]'�&gt;��.���:���y��޻�[��=���������ף}��^o�?^�s���S���j2�?;��3��!���6�x�X+�
+Piq�
+P^Ė���q)��W� M�r�|�2lr����&gt; ;j%�Q�b~�*��Vß�x����]қM�e��n�te��.��uO[���K/����{��l������Kx�v������ߛIpa��*�d����e�����r��g��{�;��;Ӫf�#q{���C�ÁBk$'�ْ�֌6�CM��ň^y4�&gt;��������&amp;�ڞ��sy}��ڻV���c����Yt�[�����\�����K�Z'�{�}I�ϧ�" M�W����|�1�T������CF��f{]i���Im	a����I�H����eSʾ.Li3CJf�'(
+��m�~�����K�+��������::����|�eƽ��a|o={֎;��G��ǧ����f��^���LU�)0���5���1�V��Y'��H�R����~���.6v���=-�
+��lM$y����mU8ݧ�J�4��
+�4!&lt;։_)��u���  �ְ������U�J�g`q�x��P�2���-�r����zd���cK�k�z�v�3�ha
+�����qǀ�N���Lw��G��^��U�]ٞ� n�&gt;��m��e��)�,i�!t��%2#��q$��`���iV�Hyd�`�7��=���5W\޻hz�i�.�0�y�=0������?A����i�b���䧚q�U3D�V�jI/̀&amp;�J?��$``�h���\+i���J�yf�es�"�-���lXHX2�� H"�"�l��NDkF�*$Q��,Ni�������P5�c�Hߟ\�m�?���N�
+:�*;x��Q�q66����������3����5�|p)z�b������?"��%�4��f��M��-@PX�{��)�JD-v��%`��&amp;���z�d�2��gz�B�n�d�d2ca�Dt�B�H�pk�41��gX��A�JaW&lt;9�z����#�y�������&gt;/�w~�n,--�F���{��W0��_��̚������z�e��&gt;+G�yx����_���b����u��H��F��&gt;h��f+0�ƀ!��-�����Ӳ,y���l��R�[��IJ�6�%K�:���P����)�K\������w��cIA��&lt;�~���n��-���/��9}�����yI��6�oU���s�z`�#㧛��[�u&lt;�;v����[�\���s�(�����21�el���K,g2���4h��7l@�6d@y}�nv���$R��9W˪q�N��(�v�H�F��E�"�%���958j�y`i��4�Y��qݾuVp��9_�'[}��kr���_����&lt;~�^C����:Q�����[��~��^�&gt;Y��t�qo��ܾ��Ǝ;�l�Iz���[w~�n�����d#z�����ͷ��"��`�R�Y2fx8~B��4}h-�뀱u@�n2S�Y�v �8a��3�jX�`mMb  a�r]j��j�Z)��GZ)-Ext��Gfۘ�P%�)[�w����,��`��c@mf���n�ڝ�rܠ�3#��xG'�:m��������_��*]�q�Wp������_��5F��߭��ӗ^zI/�魧ey= xZ�����z�"�����}���o/���|�33��v��,C�\�-$K�"�oN[��t��Ӂ�pd��:'6C�@X�܋��q��!l���7ϥ�,�.eѦ��vD����qf�N�8�Hpہ%|a��6b0k�(6Ĳ�	�@k�08n�x!�K���!;ʌ����{�������x́��o,u��\����?��Ͻ픱ŗ_p�s�Z���Ь�I���[���M/ڱc��r��&lt;��/c�挟���\ڔ {@�����K������&gt;�~�і����7��B��dxp��\�4�2�$]�����OX'�#��Ïv�M����3��]'�w씌���T��aS)�#2V�Zk������C[|�dM���m�u
+�
+�i�ڋ@�6�p}����p�T����:f�r��������٘�k�G������������_wٳ�:'"�iz�f���D:Qt�`�'�����*�'�R+�G�����q����}�������/,%��)X^ĠR6�yV��%�eVGE�jn���P��)j5��9T�l�}��pũkQ�$X+h����h�Hi�\����"��m	X G�-g_�i��:���EP������kL�N����Q����Ȍ�W9��Fwx ���*y�x߿��I���5K��g?'����jF�u�-	�12&lt;����Y��э���5=I���qo=��?�u|e*��9߹�h,~f*�W�Jח߲+������匰Є6e�'z�����
+/S���a�=\��s������c� V����u��l`�����k�4,�y���*^����}~�Z53�T��R�?�k�{�w���Z��Y�`k��¨%��k|A+�Nw���A��'��=Z�8i�����ėߺ��϶r⍟��N���v��u�k���ctd}��C��N���/��U�����Ϫ�u�L�[���]�qx����vG�{�:���!�^�Y�ANaiZK+ܖ0��0Y)�	03)C��$�}�/q�)'b�����}�}�k�w�A��/ƕ��ǿ�\�?�w���EC�$Rm���|�X�����R���I�̓���C�p���J��Ӂ�Q�v�4*�0�ÞFU��5��h�&amp;0ǥM��1Q�|�t��R�(	��@u2��6����GwG������&lt;���|ų"��җ�ɩ��֧j���PJ#�c��mԪ�S��ǝ�0��T7�Y'O�ˌ{�Y���M_�9�}��~�h��i*Lpwں��5Ȗu3�#�V&amp;Z���hX`C�0��y�V1�R�T�����Ƭ�K�\BN�it�W���*��b@m��,n���9�`�igb:Ł���=v��n)M��P(��asM��c���Çp��)l��l�Ǘ��@CZ
+r �
+��F�S$�C`H2|a�ҩf4S�t�8��x`A�s�gm+
+������P)�ɟVa}�A��}zdm8s�����q���~�}����8��V'��EH�J)T�}�:���Q��b���j��x��%�Og/K�q�Ο��fػ���H��T�on��ZæmZ��pV�х�R����!�U.��F���km&amp;���Ә�4cO���I��.h4��XS�j���c�
+���)��s?&gt;��G���X���ʱbt_3Pһ��ƻN���"��y�U�k�ڌW��}��o�*�������	&gt;4N�W�x�0��#K��4h�}�D3�v4n�R���Ѷ�U]̺l�ȱidfH[)� Ȩb{��H(n�Rßo���o_/��Q0��pӧ&gt;}A;�&gt;��DQ#�c(�P	T+```��iw:�b����׼�W�&gt;��l�����#z`���螀�3��������`���������%%�if��eґ[�Ն�KZs����2�C&gt;��C\�6�溴���1�s`Y�����	�	��I�a�0X1p��i�����|�apc���&amp;�(�4�%�j��)E�F�UU�7�&lt;�W����JNc͘�5�F�2*��&gt;�ʤ/;[Ͷ�m�����X3�4&gt;4����t8�3��W�圚�����8G�&lt;:2�?n����[3����%��g�;�G���D�_kw"��I�k��P�TP��100��zk���l5�^�T�=��Ȟ�{4�=Z��;��'ԣ�����eOp�����;�����U�tL^��#~z)��!����0wM�Y����g���S+��=V�u[���a����⭌5c����(���XE�H�Y���:0��"�-@-�
+j+ƭ��;�5�'�=?���c�gп�t�q�&gt;�l�9�;ZJ��G��U���~L�"�QΦ������h{`����T�)F�`��&gt;��X2޵Q����O�h+�PnZ�B�a��;	U���4S3����ߘO�k���������(���������:�5i�XR�}c��4EEH���0|YV~����&amp;�V��{ܭ&lt;R�U2�T�ʌ�	?�ȥ����Ώ~�z_'��`[��B�/ISU��Qkӿ́V9�eW]�gei0FC�k���Mu���	2��F���,��Zh&amp;�y&lt;T�q��*.Z[Ǻ��/
+��",昉�5:
+��b�:���y��Z�HS�c���&amp;ցGס�2t��p�����U@X�'g�3�� ��!�&gt;ς�òv����R�1�Q��d��ob�R�Tkԅ��B\����}�K����2��{[8��fBZ8.RBBHY��s�(���L�������m�N��{ߴ!��-���z+-.,�[�����t��)�$�JSx��0P�T�W�����zD��nw~�Y}���q��l��x���?[2cݻ�����s�&lt;~ێ��sU�G����v5�_,�����
+f6�p���ԨMe�l�����0�4\�Ϝ&gt;�s�Bxd@����33���_­��p�d(�f��w���h�sƪx�Dj��@E�0Ya����13��ߞg�i��@��� �l��@k�g�!�p*:I�4��!��&amp;+�i�,Uߞ�xx!�	5�壄�%V���_�&amp;2q�1)j��o������o)B�
+��ָ��G�x��&gt;\���Tj�=�����	|��&amp;�;�@C��%r51Wˌs�bt
+PZC�@���h�~|1�^~8��N���-_��3W�hƅ���~����R(���ڔ��P��JS�I�8I��1���`���hD��q�������EEѱj&lt;np��3~���s	����=��t��݋��&amp;q򂉺?�w!zU2�I���1_P	���J�^º��d��g~m���d5N
+ ̓7��X�G�Į&lt;&gt;�6�%r?*�9��=��@��X5@_ H�f a&gt;f,�@��&lt;������Rn.;�e�sdT�mg�m5�Y��:�9~�)V��P��G�5Z��L�0�N�ITx�}v.��k�.�ԏW��a$�9[���P.(��Y�T6�d}�)�t4��5RlC���|�wC���͡��w�z�y��v96y17(��ڝ�(��
+I���!|T+!*�*j�*��u�j5H��V���F��so�����.����0��k'�G�~d@�\�U��?|��?�x�M{j��y[3Q��툹�H8��HL�=T�7Yjij=#&lt;����F �M�8e�b��N9�44���)|�p�4sE�]��r�D)�1aVi@$&amp;Odf[(Ȏ&gt;3$Q��Zi�$wZ���I�B��o�������LcB!=�*q�)�5"�pL+s��+u��@'.h�8Ԉ�/���Z��S�q�p�����k�U�X���U�V�i��Nw0���$��!�iĚ�L�s�b��Z}R\�g�|��v�t���O��_�W)���Ьm\g���RH��R)�!i
+)��T�W���ڍ���_\{�Uiƞ�OvO{�'�N=�\��wo���_��c��;�͞t��#o:��~g#N�jFV\�&amp;A��*ha�9]���Ҝ������Z+8a��@ʜI���s�����+f�r���N�l���7����%kF{��c'J�i������t������jV�4u��������[�LP���&gt;z&amp;ۉ.�.Ӈ\k[8�Rn��������~��	Tr�i�2N�Q�c̫���`���wѥ��	�i��*�$`��i�NԪϴ+�ޕD׍��ˇy�_&gt;|ç���W?�{@���5�e�AJ����k�5��\�*$I
+O&amp;H��y&lt;߯U*�_�&lt;����O������{�z뇽�����m�]��N�����O/���0�,3����@{	t�Q`j���U�,���c�T�j4����)�Z�&amp;6��LԱ���/E�\}j��qg@�CpƺPi�3E�L b;��;H猙DkɔwG�C��9$���*u��S��9����7�
+��wd.�l�f�1�T��X�OQz�j���*B�2�3%/��SQ�N��~1,�����}���}zNS�Q���ڋ@�1�3���
+f��]|�=���3៾������ʏ5��596�:"��l[�-+ߎ�1Ak�4�6�!x%�������4M���3��aWc���[?��~��&gt;1���&gt;����݋����X�)�]�*��^*hq
+�y04��T�ڟ�,�ˁȀ�4p��ALT�\���xѪ~��u��g��KH�Y#����#G���BB�C�	�C�i����^�Fm��^?��G�"E��؀1(ft�+Xߊ��4����'��N7���%x�e��O��8�V�����y�(^�����0i����v�?&amp;K@�@�my^�
+�b��΅�Q��рn/� j�&gt;pX��ɤ���Vta+��&lt;�&gt;q�����o�\}��o��i%|N��p3���9��3��5H�-Sk�i�4M�S�4�y�#�O~o}/����gl�رzd���\����0��\i����;�N�]qL��)�2k�����X��.�COo&gt;i�&gt;}��a]���H���LaǾy#�QrhB��X|��+���_���&gt;��Nza��$�ր����&lt;u*���=̌�3�����&amp;���iK��N��Xj�̜��K�iW&amp;4+��K0Ŝ��~���x᨟{1⤑h��M��C�h�(�4�I!@$ mB��&amp;	�v��`���6�W�����n8z��ݷ���ٙk�o&lt;g˺�_��O˵z��ׯS�_L��(�8� �"�i
+�4�$A�R�	�&lt;O"T�a�b�\5�A�T�/����u�_������Δ{`�[����O��}q��;�v�_�J�D��sk����]���Zj�S�jX�������Ax���i�8a0� ���5��Wc�l���א�Ի���rvq�E`i�1��U�����:���Y��B��\.�!F��Q�N¸��4��3�C�	��m@}�����P�#.��[��#��o�d^&lt;Q�g��y��nٻ��&gt;6��X۠�Llˏ_�� "N�[9`qƈ���1�T�l�˯�̌P�1�_�y�`�ϯ&lt;a�ۿ�����D��&gt;��j'�(��$I�N'BGF4UH�J�`f�}A���V��V*��cxhD�p��|������]���f�[=0������.o�ylہ��O�4��5�d�΄�����]�
+%UrJ֎6sW=��N4,�����S�&amp;a��n�j�۴�?���h-.X]3Yg��l���i��C�]��.�&lt;(S�*���괠g�7f��
+�|� �^;�z �Y"�ff��2�9b.;&amp;i6�޹f_�y_=��őM��&amp;P��&lt;�J��2�dB��&lt;�/�Ї�&gt;o5A�&gt;wv�c�v�$�zd	��"��O�B�tZ@s�\0A	��Wj�U�ec�"�_�u�`���`m�W|�WO�����@�������+��kw:H��+MS�[����*6+�����*ժ��n6�\l,���_��}�]���l��0{�i]p�ŷ'[�����ێ4�w/E�	�|a*m�]��y��}�.+���T�P{	8���]`l��)�5٨O6R���F���4q���u*�B0^��m���������@(�F�Z���4F��kOË6M���N5	���V�\�83���@GjQ�c��*�1�ք�x��I�'c��W�b��Κ����v�Ǐ��x
+V�]�9]�b'�V��^�ͪ��a��dQL(���s!�7�5�2}s���UTjYYO��0=�U&amp;���
+X���9u3c.�~��F�n�5���c���l�����r�j,��h��F=�CX�@Z�t*%��ೆC�'%� D�RA�B��&amp;k^��/}�ƛ��������!z�����n�x��=�M�|�8Fc�Ӻbr��31�P!N�$�J�&amp;�,�ٻ�Q6F��C�+*u#�1w8�X��7�~��, XA�@�I�2��[�	Z��km-�y9X1Mf*^�R�)�Q��cs����6�KNZ�U�UK\bLE����4o0�`)5cD�΁�j���5U��5N�3��$1���É�&amp;�����܇��#8��S�0&lt;���	�8F�E�3��.k�Z�iB]�5�X���*^��_=�@�
+��b�V�2@�^2%�v��}x500���Jm��d�d䁚/�'�l��!J�mO-��\3��f���/�|�O�q��T����[h�Ѽ̛���k�*M�H! H@kS�.K�����0�UI���7~�Mo��'�����{e��DD����;�����ྐྵ櫎����qA�Q)�V�.����K�ʿe�5]UZ�����1�N�#���?���8�jFFF�����u0�@ ��?�H(m	�^�����:����� ��^�J�I�;��m��^�y�;m=6�ZG'`o��}J�[s�:Fu+/Qw����=_����Ǹh\��&gt; ��ˡ�%|����=S����f��$�d(�L�{�z�.��_��r?c�+�\�1�J%
+�Da���cM&lt;&gt;�... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-07-01T21:51:00.567492" level="INFO">C:\Users\ibrahima.alata\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'conserto.pro'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-07-01T21:51:00.567999" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>img_dl</arg>
+<arg>${path}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.310659" elapsed="0.257404"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-07-01T21:51:00.569091" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.568272" elapsed="0.000903"/>
+</kw>
+<kw name="Create Binary File" owner="OperatingSystem">
+<msg time="2025-07-01T21:51:00.571474" level="INFO" html="true">Created binary file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;'.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<arg>${response.content}</arg>
+<doc>Creates a binary file with the given content.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.569331" elapsed="0.002269"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2025-07-01T21:51:00.572363" level="INFO" html="true">File '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;' exists.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.571834" elapsed="0.000654"/>
+</kw>
+<arg>${Xpath_IMG}</arg>
+<status status="PASS" start="2025-07-01T21:51:00.270185" elapsed="0.302423"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:23.933444" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:51:00.573503" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${Conserto}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:23.932843" elapsed="0.167126"/>
+<status status="PASS" start="2025-07-01T21:51:00.573195" elapsed="0.135212"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${Conserto}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:23.932103" elapsed="0.167988"/>
+<status status="PASS" start="2025-07-01T21:51:00.572859" elapsed="0.135689"/>
 </kw>
 <arg>${Ilots_Dev}</arg>
-<status status="PASS" start="2025-06-30T12:14:22.452339" elapsed="1.647876"/>
+<status status="PASS" start="2025-07-01T21:50:59.576157" elapsed="1.132664"/>
 </kw>
-<kw name="Ilots" owner="Keywords">
+<kw name="Actions Ilots" owner="Keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-01T21:51:00.710333" elapsed="0.081549"/>
+</kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2025-06-30T12:14:24.101025" elapsed="0.343520"/>
+<status status="PASS" start="2025-07-01T21:51:00.792561" elapsed="0.292905"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${xpath}</arg>
 <arg>10</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-06-30T12:14:24.445134" elapsed="0.023440"/>
+<status status="PASS" start="2025-07-01T21:51:01.086294" elapsed="0.043047"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:24.469216" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Agence Web")]'.</msg>
+<msg time="2025-07-01T21:51:01.131801" level="INFO">Clicking element '//div[contains(@class, "ilots-container")]//a[contains(., "Agence Web")]'.</msg>
 <arg>${xpath}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:24.468998" elapsed="1.280458"/>
+<status status="PASS" start="2025-07-01T21:51:01.131061" elapsed="0.242613"/>
 </kw>
 <arg>2 x</arg>
 <arg>2 s</arg>
 <arg>Click Element</arg>
 <arg>${xpath}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:24.468773" elapsed="1.280910"/>
+<status status="PASS" start="2025-07-01T21:51:01.129925" elapsed="0.243852"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.374096" level="INFO">Vérifier que l’image est bien présente dans le DOM (même si invisible)</msg>
+<arg>Vérifier que l’image est bien présente dans le DOM (même si invisible)</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.373936" elapsed="0.000213"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:01.384101" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${Xpath_IMG}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.374302" elapsed="0.010011"/>
+</kw>
+<kw name="Suite verif" owner="Keywords">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:01.391448" level="INFO">Current page contains element '//header[@class='article-header single-offer__header']/div[@class='left']//picture//img'.</msg>
+<arg>${xpath}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.384909" elapsed="0.006657"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-07-01T21:51:01.409289" level="INFO">${src} = https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png</msg>
+<var>${src}</var>
+<arg>xpath=${xpath}</arg>
+<arg>src</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.391754" elapsed="0.017584"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${src}' == '' or '${src}' == None</arg>
+<arg>${src}=</arg>
+<arg>Get Element Attribute</arg>
+<arg>xpath=${xpath}</arg>
+<arg>data-src</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.409528" elapsed="0.000279"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.410116" level="INFO">Length is 78.</msg>
+<arg>${src}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.409976" elapsed="0.000206"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.410439" level="INFO">Image src: https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png</msg>
+<arg>Image src: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.410302" elapsed="0.000189"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.410821" level="INFO">${is_absolute} = 'https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png'.startswith('http')</msg>
+<var>${is_absolute}</var>
+<arg>"'${src}'.startswith('http')"</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.410613" elapsed="0.000244"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>not ${is_absolute}</arg>
+<arg>Set Variable</arg>
+<arg>${src}</arg>
+<arg>${URL_CONSERTO}${src}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.411258" elapsed="0.000305"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.411962" level="INFO">Image URL final: https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png</msg>
+<arg>Image URL final: ${src}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.411760" elapsed="0.000440"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.413275" level="INFO">${parsed} = ParseResult(scheme='https', netloc='conserto.pro', path='/wp-content/uploads/2022/03/agence-web-0x360-c-default.png', params='', query='', fragment='')</msg>
+<var>${parsed}</var>
+<arg>__import__('urllib.parse', fromlist=['urlparse']).urlparse('${src}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.412428" elapsed="0.001009"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.415460" level="INFO">${base_url} = https://conserto.pro</msg>
+<var>${base_url}</var>
+<arg>${parsed.scheme}://${parsed.netloc}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.413888" elapsed="0.001613"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.418205" level="INFO">${path} = /wp-content/uploads/2022/03/agence-web-0x360-c-default.png</msg>
+<var>${path}</var>
+<arg>${parsed.path}${parsed.params}${parsed.query}${parsed.fragment}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.415648" elapsed="0.002594"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.418534" level="INFO">Base URL: https://conserto.pro</msg>
+<arg>Base URL: ${base_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.418394" elapsed="0.000191"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.418828" level="INFO">Path: /wp-content/uploads/2022/03/agence-web-0x360-c-default.png</msg>
+<arg>Path: ${path}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.418704" elapsed="0.000174"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:51:01.419145" level="INFO">Creating Session using : alias=img_dl, url=https://conserto.pro, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>img_dl</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-01T21:51:01.418993" elapsed="0.000295"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-01T21:51:01.586725" level="INFO">GET Request : url=https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png 
+ path_url=/wp-content/uploads/2022/03/agence-web-0x360-c-default.png 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-07-01T21:51:01.612995" level="INFO">GET Response : url=https://conserto.pro/wp-content/uploads/2022/03/agence-web-0x360-c-default.png 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Tue, 01 Jul 2025 19:51:06 GMT', 'Content-Type': 'image/png', 'Content-Length': '136527', 'Connection': 'keep-alive', 'Accept-Ranges': 'bytes', 'Etag': '"62669392-2154f"', 'Last-Modified': 'Mon, 25 Apr 2022 12:26:58 GMT', 'Vary': 'Accept', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=31536000; includeSubdomains; preload', 'X-XSS-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff'} 
+ body=�PNG
+
+IHDR�h�1z%�IDATx���w�e�]�?ߵv;�{����,Yr�E��,	\�H�`�o^b	�Gᓄ7�0Ľ��qo�%�H�U�di$�hfn�������c���&gt;��{%�X3���s53瞺���YϷ&lt;���#G��ȑ���&amp;�x����34�=����q�ȍ���檭&gt;������YH�暫�r�,�_��9p��k�~@΁H7�8���I�q��G��.���1�ҥ�����&gt;3^��\�l&gt;�8o�3�rV�l��O�h����~�t�����m��E�s:ƥ$0r|��C�ŎKݏ��?&gt;���&amp;�h��&amp;�����8��t׎�y�{����	`xB��ȡ����+���~��qs��Ѥ��hαs?��ng&lt;&gt;��ϻwߐ&lt;y������柌�jV8���
+M`I �s�E�|�W?6ZVo��_��_�=�{z�Қ��6Ǥ��k���e���D�g:gO����7Z��C�oOݢ�����L�C��kH� =�p�������u�����߽�}���]��EOi.�-,n��yq����w�XmF*����E��=F,��/v��	B$n�t�P&gt;C���H$��W#zb���ǫ��u�;�t���&gt;��-~�f!���9f��kb���&amp;�H��W��j���~⯞bmy�0"�p�� �Cxlҽ�$	�15TǧS~O�������ã[^���Q��m�Ts�h����qѹWs�����^5���6��)�xb�t�+C�j%3@��L�gHW���%�$	%�A0Go�즷o�&lt;��_{&amp;?���\s�n��&amp;�h���i ��M��1 4b�FX[��6@����\�r�Cu|��1?ңHz�rg���]�q&gt;����ʽ�h��&amp;�8��t�6qV�$$	�z�]�K&gt;��#�Q�c�DC$dj����2`�N=��T�+�]�q�:�t�{�o�o����{Q�M���I�6���!h�g.uJ懘�����Ş��a~�&lt;�^2i�5&amp;$c@�u�x��h�5T�H���KWoW����o��|������n�jMl�84�ę�,�ˡ��G	����$	`���`4a����"5���
+�&amp;�+=@�EC���/�Ӣo{3x��a����㓯���4��M4���H�x��x��c'�{�t�&lt;P�;�PP��_aua��`�H��E�r4H�d��z��� $A��|��]���G�v?�+����u�n�h�&lt;��F��Y�b�ѲB�1BD�ލ�����D��a���������!�J@���'�̠z��5�� }k�Yӳ�!?6\S��������_{ѿ~Zr��&amp;�h��&amp;�����,�k��P.&lt;!�}��N/���k+}D��
+������:T8���)K�Ϊ�^�㧯���7�v�;�&gt;����~��ͨH�D�h��&amp;��8�� R&amp;J��KA)����.Z-�����|��S�DI�$����_�B@G�~o��Cz$tB�#��h�_9Z���~����ŧ^����n�L_;M*��H�8�A���~[(esq�� -��J�m��&gt;V�҆�8�֦vʉa�:f�T�A�G	��/S!�Q2��������O=�y�a�M��]bM�i6j���l4�����o�����%3C6��pZY���2AEX;=�����1��"�|@.� =m�{}����!8-q:�����������+^�Ʈ����R�}�H�h���Ҙ� ��㙲�d�S���3������af[+�FX_�#��P�����ǀ�T�T?u�T�w&amp;c�J�&amp;�?Z��~��7�~D����3��&amp;��i�0�H�ﴀ�!����?֚¦@�(*��G?�CH;�v��Y��rj��p�(C%4i�X�t��:b�@g3�B'8��;��yA����m�����\����/n��&amp;�H4Vv���TF�6 �Ė�j&amp;�P�`�RNA� �7�E��`mq��h�DGМ���
+`��1A�d|P�Trt�'&amp;#���Fw�{�_~��/��+��i�LGӐ�iu���&amp;�XV�A���ΙsQ�xY7G�ā'$��v���X]��_"�ƈ�L&amp;�K���!R@ՑiHR&gt;CE�I��Ҹ��1&lt;������o�������Ʈ��m��5��H�G*�^�h��&amp;j�U`ep��N�k��8h��A3�V��F#$*X����N�PZC�P&gt;�	�tL{��F�N?9:%����&lt;�]O����/8���|��`����;&amp;���,iMl�H�-t���[7��e��0�����]t:~�C{��ꂇ�p�X�PI&amp;0�(���)IE���pZD*���!� ���z�������=�3x���ڸ�@QJ~�흚����sb㔕�K�M��U���գ8����g�.UPs�6��v�k#��0���1T�Ҁ��)���PU�Hy*W��~d�F�_�A�M�~�ѯ���\=&lt;L�A�1�0���o���6i�� ��$��E&amp;*5Ձi�����nHJ�~Y��/%v��Н�zj��z��Cp�mҽ�u$��!|�j+����!��ۡ����7��3���S��귯l�M4���]QM��x������w;o�ȸ���8�[�1���	#��ܓS��I�;҆\vb�J���1VO�r�q���t/1 $�Q�� }7 ���?��W�.v��w�N��_]�|�M�f�a����#7���9Q�A5�o�X����Ԛi�~������ 3=�V��ڢq��G���c�N��C't���
+!�P?*����/]����o��?��)����x�E7qV�j��t~�x^3i�Cd5șb�,D5w��e�ݚ�@�gX+,��d꧉��;{�w�v�ؽ�`��@�����)!��Dk�p�1ZVA�u����K��7��������݇({��a��3�\s���9"#�W_sUs�b���=dqK�4E�
+ږ�e$��V���M����#�s���{�+3�Y��0���7�Ԉ:$��$Ķx(^9^³�5�-o��O��/n���˟�Խ�8#�z��Q�mXp�Ҽ�[�J�Q;_Ƈ���&amp;�*#-��W�T15`J����A����SyBh��
+��.��Y	��8�`00r�:V�TVJU�*Ҥb��o�N'�Y�{�����~`��Z+/�W�?����;�`���9s�`;�α&amp;=���l�~GN�lt7�Z�1�?�㧝�D��5!�����TylNb�l����V�F�����!)}= �4"����ץ�ס/��?�9�?����as&amp;4�(	�M�y��鋆�6�qRK8�b���m&lt;��ڀ��Ժ�j�[p?�̉��a��Ks;������+#7�C0'�C3@
+�C����B���I�'�W�}o���f�@��/�ͧ7�Mԅ��m&lt;��3�@'6%�H�8����]��sj�.O}.�	��Դ0˚L��$�8&lt;ά��SC�C����Ru$#��J�S�A萡Z��Po���+���ǯ{��❏����&lt;�ɏkR�M`
+=�ύF�q����դ�8cQ�v���ޅ��^l;@zEjw��w��M��`�S��4�b�t������q�~��{3�}� �Ρ���(��"x3s�+����3�=3�_Z|��^�,JMl����5q��|a����e�����%oN:�w����hL��Z�:,�H�!��y��.��&lt;�8@Eb�T�	L)SM�w������~F�&amp;�8^��������O~f�a:l�כhɃ���@����(.��9��i=O��V_�x�b� �	�#�Y&amp;�Wl��;�cuah5!�!4k@�PJtf�d�P���(\��k���w�?����?��l�^���&gt;�a�ge�zP2�&amp;�S6j��`���o�hT�S�b&amp;8qW
+�u�2�_�Xtb���bS?u��hu}��`8"R!TZ?e�ր���U�Π���pM��hE&lt;/\�^�������x�`�Egٮ�����!�6q?��f�D��=��Ř�Hu(�p����¶`�p|Q�yi�iL哳�̦i�1����L6�b��@�G��	��6#^�ƂB#�1��#��6�2�J�I���P���
+�!=�L��Qk}e���F������g����{����l~5��ٍ��6�ոW�_4m�7�5�k��s�C1�![��glM�yδS8c�$�T�	9�p�an��V���B���!Ƒ�?՜���Բ�U&amp;����L+�Y�*?���������?�v�󞧫�ʫ~�\�ޛ���?��wx&amp;���m�Ml)��I�\�:��jXiShoT���7����%'�u%���DF�^8r��}:�V�&amp;C���w3�t�	�����D�*\v�.�o��o���&gt;�����3���=���L�Ab&amp;~N�T�h�E&gt;����o�3����0�H7@L�xK�a?���F�a��f�W�d��Ew9����5��4��Ÿ�.ҽY��Ð�q��#̋otw��������^��8oA��=7�4�޳��@g%r�m2����&amp;���Ҿ\a����JL9.�5�aLy����Uc��\��v���6�ڷ��,�	���)��fL&amp;q��
+� ���O\�����N��Sߎ^�����n�Io�L�S�;��&amp;��q�I��m�,�)��RA�RsR��
+��fY�~�U�*�2J���~ITzOy�4"PB`�A.�q�vJ��VO�_�qB�İS�N��߄��@2�~&lt;��W��k�����|��f~�U����Jn�I	�.�8���;��s9 m��)�V�ME���-���U�6Mfz���i���������*@))�9.O�;�3��ڂeצC�T�`@����cML�4�^����#~l���[���O��г����˞�,zM�@��O�I�������n���?��*�L4wb��{�t�N&lt;ݤ]i�P~	|S�R��fc/u�M`0M�i�u��� R=^r\t����k[]b4"Rc$�I��ðS�;	j�2������p�zpZ�����O�����sɣ��8?YzŮ�I�7@��9���d��c�F�h�.�*xҔ��41�,3g����$�Nl��W�_WGRR(�pz�$Z=�֖��#$:����3�
+eU%�:&amp;�E&lt;H�ӟ��x�ʭ�/���7������������^�+U����&gt;��q�5@� �svh�-�a�P;���B��49�B�`X�[�Om�v��P���K�5oC�c/)�
+M�\��{=�z�q��c��)1Odͱ�f��MU������F+���G޲�I�w^���?P�:�Jc�����ֵ�l|���6@�ď���c̚�&amp;�F��mp���j8�C�ch���L�=��H���H4!{RN�%�hm���[X95��?@���tM� �@t����6$x{����zY���M���/zv��g������K-c�UG��/=��ɋ߿����D.	o&lt;4s��Z{1�Αf~�9���#�:%����&amp;9YJ�VR��j�{���h�j���V�ϔ�J����:���kKC�FC�j��صY�@��Բ�K�gD2�_|uf��݃�c~����e����^4�����S�D�M���4�(�7ʕ&amp;j�\n����n�'եv'@�f��&gt;v)4�5�t��M��1��Eg.��k+}�����)��f{�D���:1�7:b'���뇋��)�x��/�䗮������A�ԻF���H��p&lt;	��y�9Ҝ�V�z�^���	�M�9�`��N�r�`u�V��P��-^q$���p�3T��~����kC���t�"I�C��BC8d���ĭ�t��[������O���_�	ݜ�M�a ��d��hig#�`�$�c.��S�2��5�YjD�n���*���\#MHl����K�/6\�h��0�	�23.��-�.�vm�	��)�T��A,RA��!)"�����~g�ȯ�ޛ���ϼ�a/��Ϧ~�6~hD���9"�6q��4C�(��{��4-&amp;�[���ի����·l��g�P�M5o�x��T�p�5��U0������)�9ff]k��q�	G��1����^&amp;���:��@=|�����K&lt;?;�����#���gP}�js$ m�G�N������Y��lҘ�Yk�]���0c&gt;�Ps�[�`��Cqef#�����z�6���+���ض�Ag6����}��QG0��1gB)�gEP1CG�⁺2\��uv�.�߼��?{����+����6� ��x`�ш�7q��P8H��ed��q=c#����r�Oh&gt;�T #b�$�R�A\�P&amp;*���&gt;TS���po�a�����Wc9�;�b��혛�G����6� 6f������������ǿ��=��c�	����퍗��|Z6�j[ɣ4�#m�G�6Pp��4.H��t&lt;��f�c�=��:)j�3&amp;*L��&lt;��R
+�&amp;_˛u�Ni�*=.I�{���p	�v����-�,�͸L4�B�*�*!�!-aD��N��1���o����x�8���d{�g]�@0���z�G��m���sb/��a1�,|0�K�B��.��/MQ�t1W��z�:3�\�7u�,f�������)k%��0��W�� kF5&amp;(eD��!W���A��bm������4$iJ�c�JB,�Z:f�G����%�S_?=��w���|����O{�S6�3��k�y�L�\L��s��&amp;�3�JZ��'�fIs,�U&amp;ud�H��x6-J�2`�G��)m&amp;�Tpl#k�4�۵�����[nJ�������8a����q������WƮM��H҆$��&amp;#Y谩�&amp;��8�֓���n,ǯ������?�k�O6��IY�&amp;:[j~��&amp;�8c����ث��m��#鍆c�q�]��ڏ��.�G ����ҙXC�x��$K���M[G-0���K�Az.q�v*m�ϗ�;����Fs�6^L3����j�P�ǩ~�a2D�ch��-8=��&lt;��%���[��ݽC򍽃x��g�w��%�;'�#G�
+��&amp;Υhigvg6�����u�Zs�yƶZ|��%б��;n���n��԰��Kg�0�x,���T�S�Uk�x7��eزk.��i#8�a}��ꢇq8D��8��H�S�P);�	S2���������=�׽�?����G�����_t��b��DS���1zPe&amp; m�F!��`�`�I��M�m@��|5}jѻ:7�Π։CP�M�
+��
+�o�2���nM�z
+	�$7=���������
+�ص�mwЙ���b��S�	��Q"@����Lt�n���4Z��9%vtj�u�?������Ε�a���(=~�7@�����V��e����h��t�a9h
+�+�5���5��+@7��K��u�}�L�8�#͕�&amp;�y���z-���t���]�攡zI	��m���L�����&amp;#�*�2F�*�v�*��o:�n&lt;H�������o|m��薟{�s������yU6��H�8�2ʬΤvE	�
+`�
+��Λ�PC������+BH���^��N�lr�����r9kΚ�P"ڰ�uQ��8�59��.���ȋ&amp;��:��}�]]�{&gt;V􇈒��S�u�ٌʰ6r�J��m�
+�R���/;���&gt;�w��O&gt;�?ް����h����CssQ��5+�R�#��HfAg����yk�r�����T�I���n\Fщʠlf�&amp;Sl@�s�8���d Z*��_K�W�FI8��z�]tz&gt;�+m,�2����ص1�J�+kVi�4䇏�菆'�e���mo���޳�����y�����+���9r�7ι��8���H�����9� Y��`��fW hD�	+�)O�șp��q����LQa�ͧVn�j�D&amp;E��V����ae�y���[z`�"VR�H���0��I�i��}��!"e� N�@Ҽ�V�s1t�^��W�k���*�`x:x�������o]��,����Ϋ��d��^��qz(*
+�/����,�&gt;��96�L�y�`(Ks�L���T|�2ZG��*O�od�"ٳ��{�b����PS��l٣�%/��=go�*�z��V�ǜu��e -�8��u���X9��d�D��20�
+M`��nN�O��0�v���W���5���ͣ~���&lt;�?�����z~���)��յ��&gt;$!���ޘ�fA�b�UvjK
+�|'FLy*ծy�\dj)r�TLf��,�G�����]ͯ����'jr�Q���W���iF@IA�/p�Y�ڵ��J�L��i�5Y�S0M�SEjW�F�:\��/��������|{��?�L&gt;N�&amp;��L�����24qF����W�~�{��7�q�m�0����A�/"i3O�&gt;DT=s)�
+k�5[�7%1�	��[&gt;-���:u.ng��X�Dl ���&lt;��\����f2��*�����3H���	�c,�\7�S"�؈9�&amp;⅘�p��&gt;���Q����݇��y���]OK֛�Ng�����¦٨9i�BBCsڭ�\b����l�D�0v`yM4+������U�$�7r��spԏ��]�6�pAm����J�GSr05t�6�9�xr�3���1!Q��Wx�	R�ެ�wuq����Fb6=���e�tI�4$źpE�.�'/\9�׽��&gt;��_��WF͕���@�w�e =�O��/����c.�`۫]�:�M3R@��"�Wr�OS���^��4�hީ�"�J���$�Y�JH�M���MA��r���'����F�ak�,u�a��r23����=m����v�wНka�u�����?��)Ҧ�	���in�z6�ύ��~����G�z��Ο���6i���#�s����M��۷��)#�(&amp;J�B���&lt;uʹ�K��eV�E�9O�R1{J��7��b���p���b�&amp;.K��lD�Di:�,��^�J�Re�=��{����T#��{�%�/��"��6VN���G��HtlԑLS��g�2����
+���@���}� ~&lt;\u����t�{:��{^�+/&lt;'���k����h�j����h����}����)�ҦW׀*)h&amp;Ȣ+6g_:eJ�J��S2�'�1$ H������9�"AL��&lt;���J��کfL��V!&amp;�
+�e�5o�j��8������O�U�ݽ�	�\��%��&gt;VN�X&gt;��h86�2����N˨�4�|�u�a�e2�O��Ᵽ%��	����O&gt;vÞ��չ�޷���R���}�5WU�#�&amp;��iM�(��Ԁd�l��30L.�`�:u1�N�&amp;�5?
+�t���@Zcet�&amp;O��M�c~�%Z��-)�[�o�柠&gt;�t�3��$���T~?��Fg3��k�T��#k\�0�� l��Cw.���VN�F#�:��8�LU"�w&amp;;�����h]&lt;*\
+�7�C��;���o��k���&amp;�|��7��7~��������-��}��D�M&lt;�B��0ME�P*�C*�y��`Y&lt;[��p0Tz��5��T"��%�fv�OI���K͸�]�,1O.�3h�Ȼ����,[���yZV?"&gt;{��~o%�W��͸��hMp�{.t1���Ż�X[`���V�8��fl��F�Њ��=Z׿&lt;^��c�-o��G�n������g����ؿ��7�&lt;Z��sG�����7@zS���C����t�jhh֐T�a��Ԛ��X*b`D��`r,@�J)YN�g��s��&lt;��4M�!�$�d@�74���TH�����eZ&lt;�K��Ҍ@�$cRǜ�?��5��@�	��~��f$���^M���a}����X[1�S�Q��՜�tf�@1X�������/�H�b�.��o��#�9p�X���������׾�}ja�?����J'$$~E��[�����D���Ce� ~���&amp;*0�Z���ʅx}v?�t�%�* ih�&lt;��Nʀ1%�l@Yk�Xk�y���=4)�\��y�m3��
+�F�({�V��ߟ�ǧj��C%[�e�#b]����oX3�5����Q��9�[�=������	�����.=j;�]���Yx��Ԡc��	:TDP!!�A��h]�����?Tr�x�w�V_��?&lt;�=r���ho�뷊����ƣ���Ib-��2��?����S@���Rp��#=v%��ԃy�t�H�5QN�Hu
+p�ŵ�eq��k3�c �1������g�&lt;��&amp;$JY��@�%J&amp;��k�T&gt;��*��a�*�W;�b1X[R�*sĜJ�-̙&amp;... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-07-01T21:51:01.613971" level="INFO">C:\Users\ibrahima.alata\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'conserto.pro'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-07-01T21:51:01.614416" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>img_dl</arg>
+<arg>${path}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.419413" elapsed="0.195058"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-07-01T21:51:01.615413" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.614696" elapsed="0.000805"/>
+</kw>
+<kw name="Create Binary File" owner="OperatingSystem">
+<msg time="2025-07-01T21:51:01.617505" level="INFO" html="true">Created binary file '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;'.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<arg>${response.content}</arg>
+<doc>Creates a binary file with the given content.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.615645" elapsed="0.002001"/>
+</kw>
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2025-07-01T21:51:01.618364" level="INFO" html="true">File '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\downloaded_image.jpg&lt;/a&gt;' exists.</msg>
+<arg>${FILE_OUTPUT}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2025-07-01T21:51:01.617910" elapsed="0.000589"/>
+</kw>
+<arg>${Xpath_IMG}</arg>
+<status status="PASS" start="2025-07-01T21:51:01.384580" elapsed="0.234059"/>
 </kw>
 <kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-06-30T12:14:25.751284" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
+<msg time="2025-07-01T21:51:01.619401" level="INFO">Clicking element '//a[@class="hdr-logo-link" and @rel="home"]'.</msg>
 <arg>${Conserto}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-06-30T12:14:25.750655" elapsed="0.164001"/>
+<status status="PASS" start="2025-07-01T21:51:01.619191" elapsed="0.142429"/>
 </kw>
 <arg>5s</arg>
 <arg>3s</arg>
 <arg>Click Element</arg>
 <arg>${Conserto}</arg>
 <doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2025-06-30T12:14:25.750083" elapsed="0.164698"/>
+<status status="PASS" start="2025-07-01T21:51:01.618896" elapsed="0.142937"/>
 </kw>
 <arg>${Ilots_Agence_Web}</arg>
-<status status="PASS" start="2025-06-30T12:14:24.100644" elapsed="1.814252"/>
+<status status="PASS" start="2025-07-01T21:51:00.709600" elapsed="1.052429"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-06-30T12:14:25.915333" elapsed="2.317040"/>
+<status status="PASS" start="2025-07-01T21:51:01.762869" elapsed="2.323550"/>
 </kw>
 <doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
 JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
@@ -1233,10 +2005,10 @@ JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.<
 <tag>ETAT:Stable</tag>
 <tag>PRIORITE:P1</tag>
 <tag>TYPE:CONSERTO</tag>
-<status status="PASS" start="2025-06-30T12:13:53.759407" elapsed="34.474091"/>
+<status status="PASS" start="2025-07-01T21:50:32.909871" elapsed="31.177468"/>
 </test>
 <doc>CONSERTO</doc>
-<status status="PASS" start="2025-06-30T12:13:53.451953" elapsed="34.786130"/>
+<status status="PASS" start="2025-07-01T21:50:31.901111" elapsed="32.189912"/>
 </suite>
 <statistics>
 <total>

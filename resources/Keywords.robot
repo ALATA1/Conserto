@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
 Library    Collections
+Library    RequestsLibrary
 
    
 # Library    Collections
@@ -193,17 +194,61 @@ Verif elements ilots
 Cliquer sur un lien ilots   
     [Arguments]    ${nom}
     ${xpath}=    Set Variable    //div[contains(@class, "ilots-container")]//a[contains(., "${nom}")]
-    Wait Until Element Is Visible    ${xpath}    10
-    Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
-
-
-
-Ilots  
-    [Arguments]    ${xpath}
     Scroll Element Into View     ${xpath}
     Wait Until Element Is Visible    ${xpath}    10
     Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
+
+
+
+Actions Ilots   
+    [Arguments]    ${xpath}  
+    Wait Until Element Is Visible    ${xpath}    10
+    Scroll Element Into View     ${xpath}
+    Wait Until Element Is Visible    ${xpath}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
+    Log    Vérifier que l’image est bien présente dans le DOM (même si invisible)
+    Page Should Contain Element       ${Xpath_IMG}
+    Suite verif     ${Xpath_IMG}
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+
+
+
+Suite verif     
+    [Arguments]    ${xpath}
+    # Vérifier que l’image est bien présente dans le DOM (même si invisible)
+    Page Should Contain Element    ${xpath}
+
+    # # Vérifier les titres
+    # Element Text Should Be    xpath=${H1_XPATH}    ${EXPECTED_H1}
+    # Element Text Should Be    xpath=${B_XPATH}     ${EXPECTED_B}
+
+    # Récupérer l’attribut src (ou fallback sur data-src si lazy loading)
+    ${src}=    Get Element Attribute    xpath=${xpath}    src
+    Run Keyword If    '${src}' == '' or '${src}' == None
+    ...    ${src}=    Get Element Attribute    xpath=${xpath}    data-src
+
+    Should Not Be Empty    ${src}
+    Log    Image src: ${src}
+
+    # Construire l’URL absolue si besoin (ne concatène que si URL relative)
+    ${is_absolute}=    Evaluate    "'${src}'.startswith('http')"
+    Run Keyword If    not ${is_absolute}    Set Variable    ${src}    ${URL_CONSERTO}${src}   #${BASE_URL}${src}
+    Log    Image URL final: ${src}
+
+    ${parsed}=    Evaluate    __import__('urllib.parse', fromlist=['urlparse']).urlparse('${src}')
+    ${base_url}=  Set Variable    ${parsed.scheme}://${parsed.netloc}
+    ${path}=      Set Variable    ${parsed.path}${parsed.params}${parsed.query}${parsed.fragment}
+
+    Log    Base URL: ${base_url}
+    Log    Path: ${path}
+
+    # Télécharger l'image
+    Create Session    img_dl    ${base_url}
+    ${response}=    GET On Session    img_dl    ${path}
+    Should Be Equal As Integers    ${response.status_code}    200
+
+    Create Binary File    ${FILE_OUTPUT}    ${response.content}
+    File Should Exist    ${FILE_OUTPUT}
 
 
 

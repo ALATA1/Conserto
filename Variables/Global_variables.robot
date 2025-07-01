@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
 Library    Collections
+Library    RequestsLibrary
 
 
 # Library    Collections
@@ -60,15 +61,22 @@ ${Contact_texte}               CONTACT
 
 ${Nav_texte}                   ${Positive_texte}\n${Techo_texte}\n${Clients_texte}\n${Academy_texte}\n${Blog_texte}\n${Contact_texte}
 
+# ${Ilots_Infra}                 //div[contains(@class, "ilots-container")]//a[contains(@class, 'offer-item offer-infra-cloud') and contains(., "Infra / Cloud")]
+# ${Ilots_Devops}                //div[contains(@class, "ilots-container")]//a[contains(@class, 'ooffer-item offer-devops') and contains(., "Devops")] 
+# ${Ilots_Dev}                   //div[contains(@class, "ilots-container")]//a[contains(@class, 'offer-item offer-dev') and contains(., "Dev")] 
+# ${Ilots_Agence_Web}            //div[contains(@class, "ilots-container")]//a[contains(@class, 'offer-item offer-agenceweb') and contains(., "Agence Web")] 
+# ${Ilots_Culture_Agile}         //div[contains(@class, "ilots-container")]//a[contains(@class, 'offer-item offer-agilite') and contains(., "Culture Agile")]     
+#${Ilots_Culture_Agile}        //div[contains(@class, "ilots-container")]//a[contains(., "Culture Agile")]
+
 ${Ilots_Infra}                 //div[contains(@class, "ilots-container")]//a[contains(., "Infra")]
 ${Ilots_Devops}                //div[contains(@class, "ilots-container")]//a[contains(., "Devops")]
-${Ilots_Dev}                   //div[contains(@class, "ilots-container")]//a[contains(., "Dev")]
+${Ilots_Dev}                   //div[contains(@class, "ilots-container")]//a[contains(., "Dev")] 
 ${Ilots_Agence_Web}            //div[contains(@class, "ilots-container")]//a[contains(., "Agence Web")]
 ${Ilots_Culture_Agile}         //div[contains(@class, "ilots-container")]//a[contains(., "Culture Agile")]
 
+${Xpath_IMG}                   //header[@class='article-header single-offer__header']/div[@class='left']//picture//img
 
-
-
+${FILE_OUTPUT}                 downloaded_image.jpg
 
 ##########################################################################################
 ############################ VARIABLES IDNOW #############################################
