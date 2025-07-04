@@ -103,6 +103,7 @@ Verif Elements bloc nav
 
 Verif positive techologie  
     [Arguments]    ${texte}  # ${texte2}
+    Log     vérif présence du texte positive technoligie
     ${status}    Run Keyword And Return Status    Wait Until Page Contains    ${texte}    10  
     ${text}=    Set Variable   positive technologie   # ${Positif_Techo_info}     # Positive Technologie
     ${textes}=    Set Variable   Positive\nTechnologie
@@ -148,7 +149,8 @@ Verif positive techologie
         Run Keyword And Ignore Error    Capture Page Et Sauvegarde     Screenshot   capture_Absence_PositiveTecho
     END
 
-Vérifier logo conserto  
+Vérifier logo conserto 
+    Log     vérif présence du logo
     Vérifier logo    ${Conserto}
 
 
@@ -214,6 +216,7 @@ Actions Ilots
 
 
 Test actions Ilots
+    Log     vérif présences et comportements des ilots - téléchargement images des ilots  
     Actions Ilots    ${Ilots_Infra}               ${FILE1_OUTPUT_Infra}
     Actions Ilots    ${Ilots_Devops}              ${FILE2_OUTPUT_Devops}
     Actions Ilots    ${Ilots_Dev}                 ${FILE3_OUTPUT_Dev}
@@ -389,15 +392,16 @@ Supprimer Captures dossier mere
 
 
 Test navigation fonctionne
+    Log      vérif elements header, générer et comparer les Fichiers de référence
     Element Barre de nav   ${Positive}    POSITIVE      capture_page_positive     ${FICHIER_REF_POSITIVE}
     # Générer Fichier De Référence      ${FICHIER_REF_POSITIVE}        
     Element Barre de nav   ${Technologie}   TECHNOLOGIE    capture_page_technologie     ${FICHIER_REF_TECHO}  
     Element Barre de nav   ${Clients}       NOS CLIENTS    capture_page_clients     ${FICHIER_REF_CLIENTS}   
     Element Barre de nav   ${Academy}       ACADEMY        capture_page_academy     ${FICHIER_REF_ACADEMY}   
     Element Barre de nav sans   ${Blog}     BLOG           capture_page_blog        ${FICHIER_REF_BLOG}     
-    Element Barre de nav sans   ${Contact}    CONTACT      capture_page_contact     ${FICHIER_REF_CONTACT}     
+    Element Barre de nav sans   ${Contact}    CONTACT      capture_page_contact     ${FICHIER_REF_CONTACT}       
     # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
-    Renseigner les infos contact 
+    Renseigner les infos contact    ALATA     Alpha     alpha.alata@conserto.pro    Niort    Candidature     ${VotreMessage}    Non
 
 
 Verif navigation element par element   
@@ -670,6 +674,7 @@ Info annee 2013
     # Capture Element Screenshot    ${Info_2013}
 
 
+
 Element Barre de nav
     [Arguments]    ${xpath}   ${element}     ${image_name}    ${name_file}
     Log    Verif élément "${element}" dans le header :
@@ -680,6 +685,8 @@ Element Barre de nav
     # Action Scroll   ${Barre_de_nav}
     # Scoller bas vers haut
     Générer Fichier De Référence     ${name_file}
+
+
 
 Générer Fichier De Référence
     [Arguments]    ${name_file}        
@@ -692,7 +699,12 @@ Générer Fichier De Référence
     # Move Directory    ${source_dossier}    ${destination}
     Log   Étape : Déplacer le fichier dans Pages
     Move File    ${name_file}    ${EXECDIR}/Pages/${name_file} 
-    
+
+
+
+ 
+
+
 
 Vérifier Texte Complet De La Page
     [Arguments]    ${name_file}
@@ -756,25 +768,167 @@ Verif ilots
     Capture Page Et Sauvegarde     Screenshot   capture_footer
 
 
+
 Renseigner les infos contact 
+    [Arguments]     ${Nom}   ${Prenom}   ${Email}   ${Agence}    ${contact}    ${message}    ${Operation}
     Page Should Contain    Nous contacter
     Element Should Contain    ${Title_bloc_contact}    Nous contacter
     Capture Element Et Sauvegarde    ${Bloc_contact}    Screenshot     capture_champs_contact
-    Saisir Champ contact   
-    
+    Saisir Champs contact     ${Nom}   ${Prenom}   ${Email}   ${Agence}    ${contact}    ${message}    ${Operation}
+    Capture Page Screenshot
 
-Saisir Champ contact 
-    # [Arguments]     ${Num1}
-    Wait Until Element Is Visible       ${Bloc_contact}      60 
-    Wait Until Element Is Visible       ${Nom_Bloc_contact}      60
-    Wait Until Keyword Succeeds    2 x    2 s     Clear Element Text                  xpath:${Nom_Bloc_contact}
-    Wait Until Keyword Succeeds    2 x    2 s     Click Element                       ${Nom_Bloc_contact}
-    # Wait Until Keyword Succeeds    10 x    2 s     Clear Element Text                  xpath:${Saisie_JJD_Nora}
-    # Wait Until Keyword Succeeds    10 x    2 s     Input Field                         ${Saisie_JJD_Nora}  ${Num1}
+
+
+Saisir Champs contact 
+    [Arguments]    ${Nom}   ${Prenom}   ${Email}   ${Agence}    ${contact}    ${message}    ${Operation}
+    Wait Until Element Is Visible                     ${Bloc_contact}      60
+    Saisir champ    ${Nom_Bloc_contact}               ${Nom} 
+    Saisir champ    ${Prénom_Bloc_contact}            ${Prenom}
+    Saisir champ    ${Email_Bloc_contact}             ${Email}
+    Champ à renseigner     ${Champ_Agence}            ${Agence}
+    Champ à renseigner     ${Champ_contact}           ${contact}
+    Message à envoyer      ${Champ_saisi_Message}     ${message}
+    Uploader Requirements Txt    ${Button_Envoyer_Message}       ${CHEMIN_FICHIER}   
+    Cocher Checkbox    ${Checkbox_contact}
+    Actions button envoyer message     ${Operation}
+
+
+
+
+Actions button envoyer message  
+    [Arguments]     ${Operation}
+    Wait Until Element Is Visible       ${Button_Envoyer_Message}        60 
+    Run Keyword If      '${Operation}' == 'Non'       Alerte personnalisee  
+    Run Keyword If      '${Operation}' == 'Oui'       Double Click Element        ${Button_Envoyer_Message}
+
+
+
+Alerte personnalisee 
+    Log    =======================================⛔ ALERTE CRITIQUE ⛔ ========================================
+    ...    WARN
+    Log    NE PAS CLIQUER sur "Envoyer le message" — Envoi d'email interdit ! \n Attention : Le bouton "Envoyer le message" ne doit pas être utilisé dans ce contexte. \nCela pourrait entraîner un envoi automatique d'emails indésirables à l'agence.  WARN
+    # Log    Attention : Le bouton "Envoyer le message" ne doit pas être utilisé dans ce contexte. 
+    # Log    Cela pourrait entraîner un envoi automatique d'emails indésirables à l'agence.    
+    ...    WARN
+    Log    =====================================================================================================
+    ...    WARN
+
+
+
+
+
+
+
+
+Saisir champ    
+    [Arguments]     ${Xpath}   ${Nom}
+    Wait Until Element Is Visible       ${Xpath}      60
+    Wait Until Keyword Succeeds    2 x    2 s     Clear Element Text        ${Xpath}
+    Wait Until Keyword Succeeds    2 x    2 s     Click Element             ${Xpath}
+    # Wait Until Keyword Succeeds    10 x    2 s     Input Field            ${Nom_Bloc_contact}   ${Nom}  
+    Wait Until Keyword Succeeds    10 x    2 s     Input Text               ${Xpath}   ${Nom}
+    # Press Keys    None    ENTER
+    Wait Until Keyword Succeeds	    5s	5s    Press Keys  None  TAB
+    Wait Until Keyword Succeeds	    5s	5s    Press Keys       ${Xpath}        TAB 
     # # Press Keys    ${Saisie_JJD_Nora}    ${Num1}
     # Wait Until Keyword Succeeds    10 x    2 s     Click Element                       ${Click_Nom_Prenom_Soc}
 
 
+
+
+Champ à renseigner     
+    [Arguments]     ${Xpath}   ${element}
+    Wait Until Element Is Visible       ${Xpath}      60
+    ${Liste}=    Get List Items    ${Xpath}
+    
+    Log     méthode 1 : 
+    Log List    ${Liste}
+    Should Contain    ${Liste}    ${element}
+    Select From List By Label    ${Xpath}   ${element}   
+
+    Log     méthode 2 :
+    # ${Liste}=    Get List Items    ${Xpath}
+    Run Keyword If    '${element}' in ${Liste}
+    ...    Select From List By Label    ${Xpath}    ${element}
+    ...  ELSE
+    ...    Log To Console    🚨 '${element}' n’est pas dans la liste des agences !
+    ...    Log    '${element}' absente de la liste d’agences : ${Liste}    WARN
+    ...    Capture Page Screenshot
+
+    # Wait Until Keyword Succeeds	    5s	5s    Press Keys  None  TAB
+    # Wait Until Keyword Succeeds	    5s	5s    Press Keys       ${Xpath}        TAB
+    # Sleep      5s 
+
+
+
+Message à envoyer 
+    [Arguments]     ${Xpath}   ${message}
+    Wait Until Element Is Visible       ${Xpath}      60
+    Log      1ère méthode : Lire Message Et Le Coller Dans Un Champ. 
+    Lire Message Et Le Coller Dans Un Champ    ${Xpath}
+
+    Log      2ème méthode : saisir le message dans un champ.
+    Écrire le message à envoyer     ${Xpath}   ${message} 
+     
+    Log    Vérif du après saisie du message :
+    ${valeur}=    Get Value    ${Xpath}
+    Should Be Equal    ${valeur}    ${message} 
+    Log    Texte saisi : ${message}
+
+
+
+Uploader Requirements Txt    
+    [Arguments]     ${Xpath}    ${emplacement}  
+    Wait Until Element Is Visible    ${Xpath}      20
+    Scroll Element Into View    ${Xpath}
+    Téléverser Fichier      ${emplacement}    
+
+
+
+Téléverser Fichier  
+    [Arguments]     ${emplacement}
+    Log     Injecte le fichier dans le champ caché
+    Execute Javascript
+    ...    const input = document.querySelector('input[type="file"]');
+    ...    input.style.display = 'block';
+
+    Log     Sélectionne le fichier
+    Choose File    xpath=//input[@type="file"]    ${emplacement} 
+
+    Log     Re-cacher le champ si besoin (optionnel)
+    Execute Javascript
+    ...    const input = document.querySelector('input[type="file"]');
+    ...    input.style.display = 'none';
+
+    
+Cocher Checkbox
+    [Arguments]     ${xpath}
+    Wait Until Element Is Visible    ${xpath}      60
+    ${is_checked}=    Get Element Attribute    ${xpath}    checked
+    # Run Keyword Unless    '${is_checked}'=='true'    Wait Until Keyword Succeeds    3 x    2 s    Click Element    ${xpath}
+    IF    '${is_checked}' != 'true'
+        Wait Until Keyword Succeeds    3 x    2 s    Click Element    ${xpath}
+    END
+
+
+Écrire le message à envoyer
+    [Arguments]     ${Xpath}   ${message}
+    Log     Saisir le message à envoyer : 
+    Wait Until Keyword Succeeds    2 x    2 s     Clear Element Text        ${Xpath}
+    Wait Until Keyword Succeeds    2 x    2 s     Click Element             ${Xpath}
+    # Wait Until Keyword Succeeds    10 x    2 s     Input Field            ${Nom_Bloc_contact}   ${Nom}  
+    Wait Until Keyword Succeeds    3 x    2 s     Input Text     ${Xpath}     ${message} 
+
+    Wait Until Keyword Succeeds	    5s	5s    Press Keys  None  TAB
+    # Wait Until Keyword Succeeds	    5s	5s    Press Keys       ${Xpath}        TAB
+
+
+Lire Message Et Le Coller Dans Un Champ
+    [Arguments]     ${Xpath}  
+    Wait Until Keyword Succeeds    2 x    2 s     Clear Element Text     ${Xpath}
+    Wait Until Keyword Succeeds    2 x    2 s     Click Element          ${Xpath}
+    ${message}=    Get File    ${CHEMIN_FICHIER}
+    Input Text     ${Xpath}    ${message}
 
 Barre de nav positive
     Wait Until Element Is Visible    ${Positive}      60
@@ -958,3 +1112,13 @@ Supprimer les fichiers Selenium png cas 2
         Remove File    ${chemin_complet}
         File Should Not Exist    ${chemin_complet}
     END
+
+
+
+
+
+
+
+
+
+

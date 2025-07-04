@@ -98,7 +98,8 @@ Automatisation du site conserto cas 2
     # # Verif ilots    ${Positive}
 
 
+    # Element Barre de nav   ${Positive}    POSITIVE      capture_page_positive     ${FICHIER_REF_POSITIVE} 
 
 
-
-    
+    # Element Barre de nav sans   ${Contact}    CONTACT      capture_page_contact     ${FICHIER_REF_CONTACT}     
+    # Renseigner les infos contact    ALATA     Alpha     alpha.alata@conserto.pro    Niort    Candidature     ${VotreMessage}    Non   

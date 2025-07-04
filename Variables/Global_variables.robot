@@ -89,6 +89,10 @@ ${Nom_Bloc_contact}            //input[contains(@Id, "wpforms-284-field_2") and 
 ${Prénom_Bloc_contact}         //input[contains(@Id, "wpforms-284-field_4") and @placeholder="Prénom"]
 ${Email_Bloc_contact}          //input[contains(@Id, "wpforms-284-field_5") and @placeholder="Email"]
 
+${Champ_Agence}                id=wpforms-284-field_6   
+${Champ_contact}               id=wpforms-284-field_7   
+${Champ_saisi_Message}         id=wpforms-284-field_8
+
 ${FICHIER_REFERENCE}           page_reference_positive.txt
 # ${FICHIER_REFERENCE}    ./page_reference.txt
 ${FICHIER_REF_POSITIVE}        page_reference_positive.txt
@@ -99,8 +103,20 @@ ${FICHIER_REF_BLOG}            page_reference_nos_blog.txt
 ${FICHIER_REF_CONTACT}         page_reference_contact.txt
 
 
-${texte_page}        Bonjour tout le monde
-${texte_reference}   Bonjour le monde
+
+${VotreMessage}    Objet : Candidature pour un poste de testeur chez Conserto.\n
+...    Bonjour Madame, Monsieur,\n
+...    Je me permets de vous adresser ma candidature pour un poste de testeur au sein de votre entreprise.\n
+...    Fort d’une expérience de 5 ans dans le domaine des tests automatisés, je suis particulièrement intéressé par les valeurs portées par Conserto et par les projets innovants que vous conduisez.\n
+...    Je joins à ce message mon CV ainsi qu’une lettre de motivation, et je reste à votre disposition pour toute information complémentaire ou un éventuel entretien.\n
+...    Je vous remercie de l’attention portée à ma candidature et vous prie d’agréer, Madame, Monsieur, l’expression de mes salutations distinguées.\n
+...    Cordialement,
+
+
+${Button_Envoyer_Message}      //button[@type="submit" and @id="wpforms-submit-284"]        #//*[@id="wpforms-submit-284"]
+${Checkbox_contact}            id=wpforms-284-field_9_3
+
+
 ##########################################################################################
 ############################ VARIABLES IDNOW #############################################
 @{Secteurs}    Banque traditionnelle    Assurances    Jeux    Voyage   

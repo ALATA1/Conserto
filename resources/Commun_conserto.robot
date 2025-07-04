@@ -53,7 +53,8 @@ ${RESULTS_DIR}                    ${EXECDIR}/Resultats/Resultats
 ${SCREENSH_DIR}                   ${EXECDIR}/Resultats/Screenshot
 ${RESULTATS_DIR}                  ${EXECDIR}/Resultats
 
-
+${CHEMIN_FICHIER}                 ${EXECDIR}/requirements.txt
+${SELECTEUR_INPUT_FILE}           //span[@class="modern-title"]       
 
 
 *** Keywords ***
@@ -81,7 +82,7 @@ Capture Erreur Unique
 #########  OUVERTURE DU NAVIGATEUR #########
 
 Ouverture Navigateur 
-    Log     Ouverture avec Headless modules mode 
+    Log     Ouverture du navigateur avec Headless modules mode 
     [Arguments]     ${URL}    ${Choix}
     ${HEADLESS}=    Get Environment Variable    HEADLESS    false
 

@@ -1007,4 +1007,230 @@ pipeline {
     }
 }
 
+
+
+
+
+Recuperer Societaire*
+    [Arguments]         ${IDTEST}      
+    ${environment}=       Env Get Env   
+    ${jdd}=     Csv Load    JDD/SOC_AHJ.csv
+    ${couloir_rec}=     JsonPath Match      soc[?(@.COULOIR=='${environment}' & @.IDTEST=='${IDTEST}')]    ${jdd}
+    Set Suite Variable      ${SOC}      ${couloir_rec}[0][SOCIETAIRE] 
+
+
+Scroll To Element And Click
+    [Arguments]    ${Element-path-From}
+    
+    FOR    ${INDEX}    IN RANGE    1    15
+        Press Keys      None    ARROW_DOWN
+        ${passed}=  	    Run Keyword And Return Status       Click Element    ${Element-path-From}  
+        Run Keyword If     '${passed}'=='True'       Exit For Loop 
+    END
+
+
+Input Field
+    [Arguments]    ${Element}   ${Text} 
+    AWait Browser Ready And Complete
+    Wait Until Element Is Visible       ${Element}         60 
+    Wait Until Element Is Enabled       ${Element}         60
+    Click Element                       ${Element}
+    press_key_directly                  ${Text}
+    AWait Browser Ready And Complete
+    
+Select Drop
+    [Arguments]                         ${Inputliste}    ${valeur}           
+    ${str}=                             Replace String      ${Inputliste}     input     div
+    ${ITEMS}=                           Replace String      ${str}     Input     Items
+    AWait Browser Ready And Complete
+    Click Element                       ${Inputliste}
+    Click Element                       ${ITEMS}/div[contains(text(),'${valeur}')]
+
+Select Drop Strict
+    [Arguments]                         ${Inputliste}    ${valeur}       
+    IF  '${valeur}'!='***'
+        ${str}=                             Replace String      ${Inputliste}     input     div
+        ${ITEMS}=                           Replace String      ${str}     Input     Items
+        AWait Browser Ready And Complete
+        Click Element                       ${Inputliste}
+        Click Element                       ${ITEMS}/div[text()='${valeur}']
+    END
+
+
+
+Select Drop MD
+    [Arguments]                         ${Inputliste}    ${valeur}
+    AWait Browser Ready And Complete
+    Wait Until Element Is Visible       ${Inputliste} 
+    Wait Until Element Is Enabled       ${Inputliste} 
+    Click Element                       ${Inputliste}/../../../..
+    Press Keys                          None    BACKSPACE
+    #press_key_directly                 ${valeur}
+    Wait Until Element Is Visible       //div[@class='Select-option is-focused']/../div/span[starts-with(text(),'${valeur}')]
+    Click Element                       //div[@class='Select-option is-focused']/../div/span[starts-with(text(),'${valeur}')]
+    AWait Browser Ready And Complete
+
+
+Element Value Should Be Empty   
+    [Arguments]             ${ELEMENT} 
+    ${val}=	                Get Element Attribute	    ${ELEMENT}      value
+    Should Be True          ${val}     ${EMPTY}  
+Element Value Should Not Be Empty   
+    [Arguments]             ${ELEMENT} 
+    ${val}=	                Get Element Attribute	    ${ELEMENT}      value
+    Should Not Be True      ${val}     ${EMPTY}         
+Element Value Should Be  
+    [Arguments]             ${ELEMENT}      ${VALUE}
+    ${val}=	                Get Element Attribute	    ${ELEMENT}      value
+    Should Be True          '${val}'=='${VALUE}'  
+Go To Login Page
+    Go To    ${LOGIN URL}
+    Login Page Should Be Open
+
+Input Password
+    [Arguments]    ${password}
+    Input Text      password    ${password}
+
+Input Username
+    [Arguments]     ${username}
+    Input Text      login    ${username}
+
+Scroll Page To Location
+    [Arguments]             ${x_location}    ${y_location}
+    Execute JavaScript      window.scrollTo(${x_location},${y_location})
+
+Input Date Browser 
+    [Documentation]
+    [Arguments]     ${ID}   ${TXT}
+    Run Keyword If  '${BROWSER}'=='chrome'   Execute JavaScript    document.getElementById('${ID}').value = '${TXT}'
+    Run Keyword If  '${BROWSER}'=='firefox'   Press Keys    //input[@id="${ID}"]   ${TXT}
+Ouvrir Navigateur
+    Open Tstfac Browser
+
+Lancer navigateur_metier
+    [Arguments]          ${APP}
+    Log to console    \n Lancement du navigateur métier
+    #Lancer Application   ${URL_${APP}}
+    Lancer le navigateur métier     ${URL_${APP}}
+    #Verif 1 
+          
+
+Ouvrir Application
+    [Arguments]          ${APP}
+    Lancer Application   ${URL_${APP}}
+
+Detecter Type Erreur
+    Set Suite Variable      ${ENV_ERROR}    None
+    FOR    ${ERROR1}    IN      @{ERRORS}
+        ${found}=  	    Run Keyword And Return Status       Page Should Contain    ${ERROR1}    loglevel=NONE
+        Run Keyword If     ${found}       Set Suite Variable      ${ENV_ERROR}    ${ERROR1}
+        Run Keyword If     ${found}       Exit For Loop 
+    END
+    ${found}=  	        Run Keyword And Return Status       Page Should Contain Element      //span[@class='rf-msgs-err']/span    
+    Run Keyword If              ${found}       Recuperer Message Erreur   
+    Run Keyword If            '${ENV_ERROR}'!='${None}'     Set Test Message             Exception Message: ${ENV_ERROR}
+Recuperer Message Erreur
+    ${Erreur_pop}=              Get Text        //span[@class='rf-msgs-err']/span       
+    Set Suite Variable          ${ENV_ERROR}    ${Erreur_pop}
+Fermer Navigateur
+    Run Keyword If Test Failed            Detecter Type Erreur
+    Close TstFac Browser
+Click Element If Present
+    [Arguments]         ${ELEMENT}
+    ${found}=  	                Run Keyword And Return Status             Page Should Contain Element         ${ELEMENT}
+    Run Keyword If            ${found}                  Click Element                    ${ELEMENT}
+
+Generer Date Effet
+    [Arguments]     ${NB_Days}
+    ${date}=        Get Current Date      UTC      
+    ${plus14}=      Add Time To Date      ${date}        ${NB_Days} days
+    ${FORMAT}=      Switch Date Format
+    ${gen_date}=    Convert Date          ${plus14}      ${FORMAT}
+    ${gen_date_2}=    Convert Date          ${plus14}      %d/%m/%Y
+    Set Suite Variable      ${DATE_EFFET}      ${gen_date}
+    Set Suite Variable      ${DATE_EFFET_FORMAT}      ${gen_date_2}
+
+Generer Date Effet Darwin
+    [Arguments]     ${NB_Days}
+    ${date}=        Get Current Date      UTC      
+    ${plus14}=      Add Time To Date      ${date}        ${NB_Days} days
+    ${FORMAT}=      Switch Date Format Darwin
+    ${gen_date}=    Convert Date          ${plus14}      ${FORMAT}
+    ${gen_date_2}=    Convert Date          ${plus14}      %d/%m/%Y
+    Set Suite Variable      ${DATE_EFFET}      ${gen_date}
+    Set Suite Variable      ${DATE_EFFET_FORMAT}      ${gen_date_2}
+
+Generer Immatriculation VAM
+    ${pt1} =	Generate Random String	2	[UPPER]
+    ${pt2} =	Generate Random String	3	[NUMBERS]
+    ${pt3} =	Generate Random String	2	[UPPER]
+    Set Suite Variable      ${IMMAT_PT1}      ${pt1}
+    Set Suite Variable      ${IMMAT_PT2}      ${pt2}
+    Set Suite Variable      ${IMMAT_PT3}      ${pt3}
+Generer Date Passé
+    [Arguments]  ${NB_Days}
+    ${date}=        Get Current Date      UTC     
+    ${plus14}=      Subtract Time From Date      ${date}        ${NB_Days} days
+    ${FORMAT}=      Switch Date Format
+    ${gen_date}=    Convert Date          ${plus14}      ${FORMAT}
+    # [Return]    ${gen_date}
+    RETURN    ${gen_date}
+
+Switch Date Format 
+    ${D_FORMAT}=   Set Variable If          '${BROWSERNAME}' =='firefox'     ${FORMAT_FF}
+    ...            ${FORMAT_CH}
+    # [Return]      ${D_FORMAT}
+    RETURN    ${D_FORMAT}
+
+
+Switch Date Format Darwin
+    ${D_FORMAT}=   Set Variable If          '${BROWSERNAME}' =='Darwin'     ${FORMAT_FF}
+    ...            ${FORMAT_CH}
+    # [Return]      ${D_FORMAT}
+    RETURN      ${D_FORMAT}
+
+
+
+
+
+
+Rechercher Variante
+    [Arguments]         ${liste_variante}    ${valeur_recherche}   
+    ${nb_donne}=         Get Element Count               ${liste_variante}
+    FOR    ${INDEX}    IN RANGE    1    ${nb_donne}
+        ${txt}=      Get Text     //ul[1]/li[${INDEX}]/a
+        Run Keyword If    '${result}' == '${valeur_recherche}'    Exit For Loop
+    END
+    ${INDEX}=   Set Variable If      '${result}' == '${result1}'     ${INDEX}
+    ...            NO_RESULT
+    RETURN    ${INDEX}
+
+Generer Libelle lot 
+    [Arguments]     ${nmlt}
+    ${UUIDD}=   Gen Uuid Lot
+    RETURN    ${nmlt}-${UUIDD}
+Switcher Tab
+    [Arguments]         ${i}
+    # Afficher la tab "i"
+    #Wait For Testability Ready 
+    Sleep               6
+    Switch Window       ${i}
+
+    # Send Keys TypeWrite      g
+    # Sleep    1
+    # Wait Until Keyword Succeeds	    30s	3s       Select Window	NEW
+
+
+Send Key Press       enter
+    Log to console    Click sur ENTER
+    Wait Until Keyword Succeeds	    30s	5s       Send Key Press   enter
+    Wait Until Keyword Succeeds	    30s	3s       Select Window	NEW
+    
+
+Suite test assur precedent      
+    Wait Until Keyword Succeeds    10 x    2 s      Send Key Press   down
+    Wait Until Keyword Succeeds    10 x    2 s      Send Key Press   down
+    Wait Until Keyword Succeeds    10 x    2 s      Press Keys  None  enter
+
+    
     -->
