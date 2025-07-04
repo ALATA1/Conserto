@@ -35,9 +35,9 @@ Page d'accueil de Conserto
     # Verif ilots
     
 Page Accueil verif titre 
-    [Arguments]     ${Title}  
+    # [Arguments]     ${Title}  
     Log  Page Accueil - vérif du titre attendu :  
-    Verif title   ${Title}
+    Verif title   ${Title_1} 
 
 
 
@@ -148,7 +148,8 @@ Verif positive techologie
         Run Keyword And Ignore Error    Capture Page Et Sauvegarde     Screenshot   capture_Absence_PositiveTecho
     END
 
-
+Vérifier logo conserto  
+    Vérifier logo    ${Conserto}
 
 
 Verif positive techo
@@ -161,7 +162,7 @@ Vérifier logo
     Wait Until Element Is Visible    ${xpath_logo}    10
     Page Should Contain Element    ${xpath_logo}
     Capture Element Et Sauvegarde      ${xpath_logo}    Screenshot   logo 
-    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath_logo}       
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath_logo}            
 
 
 Verifier Titre Visible  
@@ -201,20 +202,27 @@ Cliquer sur un lien ilots
 
 
 Actions Ilots   
-    [Arguments]    ${xpath}  
+    [Arguments]    ${xpath}    ${FILE_OUTPUT}
     Wait Until Element Is Visible    ${xpath}    10
     Scroll Element Into View     ${xpath}
     Wait Until Element Is Visible    ${xpath}    10
     Wait Until Keyword Succeeds    2 x    2 s    Click Element    ${xpath}
     Log    Vérifier que l’image est bien présente dans le DOM (même si invisible)
     Page Should Contain Element       ${Xpath_IMG}
-    Suite verif     ${Xpath_IMG}
+    Suite verif     ${Xpath_IMG}     ${FILE_OUTPUT}
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
 
 
+Test actions Ilots
+    Actions Ilots    ${Ilots_Infra}               ${FILE1_OUTPUT_Infra}
+    Actions Ilots    ${Ilots_Devops}              ${FILE2_OUTPUT_Devops}
+    Actions Ilots    ${Ilots_Dev}                 ${FILE3_OUTPUT_Dev}
+    Actions Ilots    ${Ilots_Agence_Web}          ${FILE4_OUTPUT_Agence_Web}
+    Actions Ilots    ${Ilots_Culture_Agile}       ${FILE5_OUTPUT_Culture_Agile}
+
 
 Suite verif     
-    [Arguments]    ${xpath}
+    [Arguments]    ${xpath}    ${FILE_OUTPUT}
     # Vérifier que l’image est bien présente dans le DOM (même si invisible)
     Page Should Contain Element    ${xpath}
 
@@ -249,16 +257,56 @@ Suite verif
 
     Create Binary File    ${FILE_OUTPUT}    ${response.content}
     File Should Exist    ${FILE_OUTPUT}
+    Déplacer Plusieurs Fichiers
 
 
 
-Verif ilots
-    [Arguments]    ${xpath}
-    Wait Until Element Is Visible    ${xpath}    10
-    Wait Until Keyword Succeeds    2 x    2 s    Click Element     ${xpath}  
-    # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
-    Action Scroll   ${footer}      
-    Capture Page Et Sauvegarde     Screenshot   capture_footer
+    Log    Download Image
+    # Create Session    img_dl    ${BASE_URL}
+    # ${response}=    GET On Session    img_dl    ${path}   #${IMG_PATH}
+    # Save Response To File    ${response}    ${FILE_OUTPUT}   # ${LOCAL_FILE}
+    # Log    Image saved to ${FILE_OUTPUT}    # ${LOCAL_FILE}
+
+
+
+    ######
+
+    # Create Session    img_dl    ${BASE_URL}
+    # ${response}=    GET On Session    img_dl    ${path}
+    # Log               Status Code: ${response.status_code}
+    # Should Be Equal As Integers    ${response.status_code}    200
+    # ${image_bytes}=   Set Variable    ${response.content}
+    # # Create File       ${FILE_OUTPUT}    ${image_bytes}    binary=True
+    # # Log               Image saved as ${FILE_OUTPUT}
+    # Write Binary File    ${FILE_OUTPUT}    ${image_bytes}
+    # Log    Image saved to ${FILE_OUTPUT}
+
+
+    # Create Session    img_dl    ${BASE_URL}
+    # ${response}=    GET On Session    img_dl    ${path}
+    # Should Be Equal As Integers    ${response.status_code}    200
+    # ${image_bytes}=   Set Variable    ${response.content}
+    # Evaluate          open("${FILE_OUTPUT}", "wb").write(${image_bytes})    modules=os
+    # Log               Image saved to ${FILE_OUTPUT}
+
+
+Déplacer Plusieurs Fichiers
+    # ${fichiers}=    List Files In Directory    ${DOSSIER_PROJET}    pattern=downloaded_image*
+    ${fichiers}=    List Files In Directory    ${EXECDIR}    pattern=downloaded_image*
+    FOR    ${fichier}    IN    @{fichiers}
+        Move File    ${EXECDIR}/${fichier}    ${SCREENSH_DIR}/${fichier}
+        Log    ➡️ Déplacé : ${fichier}
+    END
+
+
+
+Save Response To File
+    [Arguments]    ${response}    ${file_path}
+    ${content}=    Get Binary Content From Response    ${response}
+    Write Binary File    ${file_path}    ${content}
+
+
+
 
 
 Vérifier quelques mots avec une boucle
@@ -339,15 +387,17 @@ Supprimer Captures dossier mere
     END
 
 
-Test navigation fonctionne
-    Element Barre de nav     ${Positive}   POSITIVE
-    Element Barre de nav     ${Positive}   TECHNOLOGIE
-    Element Barre de nav     ${Positive}   NOS CLIENTS
-    Element Barre de nav     ${Positive}   ACADEMY
-    Element Barre de nav     ${Positive}   BLOG
-    Element Barre de nav     ${Positive}   CONTACT
-    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
 
+Test navigation fonctionne
+    Element Barre de nav   ${Positive}    POSITIVE      capture_page_positive     ${FICHIER_REF_POSITIVE}
+    # Générer Fichier De Référence      ${FICHIER_REF_POSITIVE}        
+    Element Barre de nav   ${Technologie}   TECHNOLOGIE    capture_page_technologie     ${FICHIER_REF_TECHO}  
+    Element Barre de nav   ${Clients}       NOS CLIENTS    capture_page_clients     ${FICHIER_REF_CLIENTS}   
+    Element Barre de nav   ${Academy}       ACADEMY        capture_page_academy     ${FICHIER_REF_ACADEMY}   
+    Element Barre de nav sans   ${Blog}     BLOG           capture_page_blog        ${FICHIER_REF_BLOG}     
+    Element Barre de nav sans   ${Contact}    CONTACT      capture_page_contact     ${FICHIER_REF_CONTACT}     
+    # Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
+    Renseigner les infos contact 
 
 
 Verif navigation element par element   
@@ -445,10 +495,13 @@ Nav mode global hors mobile
     # Maximize Browser Window
     # Maximize Brows
     Log   methode 1 :
+    Log   Vérifier que l'élément est visible dans le navigateur :
     Wait Until Element Is Visible    ${Barre_de_nav}      timeout=20s
     Wait Until Keyword Succeeds	    5s	3s      Element Should Be Visible        ${Barre_de_nav}
+    Log   Vérifier que l’attribut HTML d’un élément contient exactement les valeurs attendues : 
     Element Attribute Value Should Be    ${Barre_de_nav}    class    nav-main
 
+    Log     Vérification du contenu dynamique : vérifier que le texte d’un élément contient une sous-chaîne spécifique
     Element Should Contain    ${Barre_de_nav}     ${Nav_texte}
     Page Should Contain Element    ${Barre_de_nav}
     Wait For Condition    return document.readyState === 'complete'    timeout=15s
@@ -456,20 +509,15 @@ Nav mode global hors mobile
     Log    Valeur récupérée : ${nav_value}
     Log to console    ${nav_value}   
 
-    Log   methode 2 : 
+    Log   methode 2 :
+    Log     Vérifier qu'un certain texte est présent quelque part dans la page HTML visible : 
     Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
     Page Should Contain    Positive
     # Run Keyword And Ignore Error    Capture Page Screenshot
-    Capture Page Et Sauvegarde     Screenshot   capture_Positive
-
-    Log   methode 3 : 
-    Wait Until Element Is Visible    xpath=//*[@id="nav-main"]    timeout=15s
-    Page Should Contain    Positive
-    # Run Keyword And Ignore Error    Capture Page Screenshot
-    Capture Page Et Sauvegarde     Screenshot   capture_Positive2
+    Capture Page Et Sauvegarde     Screenshot   capture_Positive_Techno
     
-    Log   methode 4 :
-    Log   Screenshot capturée pour analyse
+    Log   methode 3 :
+    Log   Screenshot capturé pour analyse et récupérer la valeur d’un attribut HTML
     ${html} =    Get Element Attribute    ${Barre_de_nav}    innerHTML
     Log    Contenu HTML : ${html} 
 
@@ -623,10 +671,109 @@ Info annee 2013
 
 
 Element Barre de nav
-    [Arguments]    ${xpath}   ${element}
+    [Arguments]    ${xpath}   ${element}     ${image_name}    ${name_file}
     Log    Verif élément "${element}" dans le header :
     Wait Until Element Is Visible    ${xpath}      60
     Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
+    Capture Page Et Sauvegarde     Screenshot   ${image_name}
+    Action Scroll   ${footer}
+    # Action Scroll   ${Barre_de_nav}
+    # Scoller bas vers haut
+    Générer Fichier De Référence     ${name_file}
+
+Générer Fichier De Référence
+    [Arguments]    ${name_file}        
+    Wait Until Page Contains Element    xpath=//body    15s
+    ${texte_page}=    Get Text    xpath=//body
+    Log   Étape 1 : Créer le fichier dans le dossier mère
+    Create File    ${name_file}    ${texte_page}
+    Log   Étape 2 : Vérifier et comparer les fichiers  
+    Vérifier Texte Complet De La Page    ${name_file}
+    # Move Directory    ${source_dossier}    ${destination}
+    Log   Étape : Déplacer le fichier dans Pages
+    Move File    ${name_file}    ${EXECDIR}/Pages/${name_file} 
+    
+
+Vérifier Texte Complet De La Page
+    [Arguments]    ${name_file}
+    Wait Until Page Contains Element    xpath=//body    15s
+    ${texte_page} =    Get Text    xpath=//body
+    ${texte_reference} =    Get File     ${name_file}
+    # Log     1ere methode : mévif simple
+    # Should Be Equal    ${texte_page}    ${texte_reference}    msg=Le texte de la page a changé !
+    Log     2ème methode : mévif et remonte mot différent :
+    ${set1}=    Evaluate    set("""${texte_page}""".split())
+    ${set2}=    Evaluate    set("""${texte_reference}""".split())
+    ${diff}=    Evaluate    sorted(${set1}.symmetric_difference(${set2}))
+    Log    Mots différents: ${diff}
+    Should Be Empty    ${diff}    msg=Des différences ont été détectées: ${diff}
+
+
+
+Comparer Texte Lignes
+    ${texte_page}=       Get Text    xpath=//body
+    ${texte_reference}=  Get File    ${FICHIER_REFERENCE}
+    ${diff}=    differences_lignes    ${texte_page}    ${texte_reference}
+    Run Keyword If    '${diff}' != 'Aucune différence détectée.'    Fail    ${diff}
+    
+
+Test Comparaison
+    ${t1}=    Set Variable    Ceci est une version de la page
+    ${t2}=    Set Variable    Ceci est la version actuelle de la page
+    ${diff}=    Mots Differents    ${t1}    ${t2}
+    Log    ${diff}
+    Run Keyword If    '${diff}' != 'Aucune différence détectée.'    Fail    ${diff}
+
+
+
+    
+Element Barre de nav sans
+    [Arguments]    ${xpath}   ${element}     ${image_name}   ${name_file}
+    Log    Verif élément "${element}" dans le header :
+    Wait Until Element Is Visible    ${xpath}      60
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${xpath}
+    Capture Page Et Sauvegarde     Screenshot   ${image_name}
+    # Action Scroll   ${footer}
+    # Action Scroll   ${Barre_de_nav}
+    # Scoller bas vers haut
+    Générer Fichier De Référence     ${name_file}
+
+
+Scoller bas vers haut 
+    Log To Console    🔽 Scrolling vers le bas...
+    Wait Until Keyword Succeeds	    5s	3s   Execute Javascript    window.scrollTo(0, document.body.scrollHeight)
+    Sleep     2s 
+    Log To Console    🔼 Scrolling vers le haut...
+    Wait Until Keyword Succeeds	    5s	3s   Execute Javascript    window.scrollTo(0, 0)
+
+
+Verif ilots
+    [Arguments]    ${xpath}
+    Wait Until Element Is Visible    ${xpath}    10
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element     ${xpath}  
+    # Wait Until Keyword Succeeds    2 x    2 s    Vérifier quelques mots avec une boucle 
+    Action Scroll   ${footer}      
+    Capture Page Et Sauvegarde     Screenshot   capture_footer
+
+
+Renseigner les infos contact 
+    Page Should Contain    Nous contacter
+    Element Should Contain    ${Title_bloc_contact}    Nous contacter
+    Capture Element Et Sauvegarde    ${Bloc_contact}    Screenshot     capture_champs_contact
+    Saisir Champ contact   
+    
+
+Saisir Champ contact 
+    # [Arguments]     ${Num1}
+    Wait Until Element Is Visible       ${Bloc_contact}      60 
+    Wait Until Element Is Visible       ${Nom_Bloc_contact}      60
+    Wait Until Keyword Succeeds    2 x    2 s     Clear Element Text                  xpath:${Nom_Bloc_contact}
+    Wait Until Keyword Succeeds    2 x    2 s     Click Element                       ${Nom_Bloc_contact}
+    # Wait Until Keyword Succeeds    10 x    2 s     Clear Element Text                  xpath:${Saisie_JJD_Nora}
+    # Wait Until Keyword Succeeds    10 x    2 s     Input Field                         ${Saisie_JJD_Nora}  ${Num1}
+    # # Press Keys    ${Saisie_JJD_Nora}    ${Num1}
+    # Wait Until Keyword Succeeds    10 x    2 s     Click Element                       ${Click_Nom_Prenom_Soc}
+
 
 
 Barre de nav positive
@@ -716,3 +863,98 @@ Afficher Tous Les cas
 
 
  
+
+
+Supprimer les fichiers Selenium png    
+    [Arguments]     ${Chemin}    ${Chemins}    ${racine} 
+    # # ${fichiers}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    # ${captures}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    # ${logos}=       List Files In Directory    ${Chemin}    pattern=logo
+    # ${selenium}=    List Files In Directory    ${Chemin}    pattern=selenium-*
+    # ${fichiers}=    Combine Lists    ${captures}    ${logos}    ${selenium}
+
+    # FOR    ${fichier}    IN    @{fichiers}
+    #     Remove File    ${Chemin}/${fichier}
+    # END
+    ${captures1}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    ${captures2}=    List Files In Directory    ${Chemin}    pattern=downloaded_image_*
+    ${captures}=     Combine Lists    ${captures1}    ${captures2}
+    FOR    ${fichier}    IN    @{captures}
+        Remove File    ${Chemin}/${fichier}
+    END
+    # ${captures}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    # FOR    ${fichier}    IN    @{captures}
+    #     Remove File    ${Chemin}/${fichier}
+    # END
+
+    ${logos}=    List Files In Directory    ${Chemin}    pattern=logo*
+    FOR    ${fichier}    IN    @{logos}
+        Remove File    ${Chemin}/${fichier}
+    END
+
+    ${fichiers}=    List Files In Directory    ${Chemins}    pattern=selenium-*
+    FOR    ${fichier}    IN    @{fichiers}
+        ${chemin_complet}=    Set Variable    ${Chemins}/${fichier}
+        Remove File    ${chemin_complet}
+        File Should Not Exist    ${chemin_complet}
+    END
+
+    ${autres}=    List Files In Directory    ${racine}    pattern=downloaded_image* 
+    FOR    ${fichier}    IN    @{autres}
+        ${chemin_complet}=    Set Variable    ${racine}/${fichier}
+        Remove File    ${chemin_complet}
+        File Should Not Exist    ${chemin_complet}
+    END
+
+    ${autres1}=    List Files In Directory    ${racine}    pattern=selenium-* 
+    FOR    ${fichier}    IN    @{autres1}
+        ${chemin_complet}=    Set Variable    ${racine}/${fichier}
+        Remove File    ${chemin_complet}
+        File Should Not Exist    ${chemin_complet}
+    END
+
+    
+Suppr fichiers Selenium png
+    [Arguments]     ${Chemin}   
+    ${captures1}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    ${captures2}=    List Files In Directory    ${Chemin}    pattern=downloaded_image*
+    ${captures3}=    List Files In Directory    ${Chemin}    pattern=logo*
+    ${captures4}=    List Files In Directory    ${Chemin}    pattern=selenium-*
+    
+    ${captures}=     Combine Lists    ${captures1}    ${captures2}    ${captures3}    ${captures4}
+    FOR    ${fichier}    IN    @{captures}
+        Remove File    ${Chemin}/${fichier}
+    END
+
+    
+
+Supprimer les fichiers Selenium png cas 2    
+    [Arguments]     ${Chemin}   
+    # # ${fichiers}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    # ${captures}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    # ${logos}=       List Files In Directory    ${Chemin}    pattern=logo
+    # ${selenium}=    List Files In Directory    ${Chemin}    pattern=selenium-*
+    # ${fichiers}=    Combine Lists    ${captures}    ${logos}    ${selenium}
+
+    # FOR    ${fichier}    IN    @{fichiers}
+    #     Remove File    ${Chemin}/${fichier}
+    # END
+
+    ${captures}=    List Files In Directory    ${Chemin}    pattern=capture_*
+    FOR    ${fichier}    IN    @{captures}
+        ${chemin_complet}=    Set Variable    ${Chemin}/${fichier}
+        Remove File    ${Chemin}/${fichier}
+    END
+
+    ${logos}=    List Files In Directory    ${Chemin}    pattern=logo*
+    FOR    ${fichier}    IN    @{logos}
+        ${chemin_complet}=    Set Variable    ${Chemin}/${fichier}
+        Remove File    ${Chemin}/${fichier}
+    END
+
+    ${fichiers}=    List Files In Directory    ${Chemin}    pattern=selenium-*
+    FOR    ${fichier}    IN    @{fichiers}
+        ${chemin_complet}=    Set Variable    ${Chemin}/${fichier}
+        Remove File    ${chemin_complet}
+        File Should Not Exist    ${chemin_complet}
+    END

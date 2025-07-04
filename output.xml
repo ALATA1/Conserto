@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-07-04T00:34:58.234435" rpa="false" schemaversion="5">
+<suite id="s1" name="Conserto 2" source="C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Tests\TestSuites\Conserto\conserto_2.robot">
+<test id="s1-t1" name="Automatisation du site conserto cas 2" line="41">
+<kw name="Prérequis test" owner="Commun_conserto" type="SETUP">
+<kw name="Supprimer les fichiers Selenium png" owner="Keywords">
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2025-07-04T00:34:59.244792" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot"&gt;C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot&lt;/a&gt;'.</msg>
+<msg time="2025-07-04T00:34:59.244981" level="FAIL">Directory 'C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot' does not exist.</msg>
+<var>${captures}</var>
+<arg>${Chemin}</arg>
+<arg>pattern=capture_*</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="FAIL" start="2025-07-04T00:34:59.244524" elapsed="0.000624">Directory 'C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot' does not exist.</status>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${Chemin}/${fichier}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245526" elapsed="0.000036"/>
+</kw>
+<var name="${fichier}"/>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245406" elapsed="0.000216"/>
+</iter>
+<var>${fichier}</var>
+<value>@{captures}</value>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245285" elapsed="0.000391"/>
+</for>
+<kw name="List Files In Directory" owner="OperatingSystem">
+<var>${logos}</var>
+<arg>${Chemin}</arg>
+<arg>pattern=logo*</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245802" elapsed="0.000032"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${Chemin}/${fichier}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246061" elapsed="0.000030"/>
+</kw>
+<var name="${fichier}"/>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245973" elapsed="0.000163"/>
+</iter>
+<var>${fichier}</var>
+<value>@{logos}</value>
+<status status="NOT RUN" start="2025-07-04T00:34:59.245900" elapsed="0.000281"/>
+</for>
+<kw name="List Files In Directory" owner="OperatingSystem">
+<var>${fichiers}</var>
+<arg>${Chemins}</arg>
+<arg>pattern=selenium-*</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246293" elapsed="0.000029"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${chemin_complet}</var>
+<arg>${Chemins}/${fichier}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246566" elapsed="0.000031"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${chemin_complet}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246703" elapsed="0.000030"/>
+</kw>
+<kw name="File Should Not Exist" owner="OperatingSystem">
+<arg>${chemin_complet}</arg>
+<doc>Fails if the given path points to an existing file.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246832" elapsed="0.000030"/>
+</kw>
+<var name="${fichier}"/>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246475" elapsed="0.000429"/>
+</iter>
+<var>${fichier}</var>
+<value>@{fichiers}</value>
+<status status="NOT RUN" start="2025-07-04T00:34:59.246396" elapsed="0.000555"/>
+</for>
+<kw name="List Files In Directory" owner="OperatingSystem">
+<var>${autres}</var>
+<arg>${racine}</arg>
+<arg>pattern=downloaded_image*</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247063" elapsed="0.000035"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${chemin_complet}</var>
+<arg>${racine}/${fichier}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247344" elapsed="0.000032"/>
+</kw>
+<kw name="Remove File" owner="OperatingSystem">
+<arg>${chemin_complet}</arg>
+<doc>Removes a file with the given path.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247481" elapsed="0.000030"/>
+</kw>
+<kw name="File Should Not Exist" owner="OperatingSystem">
+<arg>${chemin_complet}</arg>
+<doc>Fails if the given path points to an existing file.</doc>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247610" elapsed="0.000029"/>
+</kw>
+<var name="${fichier}"/>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247238" elapsed="0.000441"/>
+</iter>
+<var>${fichier}</var>
+<value>@{autres}</value>
+<status status="NOT RUN" start="2025-07-04T00:34:59.247159" elapsed="0.000566"/>
+</for>
+<arg>${SCREENSH_DIR}</arg>
+<arg>${RESULTATS_DIR}</arg>
+<arg>${EXECDIR}</arg>
+<status status="FAIL" start="2025-07-04T00:34:59.243507" elapsed="0.004375">Directory 'C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot' does not exist.</status>
+</kw>
+<status status="FAIL" start="2025-07-04T00:34:59.242931" elapsed="0.005078">Directory 'C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot' does not exist.</status>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-07-04T00:34:59.248451" elapsed="0.000175"/>
+</kw>
+<doc>Scénario CONSERTO-CON0001 : Vérifier quelques éléments du site conserto.
+JDD : Salarié chez conserto, ayant une adresse mail et un mot de passe actifs.</doc>
+<tag>CON0001</tag>
+<tag>ETAT:Stable</tag>
+<tag>PRIORITE:P1</tag>
+<tag>TYPE:CONSERTO</tag>
+<status status="FAIL" start="2025-07-04T00:34:59.241723" elapsed="0.007068">Setup failed:
+Directory 'C:\Users\ibrahima.alata\OneDrive - CONSERTO\Bureau\PROJET\CONSERTO\Conserto-1\Resultats\Screenshot' does not exist.</status>
+</test>
+<doc>CONSERTO</doc>
+<status status="FAIL" start="2025-07-04T00:34:58.236714" elapsed="1.013122"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">CON0001</stat>
+<stat pass="0" fail="1" skip="0">ETAT:Stable</stat>
+<stat pass="0" fail="1" skip="0">PRIORITE:P1</stat>
+<stat pass="0" fail="1" skip="0">TYPE:CONSERTO</stat>
+</tag>
+<suite>
+<stat name="Conserto 2" id="s1" pass="0" fail="1" skip="0">Conserto 2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

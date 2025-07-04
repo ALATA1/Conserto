@@ -30,6 +30,9 @@ ${EXPECTED_H1}    Culture Agile
 ${EXPECTED_B}     Une culture agile qui se traduit dans les résultats
 ${OUTPUT_FILE}    downloaded_image.jpg
 
+
+
+
 *** Test Cases ***
 
 Vérifier Section Culture Agile Et Télécharger L’Image
@@ -72,4 +75,6 @@ Vérifier Section Culture Agile Et Télécharger L’Image
     File Should Exist    ${OUTPUT_FILE}
 
 
-    
+
+
+   

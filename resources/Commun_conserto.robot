@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 Library    OperatingSystem
 Library    String
 Library    Collections
+Library    RequestsLibrary
 
 
 # Resource         ../../../Resources/Keywords.robot
@@ -44,16 +45,33 @@ ${Title2_Idnow}         La confiance au cœur de l'identité.
 # ${SCREENSHOTT_PATH}    ${EXECDIR}/Resultats/selenium-screenshot-2.png
 # ${SCREENSHOTS_PATH}    ${EXECDIR}/Resultats/selenium-screenshot-*.png
 # ${SCREENSHO_PATH}      ${EXECDIR}/Resultats/selenium-element-screenshot-*.png
+${DOSSIER_PROJET}                 ${EXECDIR}/Conserto-1
+${SCREENSH_PATH}                  ${EXECDIR}/Resultats/selenium-*   
+${SCREENSH_PATH_RESULT}           ${EXECDIR}/Resultats/Resultats/selenium-*
+${SCREENSH_PATH_SCREENSHOT}       ${EXECDIR}/Resultats/Screenshot/capture_*
+${RESULTS_DIR}                    ${EXECDIR}/Resultats/Resultats
+${SCREENSH_DIR}                   ${EXECDIR}/Resultats/Screenshot
+${RESULTATS_DIR}                  ${EXECDIR}/Resultats
 
-${SCREENSH_PATH}       ${EXECDIR}/Resultats/selenium-*
+
+
 
 *** Keywords ***
 
 Prérequis test
-    # Remove File    ${SCREENSHOTS_PATH}
-    # Remove File    ${SCREENSHO_PATH}
-    Remove File    ${SCREENSH_PATH}
+    # # # Remove File    ${SCREENSHOTS_PATH}
+    # # # Remove File    ${SCREENSHO_PATH}
+    # # Remove File    ${SCREENSH_PATH}
+    # # Remove File    ${SCREENSH_PATH_RESULT}
+    # # Remove File    ${SCREENSH_PATH_SCREENSHOT}
+    # Supprimer les fichiers Selenium png     ${RESULTS_DIR}
+    # Supprimer les fichiers Selenium png     ${SCREENSH_DIR}
 
+    Supprimer les fichiers Selenium png     ${SCREENSH_DIR}   ${RESULTATS_DIR}   ${EXECDIR}
+    # # Supprimer les fichiers Selenium png cas 2     ${RESULTATS_DIR} 
+    # Suppr fichiers Selenium png     ${SCREENSH_DIR}
+    # Suppr fichiers Selenium png     ${RESULTATS_DIR}
+    # Suppr fichiers Selenium png     ${EXECDIR}
 
 Capture Erreur Unique
     Close Browser
@@ -80,7 +98,7 @@ Ouverture Navigateur
     # # Maximize Browser Window   
     Choix Maximize Browser Window    ${Choix}  
     # Wait Until Keyword Succeeds    3s    2s    Capture Page Screenshot
-    Capture Page Et Sauvegarde     Screenshot   capture_navigateur
+    # Capture Page Et Sauvegarde     Screenshot   capture_navigateur
 
 
 

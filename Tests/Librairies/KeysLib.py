@@ -105,6 +105,8 @@ class KeysLib_disabled():
         actions.send_keys(touche)
         actions.perform()
 
+    
+
 
 # Fonction permettant de choisir de demarrer un nouveau navigateur ou de continuer sur un de lance
 
@@ -120,3 +122,10 @@ class KeysLib_disabled():
         else:
             ouvert = 2
         return ouvert
+
+    def write_binary_file(path, content):
+        with open(path, 'wb') as f:
+            f.write(content)
+
+
+    
