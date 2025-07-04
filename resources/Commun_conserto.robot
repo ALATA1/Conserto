@@ -53,7 +53,7 @@ ${RESULTS_DIR}                    ${EXECDIR}/Resultats/Resultats
 ${SCREENSH_DIR}                   ${EXECDIR}/Resultats/Screenshot
 ${RESULTATS_DIR}                  ${EXECDIR}/Resultats
 
-${CHEMIN_FICHIER}                 ${EXECDIR}/requirements.txt
+${CHEMIN_FICHIER}                 ${EXECDIR}/fichierMessage.txt
 ${SELECTEUR_INPUT_FILE}           //span[@class="modern-title"]       
 
 

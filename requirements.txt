@@ -1,8 +1,0 @@
-Objet : Candidature pour un poste de testeur chez Conserto.
-
-Bonjour Madame, Monsieur,
-Je me permets de vous adresser ma candidature pour un poste de testeur au sein de votre entreprise.\n
-Fort d’une expérience de 5 ans dans le domaine des tests automatisés, je suis particulièrement intéressé par les valeurs portées par Conserto et par les projets innovants que vous conduisez.\n
-Je joins à ce message mon CV ainsi qu’une lettre de motivation, et je reste à votre disposition pour toute information complémentaire ou un éventuel entretien.\n
-Je vous remercie de l’attention portée à ma candidature et vous prie d’agréer, Madame, Monsieur, l’expression de mes salutations distinguées.\n
-Cordialement,
