@@ -20,7 +20,7 @@ Resource         ../../../Variables/Global_variables.robot
 # Test Setup       NONE  # Open Browser
 # Test Teardown    NONE  # Close Browser  
 # git push origin main:test
-# Jenkins : Id = Test_Cons
+# Jenkins : Id = Test_Cons Kolima2431121980@
 
 Test Setup      Prérequis test   # NONE   Préparer Test
 Test Teardown   Close Browser   # Capture Erreur Unique
