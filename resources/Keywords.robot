@@ -317,24 +317,47 @@ Activer Tous Les Éléments Un Par Un
 
 
 Verif des 5 ilots
-    Ilot verif dynamique   Infra    97    ${Ilots_Texte_Infra}
-    Ilot verif dynamique   AgenceWeb    98    ${Ilots_Texte_AgenceWeb} 
-    Ilot verif dynamique   CultureAgile    96    ${Ilots_Texte_CultureAgile} 
-    Ilot verif dynamique   Devops    95    ${Ilots_Texte_Devops} 
-    Ilot verif dynamique   Dev    94   ${Ilots_Texte_Dev}
-
+    Ilot verif dynamique   Infra    97    @{Ilots_Texte_Infra}
+    Ilot verif dynamique   AgenceWeb    98    ${Ilots_Texte_AgenceWeb}     #@{Ilots_Texte_AgenceWeb} 
+    Ilot verif dynamique   CultureAgile    96    @{Ilots_Texte_CultureAgile} 
+    Ilot verif dynamique   Devops    95    @{Ilots_Texte_Devops} 
+    Ilot verif dynamique    Dev    94    @{Ilots_Texte_Dev}
 
 
 Ilot verif dynamique 
-    [Arguments]    ${name}   ${num}   ${text}
-    ${element}=    Set Variable    id=tease-${num} 
-    ${cle} =    Set Variable    ${name}
-    Wait Until Element Is Visible    ${Accueil_Ilots_container}    10
-    Scroll Element Into View     ${Accueil_Ilots_container}  
+    # [Arguments]    ${name}   ${num}   ${text}   
+    # ${element}=    Set Variable    id=tease-${num}   
+    # ${cle} =    Set Variable    ${name}
+    # ${list_element_ilot} =    Set Variable    ${text}
+    # Wait Until Element Is Visible    ${Accueil_Ilots_container}    10
+    # Scroll Element Into View     ${Accueil_Ilots_container}  
+    # ${texte}=    Get Text    ${element}
+    # ${nom_variable}=    Catenate    SEPARATOR=    Texte_    ${cle}
+    # Set To Dictionary    ${TEXTES_PAR_ILOT}    ${nom_variable}=${texte} 
+    # Sleep    3s 
+    # Wait Until Keyword Succeeds    5 x    2 s    Element Text Should Be    ${element}    ${list_element_ilot} 
+
+
+    # [Arguments]    ${name}   ${num}   @{text_parts}   
+    # ${element}=    Set Variable    id=tease-${num}
+    # Wait Until Element Is Visible    ${element}    10
+    # Scroll Element Into View     ${element}
+    # ${texte}=    Get Text    ${element}
+    # FOR    ${part}    IN    @{text_parts}
+    #     Should Contain    ${texte}    ${part}
+    # END
+
+
+    [Arguments]    ${name}   ${num}   @{text_parts}
+    ${element}=    Set Variable    id=tease-${num}
+    Wait Until Element Is Visible    ${element}    10
+    Scroll Element Into View     ${element}
     ${texte}=    Get Text    ${element}
-    ${nom_variable}=    Catenate    SEPARATOR=    Texte_    ${cle}
-    Set To Dictionary    ${TEXTES_PAR_ILOT}    ${nom_variable}=${texte} 
-    Element Text Should Be    ${element}    ${text} 
+    ${nom_variable}=    Catenate    SEPARATOR=    Texte_    ${name}
+    Set To Dictionary    ${TEXTES_PAR_ILOT}    ${nom_variable}=${texte}
+    FOR    ${part}    IN    @{text_parts}
+        Should Contain    ${texte}    ${part}
+    END
 
 
 

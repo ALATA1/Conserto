@@ -142,15 +142,20 @@ ${Accueil_text_agences}        9 agences\nlocales\nDévelopper des agences convi
 
 &{TEXTES_PAR_ILOT}       ilot_infra=Infra    ilot_AgenceWeb=AgenceWeb    ilot_CultureAgile=CultureAgile    ilot_Devops=Devops    ilot_Dev=Dev 
 
-${Accueil_Ilots_container_texte}     C’est notre façon de concevoir notre métier, manager, animer et créer du lien avec nos salariés et nos clients.
-${Agencies_block_histo}        //div[@class="agencies-block alignwide custom-block "]
-${Ilots_Texte_Infra}            Infra / Cloud\n#Construire\nCloud public
-${Ilots_Texte_AgenceWeb}        Agence Web\n#Créer\nProjets digitaux (sites web, applications)
-${Ilots_Texte_CultureAgile}     Culture Agile\n#Accompagner\nCoaching en Organisation / Équipe
-${Ilots_Texte_Devops}           Devops\n#Automatiser\nIntégration technique
-${Ilots_Texte_Dev}              Dev\n#Développer\nArchitecture / Conseil technique\nConception / Réalisation / Test\nMaintenance
+${Accueil_Ilots_container_texte}        C’est notre façon de concevoir notre métier, manager, animer et créer du lien avec nos salariés et nos clients.
+${Agencies_block_histo}                 //div[@class="agencies-block alignwide custom-block "]
+# ${Ilots_Texte_Infra}                    Infra / Cloud\n#Construire\nCloud public
+${Ilots_Texte_AgenceWeb}                Agence Web\n#Créer\nProjets digitaux (sites web, applications)\nConseil stratégie digitale\nUX design, création, référencement, accessibilité, éco-conception
+# ${Ilots_Texte_CultureAgile}             Culture Agile\n#Accompagner\nCoaching en Organisation / Équipe
+# ${Ilots_Texte_Devops}                   Devops\n#Automatiser\nIntégration technique
+# ${Ilots_Texte_Dev}                      Dev\n#Développer\nArchitecture / Conseil technique\nConception / Réalisation / Test\nMaintenance
+${Ilots_Extrait_Texte_Dev}                Dev\n#Développer\nArchitecture / Conseil technique
 
-${Accueil_actu_agences}         //div[normalize-space(@class)='carousel-wrapper']
+${Accueil_actu_agences}          //div[normalize-space(@class)='carousel-wrapper']
+
+
+
+
 
 
 ##########################################################################################
@@ -171,3 +176,44 @@ ${Barre_de_nav_Idnow2}         //*[@id="menu-navigation-fr"]
 
 ${Texte1_activite}         Nous transformons la confiance en avantage stratégique.
 ${Texte2_activite}         Grâce à nos solutions d’identité SaaS pilotées par l’IA, vous bénéficiez d’une sécurité extensible, d’une conformité évolutive et d’une prévention de la fraude en temps réel. De quoi naviguer sereinement dans un monde digital complexe.
+
+
+
+
+
+    
+@{Ilots_Texte_Dev}=    Dev    
+...    #Développer    
+...    Architecture / Conseil technique    
+...    Conception / Réalisation / Test    
+...    Maintenance
+
+
+@{Ilots_Texte_CultureAgile}=    Culture Agile    
+...    #Accompagner    
+...    Coaching en Organisation / Équipe    
+...    Coaching opérationnel DSI / Conseil IT / Méthodo
+
+
+@{Ilots_Texte_Devops}=    Devops    
+...    #Automatiser    
+...    Outillage   
+...    Automatisation   
+...    Coaching Craft
+
+
+@{Ilots_Texte_AgenceWeb}=    Agence Web    
+...    #Créer    
+...    Projets digitaux (sites web, applications​)
+...    Conseil stratégie digitale​
+...    UX design, création, référencement, accessibilité, éco-conception
+
+
+
+
+@{Ilots_Texte_Infra}=    Infra / Cloud
+...    Cloud    
+...    #Construire    
+...    Cloud public    
+...    Cloud privé    
+...    Infrastructure système et production
