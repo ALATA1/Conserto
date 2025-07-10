@@ -112,9 +112,45 @@ ${VotreMessage}    Objet : Candidature pour un poste de testeur chez Conserto.\n
 ...    Je vous remercie de l’attention portée à ma candidature et vous prie d’agréer, Madame, Monsieur, l’expression de mes salutations distinguées.\n
 ...    Cordialement,
 
+${infos_Toulouse}                    L’agence résonne comme un écho à notre volonté d’être au cœur de la carrière de nos collaborateurs comme au cœur des projets de nos clients. Nous conjuguons expertises technologiques, accompagnement au changement et formations dédiées, pour nos salariés et nos clients, dans un cadre suivi et bienveillant. Le bien-être de nos collaborateurs est égal à la qualité de nos projets réalisés, notre charte du management est la base de notre engagement. Gestion de carrières, suivis, coaching, communautés, salons, meet-up, formations, soirées d’agence & féerie, (…) sont autant de principes qui constituent un terrain de jeu fertile pour la progression, l’épanouissement et le plaisir !
+${Extrait_infos_Toulouse}            L’agence résonne comme un écho à notre volonté d’être au cœur de la carrière de nos collaborateurs comme au cœur des projets de nos clients.
+${Extrait_infos_Rennes}              L’agence compte aujourd’hui plus de 80 collaborateurs qui proposent leur expertise IT en assistance technique ou en mode forfait sur la Culture Agile, le Dev & DevOps pour répondre aux projets de nos clients !
+${Extrait_infos_Montpellier}         Nous combinons nos savoir-faire pour créer de la valeur dans toutes nos interventions.
+${Extrait_infos_Niort}               C’est la seconde agence de Conserto à ouvrir ses portes dans un contexte numérique dynamique, berceau des mutuelles et des assurances.
+${Extrait_infos_Nantes}              Nantes est le point de départ de l’aventure Conserto. C’est ici que nos offres sont nées autour du Dev, du Devops, de l’Infra/Cloud et de la Culture Agile !
+${Extrait_infos_Paris}               Positionnée autour de 3 offres de service : Digital, DevOps et Culture Agile, créée en 2016, l’agence est la vitrine de nos savoir-faire et le relais des agences en régions.
+${Extrait_infos_Bordeaux}            Créée en avril 2018, Bordeaux est la 7ème agence Conserto à avoir vu le jour. Son développement s’est axé principalement sur le Digital, le DevOps et la Culture Agile. 
+${Extrait_infos_Lyon}                L’agence a ouvert ses portes en juin 2018 et a pris ses quartiers à la Villette (Part-Dieu) début novembre 2019.
+${Extrait_infos_Strasbourg}          En pleine croissance, Conserto ouvre sa 9ème agence à Strasbourg en 2022 à l’occasion de son 9ème anniversaire et du passage symbolique des 500 salariés.     
+
+
+
 
 ${Button_Envoyer_Message}      //button[@type="submit" and @id="wpforms-submit-284"]        #//*[@id="wpforms-submit-284"]
 ${Checkbox_contact}            id=wpforms-284-field_9_3
+
+
+
+${Accueil_container}           //div[@class="container gutenberg-content"]
+${Accueil_Texte_container}     ${Accueil_container}/p[@class="has-text-align-center has-heading-3-font-size"]
+${Accueil_Ilots_container}     //div[@class="posts-wrapper"]
+
+${Accueil_Ilots_list}          //div[@class="posts-block is-style-grid custom-block "]
+
+${Accueil_agences}             //div[normalize-space(@class)='push-block custom-block inverted']
+${Accueil_text_agences}        9 agences\nlocales\nDévelopper des agences conviviales pour déployer nos offres et nos compétences dans des villes attractives.
+
+&{TEXTES_PAR_ILOT}       ilot_infra=Infra    ilot_AgenceWeb=AgenceWeb    ilot_CultureAgile=CultureAgile    ilot_Devops=Devops    ilot_Dev=Dev 
+
+${Accueil_Ilots_container_texte}     C’est notre façon de concevoir notre métier, manager, animer et créer du lien avec nos salariés et nos clients.
+${Agencies_block_histo}        //div[@class="agencies-block alignwide custom-block "]
+${Ilots_Texte_Infra}            Infra / Cloud\n#Construire\nCloud public
+${Ilots_Texte_AgenceWeb}        Agence Web\n#Créer\nProjets digitaux (sites web, applications)
+${Ilots_Texte_CultureAgile}     Culture Agile\n#Accompagner\nCoaching en Organisation / Équipe
+${Ilots_Texte_Devops}           Devops\n#Automatiser\nIntégration technique
+${Ilots_Texte_Dev}              Dev\n#Développer\nArchitecture / Conseil technique\nConception / Réalisation / Test\nMaintenance
+
+${Accueil_actu_agences}         //div[normalize-space(@class)='carousel-wrapper']
 
 
 ##########################################################################################

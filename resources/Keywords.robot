@@ -38,7 +38,7 @@ Page Accueil verif titre
     # [Arguments]     ${Title}  
     Log  Page Accueil - vérif du titre attendu :  
     Verif title   ${Title_1} 
-
+    Fermer Le Popup S'il Apparaît
 
 
 Page d'accueil de Conserto cas 2 
@@ -114,6 +114,8 @@ Verif positive techologie
     ${xpath5}=   Set Variable    xpath=//div[@class="first-word has-primary-color"]
     ${xpath6}=   Set Variable    xpath=//div[@class="second-word has-dark-color"]
 
+    Wait Until Element Is Visible    ${Conserto}    10
+    Wait Until Keyword Succeeds	    5s	3s      Click Element    ${Conserto}
 
     IF    ${status}
         Log    Méthode 1 - On constate bien que "${texte}" est bien visible. 
@@ -152,11 +154,212 @@ Verif positive techologie
 Vérifier logo conserto 
     Log     vérif présence du logo
     Vérifier logo    ${Conserto}
+    Wait Until Keyword Succeeds    10 x    2 s    Fermer Le Popup S'il Apparaît
 
 
 Verif positive techo
     [Arguments]    ${xpath}    ${texte_attendu} 
     Verifier Titre Visible     ${xpath}    ${texte_attendu}  
+
+
+
+Page acceuil verifs ilots et agences 
+    [Arguments]    ${text} 
+    ${xpath}=    Set Variable    ${Accueil_container}
+    Wait Until Element Is Visible    ${xpath}    10
+    Scroll Element Into View     ${xpath}
+
+    ${Tous}=    Get Text    ${xpath}
+    ${Texte1}=    Get Text    ${Accueil_Texte_container}  
+    ${Texte_tous}=    Get Text    ${Accueil_Ilots_container}   
+    Element Text Should Be    ${Accueil_Texte_container}    ${text}    
+    # Capture Element Et Sauvegarde  ${Accueil_Ilots_list}  Screenshot  capture_ilots_accueil
+    Verif des 5 ilots
+    Verif agences    ${Accueil_agences}    ${Accueil_text_agences}
+    Actu agences     ${Accueil_actu_agences}
+
+
+
+Actions agence par agence
+    [Arguments]    ${index}
+    Activer L'Élément Par Index    ${index}
+
+
+
+
+Activer L'Élément Par Index
+    [Arguments]    ${index} 
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'content') and @data-index='${index}']    10
+    Scroll Element Into View     xpath=//div[contains(@class, 'content') and @data-index='${index}']
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    xpath=//div[contains(@class, 'content') and @data-index='${index}']
+    # Wait Until Element Attribute Contains    xpath=//div[@data-index='${index}']    class    active    timeout=10s
+    
+
+Vérifier Tous Les Contenus Actifs
+    [Arguments]    @{donnees_villes}
+    FOR    ${donnee}    IN    @{donnees_villes}
+        ${index}=          Set Variable    ${donnee}[0]
+        ${ville}=          Set Variable    ${donnee}[1]
+        ${titre}=          Set Variable    ${donnee}[2]
+        ${commentaire}=    Set Variable    ${donnee}[3]
+
+        Log To Console    \n🔍 Vérification de ${ville} (index: ${index})
+        Vérifier Le Contenu Actif Correspond    ${index}    ${ville}    ${titre}    ${commentaire}
+    END
+
+
+
+Vérification De Toutes Les Agences 
+    Wait Until Keyword Succeeds    10 x    2 s    Fermer Le Popup S'il Apparaît
+    Vérifier Le Contenu Actif Correspond    0     Nantes         A star is born !                  ${Extrait_infos_Nantes}
+    Vérifier Le Contenu Actif Correspond    1     Niort          Up to you !                       ${Extrait_infos_Niort}
+    Vérifier Le Contenu Actif Correspond    2     Montpellier    Pink is the new black !           ${Extrait_infos_Montpellier}
+    Vérifier Le Contenu Actif Correspond    3     Rennes         BZH happy team !                  ${Extrait_infos_Rennes}  
+    Vérifier Le Contenu Actif Correspond    4     Toulouse       Pink touch in the pink city !     ${Extrait_infos_Toulouse} 
+    Vérifier Le Contenu Actif Correspond    5     Paris          I love Paris !                    ${Extrait_infos_Paris}
+    Vérifier Le Contenu Actif Correspond    6     Bordeaux       Let’s work together !             ${Extrait_infos_Bordeaux}
+    Vérifier Le Contenu Actif Correspond    7     Lyon           Call to action !                  ${Extrait_infos_Lyon} 
+    Vérifier Le Contenu Actif Correspond    8     Strasbourg     Bretzel Forever !                 ${Extrait_infos_Strasbourg}  
+
+
+
+
+Vérifier Le Contenu Actif Correspond
+    [Arguments]    ${index}   ${Ville}   ${Titre}   ${Commentaire} 
+    Log      Déclaration de variables 
+    ${path}=    Set Variable    //div[contains(@class, 'content') and @data-index='${index}']
+    ${Détail_Bloc_histo}=    Set Variable    //div[contains(@class, 'text-content')]
+    ${Ville_Bloc_histo}=     Set Variable    //div[contains(@class, 'text-content')]/h3[contains(@class, 'head-phrase') and text()='${Ville}']
+    ${Titre_Bloc_histo}=     Set Variable    //div[contains(@class, 'text-content')]/h2[contains(@class, 'wp-block-heading') and normalize-space(text())='${Titre}']  
+    ${Paragraphe_Bloc_histo}=    Set Variable    //div[contains(@class, 'text-content')]/p[contains(normalize-space(.), '${Commentaire}')]
+    
+    Log      Actions scroll jusqu'à voir le texte attendurobotframework 
+    Wait Until Element Is Visible    ${path}    timeout=5s
+    Scroll Element Into View     xpath=${path}
+    Wait Until Keyword Succeeds    2 x    2 s    Click Element    xpath=${path}
+    Scroll Element Into View     xpath=${Agencies_block_histo}
+    Wait Until Keyword Succeeds    2 x    2 s    Press Keys    xpath=//body    ARROW_UP
+    # Scroll Element Into View    xpath=${Titre_Bloc_histo}
+    # Wait Until Element Is Visible    xpath=${Titre_Bloc_histo}    timeout=10s
+
+    # Scroll vu element    ${Titre} 
+    Log      Récupérationde textes visibles à stacker dans une variable 
+    ${Ville_name}=    Get Text    ${Ville_Bloc_histo} 
+    ${Titre_name}=    Get Text    //div[contains(@class, 'text-content')]/h2    #${Titre_Bloc_histo}
+    ${Texte_name}=    Get Text    //div[contains(@class, 'text-content')]/p    #${Paragraphe_Bloc_histo}
+
+    Log    ➤ Le contenu correspondant à l’item ${index} est visible.
+    Log    ✅ Ville : ${Ville_name} | Titre : ${Titre_name} | Extrait paragraphe : ${Commentaire}
+    Log    📝 Extrait du commentaire trouvé : ${Texte_name}
+
+
+Activer Tous Les Éléments Et Vérifier Contenu
+    FOR    ${index}    IN RANGE    0    9
+        Log    ➤ Test de l’item index=${index}
+        # Activer L'Élément Par Index    ${index}
+        # Vérifier Le Contenu Actif Correspond    ${index}
+        Vérification De Toutes Les Agences
+        Sleep    0.5s
+    END
+
+
+
+Selectionner agence par index
+    [Arguments]    ${index}
+    Run Keyword If      '${index}' == 'Nantes'           Vérifier Le Contenu Actif Correspond    0     Nantes         A star is born !                  ${Extrait_infos_Nantes}
+    Run Keyword If      '${index}' == 'Niort'            Vérifier Le Contenu Actif Correspond    1     Niort          Up to you !                       ${Extrait_infos_Niort}
+    Run Keyword If      '${index}' == 'Montpellier'      Vérifier Le Contenu Actif Correspond    2     Montpellier    Pink is the new black !           ${Extrait_infos_Montpellier}
+    Run Keyword If      '${index}' == 'Rennes'           Vérifier Le Contenu Actif Correspond    3     Rennes         BZH happy team !                  ${Extrait_infos_Rennes}
+    Run Keyword If      '${index}' == 'Toulouse'         Vérifier Le Contenu Actif Correspond    4     Toulouse       Pink touch in the pink city !     ${Extrait_infos_Toulouse} 
+    Run Keyword If      '${index}' == 'Paris'            Vérifier Le Contenu Actif Correspond    5     Paris          I love Paris !                    ${Extrait_infos_Paris}
+    Run Keyword If      '${index}' == 'Bordeaux'         Vérifier Le Contenu Actif Correspond    6     Bordeaux       Let’s work together !             ${Extrait_infos_Bordeaux}
+    Run Keyword If      '${index}' == 'Lyon'             Vérifier Le Contenu Actif Correspond    7     Lyon           Call to action !                  ${Extrait_infos_Lyon} 
+    Run Keyword If      '${index}' == 'Strasbourg'       Vérifier Le Contenu Actif Correspond    8     Strasbourg     Bretzel Forever !                 ${Extrait_infos_Strasbourg}
+    Run Keyword If      '${index}' == 'Toutes'           Vérification De Toutes Les Agences
+   
+
+
+    
+    
+      
+    
+    
+    
+    
+    
+
+
+
+Scroll vu element 
+    [Arguments]    ${texte}
+    Wait Until Page Contains Element    xpath=//*[contains(text(), "${texte}")]    timeout=10s
+    Scroll Element Into View            xpath=//*[contains(text(), "${texte}")]
+
+Tester Tous Les Indicateurs 
+    Activer Tous Les Éléments Un Par Un
+
+Tester Un Élément Aléatoire
+    Activer Un Élément Aléatoire
+
+Activer Un Élément Aléatoire
+    ${index}=    Evaluate    random.randint(0, 8)    modules=random
+    Log    ➤ Index choisi aléatoirement : ${index}
+    Activer L'Élément Par Index    ${index}
+
+
+Activer Tous Les Éléments Un Par Un
+    FOR    ${index}    IN RANGE    0    9
+        Log    ➤ Activation de l'item index=${index}
+        Activer L'Élément Par Index    ${index}
+        Sleep    0.5s
+    END
+
+
+
+Verif des 5 ilots
+    Ilot verif dynamique   Infra    97    ${Ilots_Texte_Infra}
+    Ilot verif dynamique   AgenceWeb    98    ${Ilots_Texte_AgenceWeb} 
+    Ilot verif dynamique   CultureAgile    96    ${Ilots_Texte_CultureAgile} 
+    Ilot verif dynamique   Devops    95    ${Ilots_Texte_Devops} 
+    Ilot verif dynamique   Dev    94   ${Ilots_Texte_Dev}
+
+
+
+Ilot verif dynamique 
+    [Arguments]    ${name}   ${num}   ${text}
+    ${element}=    Set Variable    id=tease-${num} 
+    ${cle} =    Set Variable    ${name}
+    Wait Until Element Is Visible    ${Accueil_Ilots_container}    10
+    Scroll Element Into View     ${Accueil_Ilots_container}  
+    ${texte}=    Get Text    ${element}
+    ${nom_variable}=    Catenate    SEPARATOR=    Texte_    ${cle}
+    Set To Dictionary    ${TEXTES_PAR_ILOT}    ${nom_variable}=${texte} 
+    Element Text Should Be    ${element}    ${text} 
+
+
+
+Verif agences 
+    [Arguments]    ${xpath}   ${text} 
+    Wait Until Element Is Visible    ${xpath}    10
+    Element Should Be Visible    ${xpath}
+    Scroll Element Into View     ${xpath}  
+    ${texte}=    Get Text    ${xpath} 
+    Capture Element Et Sauvegarde  ${xpath}  Screenshot  capture_agences_accueil
+    Element Text Should Be    ${xpath}    ${text}
+
+
+
+Actu agences 
+    [Arguments]    ${xpath}   #${text} 
+    Wait Until Element Is Visible    ${xpath}    10
+    Element Should Be Visible    ${xpath}
+    Scroll Element Into View     ${xpath}  
+    ${texte}=    Get Text    ${xpath} 
+    Capture Element Et Sauvegarde  ${xpath}  Screenshot  capture_actu_agences
+    # Element Text Should Be    ${xpath}    ${text}
+
+    
+
 
 
 Vérifier logo
@@ -392,9 +595,8 @@ Supprimer Captures dossier mere
 
 
 Test navigation fonctionne
-    Log      vérif elements header, générer et comparer les Fichiers de référence
     Element Barre de nav   ${Positive}    POSITIVE      capture_page_positive     ${FICHIER_REF_POSITIVE}
-    # Générer Fichier De Référence      ${FICHIER_REF_POSITIVE}        
+    # Générer Fichier De Référence      ${FICHIER_REF_POSITIVE}  
     Element Barre de nav   ${Technologie}   TECHNOLOGIE    capture_page_technologie     ${FICHIER_REF_TECHO}  
     Element Barre de nav   ${Clients}       NOS CLIENTS    capture_page_clients     ${FICHIER_REF_CLIENTS}   
     Element Barre de nav   ${Academy}       ACADEMY        capture_page_academy     ${FICHIER_REF_ACADEMY}   
@@ -413,9 +615,16 @@ Verif navigation element par element
     Barre de nav Contact
 
 
+Action Barre de navigation
+    Log     Action 1 - Vérifier la présence et contenu de la barre de navigation 
+    Barre du menu navigation 
+    Log     Action 2 - Vérif elements du header, générer et comparer les Fichiers de référence
+    Test navigation fonctionne
+
+
 
 Barre du menu navigation 
-    # [Arguments]    ${texte}
+    # [Arguments]    ${texte} 
     ${Action_1}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Mobile_menu}       10  
     ${Action_2}=      Run Keyword And Return Status    Wait Until Page Contains    ${Posit_texte}    10  
     ${Action_3}=      Run Keyword And Return Status    Wait Until Element Is Visible    ${Barre_de_nav}      10
@@ -427,7 +636,7 @@ Barre du menu navigation
     Run Keyword If    ${Action_1}    Barre mobile nav         
     ...    ELSE IF    ${Action_2}    Barre de Navigation 
     ...    ELSE IF    ${Action_3}    Verif Elements bloc nav
-
+    
 
     # IF  '${texte}'=='***'      
     #     Log    Aucune requête exécutée. 
@@ -674,6 +883,10 @@ Info annee 2013
     # Capture Element Screenshot    ${Info_2013}
 
 
+ 
+
+
+
 
 Element Barre de nav
     [Arguments]    ${xpath}   ${element}     ${image_name}    ${name_file}
@@ -804,13 +1017,13 @@ Actions button envoyer message
 
 
 Alerte personnalisee 
-    Log    =======================================⛔ ALERTE CRITIQUE ⛔ ========================================
+    Log    ===============================⛔ ALERTE CRITIQUE ⛔ ===============================
     ...    WARN
-    Log    NE PAS CLIQUER sur "Envoyer le message" — Envoi d'email interdit ! \n Attention : Le bouton "Envoyer le message" ne doit pas être utilisé dans ce contexte. \nCela pourrait entraîner un envoi automatique d'emails indésirables à l'agence.  WARN
+    Log    ATTENTION : Le bouton "Envoyer le message" ne doit pas être utilisé dans ce contexte. \nCela pourrait entraîner un envoi automatique d'emails indésirables à l'agence.  WARN
     # Log    Attention : Le bouton "Envoyer le message" ne doit pas être utilisé dans ce contexte. 
     # Log    Cela pourrait entraîner un envoi automatique d'emails indésirables à l'agence.    
     ...    WARN
-    Log    =====================================================================================================
+    Log    =====================================================================================
     ...    WARN
 
 
@@ -1016,7 +1229,14 @@ Afficher Tous Les cas
     END
 
 
- 
+Fermer Le Popup S'il Apparaît
+    Capture Page Screenshot
+    ${popup}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//div[contains(@class, 'event-popup') and contains(@class, 'visible')]//*[name()='svg'][@class='close-icon']    timeout=10s
+    Run Keyword If    ${popup}    Click Element    xpath=//div[contains(@class, 'event-popup') and contains(@class, 'visible')]//*[name()='svg'][@class='close-icon']
+
+
+    # Execute JavaScript    document.querySelector('div.event-popup.visible svg').click()
+
 
 
 Supprimer les fichiers Selenium png    

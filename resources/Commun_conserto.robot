@@ -7,9 +7,6 @@ Library    Collections
 Library    RequestsLibrary
 
 
-# Resource         ../../../Resources/Keywords.robot
-# Resource         ../../../Variables/Global_variables.robot
-
 
 
 # Remarques : 
@@ -69,6 +66,7 @@ Prérequis test
     # Supprimer les fichiers Selenium png     ${SCREENSH_DIR}
 
     Supprimer les fichiers Selenium png     ${SCREENSH_DIR}   ${RESULTATS_DIR}   ${EXECDIR}
+    # Fermer Le Popup S'il Apparaît
     # # Supprimer les fichiers Selenium png cas 2     ${RESULTATS_DIR} 
     # Suppr fichiers Selenium png     ${SCREENSH_DIR}
     # Suppr fichiers Selenium png     ${RESULTATS_DIR}
@@ -100,7 +98,7 @@ Ouverture Navigateur
     Choix Maximize Browser Window    ${Choix}  
     # Wait Until Keyword Succeeds    3s    2s    Capture Page Screenshot
     # Capture Page Et Sauvegarde     Screenshot   capture_navigateur
-
+    
 
 
    
