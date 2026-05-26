@@ -11,7 +11,7 @@ from app.api.auth import hash_password
 from fastapi import Request
 from jose import jwt, JWTError
 from datetime import datetime
-
+from openpyxl.styles import PatternFill
 from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
