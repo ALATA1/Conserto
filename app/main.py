@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Form, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import Depends, HTTPException
+from app.core.security import fake_user, verify_password, create_access_token
 from fastapi import Form
 from io import BytesIO
 from openpyxl import Workbook
@@ -15,16 +17,20 @@ from openpyxl.styles import PatternFill
 from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
-
 from fastapi import FastAPI
-
 Base.metadata.create_all(bind=engine)
-
 from app.data.users import users_db
 from app.api.auth import hash_password, verify_password, create_access_token
-
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from fastapi.responses import StreamingResponse
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from fastapi.responses import JSONResponse
+
+
+
+
+
 
 from app.api.auth import (
     hash_password,
@@ -50,36 +56,67 @@ app.add_middleware(
 
 
 
-# # ===============================
-# # UTILISATEURS DE L'APPLICATION
-# # ===============================
+# # # ===============================
+# # # UTILISATEURS DE L'APPLICATION
+# # # ===============================
 
-# users_db = {
-#     "ibrahima.alata@conserto.pro": {
-#         "username": "ibrahima.alata@conserto.pro",
-#         "hashed_password": hash_password("admin"),
-#         "role": "ADMIN"
-#     },
+# # users_db = {
+# #     "ibrahima.alata@conserto.pro": {
+# #         "username": "ibrahima.alata@conserto.pro",
+# #         "hashed_password": hash_password("admin"),
+# #         "role": "ADMIN"
+# #     },
 
-#     "alice.martin@conserto.pro": {
-#         "username": "alice.martin@conserto.pro",
-#         "hashed_password": hash_password("admin123"),
-#         "role": "MANAGER"
-#     },
+# #     "alice.martin@conserto.pro": {
+# #         "username": "alice.martin@conserto.pro",
+# #         "hashed_password": hash_password("admin123"),
+# #         "role": "MANAGER"
+# #     },
 
-#     "helene.martin@conserto.pro": {
-#         "username": "helene.martin@conserto.pro",
-#         "hashed_password": hash_password("MonPassword123"),
-#         "role": "RH"
-#     }
-# }
+# #     "helene.martin@conserto.pro": {
+# #         "username": "helene.martin@conserto.pro",
+# #         "hashed_password": hash_password("MonPassword123"),
+# #         "role": "RH"
+# #     }
+# # }
+
+# def get_current_user(request: Request):
+    
+#     token = request.cookies.get("access_token")
+
+#     if not token:
+#         raise HTTPException(
+#             status_code=401,
+#             detail="Non authentifié"
+#         )
+
+#     try:
+#         payload = jwt.decode(
+#             token,
+#             SECRET_KEY,
+#             algorithms=[ALGORITHM]
+#         )
+
+#         username = payload.get("sub")
+
+#         if username is None:
+#             return None
+
+#         return users_db.get(username)
+
+#     except JWTError:
+#         return None
+    
 
 def get_current_user(request: Request):
     
     token = request.cookies.get("access_token")
 
     if not token:
-        return None
+        raise HTTPException(
+            status_code=401,
+            detail="Non authentifié"
+        )
 
     try:
         payload = jwt.decode(
@@ -90,15 +127,29 @@ def get_current_user(request: Request):
 
         username = payload.get("sub")
 
-        if username is None:
-            return None
+        if not username:
+            raise HTTPException(
+                status_code=401,
+                detail="Token invalide"
+            )
 
-        return users_db.get(username)
+        user = users_db.get(username)
+
+        if not user:
+            raise HTTPException(
+                status_code=401,
+                detail="Utilisateur introuvable"
+            )
+
+        return user
 
     except JWTError:
-        return None
+        raise HTTPException(
+            status_code=401,
+            detail="Token expiré ou invalide"
+        )
     
-
+    
 # ==============================
 # FONCTION UTILISATEUR CONNECTE 
 # ==============================
@@ -121,7 +172,7 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 
     response = RedirectResponse(url="/", status_code=303)
 
-    # 🔥 IMPORTANT : on stocke le token dans un cookie
+    # IMPORTANT : on stocke le token dans un cookie
     response.set_cookie(
         key="access_token",
         value=token,
@@ -129,6 +180,8 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     )
 
     return response
+
+
 
 
 # =========================
@@ -528,16 +581,18 @@ def home(
         </div>
 
         <!-- EXPORT -->
-        <div class="mb-3">
+        <div class="mb-3 d-flex gap-2">
 
-            <a href="/export/excel"
-               class="btn btn-dark">
+            <a href="/export/excel" class="btn btn-success">
                 Export Excel
             </a>
 
-            <a href="/export/pdf"
-               class="btn btn-danger">
+            <a href="/export/pdf" class="btn btn-danger">
                 Export PDF
+            </a>
+
+            <a href="/export/json" class="btn btn-primary">
+                Export JSON
             </a>
 
         </div>
@@ -1985,6 +2040,10 @@ def audit_page():
     return HTMLResponse(content=html)
 
 
+# ====================
+# DEBUG COLLABORATEUR
+# ====================
+
 @app.get("/debug/collaborateurs")
 def debug():
     return {
@@ -2102,6 +2161,35 @@ def export_excel():
     )
 
 
+
+# =============
+# EXPORT JSON
+# =============
+
+@app.get("/export/json")
+def export_json():
+
+    data = []
+
+    for c in collaborateurs:
+        data.append({
+            "nom": c["nom"],
+            "prenom": c["prenom"],
+            "profil": c["profil"],
+            "agence": c["agence"],
+            "competence": c["competence"],
+            "niveau": c["niveau"],
+            "niveau_attendu": c["niveau_attendu"]
+        })
+
+    return JSONResponse(
+        content={
+            "count": len(data),
+            "collaborateurs": data
+        }
+    )
+
+
 # =========================
 # EXPORT PDF
 # =========================
@@ -2109,37 +2197,65 @@ def export_excel():
 def export_pdf():
 
     buffer = BytesIO()
-
     pdf = canvas.Canvas(buffer, pagesize=A4)
 
-    y = 800
+    width, height = A4
+    y = height - 50
 
-    pdf.setFont("Helvetica", 10)
+    # =========================
+    # TITRE
+    # =========================
+    pdf.setFont("Helvetica-Bold", 14)
+    pdf.drawString(50, y, "Conserto Skills - Export Collaborateurs")
+
+    y -= 30
+
+    # =========================
+    # HEADER
+    # =========================
+    pdf.setFont("Helvetica-Bold", 10)
+    pdf.drawString(50, y, "Nom | Prénom | Profil | Agence | Compétence | Niveau | Appétence")
+
+    y -= 20
+    pdf.line(50, y, 550, y)
+
+    y -= 20
+
+    # =========================
+    # DATA
+    # =========================
+    pdf.setFont("Helvetica", 9)
 
     for c in collaborateurs:
 
-        pdf.drawString(
-            50,
-            y,
+        line = (
             f"{c['nom']} {c['prenom']} | "
             f"{c['profil']} | "
             f"{c['agence']} | "
             f"{', '.join(c['competence'])} | "
-            f"N:{c['niveau']} | "
-            f"A:{c['niveau_attendu']}"
+            f"{c['niveau']} | "
+            f"{c['niveau_attendu']}"
         )
 
-        y -= 20
+        pdf.drawString(50, y, line)
+
+        y -= 18
+
+        # =========================
+        # NEW PAGE IF NEEDED
+        # =========================
+        if y < 50:
+            pdf.showPage()
+            y = height - 50
+            pdf.setFont("Helvetica", 9)
 
     pdf.save()
-
     buffer.seek(0)
 
     return StreamingResponse(
         buffer,
         media_type="application/pdf",
         headers={
-            "Content-Disposition":
-            "attachment; filename=skills.pdf"
+            "Content-Disposition": "attachment; filename=skills_conserto.pdf"
         }
     )
