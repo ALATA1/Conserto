@@ -1,37 +1,32 @@
-from fastapi import FastAPI, Form, Depends, HTTPException
-from app.database.database import Base, engine
-from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
+from fastapi import FastAPI, Form, Depends, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse, JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
-from fastapi import Depends, HTTPException
-from app.core.security import fake_user, verify_password, create_access_token
-from fastapi import Form
+from typing import List, Union, Optional
 from io import BytesIO
+from datetime import datetime
+from typing import List, Optional
+
+from jose import jwt, JWTError
+
 from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from typing import List, Union, Optional
-from app.api.auth import hash_password
-from fastapi import Request
-from jose import jwt, JWTError
-from datetime import datetime
-from openpyxl.styles import PatternFill
-from app.database.database import engine
-from app.database.base import Base
-from app.core.middleware import AuditMiddleware
-from fastapi import FastAPI
-Base.metadata.create_all(bind=engine)
-from app.data.users import users_db
-from app.api.auth import hash_password, verify_password, create_access_token
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from fastapi.responses import StreamingResponse
 from reportlab.lib import colors
-from reportlab.lib.styles import getSampleStyleSheet
-from fastapi.responses import JSONResponse
 
+from app.database.base import Base
+from app.database.database import engine
 
+from app.core.security import verify_password, create_access_token
+from app.core.middleware import AuditMiddleware
 
+from app.models.user import User
+from app.models.collaborateur import Collaborateur
 
+from app.api.auth import hash_password
 
+from app.data.users import users_db
 
 from app.api.auth import (
     hash_password,
@@ -42,23 +37,22 @@ from app.api.auth import (
 SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
 
+# =========================
+# APP INIT
+# =========================
 app = FastAPI()
 
-
-
-
+# Middleware
+app.add_middleware(AuditMiddleware)
 
 # =========================
-# CREATE TABLES (TEMPORAIRE)
+# CREATE TABLES (IMPORTANT)
 # =========================
 Base.metadata.create_all(bind=engine)
 
 
-
 app.add_middleware(AuditMiddleware)
-
 from starlette.middleware.sessions import SessionMiddleware
-
 app.add_middleware(
     SessionMiddleware,
     secret_key="conserto-secret-key"
@@ -156,7 +150,7 @@ def get_current_user(request: Request):
     except JWTError:
         raise HTTPException(
             status_code=401,
-            detail="Token expiré ou invalide"
+            detail="Token expiré ou invalide, merci de vous reconnecter à l'application."
         )
     
 
