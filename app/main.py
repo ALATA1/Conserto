@@ -16,7 +16,7 @@ from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
 
-
+from fastapi import FastAPI
 
 Base.metadata.create_all(bind=engine)
 
@@ -34,6 +34,10 @@ SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
 
 app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "OK"}
 
 app.add_middleware(AuditMiddleware)
 
