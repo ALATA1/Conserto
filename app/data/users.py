@@ -1,4 +1,4 @@
-from app.api.auth import hash_password
+from app.core.auth import hash_password
 
 
 

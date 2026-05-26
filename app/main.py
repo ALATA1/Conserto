@@ -28,15 +28,12 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from app.database.database import Base, engine
 
-from app.api.auth import hash_password
+
 
 from app.data.users import users_db
+from app.core.auth import hash_password, verify_password, create_access_token
 
-from app.api.auth import (
-    hash_password,
-    verify_password,
-    create_access_token
-)
+
 
 SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
