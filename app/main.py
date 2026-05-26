@@ -35,9 +35,7 @@ ALGORITHM = "HS256"
 
 app = FastAPI()
 
-@app.get("/")
-def root():
-    return {"status": "OK"}
+
 
 app.add_middleware(AuditMiddleware)
 
