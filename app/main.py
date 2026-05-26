@@ -23,13 +23,14 @@ from app.core.middleware import AuditMiddleware
 
 from app.models.user import User
 from app.models.collaborateur import Collaborateur
+from app.database.database import SessionLocal
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
 from app.database.database import Base, engine
 
 from app.api.auth import hash_password
 
 from app.data.users import users_db
-
-
 
 from app.api.auth import (
     hash_password,
@@ -44,6 +45,12 @@ ALGORITHM = "HS256"
 # APP INIT
 # =========================
 app = FastAPI()
+
+
+# =================
+# CONFIG TEMPLATE : 
+# ================
+templates = Jinja2Templates(directory="app/templates")
 
 # Middleware
 app.add_middleware(AuditMiddleware)
@@ -2045,6 +2052,25 @@ def audit_page():
     """
 
     return HTMLResponse(content=html)
+
+
+# ===============================
+# AFFICHAGE ROUTE COLLABORATEURS:
+# ===============================
+
+@app.get("/collaborateurs")
+def list_collaborateurs(request: Request):
+    db = SessionLocal()
+    collaborateurs = db.query(Collaborateur).all()
+
+    return templates.TemplateResponse(
+        "collaborateurs.html",
+        {
+            "request": request,
+            "collaborateurs": collaborateurs
+        }
+    )
+
 
 
 # ====================
