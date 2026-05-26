@@ -24,12 +24,6 @@ Base.metadata.create_all(bind=engine)
 from app.data.users import users_db
 from app.api.auth import hash_password, verify_password, create_access_token
 
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from fastapi.responses import StreamingResponse
-
-
-
-
 from app.api.auth import (
     hash_password,
     verify_password,
@@ -1993,35 +1987,13 @@ def audit_page():
 # =========================
 # EXPORT EXCEL
 # =========================
-
 @app.get("/export/excel")
 def export_excel():
-    print("🚀 EXPORT EXCEL EXECUTÉ")
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Skills"
 
-    # =========================
-    # STYLES EXCEL
-    # =========================
-    header_fill = PatternFill("solid", fgColor="1F4E79")  # bleu SaaS
-    header_font = Font(color="FFFFFF", bold=True)
-    center = Alignment(horizontal="center", vertical="center")
-
-    border = Border(
-        left=Side(style="thin"),
-        right=Side(style="thin"),
-        top=Side(style="thin"),
-        bottom=Side(style="thin")
-    )
-
-    zebra_fill = PatternFill("solid", fgColor="F2F2F2")
-
-    # =========================
-    # HEADER EXCEL
-    # =========================
-    headers = [
+    ws.append([
         "Nom",
         "Prénom",
         "Profil",
@@ -2029,27 +2001,9 @@ def export_excel():
         "Compétence",
         "Niveau",
         "Appétence"
-    ]
+    ])
 
-    ws.append(headers)
-
-    for col in range(1, len(headers) + 1):
-        cell = ws.cell(row=1, column=col)
-        cell.fill = PatternFill("solid", fgColor="FF0000")
-        cell.font = header_font
-        cell.alignment = center
-        cell.border = border
-
-    # freeze header
-    ws.freeze_panes = "A2"
-
-    # auto filter
-    ws.auto_filter.ref = ws.dimensions
-
-    # =========================
-    # DATA EXCEL
-    # =========================
-    for row_index, c in enumerate(collaborateurs, start=2):
+    for c in collaborateurs:
 
         ws.append([
             c["nom"],
@@ -2061,40 +2015,18 @@ def export_excel():
             c["niveau_attendu"]
         ])
 
-        for col in range(1, len(headers) + 1):
-            cell = ws.cell(row=row_index, column=col)
-            cell.border = border
-            cell.alignment = center
-
-            # zebra style
-            if row_index % 2 == 0:
-                cell.fill = zebra_fill
-
-    # =========================
-    # AUTO SIZE COLUMNS EXCEL
-    # =========================
-    for col in ws.columns:
-        max_length = 0
-        col_letter = col[0].column_letter
-
-        for cell in col:
-            if cell.value:
-                max_length = max(max_length, len(str(cell.value)))
-
-        ws.column_dimensions[col_letter].width = max_length + 5
-
-    # =========================
-    # STREAM OUTPUT EXCEL
-    # =========================
     stream = BytesIO()
+
     wb.save(stream)
+
     stream.seek(0)
 
     return StreamingResponse(
         stream,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={
-            "Content-Disposition": "attachment; filename=skills_conserto.xlsx"
+            "Content-Disposition":
+            "attachment; filename=skills.xlsx"
         }
     )
 
