@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Form, Depends, HTTPException
+from app.database.database import Base, engine
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi import Depends, HTTPException
@@ -42,6 +43,15 @@ SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
 
 app = FastAPI()
+
+
+
+
+
+# =========================
+# CREATE TABLES (TEMPORAIRE)
+# =========================
+Base.metadata.create_all(bind=engine)
 
 
 
@@ -149,7 +159,7 @@ def get_current_user(request: Request):
             detail="Token expiré ou invalide"
         )
     
-    
+
 # ==============================
 # FONCTION UTILISATEUR CONNECTE 
 # ==============================
