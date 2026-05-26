@@ -23,10 +23,13 @@ from app.core.middleware import AuditMiddleware
 
 from app.models.user import User
 from app.models.collaborateur import Collaborateur
+from app.database.database import Base, engine
 
 from app.api.auth import hash_password
 
 from app.data.users import users_db
+
+
 
 from app.api.auth import (
     hash_password,
@@ -45,9 +48,9 @@ app = FastAPI()
 # Middleware
 app.add_middleware(AuditMiddleware)
 
-# =========================
-# CREATE TABLES (IMPORTANT)
-# =========================
+# ==============================================================
+# CREATE TABLES (IMPORTANT) : CREATION DE LA TABLE AU DEMARRAGE
+# ==============================================================
 Base.metadata.create_all(bind=engine)
 
 
