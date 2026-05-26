@@ -1985,6 +1985,12 @@ def audit_page():
     return HTMLResponse(content=html)
 
 
+@app.get("/debug/collaborateurs")
+def debug():
+    return {
+        "count": len(collaborateurs),
+        "data": collaborateurs[:3]
+    }
 
 # =========================
 # EXPORT EXCEL PROPRE
