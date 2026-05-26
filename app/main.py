@@ -20,15 +20,11 @@ from fastapi import FastAPI
 
 Base.metadata.create_all(bind=engine)
 
-
 from app.data.users import users_db
 from app.api.auth import hash_password, verify_password, create_access_token
 
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from fastapi.responses import StreamingResponse
-
-
-
 
 from app.api.auth import (
     hash_password,
@@ -1991,9 +1987,8 @@ def audit_page():
 
 
 # =========================
-# EXPORT EXCEL
+# EXPORT EXCEL PROPRE
 # =========================
-
 @app.get("/export/excel")
 def export_excel():
     print("🚀 EXPORT EXCEL EXECUTÉ")
@@ -2003,10 +1998,11 @@ def export_excel():
     ws.title = "Skills"
 
     # =========================
-    # STYLES EXCEL
+    # STYLES
     # =========================
     header_fill = PatternFill("solid", fgColor="1F4E79")  # bleu SaaS
     header_font = Font(color="FFFFFF", bold=True)
+
     center = Alignment(horizontal="center", vertical="center")
 
     border = Border(
@@ -2019,7 +2015,7 @@ def export_excel():
     zebra_fill = PatternFill("solid", fgColor="F2F2F2")
 
     # =========================
-    # HEADER EXCEL
+    # HEADERS
     # =========================
     headers = [
         "Nom",
@@ -2031,27 +2027,22 @@ def export_excel():
         "Appétence"
     ]
 
-    ws.append(headers)
-
-    for col in range(1, len(headers) + 1):
-        cell = ws.cell(row=1, column=col)
-        cell.fill = PatternFill("solid", fgColor="FF0000")
+    for col_index, header in enumerate(headers, start=1):
+        cell = ws.cell(row=1, column=col_index)
+        cell.value = header
+        cell.fill = header_fill
         cell.font = header_font
         cell.alignment = center
         cell.border = border
 
-    # freeze header
     ws.freeze_panes = "A2"
 
-    # auto filter
-    ws.auto_filter.ref = ws.dimensions
-
     # =========================
-    # DATA EXCEL
+    # DATA
     # =========================
     for row_index, c in enumerate(collaborateurs, start=2):
 
-        ws.append([
+        values = [
             c["nom"],
             c["prenom"],
             c["profil"],
@@ -2059,19 +2050,25 @@ def export_excel():
             ", ".join(c["competence"]),
             c["niveau"],
             c["niveau_attendu"]
-        ])
+        ]
 
-        for col in range(1, len(headers) + 1):
-            cell = ws.cell(row=row_index, column=col)
+        for col_index, value in enumerate(values, start=1):
+            cell = ws.cell(row=row_index, column=col_index)
+            cell.value = value
             cell.border = border
             cell.alignment = center
 
-            # zebra style
+            # zebra effect
             if row_index % 2 == 0:
                 cell.fill = zebra_fill
 
     # =========================
-    # AUTO SIZE COLUMNS EXCEL
+    # AUTO FILTER PROPRE
+    # =========================
+    ws.auto_filter.ref = f"A1:G{len(collaborateurs) + 1}"
+
+    # =========================
+    # AUTO SIZE COLUMNS
     # =========================
     for col in ws.columns:
         max_length = 0
@@ -2084,7 +2081,7 @@ def export_excel():
         ws.column_dimensions[col_letter].width = max_length + 5
 
     # =========================
-    # STREAM OUTPUT EXCEL
+    # OUTPUT STREAM
     # =========================
     stream = BytesIO()
     wb.save(stream)
