@@ -16,7 +16,7 @@ collaborateurs = [
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
         "niveau": 4,
-        "niveau_attendu": 5
+        "appetence": 5
     }
 ]
 
@@ -30,7 +30,7 @@ class Collaborateur(BaseModel):
     agence: str
     competence: List[str] = []
     niveau: int
-    niveau_attendu: int
+    appetence: int
 
 
 # --------------------
