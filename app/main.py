@@ -16,10 +16,9 @@ from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
 
+from fastapi import FastAPI
 
-
-Base.metadata.create_all(bind=engine)
-
+from starlette.middleware.sessions import SessionMiddleware
 
 from app.data.users import users_db
 from app.api.auth import hash_password, verify_password, create_access_token
@@ -30,14 +29,22 @@ from app.api.auth import (
     create_access_token
 )
 
-SECRET_KEY = "conserto_secret_key"
-ALGORITHM = "HS256"
-
+# =====================
+# INIT APP
+# =====================
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 
 app.add_middleware(AuditMiddleware)
 
-from starlette.middleware.sessions import SessionMiddleware
+SECRET_KEY = "conserto_secret_key"
+ALGORITHM = "HS256"
+
+# =====================
+# SESSION STORAGE
+# =====================
+collaborateurs = []
+audit_logs = []
 
 app.add_middleware(
     SessionMiddleware,
@@ -70,27 +77,20 @@ app.add_middleware(
 #     }
 # }
 
+# =====================
+# AUTH
+# =====================
+
 def get_current_user(request: Request):
-    
     token = request.cookies.get("access_token")
 
     if not token:
         return None
 
     try:
-        payload = jwt.decode(
-            token,
-            SECRET_KEY,
-            algorithms=[ALGORITHM]
-        )
-
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username = payload.get("sub")
-
-        if username is None:
-            return None
-
         return users_db.get(username)
-
     except JWTError:
         return None
     
@@ -117,7 +117,7 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 
     response = RedirectResponse(url="/", status_code=303)
 
-    # 🔥 IMPORTANT : on stocke le token dans un cookie
+    #  IMPORTANT : on stocke le token dans un cookie
     response.set_cookie(
         key="access_token",
         value=token,
@@ -2027,6 +2027,13 @@ def export_excel():
             "attachment; filename=skills.xlsx"
         }
     )
+
+# =====================
+# EXPORT JSON
+# =====================
+@app.get("/export/json")
+def export_json():
+    return {"count": len(collaborateurs), "data": collaborateurs}
 
 
 # =========================
