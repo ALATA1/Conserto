@@ -229,7 +229,7 @@ collaborateurs = [
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
         "niveau": 4,
-        "niveau_attendu": 5
+        "appetence": 5
     },
     {
         "id": 2,
@@ -239,7 +239,7 @@ collaborateurs = [
         "agence": "Lyon",
         "competence": ["PostgreSQL"],
         "niveau": 3,
-        "niveau_attendu": 4
+        "appetence": 4
     }
 ]
 
@@ -668,7 +668,7 @@ def home(
                 </div>
              
                 <div class="col">
-                    <input class="form-control" name="niveau_attendu" type="number"
+                    <input class="form-control" name="appetence" type="number"
                         min="0" max="5" placeholder="Appétence*"
                         title="{LEG_APPETENCE}" required>
                 </div>
@@ -826,7 +826,7 @@ def home(
             <!--<td>{c['niveau']}</td>-->
             <td>{format_niveau(c['niveau'])}</td>
 
-            <td>{c['niveau_attendu']}</td>
+            <td>{c['appetence']}</td>
 
             <td>
 
@@ -1116,7 +1116,7 @@ def add(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    niveau_attendu: int = Form(...)
+    appetence: int = Form(...)
 ):
 
     user = get_current_user(request)
@@ -1134,7 +1134,7 @@ def add(
         "agence": agence,
         "competence": competence,
         "niveau": clamp(niveau),
-        "niveau_attendu": clamp(niveau_attendu)
+        "appetence": clamp(appetence)
     })
 
     log_action(user, "AJOUT", f"{prenom} {nom}")
@@ -1368,9 +1368,9 @@ def edit(id: int):
                     <label class="form-label">
                         Appétence <span class="text-danger">*</span>
                     </label>
-                    <input class="form-control" name="niveau_attendu" type="number"
+                    <input class="form-control" name="appetence" type="number"
                         min="0" max="5"
-                        value="{c['niveau_attendu']}"
+                        value="{c['appetence']}"
                         title="{LEG_APPETENCE}" required>
                 </div>
 
@@ -1817,11 +1817,11 @@ def edit(id: int):
 
                     <input
                         class="form-control"
-                        name="niveau_attendu"
+                        name="appetence"
                         type="number"
                         min="0"
                         max="5"
-                        value="{c['niveau_attendu']}"
+                        value="{c['appetence']}"
                         required
                     >
 
@@ -1866,7 +1866,7 @@ def update(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    niveau_attendu: int = Form(...)
+    appetence: int = Form(...)
 ):
 
     user = get_current_user(request)
@@ -1886,7 +1886,7 @@ def update(
             c["agence"] = agence
             c["competence"] = competence
             c["niveau"] = clamp(niveau)
-            c["niveau_attendu"] = clamp(niveau_attendu)
+            c["appetence"] = clamp(appetence)
 
             break
 
@@ -2010,7 +2010,7 @@ def export_excel():
             c["agence"],
             ", ".join(c["competence"]),
             c["niveau"],
-            c["niveau_attendu"]
+            c["appetence"]
         ])
 
     stream = BytesIO()
@@ -2053,7 +2053,7 @@ def export_pdf():
             f"{c['agence']} | "
             f"{', '.join(c['competence'])} | "
             f"N:{c['niveau']} | "
-            f"A:{c['niveau_attendu']}"
+            f"A:{c['appetence']}"
         )
 
         y -= 20
