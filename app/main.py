@@ -139,6 +139,7 @@ PROFILS = [
     "Concepteur Dev TU Android",
     "Concepteur Dev TU Java",
     "Concepteur fonctionnel",
+    "Chef de projet",
     "Développeur",
     "Testeur fonctionnel",
     "Testeur Automaticien",
@@ -147,22 +148,45 @@ PROFILS = [
     "Devops",
     "Ing. Système Linux",
     "Pilotage et organisation (PMO)",
+    "Product owner (PO)",
     "Sécurité et réseau"
 ]
 
 # =========================
 # COMPÉTENCES
 # =========================
+
 COMPETENCES = {
+
     # -------------------------
-    # LANGAGES / DÉVELOPPEMENT
+    # BASES DE DONNÉES
     # -------------------------
-    "Langages": [
-        "Apache Nifi", "CSS", "C#", "HTML",
-        "Hibernate", "Java 8", "Java 21", "Java 25", "Java / J2EE"
-        "Jasper report", "Javascript", "Maven 3", "NPM/NodeJS",
-        "Open Feign", "RGAA", "Spring", "Spring Batch",
-        "SCSS", "Typescript 5"
+
+    "Bases de données": [
+        "Oracle",
+        "Oracle SQL Developer",
+        "PG Admin",
+        "PostgreSQL",
+        "SQL Server"
+    ],
+
+    # -------------------------
+    # DEVOPS / INFRA
+    # -------------------------
+    "Devops/Infra": [
+        "Apache", "Docker", "Docker Compose",
+        "Docker Swarm", "Git", "Gitlab",
+        "GitlabCI", "Helm", "Kubernetes",
+        "kubctl", "Linux Ubuntu", "Nginx",
+        "Scripts Shell", "Tomcat", "SonarQube"
+    ],
+
+    # -------------------------
+    # FRONTEND / MOBILE
+    # -------------------------
+    "Frontend & Mobile": [
+        "Android",
+        "Cordova"
     ],
 
     # -------------------------
@@ -181,84 +205,9 @@ COMPETENCES = {
     ],
 
     # -------------------------
-    # FRONTEND / MOBILE
-    # -------------------------
-    "Frontend & Mobile": [
-        "Android",
-        "Cordova"
-    ],
-
-    # -------------------------
-    # MIDDLEWARE / SERVEURS D'APPLICATION
-    # -------------------------
-    "Middleware / Serveurs": [
-        "Websphere",
-        "JBoss",
-        "IIS"
-    ],
-
-    # -----------
-    # PROTOCOLES
-    # -----------
-    "Protocole": ["JSON", "REST", "SOAP", "XML"],
-
-    # -------------------------
-    # BASES DE DONNÉES
-    # -------------------------
-
-    "Bases de données": [
-        "Oracle",
-        "Oracle SQL Developer",
-        "PG Admin",
-        "PostgreSQL",
-        "SQL Server"
-    ],
-
-    # -------------------------
-    # INFRA / SYSTÈMES
-    # -------------------------
-    "Systèmes & Plateformes": [
-        "AIX",
-        "Mainframe",
-        "Windows",
-        "Baradoz sur ITaaS",
-        "STMC",
-        "STOM"
-    ],
-
-    # -------------------------
-    # OUTILS / IDE
-    # -------------------------
-    "Outils & IDE": [
-        "Eclipse",
-        "Visual Studio",
-        "RAD / RAS"
-    ],
-    
-    # -------------------------
-    # DEVOPS / INFRA
-    # -------------------------
-
-    "Devops/Infra": [
-        "Apache", "Docker", "Docker Compose",
-        "Docker Swarm", "Git", "Gitlab",
-        "GitlabCI", "Helm", "Kubernetes",
-        "kubctl", "Linux Ubuntu", "Nginx",
-        "Scripts Shell", "Tomcat", "SonarQube"
-    ],
-
-    # ----------------------------------
-    # PILOTAGE / QUALITÉ / GOUVERNANCE
-    # ----------------------------------
-    "Pilotage & Qualité": [
-        "Pilotage",
-        "Qualité / Process",
-        "Pilotage et Décisionnel"
-    ],
-
-    # -------------------------
     # FONCTIONNEL / MÉTIER
     # -------------------------
+
     "Fonctionnel métier": [
         "SMARTEO",
         "FACTEO",
@@ -275,6 +224,69 @@ COMPETENCES = {
         "Nouveau domaine"
     ],
 
+    # -------------------------
+    # LANGAGES / DÉVELOPPEMENT
+    # -------------------------
+    "Langages": [
+        "Apache Nifi", "CSS", "C#", "HTML",
+        "Hibernate", "Java 8", "Java 21", "Java 25", "Java / J2EE"
+        "Jasper report", "Javascript", "Maven 3", "NPM/NodeJS",
+        "Open Feign", "RGAA", "Spring", "Spring Batch",
+        "SCSS", "Typescript 5"
+    ],
+
+    # -------------------------
+    # MIDDLEWARE / SERVEURS D'APPLICATION
+    # -------------------------
+    "Middleware / Serveurs": [
+        "Websphere",
+        "JBoss",
+        "IIS"
+    ],
+
+    # -------------------------
+    # OUTILS / IDE
+    # -------------------------
+    "Outils & IDE": [
+        "Eclipse",
+        "Visual Studio",
+        "RAD / RAS"
+    ],
+    
+    
+    # -----------
+    # PROTOCOLES
+    # -----------
+    "Protocole": ["JSON", "REST", "SOAP", "XML"],
+
+    # ----------------------------------
+    # PILOTAGE / QUALITÉ / GOUVERNANCE
+    # ----------------------------------
+    "Pilotage & Qualité": [
+        "Pilotage",
+        "Qualité / Process",
+        "Pilotage et Décisionnel"
+    ],
+
+        # -----
+    # PERF
+    # -----
+    "Perf": ["Gatling", "Jmeter"],
+
+        
+    # -------------------------
+    # INFRA / SYSTÈMES
+    # -------------------------
+    "Systèmes & Plateformes": [
+        "AIX",
+        "Mainframe",
+        "Windows",
+        "Baradoz sur ITaaS",
+        "STMC",
+        "STOM"
+    ],
+
+
     # -------------------------------------
     # TESTEUR (FONCTIONNEL) / AUTOMATICIEN
     # -------------------------------------
@@ -284,12 +296,9 @@ COMPETENCES = {
         "Postman", "Playwright",
         "Robotframework", "SoapUi",
         "Jasmine/Karma"
-    ],
+    ]
 
-    # -----
-    # PERF
-    # -----
-    "Perf": ["Gatling", "Jmeter"]
+
 }
 
 AGENCES = [
