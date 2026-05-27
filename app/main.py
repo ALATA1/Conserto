@@ -131,17 +131,22 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 # PROFILS
 # =========================
 PROFILS = [
+    "Agile master",
+    "Architecte data",
+    "Architecte technique ",
+    "Business Analyst",
+    "Coach agile",
+    "Concepteur Dev TU Android",
+    "Concepteur Dev TU Java",
+    "Concepteur fonctionnel",
     "Développeur",
     "Testeur fonctionnel",
     "Testeur Automaticien",
-    "Devops",
-    "Business Analyst",
-    "Data analyst",
-    "Agile master",
-    "Coach agile",
-    "Architecte data",
     "Data engineer",
+    "Data analyst",
+    "Devops",
     "Ing. Système Linux",
+    "Pilotage et organisation (PMO)",
     "Sécurité et réseau"
 ]
 
