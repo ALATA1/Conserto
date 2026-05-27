@@ -1,65 +1,44 @@
-from fastapi import FastAPI, Form, Depends, HTTPException, Request
-from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse, JSONResponse
+from fastapi import FastAPI, Form, Depends, HTTPException
+from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.security import OAuth2PasswordRequestForm
-from typing import List, Union, Optional
+from fastapi import Form
 from io import BytesIO
-from datetime import datetime
-from typing import List, Optional
-
-from jose import jwt, JWTError
-
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from reportlab.lib import colors
+from typing import List, Union, Optional
+from app.api.auth import hash_password
+from fastapi import Request
+from jose import jwt, JWTError
+from datetime import datetime
 
-from app.database.base import Base
 from app.database.database import engine
-
-from app.core.security import verify_password, create_access_token
+from app.database.base import Base
 from app.core.middleware import AuditMiddleware
 
-from app.models.user import User
-from app.models.collaborateur import Collaborateur
-from app.database.database import SessionLocal
-from fastapi.templating import Jinja2Templates
-from fastapi import Request
-from app.database.database import Base, engine
 
+
+Base.metadata.create_all(bind=engine)
 
 
 from app.data.users import users_db
-from app.core.auth import hash_password, verify_password, create_access_token
+from app.api.auth import hash_password, verify_password, create_access_token
 
-
+from app.api.auth import (
+    hash_password,
+    verify_password,
+    create_access_token
+)
 
 SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
 
-# =========================
-# APP INIT
-# =========================
 app = FastAPI()
 
-
-# =================
-# CONFIG TEMPLATE : 
-# ================
-templates = Jinja2Templates(directory="app/templates")
-
-# Middleware
 app.add_middleware(AuditMiddleware)
 
-# ==============================================================
-# CREATE TABLES (IMPORTANT) : CREATION DE LA TABLE AU DEMARRAGE
-# ==============================================================
-Base.metadata.create_all(bind=engine)
-
-
-app.add_middleware(AuditMiddleware)
 from starlette.middleware.sessions import SessionMiddleware
+
 app.add_middleware(
     SessionMiddleware,
     secret_key="conserto-secret-key"
@@ -67,67 +46,36 @@ app.add_middleware(
 
 
 
-# # # ===============================
-# # # UTILISATEURS DE L'APPLICATION
-# # # ===============================
+# # ===============================
+# # UTILISATEURS DE L'APPLICATION
+# # ===============================
 
-# # users_db = {
-# #     "ibrahima.alata@conserto.pro": {
-# #         "username": "ibrahima.alata@conserto.pro",
-# #         "hashed_password": hash_password("admin"),
-# #         "role": "ADMIN"
-# #     },
+# users_db = {
+#     "ibrahima.alata@conserto.pro": {
+#         "username": "ibrahima.alata@conserto.pro",
+#         "hashed_password": hash_password("admin"),
+#         "role": "ADMIN"
+#     },
 
-# #     "alice.martin@conserto.pro": {
-# #         "username": "alice.martin@conserto.pro",
-# #         "hashed_password": hash_password("admin123"),
-# #         "role": "MANAGER"
-# #     },
+#     "alice.martin@conserto.pro": {
+#         "username": "alice.martin@conserto.pro",
+#         "hashed_password": hash_password("admin123"),
+#         "role": "MANAGER"
+#     },
 
-# #     "helene.martin@conserto.pro": {
-# #         "username": "helene.martin@conserto.pro",
-# #         "hashed_password": hash_password("MonPassword123"),
-# #         "role": "RH"
-# #     }
-# # }
-
-# def get_current_user(request: Request):
-    
-#     token = request.cookies.get("access_token")
-
-#     if not token:
-#         raise HTTPException(
-#             status_code=401,
-#             detail="Non authentifié"
-#         )
-
-#     try:
-#         payload = jwt.decode(
-#             token,
-#             SECRET_KEY,
-#             algorithms=[ALGORITHM]
-#         )
-
-#         username = payload.get("sub")
-
-#         if username is None:
-#             return None
-
-#         return users_db.get(username)
-
-#     except JWTError:
-#         return None
-    
+#     "helene.martin@conserto.pro": {
+#         "username": "helene.martin@conserto.pro",
+#         "hashed_password": hash_password("MonPassword123"),
+#         "role": "RH"
+#     }
+# }
 
 def get_current_user(request: Request):
     
     token = request.cookies.get("access_token")
 
     if not token:
-        raise HTTPException(
-            status_code=401,
-            detail="Non authentifié"
-        )
+        return None
 
     try:
         payload = jwt.decode(
@@ -138,27 +86,13 @@ def get_current_user(request: Request):
 
         username = payload.get("sub")
 
-        if not username:
-            raise HTTPException(
-                status_code=401,
-                detail="Token invalide"
-            )
+        if username is None:
+            return None
 
-        user = users_db.get(username)
-
-        if not user:
-            raise HTTPException(
-                status_code=401,
-                detail="Utilisateur introuvable"
-            )
-
-        return user
+        return users_db.get(username)
 
     except JWTError:
-        raise HTTPException(
-            status_code=401,
-            detail="Token expiré ou invalide, merci de vous reconnecter à l'application."
-        )
+        return None
     
 
 # ==============================
@@ -183,7 +117,7 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
 
     response = RedirectResponse(url="/", status_code=303)
 
-    # IMPORTANT : on stocke le token dans un cookie
+    # 🔥 IMPORTANT : on stocke le token dans un cookie
     response.set_cookie(
         key="access_token",
         value=token,
@@ -191,8 +125,6 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     )
 
     return response
-
-
 
 
 # =========================
@@ -297,7 +229,7 @@ collaborateurs = [
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
         "niveau": 4,
-        "appetence": 5
+        "niveau_attendu": 5
     },
     {
         "id": 2,
@@ -307,7 +239,7 @@ collaborateurs = [
         "agence": "Lyon",
         "competence": ["PostgreSQL"],
         "niveau": 3,
-        "appetence": 4
+        "niveau_attendu": 4
     }
 ]
 
@@ -592,18 +524,16 @@ def home(
         </div>
 
         <!-- EXPORT -->
-        <div class="mb-3 d-flex gap-2">
+        <div class="mb-3">
 
-            <a href="/export/excel" class="btn btn-success">
+            <a href="/export/excel"
+               class="btn btn-dark">
                 Export Excel
             </a>
 
-            <a href="/export/pdf" class="btn btn-danger">
+            <a href="/export/pdf"
+               class="btn btn-danger">
                 Export PDF
-            </a>
-
-            <a href="/export/json" class="btn btn-primary">
-                Export JSON
             </a>
 
         </div>
@@ -738,7 +668,7 @@ def home(
                 </div>
              
                 <div class="col">
-                    <input class="form-control" name="appetence" type="number"
+                    <input class="form-control" name="niveau_attendu" type="number"
                         min="0" max="5" placeholder="Appétence*"
                         title="{LEG_APPETENCE}" required>
                 </div>
@@ -896,7 +826,7 @@ def home(
             <!--<td>{c['niveau']}</td>-->
             <td>{format_niveau(c['niveau'])}</td>
 
-            <td>{c['appetence']}</td>
+            <td>{c['niveau_attendu']}</td>
 
             <td>
 
@@ -1186,7 +1116,7 @@ def add(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    appetence: int = Form(...)
+    niveau_attendu: int = Form(...)
 ):
 
     user = get_current_user(request)
@@ -1204,7 +1134,7 @@ def add(
         "agence": agence,
         "competence": competence,
         "niveau": clamp(niveau),
-        "appetence": clamp(appetence)
+        "niveau_attendu": clamp(niveau_attendu)
     })
 
     log_action(user, "AJOUT", f"{prenom} {nom}")
@@ -1438,9 +1368,9 @@ def edit(id: int):
                     <label class="form-label">
                         Appétence <span class="text-danger">*</span>
                     </label>
-                    <input class="form-control" name="appetence" type="number"
+                    <input class="form-control" name="niveau_attendu" type="number"
                         min="0" max="5"
-                        value="{c['appetence']}"
+                        value="{c['niveau_attendu']}"
                         title="{LEG_APPETENCE}" required>
                 </div>
 
@@ -1887,11 +1817,11 @@ def edit(id: int):
 
                     <input
                         class="form-control"
-                        name="appetence"
+                        name="niveau_attendu"
                         type="number"
                         min="0"
                         max="5"
-                        value="{c['appetence']}"
+                        value="{c['niveau_attendu']}"
                         required
                     >
 
@@ -1936,7 +1866,7 @@ def update(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    appetence: int = Form(...)
+    niveau_attendu: int = Form(...)
 ):
 
     user = get_current_user(request)
@@ -1956,7 +1886,7 @@ def update(
             c["agence"] = agence
             c["competence"] = competence
             c["niveau"] = clamp(niveau)
-            c["appetence"] = clamp(appetence)
+            c["niveau_attendu"] = clamp(niveau_attendu)
 
             break
 
@@ -2051,68 +1981,17 @@ def audit_page():
     return HTMLResponse(content=html)
 
 
-# ===============================
-# AFFICHAGE ROUTE COLLABORATEURS:
-# ===============================
-
-@app.get("/collaborateurs")
-def list_collaborateurs(request: Request):
-    db = SessionLocal()
-    collaborateurs = db.query(Collaborateur).all()
-
-    return templates.TemplateResponse(
-        "collaborateurs.html",
-        {
-            "request": request,
-            "collaborateurs": collaborateurs
-        }
-    )
-
-
-
-# ====================
-# DEBUG COLLABORATEUR
-# ====================
-
-@app.get("/debug/collaborateurs")
-def debug():
-    return {
-        "count": len(collaborateurs),
-        "data": collaborateurs[:3]
-    }
 
 # =========================
-# EXPORT EXCEL PROPRE
+# EXPORT EXCEL
 # =========================
 @app.get("/export/excel")
 def export_excel():
-    print("🚀 EXPORT EXCEL EXECUTÉ")
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Skills"
 
-    # =========================
-    # STYLES
-    # =========================
-    header_fill = PatternFill("solid", fgColor="1F4E79")  # bleu SaaS
-    header_font = Font(color="FFFFFF", bold=True)
-
-    center = Alignment(horizontal="center", vertical="center")
-
-    border = Border(
-        left=Side(style="thin"),
-        right=Side(style="thin"),
-        top=Side(style="thin"),
-        bottom=Side(style="thin")
-    )
-
-    zebra_fill = PatternFill("solid", fgColor="F2F2F2")
-
-    # =========================
-    # HEADERS
-    # =========================
-    headers = [
+    ws.append([
         "Nom",
         "Prénom",
         "Profil",
@@ -2120,102 +1999,32 @@ def export_excel():
         "Compétence",
         "Niveau",
         "Appétence"
-    ]
+    ])
 
-    for col_index, header in enumerate(headers, start=1):
-        cell = ws.cell(row=1, column=col_index)
-        cell.value = header
-        cell.fill = header_fill
-        cell.font = header_font
-        cell.alignment = center
-        cell.border = border
+    for c in collaborateurs:
 
-    ws.freeze_panes = "A2"
-
-    # =========================
-    # DATA
-    # =========================
-    for row_index, c in enumerate(collaborateurs, start=2):
-
-        values = [
+        ws.append([
             c["nom"],
             c["prenom"],
             c["profil"],
             c["agence"],
             ", ".join(c["competence"]),
             c["niveau"],
-            c["appetence"]
-        ]
+            c["niveau_attendu"]
+        ])
 
-        for col_index, value in enumerate(values, start=1):
-            cell = ws.cell(row=row_index, column=col_index)
-            cell.value = value
-            cell.border = border
-            cell.alignment = center
-
-            # zebra effect
-            if row_index % 2 == 0:
-                cell.fill = zebra_fill
-
-    # =========================
-    # AUTO FILTER PROPRE
-    # =========================
-    ws.auto_filter.ref = f"A1:G{len(collaborateurs) + 1}"
-
-    # =========================
-    # AUTO SIZE COLUMNS
-    # =========================
-    for col in ws.columns:
-        max_length = 0
-        col_letter = col[0].column_letter
-
-        for cell in col:
-            if cell.value:
-                max_length = max(max_length, len(str(cell.value)))
-
-        ws.column_dimensions[col_letter].width = max_length + 5
-
-    # =========================
-    # OUTPUT STREAM
-    # =========================
     stream = BytesIO()
+
     wb.save(stream)
+
     stream.seek(0)
 
     return StreamingResponse(
         stream,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={
-            "Content-Disposition": "attachment; filename=skills_conserto.xlsx"
-        }
-    )
-
-
-
-# =============
-# EXPORT JSON
-# =============
-
-@app.get("/export/json")
-def export_json():
-
-    data = []
-
-    for c in collaborateurs:
-        data.append({
-            "nom": c["nom"],
-            "prenom": c["prenom"],
-            "profil": c["profil"],
-            "agence": c["agence"],
-            "competence": c["competence"],
-            "niveau": c["niveau"],
-            "appetence": c["appetence"]
-        })
-
-    return JSONResponse(
-        content={
-            "count": len(data),
-            "collaborateurs": data
+            "Content-Disposition":
+            "attachment; filename=skills.xlsx"
         }
     )
 
@@ -2227,65 +2036,37 @@ def export_json():
 def export_pdf():
 
     buffer = BytesIO()
+
     pdf = canvas.Canvas(buffer, pagesize=A4)
 
-    width, height = A4
-    y = height - 50
+    y = 800
 
-    # =========================
-    # TITRE
-    # =========================
-    pdf.setFont("Helvetica-Bold", 14)
-    pdf.drawString(50, y, "Conserto Skills - Export Collaborateurs")
-
-    y -= 30
-
-    # =========================
-    # HEADER
-    # =========================
-    pdf.setFont("Helvetica-Bold", 10)
-    pdf.drawString(50, y, "Nom | Prénom | Profil | Agence | Compétence | Niveau | Appétence")
-
-    y -= 20
-    pdf.line(50, y, 550, y)
-
-    y -= 20
-
-    # =========================
-    # DATA
-    # =========================
-    pdf.setFont("Helvetica", 9)
+    pdf.setFont("Helvetica", 10)
 
     for c in collaborateurs:
 
-        line = (
+        pdf.drawString(
+            50,
+            y,
             f"{c['nom']} {c['prenom']} | "
             f"{c['profil']} | "
             f"{c['agence']} | "
             f"{', '.join(c['competence'])} | "
-            f"{c['niveau']} | "
-            f"{c['appetence']}"
+            f"N:{c['niveau']} | "
+            f"A:{c['niveau_attendu']}"
         )
 
-        pdf.drawString(50, y, line)
-
-        y -= 18
-
-        # =========================
-        # NEW PAGE IF NEEDED
-        # =========================
-        if y < 50:
-            pdf.showPage()
-            y = height - 50
-            pdf.setFont("Helvetica", 9)
+        y -= 20
 
     pdf.save()
+
     buffer.seek(0)
 
     return StreamingResponse(
         buffer,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": "attachment; filename=skills_conserto.pdf"
+            "Content-Disposition":
+            "attachment; filename=skills.pdf"
         }
     )

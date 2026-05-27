@@ -1,20 +1,10 @@
 from sqlalchemy import Column, Integer, String
 from app.database.base import Base
 
-
-class Collaborateur(Base):
-    __tablename__ = "collaborateurs"
+class User(Base):
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-
-    nom = Column(String)
-    prenom = Column(String)
-
-    profil = Column(String)
-    agence = Column(String)
-
-    competence = Column(String)
-
-    niveau = Column(Integer)
-
-    appetence = Column(Integer)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+    role = Column(String)

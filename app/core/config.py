@@ -1,10 +1,8 @@
-# app/core/config.py
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBearer
 
-import os
+security = HTTPBearer()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "conserto_secret_key")
-ALGORITHM = "HS256"
-
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./skills.db")
-
-APP_NAME = "Conserto Skills"
+def get_current_user(token: str = Depends(security)):
+    # TODO: decode JWT ici
+    return {"user": "demo"}

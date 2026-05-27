@@ -1,81 +1,95 @@
-from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
-
-from app.database.database import get_db
-from app.models.collaborateur import Collaborateur
-from app.schemas.collaborateur import CollaborateurCreate
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+from typing import List, Optional, Union
 
 router = APIRouter()
 
-# =====================
+# --------------------
+# DATA TEMPORAIRE
+# --------------------
+collaborateurs = [
+    {
+        "id": 1,
+        "nom": "Ibrahima",
+        "prenom": "Alata",
+        "profil": "Testeur Automaticien",
+        "agence": "Niort",
+        "competence": ["Robotframework", "Playwright"],
+        "niveau": 4,
+        "niveau_attendu": 5
+    }
+]
+
+# --------------------
+# MODELS (API CONTRACT)
+# --------------------
+class Collaborateur(BaseModel):
+    nom: str
+    prenom: str
+    profil: str
+    agence: str
+    competence: List[str] = []
+    niveau: int
+    niveau_attendu: int
+
+
+# --------------------
 # GET ALL
-# =====================
+# --------------------
 @router.get("/")
-def get_all(db: Session = Depends(get_db)):
-    return db.query(Collaborateur).all()
+def get_all():
+    return collaborateurs
 
 
-# =====================
+# --------------------
 # GET BY ID
-# =====================
+# --------------------
 @router.get("/{id}")
-def get_by_id(id: int, db: Session = Depends(get_db)):
-
-    collab = db.query(Collaborateur).filter(Collaborateur.id == id).first()
-
-    if not collab:
-        raise HTTPException(status_code=404, detail="Not found")
-
-    return collab
+def get_by_id(id: int):
+    for c in collaborateurs:
+        if c["id"] == id:
+            return c
+    raise HTTPException(status_code=404, detail="Not found")
 
 
-# =====================
+# --------------------
 # CREATE
-# =====================
+# --------------------
 @router.post("/")
-def create(collab: CollaborateurCreate, db: Session = Depends(get_db)):
+def create(collab: Collaborateur):
 
-    new_collab = Collaborateur(**collab.dict())
+    new_id = max([c["id"] for c in collaborateurs], default=0) + 1
 
-    db.add(new_collab)
-    db.commit()
-    db.refresh(new_collab)
+    new_collab = collab.dict()
+    new_collab["id"] = new_id
+
+    collaborateurs.append(new_collab)
 
     return new_collab
 
 
-# =====================
-# UPDATE
-# =====================
-@router.put("/{id}")
-def update(id: int, collab: CollaborateurCreate, db: Session = Depends(get_db)):
-
-    db_collab = db.query(Collaborateur).filter(Collaborateur.id == id).first()
-
-    if not db_collab:
-        raise HTTPException(status_code=404, detail="Not found")
-
-    for key, value in collab.dict().items():
-        setattr(db_collab, key, value)
-
-    db.commit()
-    db.refresh(db_collab)
-
-    return db_collab
-
-
-# =====================
+# --------------------
 # DELETE
-# =====================
+# --------------------
 @router.delete("/{id}")
-def delete(id: int, db: Session = Depends(get_db)):
+def delete(id: int):
 
-    db_collab = db.query(Collaborateur).filter(Collaborateur.id == id).first()
+    global collaborateurs
 
-    if not db_collab:
-        raise HTTPException(status_code=404, detail="Not found")
-
-    db.delete(db_collab)
-    db.commit()
+    collaborateurs = [c for c in collaborateurs if c["id"] != id]
 
     return {"message": "deleted"}
+
+
+# --------------------
+# UPDATE
+# --------------------
+@router.put("/{id}")
+def update(id: int, collab: Collaborateur):
+
+    for c in collaborateurs:
+        if c["id"] == id:
+            c.update(collab.dict())
+            return c
+
+    raise HTTPException(status_code=404, detail="Not found")
