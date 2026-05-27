@@ -154,22 +154,90 @@ PROFILS = [
 # COMPÉTENCES
 # =========================
 COMPETENCES = {
+    # -------------------------
+    # LANGAGES / DÉVELOPPEMENT
+    # -------------------------
     "Langages": [
-        "Apache Nifi", "Angular 17", "Angular 19", "CSS", "HTML",
-        "Hibernate", "Java 8", "Java 21", "Java 25",
+        "Apache Nifi", "CSS", "C#", "HTML",
+        "Hibernate", "Java 8", "Java 21", "Java 25", "Java / J2EE"
         "Jasper report", "Javascript", "Maven 3", "NPM/NodeJS",
         "Open Feign", "RGAA", "Spring", "Spring Batch",
         "SCSS", "Typescript 5"
     ],
 
+    # -------------------------
+    # FRAMEWORKS
+    # -------------------------
+    "Frameworks": [
+        "Struts",
+        "Spring",
+        "Framework SPRING",
+        "Framework ALT (Java spécifique)",
+        "Framework SDK (.NET)",
+        "Angular 17", 
+        "Angular 19",
+        "ROA",
+        "ALF"
+    ],
+
+    # -------------------------
+    # FRONTEND / MOBILE
+    # -------------------------
+    "Frontend & Mobile": [
+        "Android",
+        "Cordova"
+    ],
+
+    # -------------------------
+    # MIDDLEWARE / SERVEURS D'APPLICATION
+    # -------------------------
+    "Middleware / Serveurs": [
+        "Websphere",
+        "JBoss",
+        "IIS"
+    ],
+
+    # -----------
+    # PROTOCOLES
+    # -----------
     "Protocole": ["JSON", "REST", "SOAP", "XML"],
+
+    # -------------------------
+    # BASES DE DONNÉES
+    # -------------------------
 
     "Bases de données": [
         "Oracle",
         "Oracle SQL Developer",
         "PG Admin",
-        "PostgreSQL"
+        "PostgreSQL",
+        "SQL Server"
     ],
+
+    # -------------------------
+    # INFRA / SYSTÈMES
+    # -------------------------
+    "Systèmes & Plateformes": [
+        "AIX",
+        "Mainframe",
+        "Windows",
+        "Baradoz sur ITaaS",
+        "STMC",
+        "STOM"
+    ],
+
+    # -------------------------
+    # OUTILS / IDE
+    # -------------------------
+    "Outils & IDE": [
+        "Eclipse",
+        "Visual Studio",
+        "RAD / RAS"
+    ],
+    
+    # -------------------------
+    # DEVOPS / INFRA
+    # -------------------------
 
     "Devops/Infra": [
         "Apache", "Docker", "Docker Compose",
@@ -179,6 +247,37 @@ COMPETENCES = {
         "Scripts Shell", "Tomcat", "SonarQube"
     ],
 
+    # ----------------------------------
+    # PILOTAGE / QUALITÉ / GOUVERNANCE
+    # ----------------------------------
+    "Pilotage & Qualité": [
+        "Pilotage",
+        "Qualité / Process",
+        "Pilotage et Décisionnel"
+    ],
+
+    # -------------------------
+    # FONCTIONNEL / MÉTIER
+    # -------------------------
+    "Fonctionnel métier": [
+        "SMARTEO",
+        "FACTEO",
+        "Multicanal",
+        "GRC",
+        "Gestion des opérations",
+        "Administration des ventes",
+        "Distribution",
+        "Échange producteurs",
+        "Dépôt et retrait",
+        "Banque",
+        "Fonction support",
+        "Production transverse",
+        "Nouveau domaine"
+    ],
+
+    # -------------------------------------
+    # TESTEUR (FONCTIONNEL) / AUTOMATICIEN
+    # -------------------------------------
     "Tests": [
         "ArchUnit", "Cypress", "Castle Mock",
         "JUnit", "Mockito", "MockServer",
@@ -187,6 +286,9 @@ COMPETENCES = {
         "Jasmine/Karma"
     ],
 
+    # -----
+    # PERF
+    # -----
     "Perf": ["Gatling", "Jmeter"]
 }
 
