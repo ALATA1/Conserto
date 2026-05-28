@@ -346,6 +346,7 @@ collaborateurs = [
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
         "niveau": 4,
+        "Niveau attendu": 5,
         "appetence": 5
     },
     {
@@ -356,6 +357,7 @@ collaborateurs = [
         "agence": "Lyon",
         "competence": ["PostgreSQL"],
         "niveau": 3,
+        "Niveau attendu": 5,
         "appetence": 4
     }
 ]
@@ -1283,9 +1285,10 @@ def add(
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
     niveau_attendu: int = Form(...),
-    
     appetence: int = Form(...)
 ):
+
+    print("DEBUG niveau_attendu =", niveau_attendu)  
 
     user = get_current_user(request)
 
@@ -1540,7 +1543,9 @@ def edit(id: int):
                         Niveau attendu <span class="text-danger">*</span>
                     </label>
                     <input class="form-control" name="niveau_attendu" type="number"
-                        min="0" max="5" placeholder="Niveau attendu*"
+                        min="0" max="5"
+                        value="{c.get('niveau_attendu', '')}"
+                        placeholder="Niveau attendu*"
                         title="{LEG_ATTENDU}" required>
                 </div>
 
