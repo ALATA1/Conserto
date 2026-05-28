@@ -337,6 +337,7 @@ N/A = Non applicable
 # =========================
 # DATA
 # =========================
+
 collaborateurs = [
     {
         "id": 1,
@@ -346,7 +347,7 @@ collaborateurs = [
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
         "niveau": 4,
-        "Niveau attendu": 5,
+        "niveau_attendu": 5,   
         "appetence": 5
     },
     {
@@ -357,10 +358,11 @@ collaborateurs = [
         "agence": "Lyon",
         "competence": ["PostgreSQL"],
         "niveau": 3,
-        "Niveau attendu": 5,
+        "niveau_attendu": 5,   
         "appetence": 4
     }
 ]
+
 
 # =========================
 # AUDIT LOG
@@ -795,7 +797,7 @@ def home(
                 </div>
 
                 <div class="col">
-                    <input class="form-control" name="niveau" type="number"
+                    <input class="form-control" name="niveau_attendu" type="number"
                         min="0" max="5" placeholder="Niveau attendu*"
                         title="{LEG_ATTENDU}" required>
                 </div>
@@ -1542,11 +1544,14 @@ def edit(id: int):
                     <label class="form-label">
                         Niveau attendu <span class="text-danger">*</span>
                     </label>
-                    <input class="form-control" name="niveau_attendu" type="number"
-                        min="0" max="5"
+                    <input class="form-control"
+                        name="niveau_attendu"
+                        type="number"
+                        min="0"
+                        max="5"
                         value="{c.get('niveau_attendu', '')}"
                         placeholder="Niveau attendu*"
-                        title="{LEG_ATTENDU}" required>
+                        required>
                 </div>
 
                 <!-- APPETENCE -->
