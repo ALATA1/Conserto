@@ -11,7 +11,7 @@ from app.api.auth import hash_password
 from fastapi import Request
 from jose import jwt, JWTError
 from datetime import datetime
-import json
+
 from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
@@ -40,6 +40,9 @@ app.add_middleware(AuditMiddleware)
 SECRET_KEY = "conserto_secret_key"
 ALGORITHM = "HS256"
 
+# =====================
+# SESSION STORAGE
+# =====================
 collaborateurs = []
 audit_logs = []
 
@@ -92,9 +95,9 @@ def get_current_user(request: Request):
         return None
     
 
-# =======================================
-# LOGIN - FONCTION UTILISATEUR CONNECTE 
-# =======================================
+# ==============================
+# FONCTION UTILISATEUR CONNECTE 
+# ==============================
 
 @app.post("/login")
 def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
@@ -113,7 +116,13 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     })
 
     response = RedirectResponse(url="/", status_code=303)
-    response.set_cookie("access_token", token, httponly=True)
+
+    #  IMPORTANT : on stocke le token dans un cookie
+    response.set_cookie(
+        key="access_token",
+        value=token,
+        httponly=True
+    )
 
     return response
 
@@ -307,7 +316,6 @@ AGENCES = [
 # LEGENDES TOOLTIP
 # =========================
 LEG_NIVEAU = """
-N/A = Non applicable
 0 = Pas de notion
 1 = Connaissances
 2 = Travail supervisé
@@ -325,15 +333,6 @@ LEG_APPETENCE = """
 5 = Vital
 """
 
-LEG_ATTENDU = """
-N/A = Non applicable
-0 = Pas de notion
-1 = Connaissances
-2 = Travail supervisé
-3 = Autonomie limitée
-4 = Maîtrise et autonomie totale
-5 = Maîtrise et enseignement
-"""
 # =========================
 # DATA
 # =========================
@@ -398,25 +397,6 @@ def format_niveau(n):
     return f'<span class="{cls}" title="{label}">{n}</span>'
     
 
-def format_attendu(n):
-    try:
-        n = int(n)
-    except:
-        return '<span class="niveau-rouge" title="Valeur invalide">?</span>'
-
-    if n <= 1:
-        label = "Débutant"
-        cls = "niveau-rouge"
-    elif n <= 3:
-        label = "Intermédiaire"
-        cls = "niveau-orange"
-    elif n <= 5:
-        label = "Expert"
-        cls = "niveau-vert"
-    else:
-        return f'<span class="niveau-rouge" title="Invalide">{n}</span>'
-
-    return f'<span class="{cls}" title="{label}">{n}</span>'
 # =========================
 # HELPERS
 # =========================
@@ -619,9 +599,7 @@ def home(
     </head>
 
     <body>
-    <script>
-        const collaborateurs = {json.dumps(data)};
-    </script>
+
     <div class="container mt-4">
 
         
@@ -699,7 +677,20 @@ def home(
             </div>
 
             <div class="row mt-2">
+<!--
+                <div class="col">
+                    <select class="form-control" name="competence" required>
+                        <option value="">Compétence</option>
+                        {"".join([
+                            f'<optgroup label="{g}">{"".join([f"<option value={s}>{s}</option>" for s in skills])}</optgroup>'
+                            for g, skills in COMPETENCES.items()
+                        ])}
+                    </select>
+                </div>
+-->
 
+
+                <!-- COMPETENCE -->
                 <!-- COMPETENCE -->
                 <div class="col">
 
@@ -790,12 +781,6 @@ def home(
                     <input class="form-control" name="niveau" type="number"
                         min="0" max="5" placeholder="Niveau*"
                         title="{LEG_NIVEAU}" required>
-                </div>
-
-                <div class="col">
-                    <input class="form-control" name="niveau" type="number"
-                        min="0" max="5" placeholder="Niveau attendu*"
-                        title="{LEG_ATTENDU}" required>
                 </div>
              
                 <div class="col">
@@ -903,7 +888,6 @@ def home(
         </form>
 
         <!-- TABLE -->
-        <!--
         <table class="table table-striped table-bordered bg-white">
 
             <thead class="table-dark">
@@ -915,7 +899,6 @@ def home(
                     <th>Agence</th>
                     <th>Compétences</th>
                     <th>Niveau</th>
-                    <th>Niveau attendu</th>
                     <th>Appétence</th>
                     <th>Actions</th>
                 </tr>
@@ -923,39 +906,8 @@ def home(
             </thead>
 
             <tbody>
-             -->
-
-        <div style="display:flex; gap:20px;">
-
-    <!-- TABLE -->
-    <div style="flex:2;">
-        <!--<div id="detailPanel" style="flex:1; background:white; padding:15px; border-radius:8px;">
-            <div class="text-muted">
-                Clique sur une ligne pour voir les détails
-            </div>
-        </div> -->
-        <table class="table table-striped table-bordered bg-white">
-
-            <thead class="table-dark">
-                <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Profil</th>
-                    <th>Agence</th>
-                    <th>Compétences</th>
-                    <th>Niveau</th>
-                    <th>Niveau attendu</th>
-                    <th>Appétence</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <script>
-                const collaborateurs = {{collabs}};
-            </script>
-            <tbody>
-           
     """
-    
+
     for c in data:
 
         competences_html = ""
@@ -976,8 +928,7 @@ def home(
             """
 
         html += f"""
-        <tr style="cursor:pointer"
-        onclick="showDetails({c['id']})">
+        <tr>
 
             <td>{c['nom']}</td>
             <td>{c['prenom']}</td>
@@ -988,12 +939,12 @@ def home(
                 {competences_html}
             </td>
 
+            <!--<td>{c['niveau']}</td>-->
             <td>{format_niveau(c['niveau'])}</td>
-            
-            <td>{c.get('niveau_attendu', '')}</td>
+
             <td>{c['appetence']}</td>
 
-            <td onclick="event.stopPropagation()">
+            <td>
 
                 <a href="/edit/{c['id']}"
                 class="btn btn-warning btn-sm">
@@ -1165,7 +1116,7 @@ def home(
 
     html += """
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
 
         // =========================
@@ -1261,7 +1212,6 @@ def home(
 
     </script>
 
-        
     </body>
     </html>
     """
@@ -1282,8 +1232,6 @@ def add(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    niveau_attendu: int = Form(...),
-    
     appetence: int = Form(...)
 ):
 
@@ -1302,7 +1250,6 @@ def add(
         "agence": agence,
         "competence": competence,
         "niveau": clamp(niveau),
-        "niveau_attendu": clamp(niveau_attendu),
         "appetence": clamp(appetence)
     })
 
@@ -1389,11 +1336,7 @@ def edit(id: int):
     <body class="bg-light">
     <div class="container mt-4">
 
-        <h3 style="color: #ff69b4;">
-            Modifier la matrice de compétance du collaborateur
-        </h3>
-
-
+        <h3>Modifier la matrice de compétance du collaborateur</h3>
 
         <div class="alert alert-info">
             Survoler les champs pour afficher les légendes :
@@ -1470,6 +1413,8 @@ def edit(id: int):
                     
                     <!-- COMPETENCE VERSION CASES A COCHER --> 
 
+                    <!-- COMPETENCE VERSION CASES A COCHER -->
+
                     <div class="dropdown w-100">
 
                         <button
@@ -1524,7 +1469,7 @@ def edit(id: int):
                 </div>
 
                 <!-- NIVEAU -->
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6">
                     <label class="form-label">
                         Niveau <span class="text-danger">*</span>
                     </label>
@@ -1534,18 +1479,8 @@ def edit(id: int):
                         title="{LEG_NIVEAU}" required>
                 </div>
 
-                <!-- NIVEAU ATTENDU -->
-                <div class="col-12 col-md-4">
-                    <label class="form-label">
-                        Niveau attendu <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" name="niveau_attendu" type="number"
-                        min="0" max="5" placeholder="Niveau attendu*"
-                        title="{LEG_ATTENDU}" required>
-                </div>
-
                 <!-- APPETENCE -->
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6">
                     <label class="form-label">
                         Appétence <span class="text-danger">*</span>
                     </label>
@@ -1993,24 +1928,6 @@ def edit(id: int):
                 <div class="col">
 
                     <label class="form-label">
-                        Niveau
-                    </label>
-
-                    <input
-                        class="form-control"
-                        name="niveau_attendu"
-                        type="number"
-                        min="0"
-                        max="5"
-                        value="{c.get('niveau_attendu', '')}"
-                        required
-                    >
-
-                </div>
-
-                <div class="col">
-
-                    <label class="form-label">
                         Appétence
                     </label>
 
@@ -2065,7 +1982,6 @@ def update(
     agence: str = Form(...),
     competence: Optional[Union[List[str], str]] = Form(None),
     niveau: int = Form(...),
-    niveau_attendu: int = Form(...),
     appetence: int = Form(...)
 ):
 
@@ -2086,7 +2002,6 @@ def update(
             c["agence"] = agence
             c["competence"] = competence
             c["niveau"] = clamp(niveau)
-            c["niveau_attendu"] = clamp(niveau_attendu)
             c["appetence"] = clamp(appetence)
 
             break
