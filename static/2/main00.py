@@ -327,9 +327,12 @@ LEG_APPETENCE = """
 
 LEG_ATTENDU = """
 N/A = Non applicable
-De [0-1] = Débutant
-De [2-3] = Intermédiaire
-De [4-5] = Expert
+0 = Pas de notion
+1 = Connaissances
+2 = Travail supervisé
+3 = Autonomie limitée
+4 = Maîtrise et autonomie totale
+5 = Maîtrise et enseignement
 """
 # =========================
 # DATA
@@ -338,8 +341,8 @@ De [4-5] = Expert
 collaborateurs = [
     {
         "id": 1,
-        "nom": "ALATA",
-        "prenom": "Ibrahima",
+        "nom": "Ibrahima",
+        "prenom": "Alata",
         "profil": "Testeur Automaticien",
         "agence": "Niort",
         "competence": ["Robotframework", "Playwright"],
@@ -349,7 +352,7 @@ collaborateurs = [
     },
     {
         "id": 2,
-        "nom": "AVIGNON",
+        "nom": "Alice",
         "prenom": "Martin",
         "profil": "Développeur",
         "agence": "Lyon",
@@ -887,12 +890,6 @@ def home(
                 </div>
 
                 <div class="col">
-                    <input class="form-control" name="niveau" type="number"
-                        min="0" max="5" placeholder="Niveau"
-                        title="{LEG_NIVEAU}" required>
-                </div>
-
-                <div class="col">
                     <button class="btn btn-success w-100">
                         Filtrer
                     </button>
@@ -963,7 +960,6 @@ def home(
            
     """
     
-    
     for c in data:
 
         competences_html = ""
@@ -993,27 +989,9 @@ def home(
             <td>{c['agence']}</td>
 
             <td>
-                {
-                    "".join([
-
-                        f"""
-                        <span
-                            class="badge bg-primary me-1 mb-1 skill-badge"
-                            onclick="openDeleteModal(
-                                {c['id']},
-                                '{comp}',
-                                {len(c["competence"])}
-                            )"
-                        >
-                            {comp} ✕
-                        </span>
-                        """
-
-                        for comp in c["competence"]
-
-                    ])
-                }
+                {competences_html}
             </td>
+
             <td>{format_niveau(c['niveau'])}</td>
             
             <td>{c.get('niveau_attendu', '')}</td>

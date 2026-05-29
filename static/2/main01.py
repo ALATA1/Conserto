@@ -349,7 +349,7 @@ collaborateurs = [
     },
     {
         "id": 2,
-        "nom": "AVIGNON",
+        "nom": "MONDON",
         "prenom": "Martin",
         "profil": "Développeur",
         "agence": "Lyon",
@@ -963,7 +963,6 @@ def home(
            
     """
     
-    
     for c in data:
 
         competences_html = ""
@@ -991,6 +990,57 @@ def home(
             <td>{c['prenom']}</td>
             <td>{c['profil']}</td>
             <td>{c['agence']}</td>
+
+        <!--    
+
+            <td>
+                {
+                    "".join([
+
+                        f"""
+                        <div class="mb-2 p-2 border rounded">
+
+                            <span class="badge bg-primary">
+                                {comp}
+                            </span>
+
+                            {
+                                f'''
+                                <div class="small text-muted mt-1">
+
+                                    Niveau :
+                                    {format_niveau(c['niveau'])}
+
+                                    <br>
+
+                                    Niveau attendu :
+                                    {format_attendu(c['niveau_attendu'])}
+
+                                    <br>
+
+                                    Appétence :
+                                    {c['appetence']}
+
+                                </div>
+                                '''
+                                if len(c["competence"]) > 1
+                                else ""
+                            }
+
+                        </div>
+                        """
+
+                        for comp in c["competence"]
+
+                    ])
+                }
+            </td>
+            
+            <td>
+                {competences_html}
+            </td> 
+            -->
+
 
             <td>
                 {
