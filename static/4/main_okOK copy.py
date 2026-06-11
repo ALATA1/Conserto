@@ -1,32 +1,14 @@
-from fastapi import FastAPI, Request,  Body, Form, Depends, HTTPException
+from fastapi import FastAPI, Form, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import Form
+from io import BytesIO
 from openpyxl import Workbook
-
-from app.core.security import (
-    verify_password,
-    create_access_token,
-    has_permission
-)
-
-from fastapi.responses import HTMLResponse, StreamingResponse, RedirectResponse
-import copy
-
-from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from io import BytesIO
-from collections import Counter
-
-import os
-import tempfile
-import numpy as np
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-
 from typing import List, Union, Optional
-from fastapi.responses import JSONResponse
+from app.api.auth import hash_password
+from fastapi import Request
 from jose import jwt, JWTError
 from datetime import datetime
 import json
@@ -34,14 +16,18 @@ from app.database.database import engine
 from app.database.base import Base
 from app.core.middleware import AuditMiddleware
 
+from fastapi import FastAPI
 
 from starlette.middleware.sessions import SessionMiddleware
-from openpyxl.styles import Font, PatternFill, Alignment
+
 from app.data.users import users_db
+from app.api.auth import hash_password, verify_password, create_access_token
 
-
-
-
+from app.api.auth import (
+    hash_password,
+    verify_password,
+    create_access_token
+)
 
 # =====================
 # INIT APP
@@ -64,55 +50,35 @@ app.add_middleware(
 
 
 
-# ============
-# BASE UNIQUE
-# ============
+# # ===============================
+# # UTILISATEURS DE L'APPLICATION
+# # ===============================
 
-def render_page(title, content):
-    return f"""
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{title}</title>
-        <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    </head>
+# users_db = {
+#     "ibrahima.alata@conserto.pro": {
+#         "username": "ibrahima.alata@conserto.pro",
+#         "hashed_password": hash_password("admin"),
+#         "role": "ADMIN"
+#     },
 
-    <body class="bg-light">
+#     "alice.martin@conserto.pro": {
+#         "username": "alice.martin@conserto.pro",
+#         "hashed_password": hash_password("admin123"),
+#         "role": "MANAGER"
+#     },
 
-        <div class="container mt-4">
-            {content}
-        </div>
+#     "helene.martin@conserto.pro": {
+#         "username": "helene.martin@conserto.pro",
+#         "hashed_password": hash_password("MonPassword123"),
+#         "role": "RH"
+#     }
+# }
 
-    </body>
-    </html>
-    """
-
-
-
-# ========================
-# AUTH - LECTURE DU TOKEN
-# ========================
-
-# def get_current_user(request: Request):
-#     token = request.cookies.get("access_token")
-
-#     if not token:
-#         return None
-
-#     try:
-#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#         username = payload.get("sub")
-#         return users_db.get(username)
-#     except JWTError:
-#         return None
-
-SECRET_KEY = "conserto_secret_key"
-ALGORITHM = "HS256"
+# =====================
+# AUTH
+# =====================
 
 def get_current_user(request: Request):
-
     token = request.cookies.get("access_token")
 
     if not token:
@@ -120,155 +86,75 @@ def get_current_user(request: Request):
 
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-
-        return {
-            "username": payload.get("sub"),
-            "role": payload.get("role")
-        }
-
-    except:
+        username = payload.get("sub")
+        return users_db.get(username)
+    except JWTError:
         return None
     
 
-# =======================================
-# LOGIN - FONCTION UTILISATEUR CONNECTE 
-# =======================================
-
-# @app.post("/login")
-# def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
-
-#     user = users_db.get(form_data.username)
-
-#     if not user:
-#         raise HTTPException(status_code=401, detail="Utilisateur incorrect")
-
-#     if not verify_password(form_data.password, user["hashed_password"]):
-#         raise HTTPException(status_code=401, detail="Mot de passe incorrect")
-
-#     token = create_access_token({
-#         "sub": form_data.username,
-#         "role": user["role"]
-#     })
-
-#     response = RedirectResponse(url="/", status_code=303)
-#     response.set_cookie("access_token", token, httponly=True)
-
-#     return response
-
-@app.post("/login")
-def login(request: Request, username: str = Form(...), password: str = Form(...)):
-
-    user = users_db.get(username)
-
-    if not user:
-        raise HTTPException(status_code=401, detail="Utilisateur incorrect")
-
-    if not verify_password(password, user["hashed_password"]):
-        raise HTTPException(status_code=401, detail="Mot de passe incorrect")
-
-    token = create_access_token({
-        "sub": username,
-        "role": user["role"]
-    })
-
-    response = RedirectResponse(url="/", status_code=303)
-    response.set_cookie(
-        key="access_token",
-        value=token,
-        httponly=True
-    )
-
-    return response
-
-
-
-
-# =========================
-# HELPERS (FILTRES / UTILS)
-# =========================
-
-def filter_collaborateurs(
-    data,
-    agence=None,
-    competence=None,
-    profil=None,
-    search=None,
-    niveau=None
-):
-
-    data = copy.deepcopy(data)
-
-    if agence:
-        data = [c for c in data if c["agence"] == agence]
-
-    if competence:
-        data = [
-            c for c in data
-            if any(comp["nom"] == competence for comp in get_safe_competences(c["competence"]))
-        ]
-
-    if profil:
-        data = [c for c in data if c["profil"] == profil]
-
-    if search:
-        data = [
-            c for c in data
-            if search.lower() in c["nom"].lower()
-            or search.lower() in c["prenom"].lower()
-        ]
-
-    if niveau:
-        niveau_max = int(niveau)
-
-        data = [
-            c for c in data
-            if any(
-                comp.get("niveau") is None
-                or int(comp.get("niveau", 0)) <= niveau_max
-                for comp in get_safe_competences(c["competence"])
-            )
-        ]
-
-    return data
+# =====================
+# SOLUTION PROPRE
+# =====================
+def get_safe_data():   
+    return [
+        {
+            **c,
+            "competence": normalize_competence(c.get("competence", []))
+        }
+        for c in collaborateurs
+    ]
 
 
 # =====================
 # FONCTION SAFE
 # =====================
 
-def get_safe_competences(value):
-    """
-    Normalise toujours vers une liste de dictionnaires.
-    """
-    if not value:
-        return []
+def get_safe_competences(c):
+    comps = c.get("competence", [])
+    comps = normalize_competence(comps)
 
-    if isinstance(value, dict):
-        return [value]
+    safe = []
 
-    if isinstance(value, list):
-        result = []
-        for v in value:
-            if isinstance(v, dict):
-                result.append(v)
-            elif isinstance(v, str):
-                result.append({
-                    "nom": v,
-                    "niveau": 0,
-                    "niveau_attendu": 0,
-                    "appetence": 0
-                })
-        return result
+    for comp in comps:
 
-    if isinstance(value, str):
-        return [{
-            "nom": value,
-            "niveau": 0,
-            "niveau_attendu": 0,
-            "appetence": 0
-        }]
+        if isinstance(comp, dict):
+            safe.append(comp)
 
-    return []
+        elif isinstance(comp, str):
+            safe.append({
+                "nom": comp,
+                "niveau": 0,
+                "niveau_attendu": 0,
+                "appetence": 0
+            })
+
+    return safe
+
+
+# =======================================
+# LOGIN - FONCTION UTILISATEUR CONNECTE 
+# =======================================
+
+@app.post("/login")
+def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
+
+    user = users_db.get(form_data.username)
+
+    if not user:
+        raise HTTPException(status_code=401, detail="Utilisateur incorrect")
+
+    if not verify_password(form_data.password, user["hashed_password"]):
+        raise HTTPException(status_code=401, detail="Mot de passe incorrect")
+
+    token = create_access_token({
+        "sub": form_data.username,
+        "role": user["role"]
+    })
+
+    response = RedirectResponse(url="/", status_code=303)
+    response.set_cookie("access_token", token, httponly=True)
+
+    return response
 
 
 # =========================
@@ -308,7 +194,7 @@ COMPETENCES = {
 
     "Bases de données": [
         "Oracle",
-        "Oracle SQL Dev",
+        "Oracle SQL Developer",
         "PG Admin",
         "PostgreSQL",
         "SQL Server"
@@ -580,25 +466,24 @@ collaborateurs = [
 
     {
         "id": 2,
-        "nom": "AVIGON",
-        "prenom": "Laurie",
-        "profil": "Agile master",
-        "agence": "Bordeaux",
-
+        "nom": "AVIGNON",
+        "prenom": "Martin",
+        "profil": "Développeur",
+        "agence": "Lyon",
         "competence": [
 
             {
-                "nom": "Pilotage",
-                "niveau": 3,
+                "nom": "Playwright",
+                "niveau": 2,
                 "niveau_attendu": 5,
                 "appetence": 5
             },
 
             {
-                "nom": "Git",
-                "niveau": 4,
+                "nom": "PostgreSQL",
+                "niveau": 1,
                 "niveau_attendu": 5,
-                "appetence": 5
+                "appetence": 4
             }
 
         ]
@@ -608,79 +493,21 @@ collaborateurs = [
         "id": 3,
         "nom": "MONDON",
         "prenom": "Romain",
-        "profil": "Devops",
-        "agence": "Niort",
-
+        "profil": "Testeur fonctionnel",
+        "agence": "Nantes",
         "competence": [
 
             {
-                "nom": "Qualité / Process",
+                "nom": "Sélénium",
                 "niveau": 2,
-                "niveau_attendu": 5,
-                "appetence": 5
-            },
-
-            {
-                "nom": "Oracle",
-                "niveau": 4,
-                "niveau_attendu": 5,
-                "appetence": 5
-            }
-
-        ]
-    },
-
-    {
-        "id": 4,
-        "nom": "GRIS",
-        "prenom": "Philippe",
-        "profil": "Développeur ",
-        "agence": "Rennes",
-
-        "competence": [
-
-            {
-                "nom": "Angular 19",
-                "niveau": 3,
-                "niveau_attendu": 5,
-                "appetence": 5
-            },
-
-            {
-                "nom": "Java 25",
-                "niveau": 1,
-                "niveau_attendu": 5,
-                "appetence": 5
-            }
-
-        ]
-    },
-
-    {
-        "id": 5,
-        "nom": "REGNAULT",
-        "prenom": "Justine",
-        "profil": "Business Analyst ",
-        "agence": "Paris",
-
-        "competence": [
-
-            {
-                "nom": "Oracle",
-                "niveau": 3,
-                "niveau_attendu": 5,
-                "appetence": 5
-            },
-
-            {
-                "nom": "Cypress",
-                "niveau": 1,
                 "niveau_attendu": 5,
                 "appetence": 5
             }
 
         ]
     }
+
+
 ]
 
 # =========================
@@ -740,8 +567,6 @@ def format_attendu(n):
         return f'<span class="niveau-rouge" title="Invalide">{n}</span>'
 
     return f'<span class="{cls}" title="{label}">{n}</span>'
-
-
 # =========================
 # HELPERS
 # =========================
@@ -756,12 +581,38 @@ normalize_data()
 def normalize_competence(value):
     if not value:
         return []
-
     if isinstance(value, list):
         return value
-
     return [value]
 
+
+def normalize_competence(data):
+    if not data:
+        return []
+
+    result = []
+
+    for comp in data:
+
+        # cas dict propre
+        if isinstance(comp, dict):
+            result.append({
+                "nom": comp.get("nom", ""),
+                "niveau": int(comp.get("niveau", 0)),
+                "niveau_attendu": int(comp.get("niveau_attendu", 0)),
+                "appetence": int(comp.get("appetence", 0))
+            })
+
+        # cas string ancien format cassé
+        elif isinstance(comp, str):
+            result.append({
+                "nom": comp,
+                "niveau": 0,
+                "niveau_attendu": 0,
+                "appetence": 0
+            })
+
+    return result
 
 def clamp(v):
     return max(0, min(5, int(v)))
@@ -800,6 +651,7 @@ def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     return response
 
 
+
 # =========================================
 # AJOUTER LOGIN AUTHENTIFICATION FRONT END
 # =========================================
@@ -835,59 +687,6 @@ def login_page():
     </html>
     """
 
-
-# # =========================================
-# # AJOUTER LOGIN AUTHENTIFICATION FRONT END
-# # =========================================
-
-# @app.get("/login", response_class=HTMLResponse)
-# def login_page():
-
-#     content = """
-#     <div class="container mt-5" style="max-width:400px;">
-#         <h2 class="mb-4">Connexion</h2>
-
-#         <form method="post" action="/login">
-#             <input class="form-control mb-2" name="username" placeholder="Username" required>
-#             <input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
-#             <button class="btn btn-primary w-100">Se connecter</button>
-#         </form>
-#     </div>
-#     """
-
-#     return render_page("Login", content)
-
-# @app.get("/login", response_class=HTMLResponse)
-# def login_page():
-#     return """
-#     <html>
-#     <head>
-#         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-#         <title>Connexion</title>
-#     </head>
-
-#     <body class="bg-light">
-
-#     <div class="container mt-5" style="max-width:400px;">
-
-#         <h3 class="mb-3">Connexion</h3>
-
-#         <form method="post" action="/login">
-
-#             <input class="form-control mb-2" name="username" placeholder="Username" required>
-
-#             <input class="form-control mb-3" type="password" name="password" placeholder="Password" required>
-
-#             <button class="btn btn-primary w-100">Se connecter</button>
-
-#         </form>
-
-#     </div>
-
-#     </body>
-#     </html>
-#     """
-
 # =========================
 # AJOUTER LA ROUTE LOGOUT
 # =========================
@@ -898,42 +697,6 @@ def logout():
     return response
 
 
-
-# =========================
-# ROUTES FASTAPI
-# =========================
-
-@app.post("/add_competence/{id}")
-def add_competence(
-    id: int,
-    competence: List[str] = Form(...),
-    niveau: int = Form(...),
-    niveau_attendu: int = Form(...),
-    appetence: int = Form(...)
-):
-
-    c = next((x for x in collaborateurs if x["id"] == id), None)
-
-    if not c:
-        return RedirectResponse("/")
-
-    c["competence"] = normalize_competence(c["competence"])
-
-    for comp_name in competence:
-
-        c["competence"].append({
-            "nom": comp_name,
-            "niveau": clamp(niveau),
-            "niveau_attendu": clamp(niveau_attendu),
-            "appetence": clamp(appetence)
-        })
-
-    return RedirectResponse(f"/edit/{id}", status_code=303)
-
-
-
-
-
 # =========================
 # HOME
 # =========================
@@ -941,49 +704,40 @@ def add_competence(
 @app.get("/", response_class=HTMLResponse)
 def home(
     request: Request,
-    collaborateur: str = None,
     agence: str = None,
     competence: str = None,
     search: str = None,
     profil: str = None,
-    niveau: str = None,
     error: str = None
-):   
+):    
 
     # data = collaborateurs
-    data = copy.deepcopy(collaborateurs)
+    data = get_safe_data()
+    # data = [
+    #     {
+    #         **c,
+    #         "competence": normalize_competence(c.get("competence", []))
+    #     }
+    #     for c in collaborateurs
+    # ]
+
+    all_competences = [
+        comp
+        for c in data
+        for comp in normalize_competence(c.get("competence", []))
+    ]
+
+    total = len(all_competences)
+    avg = 0
+
+    total = len(all_competences)
+
+    avg = round(
+        sum(comp.get("niveau", 0) for comp in all_competences) / total,
+        1
+    ) if total else 0
 
     current_user = get_current_user(request)
-
-    if not current_user:
-        return RedirectResponse("/login", status_code=303)
-    
-    username = current_user["username"]
-    role = current_user["role"]
-
-    role_label = {
-        "ADMIN": "👑 Administrateur",
-        "RH": "👥 Ressources Humaines",
-        "MANAGER": "📊 Manager",
-        "UTILISATEUR": "👤 Collaborateur"
-    }.get(role, role)
-
-    role_badge = {
-        "ADMIN": "danger",
-        "RH": "primary",
-        "MANAGER": "warning",
-        "UTILISATEUR": "secondary"
-    }.get(role, "secondary")
-
-    can_edit = has_permission(role, "edit")
-    can_delete = has_permission(role, "delete")
-    can_export = has_permission(role, "export")
-
-    print(role)
-    print(username)
-    print(can_edit)
-    print(can_delete)
-    print(can_export)
 
     if not current_user:
         return RedirectResponse("/login", status_code=303)
@@ -1001,100 +755,51 @@ def home(
 
     if competence:
         data = [
-            c for c in data
-            if any(
-                comp["nom"] == competence
-                for comp in get_safe_competences(c["competence"])
-            )
-        ]
-        
-    if niveau:
-    
-        niveau_max = int(niveau)
-
-        data = [
-            c for c in data
-            if any(
-                (
-                    comp.get("niveau") is None
-                    or int(comp.get("niveau", 0)) <= niveau_max
-                )
-                for comp in get_safe_competences(c["competence"])
-            )
-        ]
-    
-    if profil:
-        data = [c for c in data if c["profil"] == profil]
-
-    if search:
-        data = [
-            c for c in data
-            if search.lower() in c["nom"].lower()
-            or search.lower() in c["prenom"].lower()
-        ]
-
-    
-    
-
-    # if niveau:
-    
-    #     niveau_max = int(niveau)
-
-    #     data = [
-    #         c for c in data
-    #         if any(
-    #             (
-    #                 comp.get("niveau") == "N/A"
-    #                 or int(comp.get("niveau", 0)) <= niveau_max
-    #             )
-    #             for comp in get_safe_competences(c["competence"])
-    #         )
-    #     ]
-
-
-    if search:
-        data = [
-            c for c in data
-            if search.lower() in c["nom"].lower()
-            or search.lower() in c["prenom"].lower()
-        ]
-
-    if profil:
-        data = [c for c in data if c["profil"] == profil]
-
-    # total = sum(len(c["competence"]) for c in data)
-    total = len(data)
-
-    # avg = round(
-    #     sum(
-    #         comp.get("niveau", 0)
-    #         for c in data
-    #         for comp in normalize_competence(c.get("competence", []))
-    #     ) / total,
-    #     1
-    # ) if total else 0
-
-    if collaborateur:
-        data = [c for c in data if c["profil"] == collaborateur]
-
-    total = len(data)
-
-
-
-    all_competences = [
-        comp
-        for c in data
-        for comp in get_safe_competences(c["competence"])
+        c for c in data
+        if any(
+            comp["nom"] == competence
+            for comp in c["competence"]
+        )
     ]
 
-    avg = round(
-        sum(comp["niveau"] for comp in all_competences)
-        / len(all_competences),
-        1
-    ) if all_competences else 0
+    if search:
+        data = [
+            c for c in data
+            if search.lower() in c["nom"].lower()
+            or search.lower() in c["prenom"].lower()
+        ]
 
+    if profil:
+        data = [c for c in data if c["profil"] == profil]
 
+    # # total = sum(len(c["competence"]) for c in data)
+    # # total = len(data)
+    # total = sum(
+    #     len(normalize_competence(c.get("competence", [])))
+    #     for c in data
+    # )
 
+    # # avg = round(
+    # #     sum(
+    # #         comp.get("niveau", 0)
+    # #         for c in data
+    # #         for comp in normalize_competence(c.get("competence", []))
+    # #     ) / total,
+    # #     1
+    # # ) if total else 0
+
+    # all_competences = [
+    #     comp
+    #     for c in data
+    #     for comp in c["competence"]
+    # ]
+
+    # total = len(all_competences)
+
+    # avg = round(
+    #     sum(comp["niveau"] for comp in all_competences) / total,
+    #     1
+    # ) if total else 0
 
     html = f"""
     <html>
@@ -1145,50 +850,18 @@ def home(
     <script>
         const collaborateurs = {json.dumps(data)};
     </script>
-
-
     <div class="container mt-4">
 
+        
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <h2>Skills Matrix</h2>
 
             {
                 f'''
-                <div class="d-flex align-items-center gap-3">
-
-                    <img
-                        src="https://ui-avatars.com/api/?name={username}&background=0D8ABC&color=fff"
-                        class="rounded-circle border"
-                        width="45"
-                        height="45"
-                    >
-
-                    <div>
-
-                        <div class="fw-bold">
-                            {username}
-                        </div>
-
-                        <div class="d-flex align-items-center gap-2 mt-1">
-
-                            <span class="badge bg-{role_badge}">
-                                {role_label}
-                            </span>
-
-                            <a href="/logout"
-                            class="badge bg-danger text-decoration-none">
-
-                                <i class="bi bi-box-arrow-right me-1"></i>
-                                Déconnexion
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <a href="/logout" class="btn btn-danger">
+                    Déconnexion
+                </a>
                 '''
                 if is_logged else
                 '''
@@ -1200,71 +873,33 @@ def home(
 
         </div>
 
-        
-
-
-
-
-        <div class="alert alert-info fw-bold ">
+        <div class="alert alert-info fw-bold">
             Échelle de notation : Survoler les champs niveau et appétence pour voir les légendes.
         </div>
 
-        <!--   BLOCS Total collabs et Niveau moyen des compétences -->
-
         <div class="row mb-3">
-            <div class="col card p-3 m-2 shadow-sm border-start border-primary border-4">
-                <span style="font-size:18px;">
-                    👥 <strong>Total collaborateurs :</strong>
-                    <span style="
-                        color:#0d6efd;
-                        font-size:22px;
-                        font-weight:bold;">
-                        {total}
-                    </span>
 
-                    <span
-                        title="Nombre de collaborateurs affichés après application des filtres sélectionnés."
-                        style="
-                            cursor:help;
-                            margin-left:5px;">
-                        ℹ️
-                    </span>
-
-                </span>
+            <div class="col card p-3 m-2">
+                Total collaborateurs : {total}
             </div>
 
-            <div class="col card p-3 m-2 shadow-sm border-start border-success border-4">
-                <span style="font-size:18px;">
-                    📊 <strong>Niveau moyen des compétences :</strong>
-                    <span style="
-                        color:#198754;
-                        font-size:22px;
-                        font-weight:bold;">
-                        {avg}/5
-                    </span>
-
-                    <span
-                        title="Calcul : somme des niveaux de toutes les compétences affichées divisée par le nombre total de compétences affichées."
-                        style="
-                            cursor:help;
-                            margin-left:5px;">
-                        ℹ️
-                    </span>
-                </span>
+            <div class="col card p-3 m-2">
+                Moyenne niveau : {avg}
             </div>
+
         </div>
 
         <!-- EXPORT -->
         <div class="mb-3">
 
-            <a href="/export/excel?agence={agence or ''}&competence={competence or ''}&profil={profil or ''}&search={search or ''}"
+            <a href="/export/excel"
                class="btn btn-dark">
                 Export Excel
             </a>
 
-            <a href="/export/pdf?agence={agence or ''}&competence={competence or ''}&profil={profil or ''}&search={search or ''}"
-                class="btn btn-danger">
-                 Export PDF
+            <a href="/export/pdf"
+               class="btn btn-danger">
+                Export PDF
             </a>
 
         </div>
@@ -1378,50 +1013,11 @@ def home(
                 </script>
 
 
-                <!--
+
                 <div class="col">
                     <input class="form-control" name="niveau" type="number"
                         min="0" max="5" placeholder="Niveau*"
                         title="{LEG_NIVEAU}" required>
-                </div>
-                -->
-
-                <div class="col">
-
-                    <select class="form-control"
-                            name="niveau"
-                            title="{LEG_NIVEAU}">
-
-                        <option value="">
-                            Niveau*
-                        </option>
-
-                        <option value="0">
-                            N/A
-                        </option>
-
-                        <option value="1">
-                            1
-                        </option>
-
-                        <option value="2">
-                            2
-                        </option>
-
-                        <option value="3">
-                            3
-                        </option>
-
-                        <option value="4">
-                            4
-                        </option>
-
-                        <option value="5">
-                            5
-                        </option>
-
-                    </select>
-
                 </div>
 
                 <div class="col">
@@ -1564,7 +1160,7 @@ def home(
              -->
 
         <div style="display:flex; gap:20px;">
-    
+
     <!-- TABLE -->
     <div style="flex:2;">
         <!--<div id="detailPanel" style="flex:1; background:white; padding:15px; border-radius:8px;">
@@ -2009,7 +1605,6 @@ def home(
     return HTMLResponse(content=html)
 
 
-
 # =========================
 # ADD/AJOUT
 # =========================
@@ -2027,17 +1622,12 @@ def add(
     appetence: int = Form(...)
 ):
 
+    print("DEBUG niveau_attendu =", niveau_attendu)  
+
     user = get_current_user(request)
 
     if not user:
-        return RedirectResponse("/login", status_code=303)
-
-    # 🔐 CONTRÔLE ROLE
-    if not has_permission(user["role"], "edit"):
-        raise HTTPException(
-            status_code=403,
-            detail="Ajout interdit"
-        )
+        raise HTTPException(status_code=401, detail="Non autorisé")
 
     competence = normalize_competence(competence)
 
@@ -2047,6 +1637,7 @@ def add(
         "prenom": prenom,
         "profil": profil,
         "agence": agence,
+
         "competence": [
             {
                 "nom": comp,
@@ -2058,56 +1649,9 @@ def add(
         ]
     })
 
+    log_action(user, "AJOUT", f"{prenom} {nom}")
+
     return RedirectResponse("/", status_code=303)
-
-
-# @app.post("/add")
-# def add(
-#     request: Request,
-#     nom: str = Form(...),
-#     prenom: str = Form(...),
-#     profil: str = Form(...),
-#     agence: str = Form(...),
-#     competence: Optional[Union[List[str], str]] = Form(None),
-#     niveau: int = Form(...),
-#     niveau_attendu: int = Form(...),
-#     appetence: int = Form(...)
-# ):
-
-#     print("DEBUG niveau_attendu =", niveau_attendu)  
-
-#     user = get_current_user(request)
-
-#     if not user:
-#         raise HTTPException(status_code=401, detail="Non autorisé")
-
-#     competence = normalize_competence(competence)
-
-#     collaborateurs.append({
-#         "id": max([c["id"] for c in collaborateurs], default=0) + 1,
-#         "nom": nom,
-#         "prenom": prenom,
-#         "profil": profil,
-#         "agence": agence,
-
-#         "competence": [
-#             {
-#                 "nom": comp,
-#                 "niveau": clamp(niveau),
-#                 "niveau_attendu": clamp(niveau_attendu),
-#                 "appetence": clamp(appetence)
-#             }
-#             for comp in competence
-#         ]
-#     })
-
-#     log_action(user, "AJOUT", f"{prenom} {nom}")
-
-#     return RedirectResponse("/", status_code=303)
-
-
-
-
 
 # =========================
 # DELETE COLLABORATEUR
@@ -2117,14 +1661,8 @@ def delete(request: Request, id: int):
 
     user = get_current_user(request)
 
-    if not has_permission(user["role"], "delete"):
-        raise HTTPException(
-            status_code=403,
-            detail="Vous n'avez pas le droit de supprimer"
-        )
-
-    # if not user:
-    #     raise HTTPException(status_code=401, detail="Non autorisé")
+    if not user:
+        raise HTTPException(status_code=401, detail="Non autorisé")
 
     global collaborateurs
 
@@ -2168,7 +1706,7 @@ def remove_competence(id: int, comp: str):
 # ======================================
 
 @app.get("/edit/{id}")
-def edit_router(request: Request, id: int):
+def edit_router(id: int):
 
     c = next((x for x in collaborateurs if x["id"] == id), None)
 
@@ -2183,7 +1721,7 @@ def edit_router(request: Request, id: int):
         return edit_global_page(id)
 
     # CAS 2 : plusieurs compétences → PAGE LISTE
-    return edit_competence_page(request,id)
+    return edit_competence_page(id)
 
 
 # =========================
@@ -2280,29 +1818,12 @@ def edit_global_pageSSS(id: int):
     return HTMLResponse(html)
 
 
+
 # =========================
 # EDIT PAGE 2 (MULTI COMPÉTENCES)
 # =========================
-@app.get("/edit/{id}")
-def edit_competence_page(request: Request, id: int):
-    
-    current_user = get_current_user(request)
 
-    if not current_user:
-        return RedirectResponse("/login", status_code=303)
-    
-    username = current_user["username"]
-    role = current_user["role"]
-
-    can_edit = has_permission(role, "edit")
-    can_delete = has_permission(role, "delete")
-    can_export = has_permission(role, "export")
-
-    print(role)
-    print(username)
-    print(can_edit)
-    print(can_delete)
-    print(can_export)
+def edit_competence_page(id: int):
 
     c = next((x for x in collaborateurs if x["id"] == id), None)
 
@@ -2311,35 +1832,6 @@ def edit_competence_page(request: Request, id: int):
 
     c = c.copy()
     c["competence"] = normalize_competence(c["competence"])
-
-    add_button = ""
-
-    if can_edit:
-        add_button = """
-        <div class="d-flex justify-content-end gap-2">
-            <button class="btn btn-success" onclick="toggleAddCompetence()">
-                ➕ Ajouter nouvelle compétence
-            </button>
-
-        <!-- NOUVEAU BOUTON VALIDATION -->
-            <button
-                type="button"
-                class="btn btn-primary"
-                onclick="saveAllCompetences()">
-                💾 Valider tout
-            </button>
-        
-        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC BOUTON RESET --> 
-            <div class="col"> 
-                <a href="/" 
-                class="btn btn-secondary w-100" 
-                onclick="return confirmCancel(event)"> 
-                🏠 Retour Home 
-                </a> 
-            </div>
-        </div>
-        """
-
 
     html = f"""
     <html>
@@ -2351,188 +1843,163 @@ def edit_competence_page(request: Request, id: int):
     <body class="bg-light">
 
     <div class="container mt-4">
-     
+
         <div class="d-flex justify-content-between align-items-center mb-3">
 
-            <!-- TITRE -->
-            <h3 class="mb-0 fw-bold"
-                style="
-                    background: linear-gradient(90deg, #0d6efd, #20c997);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    font-size: 26px;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                ">
-                🛠️ Modifier ou ajouter une compétence
+            <h3 class="mb-0">
+                Modifier une compétence
             </h3>
 
-            {add_button}
-
-        </div>
-        
- 
-            <!-- ACTIONS -->
-            <div class="d-flex gap-2">
-
-                <!-- bouton ajout -->
-                {
-                f'''
-                <!--
-                <button
-                    type="button"
-                    class="btn btn-success"
-                    onclick="toggleAddCompetence()">
-
-                    + Ajouter nouvelle compétence
-                </button> 
-                -->
-                
-                '''
-                if can_edit else ''
-                }
-
-                
-
-            </div>
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="toggleAddCompetence()"
+            >
+                + Ajouter nouvelle compétence
+            </button>
 
         </div>
 
         
-        <div class="container">
-            <div id="addCompetenceForm"
-                class="card p-3 mb-3"
-                style="display:none;">
- 
-                <h7>Nouvelle compétence</h7>       
+        
+        <div id="addCompetenceForm"
+            class="card p-3 mb-3"
+            style="display:none;">
 
-                <form method="post" action="/add_competence/{id}">
+            <h5>Nouvelle compétence</h5>
 
-                    <div class="row mt-2">
+            <form method="post" action="/add_competence/{id}">
 
-                        <!-- COMPETENCE -->
-                        <div class="col">
+                <div class="row mt-2">
 
-                            <div class="dropdown w-100">
+                    <!-- COMPETENCE -->
+                    <div class="col">
 
-                                <button
-                                    class="btn btn-outline-secondary dropdown-toggle w-100 text-start d-flex align-items-center"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    id="competenceBtn"
-                                    style="height:38px;"
-                                >
-                                    Compétences*
-                                </button>
+                        <div class="dropdown w-100">
 
-                                <div class="dropdown-menu p-3 w-100"
-                                    style="max-height:250px; overflow:auto;">
+                            <button
+                                class="btn btn-outline-secondary dropdown-toggle w-100 text-start d-flex align-items-center"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                id="competenceBtn"
+                                style="height:38px;"
+                            >
+                                Compétences*
+                            </button>
 
-                                    {''.join([
-                                        f"<div class='fw-bold mt-2'>{g}</div>" +
+                            <div class="dropdown-menu p-3 w-100"
+                                style="max-height:250px; overflow:auto;">
 
-                                        ''.join([
+                                {''.join([
+                                    f"<div class='fw-bold mt-2'>{g}</div>" +
 
-                                            f'''
-                                            <div class="form-check">
+                                    ''.join([
 
-                                                <input
-                                                    class="form-check-input competence-check"
-                                                    type="checkbox"
-                                                    name="competence"
-                                                    value="{s}"
-                                                    onchange="validateCompetence()"
-                                                >
+                                        f'''
+                                        <div class="form-check">
 
-                                                <label class="form-check-label">
-                                                    {s}
-                                                </label>
+                                            <input
+                                                class="form-check-input competence-check"
+                                                type="checkbox"
+                                                name="competence"
+                                                value="{s}"
+                                                onchange="validateCompetence()"
+                                            >
 
-                                            </div>
-                                            '''
+                                            <label class="form-check-label">
+                                                {s}
+                                            </label>
 
-                                            for s in skills
+                                        </div>
+                                        '''
 
-                                        ])
+                                        for s in skills
 
-                                        for g, skills in COMPETENCES.items()
-                                    ])}
+                                    ])
 
-                                </div>
+                                    for g, skills in COMPETENCES.items()
+                                ])}
 
                             </div>
 
-                            <input
-                                type="text"
-                                id="competence-validator"
-                                required
-                                style="
-                                    position:absolute;
-                                    opacity:0;
-                                    height:0;
-                                    width:0;
-                                    pointer-events:none;
-                                "
-                            >
-
                         </div>
 
-                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC NIVEAU  -->
-
-                        <div class="col">
-                            <input class="form-control" name="niveau" type="number"
-                                min="0" max="5" placeholder="Niveau*"
-                                title="{LEG_NIVEAU}" required>
-                        </div>
-
-
-                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC NIVEAU ATTENDU -->
-                        <div class="col">
-                            <input class="form-control" name="niveau_attendu" type="number"
-                                min="0" max="5" placeholder="Niveau attendu*"
-                                title="{LEG_ATTENDU}" required>
-                        </div>
-                    
-                        
-
-                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC APPETENCE -->
-                        <div class="col">
-                            <input class="form-control" name="appetence" type="number"
-                                min="0" max="5" placeholder="Appétence*"
-                                title="{LEG_APPETENCE}" required>
-                        </div>
-
-                        
-                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC BOUTON AJOUTER -->
-                        <div class="col">
-                            <button class="btn btn-primary w-100">
-                                Ajouter
-                            </button>
-                        </div>
-
-                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC BOUTON RESET -->
-
-                        <div class="col">
-                            <button
-                                type="button"
-                                class="btn btn-secondary w-100"
-                                onclick="document.getElementById('addCompetenceForm').style.display='none'">
-                                Reset
-                            </button>
-                        </div>
-
-
-
-                        
+                        <input
+                            type="text"
+                            id="competence-validator"
+                            required
+                            style="
+                                position:absolute;
+                                opacity:0;
+                                height:0;
+                                width:0;
+                                pointer-events:none;
+                            "
+                        >
 
                     </div>
 
-                </form>
+                    <!-- NIVEAU -->
+                    <div class="col">
 
-            </div>
+                        <input
+                            class="form-control"
+                            name="niveau"
+                            type="number"
+                            min="0"
+                            max="5"
+                            value="1"
+                            required
+                        >
 
-        </div>   
+                    </div>
+
+                    <!-- NIVEAU ATTENDU -->
+                    <div class="col">
+
+                        <input
+                            class="form-control"
+                            name="niveau_attendu"
+                            type="number"
+                            min="0"
+                            max="5"
+                            value="5"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- APPETENCE -->
+                    <div class="col">
+
+                        <input
+                            class="form-control"
+                            name="appetence"
+                            type="number"
+                            min="0"
+                            max="5"
+                            value="1"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- BOUTON -->
+                    <div class="col">
+
+                        <button class="btn btn-primary w-100">
+                            Ajouter
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+            
 
             
 
@@ -2550,18 +2017,6 @@ def edit_competence_page(request: Request, id: int):
 
     # 🔥 BOUCLE COMPÉTENCES
     for comp in c["competence"]:
-
-        delete_button = ""
-
-        if can_delete:
-            delete_button = f"""
-            <a
-                href="/delete_competence/{id}/{comp['nom']}"
-                class="btn btn-danger"
-                onclick="return confirm('Supprimer la compétence {comp["nom"]} ?')">
-                Supprimer
-            </a>
-            """
 
         html += f"""
         <form method="post" action="/update/{id}/competence/{comp['nom']}" class="border p-3 mb-3">
@@ -2592,21 +2047,7 @@ def edit_competence_page(request: Request, id: int):
                 </div>
 
                 <div class="col d-flex justify-content-end align-items-end gap-2">
-                    <button class="btn btn-primary"
-                        <span>Enregistrer</span>
-                        
-                    </button>
 
-                    {delete_button}
-
-                    <a
-                        href="/"
-                        class="btn btn-secondary"
-                        onclick="return confirmCancel(event)">
-                        Annuler
-                    </a>
-
-                <!--
                     <button class="btn btn-primary">
                         Enregistrer
                     </button>
@@ -2624,7 +2065,7 @@ def edit_competence_page(request: Request, id: int):
                         onclick="return confirmCancel(event)">
                         Annuler
                     </a>
-                -->
+
                 </div>
 
                 
@@ -2679,32 +2120,11 @@ def edit_competence_page(request: Request, id: int):
 
         </script>
 
-
-        <script>
-            function saveAllCompetences() {
-
-                if (confirm("Valider toutes les modifications ?")) {
-
-                    alert("Toutes les compétences ont été enregistrées avec succès !");
-
-                    // option 1 : recharger la page
-                    location.reload();
-
-                    // option 2 (si tu veux plus tard) :
-                    // window.location.href = "/save-all"
-                }
-            }
-            </script>
-
-            </body>
-            </html>
-
         </body>
         </html>
     """
 
     return HTMLResponse(html)
-
 
 
 
@@ -3149,8 +2569,6 @@ def edit_global_page(id):
     return HTMLResponse(content=html)
 
 
-
-
 # =========================
 # UPDATE GLOBAL (PAGE 1)
 # =========================
@@ -3232,22 +2650,35 @@ def update_competence(
 
 
 # =========================
-# SAVE ALL (NOUVEAU)
+# route FastAPI
 # =========================
 
-@app.post("/save-all")
-def save_all(data: list = Body(...)):
+@app.post("/add_competence/{id}")
+def add_competence(
+    id: int,
+    competence: List[str] = Form(...),
+    niveau: int = Form(...),
+    niveau_attendu: int = Form(...),
+    appetence: int = Form(...)
+):
 
-    global collaborateurs
+    c = next((x for x in collaborateurs if x["id"] == id), None)
 
-    collaborateurs = data
+    if not c:
+        return RedirectResponse("/")
 
-    return {
-        "status": "success",
-        "message": "Sauvegarde globale OK",
-        "total": len(collaborateurs)
-    }
+    c["competence"] = normalize_competence(c["competence"])
 
+    for comp_name in competence:
+
+        c["competence"].append({
+            "nom": comp_name,
+            "niveau": clamp(niveau),
+            "niveau_attendu": clamp(niveau_attendu),
+            "appetence": clamp(appetence)
+        })
+
+    return RedirectResponse(f"/edit/{id}", status_code=303)
 
 
 # =========================
@@ -3255,47 +2686,22 @@ def save_all(data: list = Body(...)):
 # =========================
 
 @app.get("/delete_competence/{id}/{comp_name}")
-def delete_competence(
-    request: Request,
-    id: int,
-    comp_name: str
-):
+def delete_competence(id: int, comp_name: str):
 
-    user = get_current_user(request)
-
-    if not user:
-        return RedirectResponse("/login", status_code=303)
-
-    if not has_permission(user["role"], "delete"):
-        raise HTTPException(
-            status_code=403,
-            detail="Suppression interdite"
-        )
-
-    c = next(
-        (x for x in collaborateurs if x["id"] == id),
-        None
-    )
+    c = next((x for x in collaborateurs if x["id"] == id), None)
 
     if not c:
         return RedirectResponse("/")
 
-    c["competence"] = normalize_competence(
-        c["competence"]
-    )
+    c["competence"] = normalize_competence(c["competence"])
 
     c["competence"] = [
         comp
-        for comp in get_safe_competences(c["competence"])
+        for comp in c["competence"]
         if comp["nom"] != comp_name
     ]
 
-    return RedirectResponse(
-        f"/edit/{id}",
-        status_code=303
-    )
-
-
+    return RedirectResponse(f"/edit/{id}", status_code=303)
 
 
 # =========================
@@ -3385,257 +2791,51 @@ def audit_page():
 
 
 
-
-
 # =========================
-# EXPORT EXCEL (FINAL CLEAN)
+# EXPORT EXCEL
 # =========================
-
 @app.get("/export/excel")
-def export_excel(
-    agence: str = None,
-    competence: str = None,
-    profil: str = None,
-    search: str = None
-):
+def export_excel():
 
     wb = Workbook()
     ws = wb.active
-    ws.title = "Skills détaillés"
 
-    # data = collaborateurs
-    data = copy.deepcopy(collaborateurs)
-
-    if agence:
-        data = [c for c in data if c["agence"] == agence]
-
-    if profil:
-        data = [c for c in data if c["profil"] == profil]
-
-    if search:
-        data = [
-            c for c in data
-            if search.lower() in c["nom"].lower()
-            or search.lower() in c["prenom"].lower()
-        ]
-
-    if competence:
-        data = [
-            c for c in data
-            if any(
-                comp["nom"] == competence
-                for comp in get_safe_competences(c["competence"])
-            )
-        ]
-
-    # =========================
-    # STYLES
-    # =========================
-    header_font = Font(bold=True, color="FFFFFF")
-    header_fill = PatternFill(
-        start_color="4F81BD",
-        end_color="4F81BD",
-        fill_type="solid"
-    )
-    center = Alignment(horizontal="center", vertical="center")
-
-    row_fill_even = PatternFill(
-        start_color="F2F2F2",
-        end_color="F2F2F2",
-        fill_type="solid"
-    )
-
-    # =========================
-    # HEADER
-    # =========================
-    headers = [
+    ws.append([
         "Nom",
         "Prénom",
         "Profil",
         "Agence",
         "Compétence",
         "Niveau",
-        "Niveau attendu",
         "Appétence"
-    ]
+    ])
 
-    ws.append(headers)
+    for c in collaborateurs:
 
-    for col in range(1, len(headers) + 1):
-        cell = ws.cell(row=1, column=col)
-        cell.font = header_font
-        cell.fill = header_fill
-        cell.alignment = center
+        ws.append([
+            c["nom"],
+            c["prenom"],
+            c["profil"],
+            c["agence"],
+            ", ".join(c["competence"]),
+            c["niveau"],
+            c["appetence"]
+        ])
 
-    # =========================
-    # DATA (1 compétence = 1 ligne)
-    # =========================
-    row = 2
-
-    for c in data:
-
-        for comp in get_safe_competences(c["competence"]):
-
-            ws.append([
-                c["nom"],
-                c["prenom"],
-                c["profil"],
-                c["agence"],
-                comp["nom"],
-                comp["niveau"],
-                comp["niveau_attendu"],
-                comp["appetence"]
-            ])
-
-            # style ligne
-            for col in range(1, 9):
-                cell = ws.cell(row=row, column=col)
-                cell.alignment = center
-
-                if row % 2 == 0:
-                    cell.fill = row_fill_even
-
-            row += 1
-
-    # =========================
-    # AUTO WIDTH
-    # =========================
-    for col in ws.columns:
-        max_length = 0
-        col_letter = col[0].column_letter
-
-        for cell in col:
-            if cell.value:
-                max_length = max(max_length, len(str(cell.value)))
-
-        ws.column_dimensions[col_letter].width = max_length + 2
-
-    # =========================
-    # EXPORT
-    # =========================
     stream = BytesIO()
+
     wb.save(stream)
+
     stream.seek(0)
 
     return StreamingResponse(
         stream,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={
-            "Content-Disposition": "attachment; filename=skills_detailles.xlsx"
+            "Content-Disposition":
+            "attachment; filename=skills.xlsx"
         }
     )
-
-
-
-# # =========================
-# # EXPORT EXCEL (FINAL CLEAN)
-# # =========================
-
-# @app.get("/export/excel")
-# def export_excel():
-
-#     wb = Workbook()
-#     ws = wb.active
-#     ws.title = "Skills détaillés"
-
-#     # =========================
-#     # STYLES
-#     # =========================
-#     header_font = Font(bold=True, color="FFFFFF")
-#     header_fill = PatternFill(
-#         start_color="4F81BD",
-#         end_color="4F81BD",
-#         fill_type="solid"
-#     )
-#     center = Alignment(horizontal="center", vertical="center")
-
-#     row_fill_even = PatternFill(
-#         start_color="F2F2F2",
-#         end_color="F2F2F2",
-#         fill_type="solid"
-#     )
-
-#     # =========================
-#     # HEADER
-#     # =========================
-#     headers = [
-#         "Nom",
-#         "Prénom",
-#         "Profil",
-#         "Agence",
-#         "Compétence",
-#         "Niveau",
-#         "Niveau attendu",
-#         "Appétence"
-#     ]
-
-#     ws.append(headers)
-
-#     for col in range(1, len(headers) + 1):
-#         cell = ws.cell(row=1, column=col)
-#         cell.font = header_font
-#         cell.fill = header_fill
-#         cell.alignment = center
-
-#     # =========================
-#     # DATA (1 compétence = 1 ligne)
-#     # =========================
-#     row = 2
-
-#     for c in collaborateurs:
-
-#         for comp in get_safe_competences(c["competence"]):
-
-#             ws.append([
-#                 c["nom"],
-#                 c["prenom"],
-#                 c["profil"],
-#                 c["agence"],
-#                 comp["nom"],
-#                 comp["niveau"],
-#                 comp["niveau_attendu"],
-#                 comp["appetence"]
-#             ])
-
-#             # style ligne
-#             for col in range(1, 9):
-#                 cell = ws.cell(row=row, column=col)
-#                 cell.alignment = center
-
-#                 if row % 2 == 0:
-#                     cell.fill = row_fill_even
-
-#             row += 1
-
-#     # =========================
-#     # AUTO WIDTH
-#     # =========================
-#     for col in ws.columns:
-#         max_length = 0
-#         col_letter = col[0].column_letter
-
-#         for cell in col:
-#             if cell.value:
-#                 max_length = max(max_length, len(str(cell.value)))
-
-#         ws.column_dimensions[col_letter].width = max_length + 2
-
-#     # =========================
-#     # EXPORT
-#     # =========================
-#     stream = BytesIO()
-#     wb.save(stream)
-#     stream.seek(0)
-
-#     return StreamingResponse(
-#         stream,
-#         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-#         headers={
-#             "Content-Disposition": "attachment; filename=skills_detailles.xlsx"
-#         }
-#     )
-
-
 
 # =====================
 # EXPORT JSON
@@ -3645,260 +2845,34 @@ def export_json():
     return {"count": len(collaborateurs), "data": collaborateurs}
 
 
-
-
 # =========================
-# EXPORT PDF RH OFFICIEL
+# EXPORT PDF
 # =========================
-
 @app.get("/export/pdf")
-def export_pdf(
-    agence: str = None,
-    competence: str = None,
-    profil: str = None,
-    search: str = None
-):
-
+def export_pdf():
 
     buffer = BytesIO()
+
     pdf = canvas.Canvas(buffer, pagesize=A4)
-    width, height = A4
 
-    # data = collaborateurs
-    data = copy.deepcopy(collaborateurs)
-
-    if agence:
-        data = [c for c in data if c["agence"] == agence]
-
-    if profil:
-        data = [c for c in data if c["profil"] == profil]
-
-    if search:
-        data = [
-            c for c in data
-            if search.lower() in c["nom"].lower()
-            or search.lower() in c["prenom"].lower()
-        ]
-
-    if competence:
-        data = [
-            c for c in data
-            if any(
-                comp["nom"] == competence
-                for comp in get_safe_competences(c["competence"])
-            )
-        ]
-
-
-    # =========================
-    # TITRE
-    # =========================
-
-    pdf.setFont("Helvetica-Bold", 18)
-    pdf.drawString(40, height - 35, "Rapport RH - Skills Matrix")
+    y = 800
 
     pdf.setFont("Helvetica", 10)
-    pdf.drawString(
-        40,
-        height - 50,
-        f"Nombre de collaborateurs : {len(data)}"
-    )
 
-    # =========================
-    # HEADER
-    # =========================
-
-    def draw_header():
-
-        pdf.setFillColorRGB(0.31, 0.51, 0.74)
-
-        pdf.rect(
-            40,
-            height - 90,
-            520,
-            20,
-            fill=1
-        )
-
-        pdf.setFillColor(colors.white)
-        pdf.setFont("Helvetica-Bold", 9)
-
-        pdf.drawString(45,  height - 85, "Nom")
-        pdf.drawString(115, height - 85, "Prénom")
-        pdf.drawString(185, height - 85, "Profil")
-        pdf.drawString(285, height - 85, "Agence")
-        pdf.drawString(355, height - 85, "Compétence")
-        pdf.drawString(445, height - 85, "Niv")
-        pdf.drawString(485, height - 85, "Att")
-        pdf.drawString(525, height - 85, "App")
-
-    draw_header()
-
-    y = height - 110
-
-    # =========================
-    # DATA
-    # =========================
-
-    for c in data:
-
-        competences = get_safe_competences(c["competence"])
-
-        score = 0
-
-        if competences:
-            score = round(
-                sum(comp["niveau"] for comp in competences)
-                / len(competences),
-                1
-            )
-
-        for comp in competences:
-
-            if y < 80:
-
-                pdf.showPage()
-
-                draw_header()
-
-                y = height - 110
-
-            # =========================
-            # LIGNE
-            # =========================
-
-            pdf.setStrokeColor(colors.black)
-
-            pdf.rect(
-                40,
-                y - 5,
-                520,
-                15,
-                stroke=1,
-                fill=0
-            )
-
-            pdf.setFillColor(colors.black)
-            pdf.setFont("Helvetica", 8)
-
-            pdf.drawString(45, y, str(c["nom"]))
-            pdf.drawString(115, y, str(c["prenom"]))
-            pdf.drawString(185, y, str(c["profil"]))
-            pdf.drawString(285, y, str(c["agence"]))
-            pdf.drawString(355, y, str(comp["nom"]))
-
-            # =========================
-            # BARRE NIVEAU
-            # =========================
-
-            niveau = comp["niveau"]
-
-            bar_x = 445
-            bar_y = y
-            bar_width = 30
-            bar_height = 6
-
-            pdf.setFillColor(colors.lightgrey)
-
-            pdf.rect(
-                bar_x,
-                bar_y,
-                bar_width,
-                bar_height,
-                fill=1,
-                stroke=0
-            )
-
-            ratio = min(niveau / 5, 1)
-
-            pdf.setFillColor(colors.green)
-
-            pdf.rect(
-                bar_x,
-                bar_y,
-                bar_width * ratio,
-                bar_height,
-                fill=1,
-                stroke=0
-            )
-
-            pdf.setFillColor(colors.black)
-
-            pdf.drawString(
-                485,
-                y,
-                str(comp["niveau_attendu"])
-            )
-
-            pdf.drawString(
-                525,
-                y,
-                str(comp["appetence"])
-            )
-
-            y -= 15
-
-        # =========================
-        # SCORE
-        # =========================
-
-        if y < 80:
-
-            pdf.showPage()
-
-            draw_header()
-
-            y = height - 110
-
-        if score >= 4:
-            pdf.setFillColor(colors.darkgreen)
-
-        elif score >= 3:
-            pdf.setFillColor(colors.orange)
-
-        else:
-            pdf.setFillColor(colors.red)
-
-        pdf.setFont("Helvetica-Bold", 9)
+    for c in collaborateurs:
 
         pdf.drawString(
-            45,
+            50,
             y,
-            f"Score global {c['nom']} {c['prenom']} : {score}/5"
+            f"{c['nom']} {c['prenom']} | "
+            f"{c['profil']} | "
+            f"{c['agence']} | "
+            f"{', '.join(c['competence'])} | "
+            f"N:{c['niveau']} | "
+            f"A:{c['appetence']}"
         )
 
-        pdf.setFillColor(colors.black)
-
-        y -= 25
-
-    pdf.showPage()
-
-    pdf.setFont("Helvetica-Bold", 18)
-
-    pdf.drawString(
-        40,
-        height - 60,
-        "Synthèse RH"
-    )
-
-    pdf.setFont("Helvetica", 12)
-
-    pdf.drawString(
-        40,
-        height - 100,
-        f"Nombre de collaborateurs : {len(data)}"
-    )
-
-    total_competences = sum(
-        len(get_safe_competences(c["competence"]))
-        for c in data
-    )
-
-    pdf.drawString(
-        40,
-        height - 130,
-        f"Nombre total de compétences : {total_competences}"
-    )
+        y -= 20
 
     pdf.save()
 
@@ -3909,432 +2883,6 @@ def export_pdf(
         media_type="application/pdf",
         headers={
             "Content-Disposition":
-            "attachment; filename=rapport_RH_officiel.pdf"
+            "attachment; filename=skills.pdf"
         }
     )
-
-
-
-
-
-# # =====================================
-# # EXPORT PDF RH OFFICIEL - MULTI PAGES
-# # =====================================
-
-
-# @app.get("/export/pdf")
-
-# def export_pdf():
-
-#     buffer = BytesIO()
-#     pdf = canvas.Canvas(buffer, pagesize=A4)
-#     width, height = A4
-
-#     # =========================
-#     # PAGE 1 : DASHBOARD
-#     # =========================
-
-#     pdf.setFont("Helvetica-Bold", 14)
-#     pdf.drawString(40, height - 50, "Dashboard RH")
-
-#     top_skills = build_top_skills(collaborateurs)
-#     chart_path = draw_top_skills_chart(top_skills)
-
-#     pdf.drawImage(chart_path, 40, height - 300, width=400, height=200)
-
-#     pdf.showPage()
-
-#     # =========================
-#     # PAGES COLLABORATEURS
-#     # =========================
-
-#     for c in collaborateurs:
-
-#         pdf.setFont("Helvetica-Bold", 12)
-#         pdf.drawString(40, height - 50, f"{c['nom']} {c['prenom']}")
-
-#         score = compute_score(c)
-
-#         pdf.setFont("Helvetica", 10)
-#         pdf.drawString(40, height - 80, f"Score intelligent: {score}")
-
-#         radar_path = draw_radar(c)
-
-#         if radar_path:
-#             pdf.drawImage(radar_path, 40, height - 300, width=300, height=200)
-
-#         # SKILL MATRIX
-#         y = height - 330
-
-#         pdf.setFont("Helvetica-Bold", 10)
-#         pdf.drawString(40, y, "Compétence | Niveau | Attendu")
-#         y -= 20
-
-#         pdf.setFont("Helvetica", 9)
-
-#         for comp in get_safe_competences(c["competence"]):
-
-#             pdf.drawString(
-#                 40,
-#                 y,
-#                 f"{comp['nom']} | {comp['niveau']} | {comp['niveau_attendu']}"
-#             )
-#             y -= 15
-
-#         pdf.showPage()
-
-#     pdf.save()
-#     buffer.seek(0)
-
-#     return StreamingResponse(
-#         buffer,
-#         media_type="application/pdf",
-#         headers={"Content-Disposition": "attachment; filename=RH_dashboard.pdf"}
-#     )
-
-
-# # =========================
-# # FONCTION TOP SKILLS
-# # =========================
-
-# def build_top_skills(data):
-#     skills = []
-
-#     for c in data:
-#         for comp in get_safe_competences(c["competence"]):
-#             skills.append(comp["nom"])
-
-#     counter = Counter(skills)
-#     return counter.most_common(5)
-
-
-
-# # =========================
-# # FONCTION GRAPH TOP SKILLS
-# # =========================
-
-# def draw_top_skills_chart(top_skills):
-    
-#     labels = [skill for skill, count in top_skills]
-#     values = [count for skill, count in top_skills]
-
-#     plt.figure(figsize=(8, 4))
-
-#     plt.bar(labels, values)
-
-#     plt.title("Top 5 compétences")
-#     plt.ylabel("Nombre de collaborateurs")
-
-#     path = os.path.join(
-#         tempfile.gettempdir(),
-#         "top_skills.png"
-#     )
-
-#     plt.tight_layout()
-#     plt.savefig(path)
-#     plt.close()
-
-#     return path
-
-
-
-# # =========================================
-# # FONCTION RADAR CHART (par collaborateur)
-# # =========================================
-
-# def draw_radar(c):
-    
-#     comps = get_safe_competences(c["competence"])
-
-#     labels = [x["nom"] for x in comps]
-#     values = [x["niveau"] for x in comps]
-
-#     if not labels:
-#         return None
-
-#     angles = np.linspace(
-#         0,
-#         2 * np.pi,
-#         len(labels),
-#         endpoint=False
-#     ).tolist()
-
-#     values += values[:1]
-#     angles += angles[:1]
-
-#     fig, ax = plt.subplots(
-#         subplot_kw=dict(polar=True)
-#     )
-
-#     ax.plot(angles, values)
-#     ax.fill(angles, values, alpha=0.3)
-
-#     ax.set_xticks(angles[:-1])
-#     ax.set_xticklabels(labels)
-
-#     path = os.path.join(
-#         tempfile.gettempdir(),
-#         f"radar_{c['id']}.png"
-#     )
-
-#     plt.savefig(path)
-#     plt.close()
-
-#     return path
-
-
-
-# # =============================
-# # FONCTION SCORING INTELLIGENT
-# # =============================
-
-# def compute_score(c):
-    
-#     comps = get_safe_competences(c["competence"])
-
-#     if not comps:
-#         return 0
-
-#     return round(
-#         sum(comp["niveau"] / comp["niveau_attendu"] if comp["niveau_attendu"] else 0
-#             for comp in comps)
-#         / len(comps),
-#         2
-#     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # =========================
-# # EXPORT PDF RH OFFICIEL
-# # =========================
-
-# @app.get("/export/pdf")
-# def export_pdf():
-
-#     buffer = BytesIO()
-#     pdf = canvas.Canvas(buffer, pagesize=A4)
-
-#     width, height = A4
-    
-
-
-#     # =========================
-#     # HEADER FIXE (fonction)
-#     # =========================
-#     def draw_header():
-#         pdf.setFont("Helvetica-Bold", 10)
-#         pdf.setFillColor(colors.white)
-
-#         pdf.setFillColorRGB(0.31, 0.51, 0.74)
-#         pdf.rect(40, height - 60, 520, 20, fill=1)
-
-#         pdf.setFillColor(colors.white)
-
-#         pdf.drawString(45, height - 55, "Nom")
-#         pdf.drawString(115, height - 55, "Prénom")
-#         pdf.drawString(185, height - 55, "Profil")
-#         pdf.drawString(285, height - 55, "Agence")
-#         pdf.drawString(365, height - 55, "Compétence")
-#         pdf.drawString(450, height - 55, "Niv")
-#         pdf.drawString(480, height - 55, "Att")
-#         pdf.drawString(510, height - 55, "App")
-
-#     # =========================
-#     # INIT
-#     # =========================
-#     y = height - 80
-#     pdf.setFont("Helvetica", 9)
-
-#     draw_header()
-
-#     # =========================
-#     # DATA
-#     # =========================
-#     for c in collaborateurs:
-
-#         competences = get_safe_competences(c["competence"])
-
-#         # 🧠 SCORE GLOBAL collaborateur
-#         score = 0
-#         if competences:
-#             score = sum(comp["niveau"] for comp in competences) / len(competences)
-
-#         for comp in competences:
-
-#             if y < 80:
-#                 pdf.showPage()
-#                 y = height - 80
-#                 draw_header()
-
-#             # =========================
-#             # BORDURE LIGNE
-#             # =========================
-#             pdf.setStrokeColor(colors.black)
-#             pdf.rect(40, y - 5, 520, 15, stroke=1, fill=0)
-
-#             # =========================
-#             # TEXT
-#             # =========================
-#             pdf.setFillColor(colors.black)
-
-#             pdf.drawString(45, y, str(c["nom"]))
-#             pdf.drawString(115, y, str(c["prenom"]))
-#             pdf.drawString(185, y, str(c["profil"]))
-#             pdf.drawString(285, y, str(c["agence"]))
-#             pdf.drawString(365, y, str(comp["nom"]))
-
-#             # =========================
-#             # BARRE NIVEAU VISUEL
-#             # =========================
-#             niveau = comp["niveau"]
-
-#             bar_x = 450
-#             bar_y = y
-#             bar_width = 50
-#             bar_height = 6
-
-#             # fond barre
-#             pdf.setFillColor(colors.lightgrey)
-#             pdf.rect(bar_x, bar_y, bar_width, bar_height, fill=1, stroke=0)
-
-#             # progression
-#             ratio = min(niveau / 5, 1)
-#             pdf.setFillColor(colors.green)
-#             pdf.rect(bar_x, bar_y, bar_width * ratio, bar_height, fill=1, stroke=0)
-
-#             pdf.setFillColor(colors.black)
-
-#             pdf.drawString(510, y, str(comp["niveau_attendu"]))
-
-#             y -= 15
-
-#         # =========================
-#         # SCORE COLLABORATEUR
-#         # =========================
-#         pdf.setFont("Helvetica-Bold", 9)
-#         pdf.drawString(45, y, f"Score global {c['nom']} {c['prenom']} : {round(score,1)} / 5")
-#         pdf.setFont("Helvetica", 9)
-
-#         y -= 25
-
-#     pdf.save()
-#     buffer.seek(0)
-
-#     return StreamingResponse(
-#         buffer,
-#         media_type="application/pdf",
-#         headers={
-#             "Content-Disposition": "attachment; filename=rapport_RH_officiel.pdf"
-#         }
-#     )
-
-
-
-# =========================
-# EXPORT PDF RH OFFICIEL
-# =========================
-
-
-# @app.get("/export/pdf")
-# def export_pdf():
-
-#     buffer = BytesIO()
-#     pdf = canvas.Canvas(buffer, pagesize=A4)
-
-#     width, height = A4
-#     y = height - 50
-
-#     # =========================
-#     # HEADER
-#     # =========================
-#     pdf.setFont("Helvetica-Bold", 10)
-#     pdf.setFillColor(colors.white)
-
-#     pdf.setFillColorRGB(0.31, 0.51, 0.74)  # bleu header
-
-#     pdf.rect(40, y - 10, 520, 20, fill=1)
-
-#     pdf.setFillColor(colors.white)
-
-#     pdf.drawString(45, y, "Nom")
-#     pdf.drawString(115, y, "Prénom")
-#     pdf.drawString(185, y, "Profil")
-#     pdf.drawString(285, y, "Agence")
-#     pdf.drawString(365, y, "Compétence")
-#     pdf.drawString(450, y, "Niv")
-#     pdf.drawString(480, y, "Att")
-#     pdf.drawString(510, y, "App")
-
-#     y -= 25
-
-#     pdf.setFont("Helvetica", 9)
-#     pdf.setFillColor(colors.black)
-
-#     # =========================
-#     # DATA
-#     # =========================
-#     for c in collaborateurs:
-
-#         for comp in get_safe_competences(c["competence"]):
-
-#             if y < 60:
-#                 pdf.showPage()
-#                 y = height - 50
-#                 pdf.setFont("Helvetica", 9)
-
-#             # =========================
-#             # CELL BORDER (ligne encadrée)
-#             # =========================
-#             pdf.setStrokeColor(colors.black)
-#             pdf.setLineWidth(0.5)
-
-#             pdf.rect(40, y - 5, 520, 15, stroke=1, fill=0)
-
-#             # =========================
-#             # TEXT
-#             # =========================
-#             pdf.drawString(45, y, str(c["nom"]))
-#             pdf.drawString(115, y, str(c["prenom"]))
-#             pdf.drawString(185, y, str(c["profil"]))
-#             pdf.drawString(285, y, str(c["agence"]))
-#             pdf.drawString(365, y, str(comp["nom"]))
-
-#             # couleur niveau
-#             niveau = comp["niveau"]
-
-#             if niveau <= 1:
-#                 pdf.setFillColor(colors.red)
-#             elif niveau <= 3:
-#                 pdf.setFillColor(colors.orange)
-#             else:
-#                 pdf.setFillColor(colors.green)
-
-#             pdf.drawString(450, y, str(comp["niveau"]))
-
-#             pdf.setFillColor(colors.black)
-
-#             pdf.drawString(480, y, str(comp["niveau_attendu"]))
-#             pdf.drawString(510, y, str(comp["appetence"]))
-
-#             y -= 15
-
-#     pdf.save()
-#     buffer.seek(0)
-
-#     return StreamingResponse(
-#         buffer,
-#         media_type="application/pdf",
-#         headers={
-#             "Content-Disposition": "attachment; filename=skills_table_encadre.pdf"
-#         }
-#     )

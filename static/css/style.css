@@ -10,3 +10,32 @@
     transform: translateY(0);
   }
 }
+
+
+.table thead th{
+    background:#212529 !important;
+    color:white;
+    vertical-align:middle;
+}
+
+.badge{
+    font-size:14px;
+    padding:8px 12px;
+}
+
+.btn-warning{
+    color:white;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+
+.btn i {
+    margin-right: 5px;
+}
+.btn:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+}
