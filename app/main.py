@@ -1725,7 +1725,7 @@ def home(
             html += f"""
 
                 <td>
-
+                    
                     <span
                         class="badge bg-primary me-1 mb-1 skill-badge"
                         onclick="openDeleteModal(
@@ -2894,45 +2894,33 @@ def edit_global_page(id):
 
                 </div>
 
-                <!-- NIVEAU -->
-                <div class="col-12 col-md-4">
-                    <label class="form-label">
-                        Niveau <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" name="niveau" type="number"
-                        min="0" max="5"
-                        value="{c['competence'][0]['niveau'] if c.get('competence') else 0}">
-                        title="{LEG_NIVEAU}" required>
-                </div>
 
-                
+                <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC NIVEAU  -->
+
+                        <div class="col">
+                            <input class="form-control" name="niveau" type="number"
+                                min="0" max="5" placeholder="Niveau*"
+                                title="{LEG_NIVEAU}" required>
+                        </div>
 
 
-                <!-- NIVEAU ATTENDU -->
-                <div class="col-12 col-md-4">
-                    <label class="form-label">
-                        Niveau attendu <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control"
-                        name="niveau_attendu"
-                        type="number"
-                        min="0"
-                        max="5"
-                        value="{c.get('niveau_attendu', '')}"
-                        placeholder="Niveau attendu*"
-                        required>
-                </div>
+                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC NIVEAU ATTENDU -->
+                        <div class="col">
+                            <input class="form-control" name="niveau_attendu" type="number"
+                                min="0" max="5" placeholder="Niveau attendu*"
+                                title="{LEG_ATTENDU}" required>
+                        </div>
+                    
+                        
 
-                <!-- APPETENCE -->
-                <div class="col-12 col-md-4">
-                    <label class="form-label">
-                        Appétence <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" name="appetence" type="number"
-                        min="0" max="5"
-                        value="{c['competence'][0]['appetence'] if c.get('competence') else 0}">
-                        title="{LEG_APPETENCE}" required>
-                </div>
+                        <!-- PAGE MODIFIER OU AJOUTER COMPETENCE - BLOC APPETENCE -->
+                        <div class="col">
+                            <input class="form-control" name="appetence" type="number"
+                                min="0" max="5" placeholder="Appétence*"
+                                title="{LEG_APPETENCE}" required>
+                        </div>
+
+                        
 
             </div>
 
@@ -3488,6 +3476,8 @@ def export_excel(
         cell.fill = header_fill
         cell.alignment = center
 
+
+
     # =========================
     # DATA (1 compétence = 1 ligne)
     # =========================
@@ -3517,6 +3507,9 @@ def export_excel(
                     cell.fill = row_fill_even
 
             row += 1
+
+
+
 
     # =========================
     # AUTO WIDTH

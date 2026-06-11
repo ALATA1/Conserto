@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request,  Body, Form, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from openpyxl import Workbook
-
+from fastapi.staticfiles import StaticFiles
 from app.core.security import (
     verify_password,
     create_access_token,
@@ -47,6 +47,15 @@ from app.data.users import users_db
 # INIT APP
 # =====================
 app = FastAPI()
+
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
+)
+
+app.add_middleware(SessionMiddleware, secret_key="...")
+
 Base.metadata.create_all(bind=engine)
 
 app.add_middleware(AuditMiddleware)
@@ -1156,12 +1165,19 @@ def home(
             {
                 f'''
                 <div class="d-flex align-items-center gap-3">
-
+                    <!--
                     <img
                         src="https://ui-avatars.com/api/?name={username}&background=0D8ABC&color=fff"
                         class="rounded-circle border"
                         width="45"
                         height="45"
+                    >
+                    -->
+                    <img
+                        src="/static/photos/test.png"
+                        width="60"
+                        height="60"
+                        class="rounded-circle border shadow-sm"
                     >
 
                     <div>
@@ -1172,12 +1188,14 @@ def home(
 
                         <div class="d-flex align-items-center gap-2 mt-1">
 
-                            <span class="badge bg-{role_badge}">
+                            <span class="badge bg-{role_badge}"
+                            style="min-width:190px;">
                                 {role_label}
                             </span>
 
                             <a href="/logout"
-                            class="badge bg-danger text-decoration-none">
+                            class="badge bg-dark text-decoration-none px-3 py-2"
+                            style="min-width:190px;">
 
                                 <i class="bi bi-box-arrow-right me-1"></i>
                                 Déconnexion
@@ -1189,6 +1207,9 @@ def home(
                     </div>
 
                 </div>
+
+                    
+                
                 '''
                 if is_logged else
                 '''
