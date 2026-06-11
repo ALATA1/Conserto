@@ -1113,6 +1113,12 @@ def home(
         <title>Skills Matrix</title>
 
         <link
+            rel="icon"
+            type="image/png"
+            href="/static/photos/original.png" 
+        >
+
+        <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet"
         >
@@ -1160,7 +1166,63 @@ def home(
 
         <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <h2>Skills Matrix</h2>
+            <!--<h2>Skills Matrix</h2>
+            <h3>👩‍💼 Skills Matrix </h3> -->
+            <!--<div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:28px;">👩‍💼</span>
+
+                <h3 style="
+                    margin:0;
+                    font-weight:800;
+                    font-size:28px;
+                    color:#111827;
+                ">
+                    Skills Matrix
+                </h3>
+
+                <span style="
+                    background:#0d6efd;
+                    color:white;
+                    font-size:12px;
+                    padding:4px 10px;
+                    border-radius:999px;
+                    font-weight:600;
+                ">
+                    CONSERTO
+                </span>
+            </div> -->
+
+            <div class="d-flex align-items-center gap-3">
+
+                <img
+                    src="/static/photos/original.png" 
+                    alt="Conserto"
+                    width="50"
+                    height="50"
+                    style="
+                        object-fit:cover;
+                        border-radius:50%;
+                        background:white;
+                        padding:4px;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.1);
+                    "
+                    onmouseover="this.style.transform='scale(1.1)'"
+                    onmouseout="this.style.transform='scale(1)'"
+                >
+
+                <h2 style="
+                    margin:0;
+                    font-weight:800;
+                    color:#111827;
+                "
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+                >
+                    Skills Matrix
+                </h2>
+
+            </div>
+
 
             {
                 f'''
@@ -1226,14 +1288,39 @@ def home(
 
 
 
-        <div class="alert alert-info fw-bold ">
+        <div class="alert alert-info fw-bold "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+        >
             Échelle de notation : Survoler les champs niveau et appétence pour voir les légendes.
         </div>
 
         <!--   BLOCS Total collabs et Niveau moyen des compétences -->
 
-        <div class="row mb-3">
-            <div class="col card p-3 m-2 shadow-sm border-start border-primary border-4">
+        <div
+            class="row mb-3"
+            style="
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 5px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+                transition: all 0.2s ease;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+        >
+            <!-- <div class="col card p-3 m-2 shadow-sm border-start border-primary border-4"> -->
+            <div class="col card p-3 m-2 shadow-sm"
+                style="
+                    background: #f1f3f5;
+                    border-left: 5px solid #0d6efd;
+                    border-radius: 14px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                    transition: all 0.2s ease;
+                "
+                onmouseover="this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.transform='translateY(0)'">
+                
                 <span style="font-size:18px;">
                     👥 <strong>Total collaborateurs :</strong>
                     <span style="
@@ -1254,7 +1341,18 @@ def home(
                 </span>
             </div>
 
-            <div class="col card p-3 m-2 shadow-sm border-start border-success border-4">
+            <!-- <div class="col card p-3 m-2 shadow-sm border-start border-success border-4"> -->
+            <div class="col card p-3 m-2 shadow-sm"
+                style="
+                    background: #f1f3f5;
+                    border-left: 5px solid #198754;
+                    border-radius: 14px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                    transition: all 0.2s ease;
+                "
+                onmouseover="this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.transform='translateY(0)'">
+                
                 <span style="font-size:18px;">
                     📊 <strong>Niveau moyen des compétences :</strong>
                     <span style="
@@ -1291,7 +1389,36 @@ def home(
         </div>
 
         <!-- ADD -->
-        <form class="card p-3 mb-4" action="/add" method="post">
+        <!-- <form class="card p-3 mb-4" action="/add" method="post"> -->
+        <!--  <form class="card p-3 mb-4" action="/add" method="post">  -->
+        <!--
+        <form
+            class="card border-0 shadow-lg rounded-4 p-4 mb-4"
+            action="/add"
+            method="post"
+            style="
+                border-left: 6px solid #0d6efd;
+                background-color: #fff0f6;
+                transition: 0.2s;
+            "
+            onmouseover="this.style.transform='scale(1.01)'"
+            onmouseout="this.style.transform='scale(1)'"
+        >
+         -->
+        <form
+            class="card border-0 shadow-lg rounded-4 p-4 mb-4"
+            action="/add"
+            method="post"
+            style="
+                border-left: 6px solid #0d6efd;
+                background-color: #fff0f6;
+                transition: all 0.2s ease;
+                position: relative;
+                z-index: 1;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.zIndex='10';"
+            onmouseout="this.style.transform='translateY(0)'; this.style.zIndex='1';"
+        >
 
             <div class="row">
                 <div class="col"><input class="form-control" name="nom" placeholder="Nom*" required></div>
@@ -1464,11 +1591,38 @@ def home(
         </form>
 
         <!-- FILTERS -->
-        <form class="card p-3 mb-4"
-              method="get">
+        <!-- <form class="card p-3 mb-4"
+              method="get"> -->
+        <!--
+        <form
+            class="card border-0 shadow-sm rounded-4 p-3 mb-4"
+            method="get"
+            style="
+                border-left: 5px solid #0d6efd;
+                background: linear-gradient(135deg, #ffffff, #f8f9ff);
+                transition: all 0.2s ease;
+                cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+        > -->
+        <form
+            class="card border-0 shadow-sm rounded-4 p-3 mb-4"
+            method="get"
+            style="
+                background: #f8f9fa;
+                border-radius: 16px;
+                padding: 14px;
+                border-left: 4px solid #0d6efd;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+                transition: all 0.2s ease;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+        >
 
             <div class="row">
-
+                
                 <div class="col">
                     <input
                         class="form-control"
@@ -1593,7 +1747,10 @@ def home(
                 Clique sur une ligne pour voir les détails
             </div>
         </div> -->
-        <table class="table table-striped table-bordered bg-white">
+        <table class="table table-striped table-bordered bg-white"
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+        >
 
             <thead class="table-dark">
                 <tr>
@@ -1756,12 +1913,14 @@ def home(
                     <a
                         href="/edit/{c['id']}"
                         class="btn btn-warning btn-sm"
+                        title="Éditer ou ajouter des compétences"
                     >
                         ✏️
                     </a>
 
                     <button
                         class="btn btn-danger btn-sm"
+                        title="Supprimer le collaborateur"
                         onclick="openDeleteCollaborateurModal(
                             {c['id']},
                             '{c['nom']}',
@@ -2421,10 +2580,23 @@ def edit_competence_page(request: Request, id: int):
         </div>
 
         
+        <!--<div class="container">-->
         <div class="container">
+
             <div id="addCompetenceForm"
                 class="card p-3 mb-3"
-                style="display:none;">
+                style="
+                    display: none;
+                    position: relative;
+                    z-index: 999;
+                    background-color: #f1f3f5;
+                    border-radius: 14px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+                    transition: all 0.2s ease;
+                "
+                onmouseover="this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.transform='translateY(0)'"
+            >
  
                 <h7>Nouvelle compétence</h7>       
 
@@ -2585,9 +2757,18 @@ def edit_competence_page(request: Request, id: int):
             """
 
         html += f"""
-        <form method="post" action="/update/{id}/competence/{comp['nom']}" class="border p-3 mb-3">
+        <form method="post" action="/update/{id}/competence/{comp['nom']}" class="border p-3 mb-3" 
+            style="
+                    background-color: #f1f3f5;
+                    border-radius: 14px;
+                    padding: 12px;
+                    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+                "
+            >
 
             <h5>{comp['nom']}</h5>
+
+            <!--<div class="row g-2"> -->
 
             <div class="row g-2">
 
@@ -2767,8 +2948,7 @@ def edit_global_page(id):
 
 
         <div class="alert alert-info">
-            Survoler les champs pour afficher les légendes :
-            Niveau (compétence) / Appétence (motivation)
+            Échelle de notation : Survoler les champs "Niveau" / "Appétence" pour afficher les légendes.
         </div>
 
         <form class="card p-4" method="post" action="/update/{id}">
@@ -2925,7 +3105,17 @@ def edit_global_page(id):
             </div>
 
             <!-- ACTIONS -->
-            <div class="mt-4 d-flex gap-2">
+            
+            <!-- <div class="mt-4 d-flex gap-2"> -->
+            <div
+                class="mt-4 d-flex gap-2 align-items-center"
+                style="
+                    background: #f1f3f5;
+                    padding: 12px 16px;
+                    
+                    transition: all 0.2s ease;
+                "
+            >
 
                 <!-- <button type="button" class="btn btn-success" onclick="confirmSave(event)">  
                 <button class="btn btn-success"> -->
@@ -2939,6 +3129,9 @@ def edit_global_page(id):
                 </a>
 
             </div>
+            
+
+
 
             
 
