@@ -11,5 +11,6 @@ Application interne de gestion des matrices de compétences.
 
 ```bash
 uvicorn main:app --reload
+uvicorn main:app --reload
 uvicorn app.main:app --reload
 
