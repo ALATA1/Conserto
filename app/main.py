@@ -541,154 +541,431 @@ PROFILS2 = {
 
 }
 
+
+
 # =========================
-# COMPÉTENCES
+# COMPÉTENCES - VERSION 2
 # =========================
 
 COMPETENCES = {
 
-    # -------------------------
-    # BASES DE DONNÉES
-    # -------------------------
 
+# -------------------------
+# AGILITE & METHODOLOGIES
+# -------------------------
+    "Agilité & Méthodologies": [
+        "Agile",
+        "Cycle en V",
+        "SAFe",
+        "Scrum",
+        "UX"
+    ],
+
+# -------------------------
+# API & WEB SERVICES
+# -------------------------
+    "API & Web Services": [
+        "API REST",
+        "API SOAP",
+        "Postman",
+        "Swagger"
+    ],
+
+# -------------------------
+# BASES DE DONNEES
+# -------------------------
     "Bases de données": [
+        "MongoDB",
+        "MySQL",
         "Oracle",
-        "Oracle SQL Dev",
-        "PG Admin",
+        "PGAdmin",
         "PostgreSQL",
+        "Redis",
+        "SQL",
+        "SQL Developer",
         "SQL Server"
     ],
 
-    # -------------------------
-    # DEVOPS / INFRA
-    # -------------------------
-    "Devops/Infra": [
-        "Apache", "Docker", "Docker Compose",
-        "Docker Swarm", "Git", "Gitlab",
-        "GitlabCI", "Helm", "Kubernetes",
-        "kubctl", "Linux Ubuntu", "Nginx",
-        "Scripts Shell", "Tomcat", "SonarQube"
+# -------------------------
+# CLOUD & VIRTUALISATION
+# -------------------------
+    "Cloud & Virtualisation": [
+        "ESXi",
+        "Nutanix",
+        "VIO",
+        "VMware vCenter",
+        "VMware vRealize Automation"
     ],
 
-    # -------------------------
-    # FRONTEND / MOBILE
-    # -------------------------
-    "Frontend & Mobile": [
-        "Android",
-        "Cordova"
+# -------------------------
+# CONTAINERS & ORCHESTRATION
+# -------------------------
+    "Containers & Orchestration": [
+        "Docker",
+        "Docker Swarm",
+        "Kubernetes",
+        "OpenShift"
     ],
 
-    # -------------------------
-    # FRAMEWORKS
-    # -------------------------
+# -------------------------
+# DATA & ANALYTICS
+# -------------------------
+    "Data & Analytics": [
+        "Elasticsearch",
+        "Kafka",
+        "Power BI",
+        "SAP"
+    ],
+
+# -------------------------
+# DEVELOPPEMENT MOBILE
+# -------------------------
+    "Développement mobile": [
+        "Android"
+    ],
+
+# -------------------------
+# DEVOPS & CI/CD
+# -------------------------
+    "DevOps & CI/CD": [
+        "Ansible",
+        "ArgoCD",
+        "Git",
+        "GitHub",
+        "GitLab",
+        "GitLab CI/CD",
+        "Jenkins",
+        "Liquibase",
+        "Nexus",
+        "Portainer"
+    ],
+
+# -------------------------
+# EAI & MIDDLEWARE
+# -------------------------
+    "EAI & Middleware": [
+        "Tibco"
+    ],
+
+# -------------------------
+# FRAMEWORKS
+# -------------------------
     "Frameworks": [
-        "Struts",
-        "Spring",
-        "Framework SPRING",
-        "Framework ALT (Java spécifique)",
-        "Framework SDK (.NET)",
-        "Angular 17", 
-        "Angular 19",
-        "ROA",
-        "ALF"
+        "Express.js",
+        "jQuery",
+        "Play Framework",
+        "React",
+        "Spring"
     ],
 
-    # -------------------------
-    # FONCTIONNEL / MÉTIER
-    # -------------------------
-
-    "Fonctionnel métier": [
-        "SMARTEO",
-        "FACTEO",
-        "Multicanal",
-        "GRC",
-        "Gestion des opérations",
-        "Administration des ventes",
-        "Distribution",
-        "Échange producteurs",
-        "Dépôt et retrait",
-        "Banque",
-        "Fonction support",
-        "Production transverse",
-        "Nouveau domaine"
-    ],
-
-    # -------------------------
-    # LANGAGES / DÉVELOPPEMENT
-    # -------------------------
+# -------------------------
+# LANGAGES
+# -------------------------
     "Langages": [
-        "Apache Nifi", "CSS", "C#", "HTML",
-        "Hibernate", "Java 8", "Java 21", "Java 25", "Java / J2EE"
-        "Jasper report", "Javascript", "Maven 3", "NPM/NodeJS",
-        "Open Feign", "RGAA", "Spring", "Spring Batch",
-        "SCSS", "Typescript 5"
+        "CSS",
+        "HTML",
+        "Java",
+        "JavaScript",
+        "MATLAB",
+        "Perl",
+        "PHP",
+        "PowerShell",
+        "Python",
+        "Scala",
+        "Shell",
+        "TypeScript"
     ],
 
-    # -------------------------
-    # MIDDLEWARE / SERVEURS D'APPLICATION
-    # -------------------------
-    "Middleware / Serveurs": [
-        "Websphere",
+# -------------------------
+# MIDDLEWARE & SERVEURS
+# -------------------------
+    "Middleware & Serveurs": [
+        "Apache",
         "JBoss",
-        "IIS"
+        "Nginx",
+        "WildFly"
     ],
 
-    # -------------------------
-    # OUTILS / IDE
-    # -------------------------
-    "Outils & IDE": [
+# -------------------------
+# OUTILS COLLABORATIFS
+# -------------------------
+    "Outils collaboratifs": [
+        "Assyst",
+        "Confluence",
+        "JIRA",
+        "Trello",
+        "XRay"
+    ],
+
+# -------------------------
+# OUTILS DE DEVELOPPEMENT
+# -------------------------
+    "Outils de développement": [
         "Eclipse",
-        "Visual Studio",
-        "RAD / RAS"
-    ],
-    
-    
-    # -----------
-    # PROTOCOLES
-    # -----------
-    "Protocole": ["JSON", "REST", "SOAP", "XML"],
-
-    # ----------------------------------
-    # PILOTAGE / QUALITÉ / GOUVERNANCE
-    # ----------------------------------
-    "Pilotage & Qualité": [
-        "Pilotage",
-        "Qualité / Process",
-        "Pilotage et Décisionnel"
+        "Figma"
     ],
 
-        # -----
-    # PERF
-    # -----
-    "Perf": ["Gatling", "Jmeter"],
+# -------------------------
+# ORDONNANCEMENT
+# -------------------------
+    "Ordonnancement": [
+        "VTOM"
+    ],
 
-        
-    # -------------------------
-    # INFRA / SYSTÈMES
-    # -------------------------
-    "Systèmes & Plateformes": [
+# -------------------------
+# RESEAU
+# -------------------------
+    "Réseau": [
+        "DNS",
+        "Firewall",
+        "VIP"
+    ],
+
+# -------------------------
+# SAN
+# -------------------------
+    "SAN": [
+        "Switch Brocade"
+    ],
+
+# -------------------------
+# SAUVEGARDE
+# -------------------------
+    "Sauvegarde": [
+        "Appliance NetBackup",
+        "NetBackup",
+        "Robotique Quantum"
+    ],
+
+# -------------------------
+# SECURITE
+# -------------------------
+    "Sécurité": [
+        "Certificats",
+        "Keytool",
+        "OKTA",
+        "OpenSSL"
+    ],
+
+# -------------------------
+# SOFT SKILLS
+# -------------------------
+    "Soft Skills": [
+        "Capacité à mener un projet",
+        "Capacité rédactionnelle",
+        "Capacité relationnelle",
+        "MCO"
+    ],
+
+# -------------------------
+# STOCKAGE
+# -------------------------
+    "Stockage": [
+        "Cloudian S3",
+        "DXI",
+        "NetApp",
+        "PureStorage",
+        "Unity"
+    ],
+
+# -------------------------
+# SUPERVISION & MONITORING
+# -------------------------
+    "Supervision & Monitoring": [
+        "Centreon",
+        "Grafana",
+        "Kibana",
+        "Prometheus"
+    ],
+
+# -------------------------
+# SYSTEMES D'EXPLOITATION
+# -------------------------
+    "Systèmes d'exploitation": [
         "AIX",
-        "Mainframe",
-        "Windows",
-        "Baradoz sur ITaaS",
-        "STMC",
-        "STOM"
+        "Linux",
+        "Linux CentOS",
+        "Windows"
     ],
 
-
-    # -------------------------------------
-    # TESTEUR (FONCTIONNEL) / AUTOMATICIEN
-    # -------------------------------------
-    "Tests": [
-        "ArchUnit", "Cypress", "Castle Mock",
-        "JUnit", "Mockito", "MockServer",
-        "Postman", "Playwright",
-        "Robotframework", "SoapUi",
-        "Jasmine/Karma"
+# -------------------------
+# TESTS & QUALITE
+# -------------------------
+    "Tests & Qualité": [
+        "ALM",
+        "Allure Report",
+        "Bruno",
+        "Castle Mock",
+        "Cypress",
+        "Grid Selenium",
+        "HP ALM",
+        "JUnit",
+        "Jira",
+        "Playwright",
+        "Postman",
+        "Robot Framework",
+        "Selenium",
+        "SoapUI",
+        "TestNG",
+        "Tests automatisés",
+        "Tests de non-régression (TNR)",
+        "Tests fonctionnels",
+        "XRay",
+        "Zalenium"
     ]
 
 
 }
+
+
+# =========================
+# COMPÉTENCES - VERSION 1
+# =========================
+
+# COMPETENCES = {
+
+#     # -------------------------
+#     # BASES DE DONNÉES
+#     # -------------------------
+
+#     "Bases de données": [
+#         "Oracle",
+#         "Oracle SQL Dev",
+#         "PG Admin",
+#         "PostgreSQL",
+#         "SQL Server"
+#     ],
+
+#     # -------------------------
+#     # DEVOPS / INFRA
+#     # -------------------------
+#     "Devops/Infra": [
+#         "Apache", "Docker", "Docker Compose",
+#         "Docker Swarm", "Git", "Gitlab",
+#         "GitlabCI", "Helm", "Kubernetes",
+#         "kubctl", "Linux Ubuntu", "Nginx",
+#         "Scripts Shell", "Tomcat", "SonarQube"
+#     ],
+
+#     # -------------------------
+#     # FRONTEND / MOBILE
+#     # -------------------------
+#     "Frontend & Mobile": [
+#         "Android",
+#         "Cordova"
+#     ],
+
+#     # -------------------------
+#     # FRAMEWORKS
+#     # -------------------------
+#     "Frameworks": [
+#         "Struts",
+#         "Spring",
+#         "Framework SPRING",
+#         "Framework ALT (Java spécifique)",
+#         "Framework SDK (.NET)",
+#         "Angular 17", 
+#         "Angular 19",
+#         "ROA",
+#         "ALF"
+#     ],
+
+#     # -------------------------
+#     # FONCTIONNEL / MÉTIER
+#     # -------------------------
+
+#     "Fonctionnel métier": [
+#         "SMARTEO",
+#         "FACTEO",
+#         "Multicanal",
+#         "GRC",
+#         "Gestion des opérations",
+#         "Administration des ventes",
+#         "Distribution",
+#         "Échange producteurs",
+#         "Dépôt et retrait",
+#         "Banque",
+#         "Fonction support",
+#         "Production transverse",
+#         "Nouveau domaine"
+#     ],
+
+#     # -------------------------
+#     # LANGAGES / DÉVELOPPEMENT
+#     # -------------------------
+#     "Langages": [
+#         "Apache Nifi", "CSS", "C#", "HTML",
+#         "Hibernate", "Java 8", "Java 21", "Java 25", "Java / J2EE"
+#         "Jasper report", "Javascript", "Maven 3", "NPM/NodeJS",
+#         "Open Feign", "RGAA", "Spring", "Spring Batch",
+#         "SCSS", "Typescript 5"
+#     ],
+
+#     # -------------------------
+#     # MIDDLEWARE / SERVEURS D'APPLICATION
+#     # -------------------------
+#     "Middleware / Serveurs": [
+#         "Websphere",
+#         "JBoss",
+#         "IIS"
+#     ],
+
+#     # -------------------------
+#     # OUTILS / IDE
+#     # -------------------------
+#     "Outils & IDE": [
+#         "Eclipse",
+#         "Visual Studio",
+#         "RAD / RAS"
+#     ],
+    
+    
+#     # -----------
+#     # PROTOCOLES
+#     # -----------
+#     "Protocole": ["JSON", "REST", "SOAP", "XML"],
+
+#     # ----------------------------------
+#     # PILOTAGE / QUALITÉ / GOUVERNANCE
+#     # ----------------------------------
+#     "Pilotage & Qualité": [
+#         "Pilotage",
+#         "Qualité / Process",
+#         "Pilotage et Décisionnel"
+#     ],
+
+#         # -----
+#     # PERF
+#     # -----
+#     "Perf": ["Gatling", "Jmeter"],
+
+        
+#     # -------------------------
+#     # INFRA / SYSTÈMES
+#     # -------------------------
+#     "Systèmes & Plateformes": [
+#         "AIX",
+#         "Mainframe",
+#         "Windows",
+#         "Baradoz sur ITaaS",
+#         "STMC",
+#         "STOM"
+#     ],
+
+
+#     # -------------------------------------
+#     # TESTEUR (FONCTIONNEL) / AUTOMATICIEN
+#     # -------------------------------------
+#     "Tests": [
+#         "ArchUnit", "Cypress", "Castle Mock",
+#         "JUnit", "Mockito", "MockServer",
+#         "Postman", "Playwright",
+#         "Robotframework", "SoapUi",
+#         "Jasmine/Karma"
+#     ]
+
+
+# }
 
 AGENCES = [
     "Bordeaux",
