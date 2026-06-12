@@ -281,29 +281,265 @@ def get_safe_competences(value):
 
 
 # =========================
-# PROFILS
+# PROFILS CAS 1
 # =========================
 PROFILS = [
-    "Agile master",
-    "Architecte data",
-    "Architecte technique ",
+    "Agile Master",
+    "Administrateur Réseau",
+    "Administrateur Système",
+    "Architecte Cloud",
+    "Architecte Data",
+    "Architecte d'entreprise",
+    "Architecte Logiciel",
+    "Architecte Solution",
+    "Architecte Technique",
+    "Analyste SOC",
+
+    "BI Analyst",
     "Business Analyst",
-    "Coach agile",
-    "Concepteur Dev TU Android",
+
+    "Coach Agile",
+    "Chef de Projet",
+    "Chef de projet technique",
+    "Cloud Engineer",
+    "Consultant Cybersécurité",
+    "Concepteur Développeur",
     "Concepteur Dev TU Java",
+    "Concepteur Dev TU Android",
     "Concepteur fonctionnel",
-    "Chef de projet",
+    "Consultant fonctionnel",
+    "Consultant BI",
+    "Consultant ERP",
+    "Consultant SAP",
+    "Consultant CRM",
+
+    "Data Manager",
+    "Data Analyst",
+    "Data Architect",
+    "Data Scientist",
+    "Data Engineer",
     "Développeur",
-    "Testeur fonctionnel",
-    "Testeur Automaticien",
-    "Data engineer",
-    "Data analyst",
-    "Devops",
-    "Ing. Système Linux",
+    "Développeur Full Stack",
+    "Développeur Front-End",
+    "Développeur Back-End",
+    "Développeur Java",
+    "Développeur Python",
+    "Développeur .NET",
+    "Développeur Angular",
+    "Développeur React",
+    "Développeur Mobile",
+    "Développeur Android",
+    "Développeur iOS",
+    "DevOps",
+    "Directeur de projet",
+
+    "Expert IAM",
+
+    "Ingénieur Exploitation",
+    "Ingénieur Production",
+    "Ingénieur Réseau",
+    "Ingénieur Sécurité",
+    "Ingénieur Système Linux",
+    "Ingénieur Système Windows",
+    "Ingénieur qualité logiciel",
+    "Ingénieur CI/CD",
+
+    "Lead QA",
+
+    "Machine Learning Engineer",
+    "Manager de proximité",
+
+    "Pentester",
+    "PMO",
+    "Product Owner (PO)",
+    "Product Manager",
+    "Proxy Product Owner",
     "Pilotage et organisation (PMO)",
-    "Product owner (PO)",
-    "Sécurité et réseau"
+
+    "QA Engineer",
+
+    "Recetteur",
+    "Responsable d'équipe",
+    "Responsable de domaine",
+    "RSSI",
+
+    "Scrum Master",
+    "Sécurité et Réseau",
+    "Service Delivery Manager",
+    "Site Reliability Engineer (SRE)",
+    "Support applicatif",
+
+    "Team Leader",
+    "Technicien support",
+    "Testeur Automaticien",
+    "Testeur Fonctionnel",
+
+    "UX Designer",
+    "UI Designer",
+    "UX/UI Designer"
 ]
+
+# =========================
+# PROFILS CAS 2
+# =========================
+
+PROFILS2 = {
+
+    # -------------------------
+    # AGILITE / PRODUIT
+    # -------------------------
+
+    "AGILITE / PRODUIT" : [
+        "Agile Master",
+        "Coach Agile",
+        "Scrum Master",
+        "Product Owner (PO)",
+        "Product Manager",
+        "Business Analyst",
+        "Proxy Product Owner"
+    ],
+
+    # -------------------------
+    # GESTION DE PROJET
+    # -------------------------
+    "GESTION DE PROJET" : [
+        "Chef de projet",
+        "Chef de projet technique",
+        "Directeur de projet",
+        "PMO",
+        "Pilotage et organisation (PMO)"
+    ],
+
+    # -------------------------
+    # ARCHITECTURE
+    # -------------------------
+    "# ARCHITECTURE" : [
+        "Architecte technique",
+        "Architecte logiciel",
+        "Architecte solution",
+        "Architecte d'entreprise",
+        "Architecte cloud",
+        "Architecte data"
+    ],
+
+    # -------------------------
+    # DEVELOPPEMENT
+    # -------------------------
+    "DEVELOPPEMENT" : [
+        "Développeur",
+        "Développeur Full Stack",
+        "Développeur Front-End",
+        "Développeur Back-End",
+        "Développeur Java",
+        "Développeur Python",
+        "Développeur .NET",
+        "Développeur Angular",
+        "Développeur React",
+        "Développeur Mobile",
+        "Développeur Android",
+        "Développeur iOS",
+        "Concepteur Développeur",
+        "Concepteur Dev TU Java",
+        "Concepteur Dev TU Android"
+    ],
+
+    # -------------------------
+    # TEST / QUALITE
+    # -------------------------
+
+    "TEST / QUALITE" : [
+        "Testeur fonctionnel",
+        "Testeur Automaticien",
+        "QA Engineer",
+        "Ingénieur qualité logiciel",
+        "Lead QA",
+        "Recetteur"
+    ],
+
+    # -------------------------
+    # DATA
+    # -------------------------
+    "DATA ": [
+        "Data Engineer",
+        "Data Analyst",
+        "Data Scientist",
+        "Data Architect",
+        "Data Manager",
+        "BI Analyst",
+        "Consultant BI",
+        "Machine Learning Engineer"
+    ],
+
+    # -------------------------
+    # SYSTEMES / INFRA
+    # -------------------------
+    "SYSTEMES / INFRA": [
+        "Administrateur Système",
+        "Ingénieur Système Linux",
+        "Ingénieur Système Windows",
+        "Administrateur Réseau",
+        "Ingénieur Réseau",
+        "Ingénieur Production",
+        "Ingénieur Exploitation"
+    ],
+
+    # -------------------------
+    # CYBERSECURITE
+    # -------------------------
+    "CYBERSECURITE": [
+        "Consultant Cybersécurité",
+        "Ingénieur Sécurité",
+        "RSSI",
+        "Analyste SOC",
+        "Pentester",
+        "Expert IAM",
+        "Sécurité et Réseau"
+    ],
+    
+    
+    # -----------
+    # FONCTIONNEL
+    # -----------
+    "FONCTIONNEL": [
+        "Concepteur fonctionnel",
+        "Consultant fonctionnel",
+        "Consultant ERP",
+        "Consultant SAP",
+        "Consultant CRM"
+    ],
+
+    # ----------------------------------
+    # UX/UI
+    # ----------------------------------
+    "UX/UI": [
+        "UX Designer",
+        "UI Designer",
+        "UX/UI Designer"
+    ],
+
+    # -----------
+    # MANAGEMENT
+    # -----------
+    "MANAGEMENT": [
+        "Team Leader",
+        "Responsable d'équipe",
+        "Manager de proximité",
+        "Responsable de domaine"
+    ],
+
+        
+    # -------------------------
+    # SUPPORT
+    # -------------------------
+    "SUPPORT": [
+        "Technicien support",
+        "Support applicatif",
+        "Ingénieur support",
+        "Service Delivery Manager"
+    ]
+
+
+}
 
 # =========================
 # COMPÉTENCES
